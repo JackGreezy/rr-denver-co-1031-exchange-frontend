@@ -1,176 +1,398 @@
 "use client";
 
-import Link from "next/link";
+import { useEffect, useState, type FocusEvent } from "react";
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
+import clsx from "clsx";
 import { servicesData } from "@/data/services";
 import { locationsData } from "@/data/locations";
+import { toolsData } from "@/data/tools";
+import {
+  BRAND_NAME,
+  CONTACT_ROUTE,
+  PRIMARY_PHONE_DISPLAY,
+  PRIMARY_PHONE_TEL,
+} from "@/lib/constants";
 
-const PHONE_DISPLAY = "(303) 835-0981";
-const PHONE_TEL = "+13038350981";
-const BRAND_NAME = "1031 Exchange Denver";
+type MenuKey = "services" | "locations" | "tools" | null;
 
-const tools = [
-  { name: "Boot Calculator", href: "/tools/boot-calculator" },
-  { name: "Exchange Cost Estimator", href: "/tools/exchange-cost-estimator" },
-  { name: "Identification Rules Checker", href: "/tools/identification-rules-checker" },
-  { name: "Depreciation Recapture Estimator", href: "/tools/depreciation-recapture-estimator" },
-  { name: "Replacement Property Value Calculator", href: "/tools/replacement-property-value-calculator" },
-  { name: "Debt Relief Calculator", href: "/tools/debt-relief-calculator" },
+const locationMenu = locationsData
+  .filter((location) => location.type === "city" || location.slug === "remote")
+  .slice(0, 8);
+
+const serviceMenu = [
+  ...servicesData
+    .filter((service) => service.category === "Property Paths")
+    .slice(0, 5),
+  ...servicesData
+    .filter((service) => service.category === "Timelines")
+    .slice(0, 3),
+];
+
+const utilityLinks = [
+  { label: "Property Types", href: "/property-types" },
+  { label: "Blog", href: "/blog" },
+  { label: "About", href: "/about" },
 ];
 
 export default function Header() {
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [locationsOpen, setLocationsOpen] = useState(false);
-  const [toolsOpen, setToolsOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<MenuKey>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  const mainServices = servicesData.filter((s) => 
-    s.category === "Property Paths" || s.slug === "replacement-property-identification"
-  ).slice(0, 7);
-  
-  const mainLocations = [
-    locationsData.find((l) => l.slug === "denver-co"),
-    ...locationsData.filter((l) => 
-      l.type === "city" && l.slug !== "denver-co"
-    ).slice(0, 7)
-  ].filter((loc): loc is NonNullable<typeof loc> => loc !== undefined);
+  useEffect(() => {
+    const handler = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpenMenu(null);
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
+
+  const handleMenuToggle = (menu: MenuKey) => {
+    setOpenMenu((current) => (current === menu ? null : menu));
+  };
+
+  const handleBlur = (event: FocusEvent<HTMLDivElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+      setOpenMenu(null);
+    }
+  };
+
+  const NavLink = ({ href, label }: { href: string; label: string }) => (
+    <Link
+      href={href}
+      className="rounded-full px-3 py-1 text-sm font-semibold text-slate-200 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+    >
+      {label}
+    </Link>
+  );
 
   return (
-    <header className="bg-[#F8FAFB]">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-8">
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/1031-exchange-of-denver-co-logo.png"
-            alt={BRAND_NAME}
-            width={200}
-            height={60}
-            className="h-auto w-auto"
-            priority
-          />
-        </Link>
-        <nav className="hidden items-center gap-6 md:flex">
-          <div className="relative">
+    <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur supports-[backdrop-filter]:bg-slate-950/70">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-1 lg:px-8">
+        <div className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/1031-exchange-of-denver-co-logo.png"
+              alt={BRAND_NAME}
+              width={100}
+              height={28}
+              className="h-auto w-auto max-h-7"
+              priority
+            />
+            <span className="sr-only">{BRAND_NAME}</span>
+          </Link>
+        </div>
+        <nav className="hidden items-center gap-4 lg:flex">
+          <div
+            className="relative"
+            onMouseEnter={() => setOpenMenu("services")}
+            onMouseLeave={() => setOpenMenu(null)}
+            onFocus={() => setOpenMenu("services")}
+            onBlur={handleBlur}
+          >
             <button
-              onMouseEnter={() => setServicesOpen(true)}
-              onMouseLeave={() => setServicesOpen(false)}
-              className="text-sm font-medium text-gray-700 transition hover:text-[#16324F] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16324F]"
+              type="button"
+              className="rounded-full px-4 py-1 text-sm font-semibold text-slate-200 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              aria-haspopup="true"
+              aria-expanded={openMenu === "services"}
+              aria-controls="services-menu"
+              onClick={() => handleMenuToggle("services")}
             >
               Services
             </button>
-            {servicesOpen && (
-              <div
-                className="absolute left-0 top-full mt-2 w-64 rounded-lg border border-gray-200 bg-white shadow-lg z-50"
-                onMouseEnter={() => setServicesOpen(true)}
-                onMouseLeave={() => setServicesOpen(false)}
-              >
-                <div className="p-2">
-                  {mainServices.map((service) => (
-                    <Link
-                      key={service.slug}
-                      href={`/services/${service.slug}`}
-                      className="block rounded px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-50 hover:text-[#16324F]"
-                    >
-                      {service.name}
-                    </Link>
-                  ))}
-                  <Link
-                    href="/services"
-                    className="block rounded px-3 py-2 text-sm font-semibold text-[#16324F] transition hover:bg-gray-50"
-                  >
-                    View All {servicesData.length} Services →
-                  </Link>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="relative">
-            <button
-              onMouseEnter={() => setLocationsOpen(true)}
-              onMouseLeave={() => setLocationsOpen(false)}
-              className="text-sm font-medium text-gray-700 transition hover:text-[#16324F] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16324F]"
+            <div
+              id="services-menu"
+              role="menu"
+              aria-label="Services"
+              className={clsx(
+                "absolute left-0 top-full mt-3 w-72 rounded-2xl border border-white/10 bg-slate-900/95 p-4 shadow-2xl backdrop-blur transition-opacity",
+                openMenu === "services"
+                  ? "pointer-events-auto opacity-100"
+                  : "pointer-events-none opacity-0"
+              )}
             >
-              Service Areas
-            </button>
-            {locationsOpen && (
-              <div
-                className="absolute left-0 top-full mt-2 w-64 rounded-lg border border-gray-200 bg-white shadow-lg z-50"
-                onMouseEnter={() => setLocationsOpen(true)}
-                onMouseLeave={() => setLocationsOpen(false)}
-              >
-                <div className="p-2">
-                  {mainLocations.map((location) => (
+              <p className="px-2 text-xs font-semibold uppercase tracking-[0.28em] text-amber-300/70">
+                Exchange Support
+              </p>
+              <ul className="mt-2 space-y-1">
+                {serviceMenu.map((service) => (
+                  <li key={service.slug}>
                     <Link
-                      key={location.slug}
-                      href={`/service-areas/${location.slug}`}
-                      className="block rounded px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-50 hover:text-[#16324F]"
+                      href={`/services/${service.slug}`}
+                      className="block rounded-xl px-3 py-2 text-sm text-slate-100 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                     >
-                      {location.name}
+                      <span className="block font-semibold text-white">
+                        {service.name}
+                      </span>
+                      <span className="block text-xs text-slate-300">
+                        {service.short}
+                      </span>
                     </Link>
-                  ))}
-                  <Link
-                    href="/service-areas"
-                    className="block rounded px-3 py-2 text-sm font-semibold text-[#16324F] transition hover:bg-gray-50"
-                  >
-                    View All {locationsData.length} Service Areas →
-                  </Link>
-                </div>
-              </div>
-            )}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/services"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-xl border border-amber-200/50 px-3 py-2 text-sm font-semibold text-amber-200 transition hover:bg-amber-200/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
+              >
+                View all {servicesData.length} services
+              </Link>
+            </div>
           </div>
-          <div className="relative">
+          <div
+            className="relative"
+            onMouseEnter={() => setOpenMenu("locations")}
+            onMouseLeave={() => setOpenMenu(null)}
+            onFocus={() => setOpenMenu("locations")}
+            onBlur={handleBlur}
+          >
             <button
-              onMouseEnter={() => setToolsOpen(true)}
-              onMouseLeave={() => setToolsOpen(false)}
-              className="text-sm font-medium text-gray-700 transition hover:text-[#16324F] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16324F]"
+              type="button"
+              className="rounded-full px-4 py-1 text-sm font-semibold text-slate-200 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              aria-haspopup="true"
+              aria-expanded={openMenu === "locations"}
+              aria-controls="locations-menu"
+              onClick={() => handleMenuToggle("locations")}
+            >
+              Locations
+            </button>
+            <div
+              id="locations-menu"
+              role="menu"
+              aria-label="Locations"
+              className={clsx(
+                "absolute left-0 top-full mt-3 w-72 rounded-2xl border border-white/10 bg-slate-900/95 p-4 shadow-2xl backdrop-blur transition-opacity",
+                openMenu === "locations"
+                  ? "pointer-events-auto opacity-100"
+                  : "pointer-events-none opacity-0"
+              )}
+            >
+              <p className="px-2 text-xs font-semibold uppercase tracking-[0.28em] text-amber-300/70">
+                Metro Coverage
+              </p>
+              <ul className="mt-2 space-y-1">
+                {locationMenu.map((location) => (
+                  <li key={location.slug}>
+                    <Link
+                      href={`/locations/${location.slug}`}
+                      className="block rounded-xl px-3 py-2 text-sm text-slate-100 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                    >
+                      <span className="block font-semibold text-white">
+                        {location.name}
+                      </span>
+                      <span className="block text-xs text-slate-300">
+                        View exchange support
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/locations"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-xl border border-amber-200/50 px-3 py-2 text-sm font-semibold text-amber-200 transition hover:bg-amber-200/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
+              >
+                View all locations
+              </Link>
+            </div>
+          </div>
+          <div
+            className="relative"
+            onMouseEnter={() => setOpenMenu("tools")}
+            onMouseLeave={() => setOpenMenu(null)}
+            onFocus={() => setOpenMenu("tools")}
+            onBlur={handleBlur}
+          >
+            <button
+              type="button"
+              className="rounded-full px-4 py-1 text-sm font-semibold text-slate-200 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              aria-haspopup="true"
+              aria-expanded={openMenu === "tools"}
+              aria-controls="tools-menu"
+              onClick={() => handleMenuToggle("tools")}
             >
               Tools
             </button>
-            {toolsOpen && (
-              <div
-                className="absolute left-0 top-full mt-2 w-64 rounded-lg border border-gray-200 bg-white shadow-lg z-50"
-                onMouseEnter={() => setToolsOpen(true)}
-                onMouseLeave={() => setToolsOpen(false)}
-              >
-                <div className="p-2">
-                  {tools.map((tool) => (
+            <div
+              id="tools-menu"
+              role="menu"
+              aria-label="Tools"
+              className={clsx(
+                "absolute left-0 top-full mt-3 w-72 rounded-2xl border border-white/10 bg-slate-900/95 p-4 shadow-2xl backdrop-blur transition-opacity",
+                openMenu === "tools"
+                  ? "pointer-events-auto opacity-100"
+                  : "pointer-events-none opacity-0"
+              )}
+            >
+              <p className="px-2 text-xs font-semibold uppercase tracking-[0.28em] text-amber-300/70">
+                Calculators
+              </p>
+              <ul className="mt-2 space-y-1">
+                {toolsData.map((tool) => (
+                  <li key={tool.slug}>
                     <Link
-                      key={tool.href}
                       href={tool.href}
-                      className="block rounded px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-50 hover:text-[#16324F]"
+                      className="block rounded-xl px-3 py-2 text-sm text-slate-100 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                     >
-                      {tool.name}
+                      <span className="block font-semibold text-white">
+                        {tool.name}
+                      </span>
+                      <span className="block text-xs text-slate-300">
+                        {tool.description}
+                      </span>
                     </Link>
-                  ))}
-                  <Link
-                    href="/tools"
-                    className="block rounded px-3 py-2 text-sm font-semibold text-[#16324F] transition hover:bg-gray-50"
-                  >
-                    View All Tools →
-                  </Link>
-                </div>
-              </div>
-            )}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/tools"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-xl border border-amber-200/50 px-3 py-2 text-sm font-semibold text-amber-200 transition hover:bg-amber-200/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
+              >
+                View all tools
+              </Link>
+            </div>
           </div>
-          <Link
-            href="/about"
-            className="text-sm font-medium text-gray-700 transition hover:text-[#16324F] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16324F]"
-          >
-            About
-          </Link>
+          {utilityLinks.map((link) => (
+            <NavLink key={link.href} href={link.href} label={link.label} />
+          ))}
         </nav>
-        <div className="flex items-center gap-4">
+        <div className="hidden items-center gap-2 lg:flex">
           <Link
-            href={`tel:${PHONE_TEL}`}
-            className="hidden rounded-full border border-[#16324F] px-4 py-2 text-sm font-semibold text-[#16324F] transition hover:bg-[#16324F] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16324F] md:inline-flex"
+            href={`tel:${PRIMARY_PHONE_TEL}`}
+            className="rounded-full border border-white/20 px-3 py-1 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
-            Call {PHONE_DISPLAY}
+            Call {PRIMARY_PHONE_DISPLAY}
           </Link>
           <Link
-            href="#lead-form"
-            className="inline-flex items-center rounded-full bg-[#DAA520] px-4 py-2 text-sm font-semibold tracking-[0.18em] text-gray-900 transition hover:bg-[#c4911b] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16324F]"
+            href={CONTACT_ROUTE}
+            className="inline-flex items-center rounded-full bg-amber-300 px-3 py-1 text-sm font-semibold tracking-[0.18em] text-slate-950 transition hover:bg-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
           >
-            START REQUEST
+            CONTACT TEAM
           </Link>
+        </div>
+        <button
+          type="button"
+          className="inline-flex items-center rounded-full border border-white/20 px-3 py-1 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white lg:hidden"
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-menu"
+          onClick={() => setMobileOpen((prev) => !prev)}
+        >
+          Menu
+        </button>
+      </div>
+      <div
+        id="mobile-menu"
+        className={clsx(
+          "border-t border-white/5 bg-slate-950/95 px-4 pb-6 pt-2 text-white lg:hidden",
+          mobileOpen ? "block" : "hidden"
+        )}
+      >
+        <div className="flex flex-col gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-200">
+              Services
+            </p>
+            <ul className="mt-2 space-y-2">
+              {serviceMenu.slice(0, 6).map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="block rounded-xl bg-white/5 px-4 py-2 text-sm text-white"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/services"
+              className="mt-2 inline-flex items-center text-sm font-semibold text-amber-200"
+              onClick={() => setMobileOpen(false)}
+            >
+              View all services
+            </Link>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-200">
+              Locations
+            </p>
+            <ul className="mt-2 space-y-2">
+              {locationMenu.slice(0, 6).map((location) => (
+                <li key={location.slug}>
+                  <Link
+                    href={`/locations/${location.slug}`}
+                    className="block rounded-xl bg-white/5 px-4 py-2 text-sm text-white"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {location.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/locations"
+              className="mt-2 inline-flex items-center text-sm font-semibold text-amber-200"
+              onClick={() => setMobileOpen(false)}
+            >
+              View all locations
+            </Link>
+          </div>
+          <div className="grid gap-2">
+            {utilityLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className="rounded-xl bg-white/5 px-4 py-2 text-sm font-semibold text-white"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-200">
+              Tools
+            </p>
+            <ul className="mt-2 space-y-2">
+              {toolsData.map((tool) => (
+                <li key={tool.slug}>
+                  <Link
+                    href={tool.href}
+                    className="block rounded-xl bg-white/5 px-4 py-2 text-sm text-white"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {tool.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/tools"
+              className="mt-2 inline-flex items-center text-sm font-semibold text-amber-200"
+              onClick={() => setMobileOpen(false)}
+            >
+              View all tools
+            </Link>
+          </div>
+          <div className="grid gap-2">
+            <Link
+              href={`tel:${PRIMARY_PHONE_TEL}`}
+              className="inline-flex items-center justify-center rounded-full border border-white/20 px-4 py-3 text-sm font-semibold text-white"
+              onClick={() => setMobileOpen(false)}
+            >
+              Call {PRIMARY_PHONE_DISPLAY}
+            </Link>
+            <Link
+              href={CONTACT_ROUTE}
+              className="inline-flex items-center justify-center rounded-full bg-amber-300 px-4 py-3 text-sm font-semibold tracking-[0.2em] text-slate-950"
+              onClick={() => setMobileOpen(false)}
+            >
+              CONTACT TEAM
+            </Link>
+          </div>
         </div>
       </div>
     </header>

@@ -104,3 +104,10 @@ export interface InventorySpotlightItem {
   note?: string;
 }
 
+export interface ToolItem {
+  slug: Slug;
+  name: string;
+  description: string;
+  href: string;
+}
+

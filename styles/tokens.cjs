@@ -1,11 +1,11 @@
 module.exports = {
-  paper: "#0B0F13",
-  ink: "#E7E9EC",
+  paper: "#010409",
+  ink: "#F4F6FB",
   heading: "#FFFFFF",
-  primaryBg: "#0EA5A6",
-  primaryFg: "#0B0F13",
-  secondaryBg: "#111827",
-  secondaryFg: "#F5F7FA",
-  outline: "#334155",
-  panel: "#11151B"
+  primaryBg: "#E6B656",
+  primaryFg: "#0A0F1D",
+  secondaryBg: "#0A182A",
+  secondaryFg: "#F4F6FB",
+  outline: "#24324F",
+  panel: "#111C2F",
 };

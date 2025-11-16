@@ -6,9 +6,15 @@ import { servicesData } from "@/data/services";
 import { locationsData } from "@/data/locations";
 import BottomCTA from "@/components/BottomCTA";
 import { LeadForm } from "@/components/LeadForm";
-
-const PHONE_DISPLAY = "(720) 738-1031";
-const PHONE_TEL = "+17207381031";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedServiceGrid } from "@/components/services/RelatedServiceGrid";
+import {
+  BRAND_NAME,
+  PRIMARY_CITY,
+  PRIMARY_PHONE_DISPLAY,
+  PRIMARY_PHONE_TEL,
+  PRIMARY_STATE_ABBR,
+} from "@/lib/constants";
 
 export async function generateStaticParams() {
   return servicesData.map((service) => ({
@@ -16,8 +22,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const service = servicesData.find((s) => s.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const service = servicesData.find((s) => s.slug === slug);
   
   if (!service) {
     return {
@@ -26,7 +33,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   return {
-    title: `${service.name} | 1031 Exchange Denver`,
+    title: `${service.name} | ${BRAND_NAME}`,
     description: service.short,
     alternates: {
       canonical: `https://www.1031exchangedenver.com/services/${service.slug}`,
@@ -34,8 +41,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function ServicePage({ params }: { params: { slug: string } }) {
-  const service = servicesData.find((s) => s.slug === params.slug);
+export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const service = servicesData.find((s) => s.slug === slug);
 
   if (!service) {
     notFound();
@@ -47,15 +55,38 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     name: service.name,
     description: service.short,
     provider: {
-      "@type": "LocalBusiness",
-      name: "1031 Exchange Denver",
-      telephone: PHONE_TEL,
+      "@type": "ProfessionalService",
+      name: BRAND_NAME,
+      telephone: PRIMARY_PHONE_TEL,
     },
     areaServed: {
       "@type": "State",
-      name: "Colorado",
+      name: PRIMARY_STATE_ABBR,
     },
   };
+
+  const supportingLocations = locationsData.filter(
+    (location) => location.type === "city"
+  ).slice(0, 5);
+
+  const relatedServices = servicesData
+    .filter((s) => s.slug !== service.slug && s.category === service.category)
+    .slice(0, 4);
+
+  const faqs = [
+    {
+      question: `How does this service support ${PRIMARY_CITY}?`,
+      answer: `${service.name} keeps ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} exchanges aligned with local lending, intermediary, and attorney requirements so deadlines never drift.`,
+    },
+    {
+      question: `What do you need to begin ${service.name}?`,
+      answer: `We confirm relinquished sale status, estimated gain, and lender expectations for every ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} project before kicking off ${service.name.toLowerCase()} so there are no surprises.`,
+    },
+    {
+      question: `Does ${service.name} cover compliance reporting?`,
+      answer: `Yes. We document every milestone and supply your CPA or attorney in ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} with organized records generated during ${service.name.toLowerCase()} support.`,
+    },
+  ];
 
   return (
     <>
@@ -64,79 +95,122 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="mx-auto max-w-7xl px-6 py-12 md:px-8 md:py-20">
-        <h1 className="font-serif text-3xl font-bold text-[#0B3C5D] md:text-4xl mb-4">
-          {service.name}
-        </h1>
-        {service.category && (
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#DAA520] mb-4">
-            {service.category}
-          </p>
-        )}
-        <p className="text-lg text-gray-700 mb-8 max-w-3xl">
-          {service.short}
-        </p>
-
-        <section className="mb-12">
-          <h2 className="font-serif text-2xl font-bold text-[#0B3C5D] mb-6">Service Details</h2>
-          <div className="prose max-w-none">
-            <p className="text-gray-700">
-              Our {service.name.toLowerCase()} service provides comprehensive support for Colorado investors completing 1031 exchanges. 
-              We coordinate with qualified intermediaries, attorneys, and lenders to ensure compliance with IRS deadlines and requirements.
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Services", href: "/services" },
+            { label: service.name },
+          ]}
+        />
+        <div className="space-y-4">
+          {service.category ? (
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-amber-300">
+              {service.category}
             </p>
+          ) : null}
+          <h1 className="text-3xl font-semibold text-white sm:text-4xl">
+            {service.name}
+          </h1>
+          <p className="text-base text-slate-300">{service.short}</p>
+        </div>
+
+        <section className="mt-12 space-y-6 rounded-3xl border border-white/10 bg-white/5 p-6">
+          <h2 className="text-2xl font-semibold text-white">
+            What is included
+          </h2>
+          <p className="text-sm text-slate-300">
+            This service keeps your exchange aligned with IRS guidance and the
+            lender, intermediary, and attorney teams supporting you.
+          </p>
+          <ul className="space-y-3 text-sm text-slate-200">
+            <li>• Intake review covering gain, basis, and financing targets.</li>
+            <li>• Calendar control for the 45 day identification and 180 day close.</li>
+            <li>• Secure document exchange for intermediaries, attorneys, and lenders.</li>
+          </ul>
+        </section>
+
+        <section className="mt-12">
+          <RelatedServiceGrid services={relatedServices.length > 0 ? relatedServices : servicesData.slice(0, 4)} />
+        </section>
+
+        <section className="mt-12 space-y-4 rounded-3xl border border-white/10 bg-white/5 p-6">
+          <h2 className="text-2xl font-semibold text-white">
+            Frequently asked questions
+          </h2>
+          <div className="space-y-3">
+            {faqs.map((faq) => (
+              <details
+                key={faq.question}
+                className="rounded-2xl border border-white/10 bg-slate-950/40 p-4"
+              >
+                <summary className="cursor-pointer text-sm font-semibold text-white">
+                  {faq.question}
+                </summary>
+                <p className="mt-2 text-sm text-slate-300">{faq.answer}</p>
+              </details>
+            ))}
           </div>
         </section>
 
-        <section className="mb-12">
-          <h2 className="font-serif text-2xl font-bold text-[#0B3C5D] mb-6">Available in These Service Areas</h2>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {locationsData.filter((loc) => loc.type === "city").slice(0, 6).map((location) => (
+        <section className="mt-12 space-y-4 rounded-3xl border border-white/10 bg-white/5 p-6">
+          <h2 className="text-2xl font-semibold text-white">
+            Where we deliver {service.name.toLowerCase()}
+          </h2>
+          <div className="grid gap-4 md:grid-cols-3">
+            {supportingLocations.map((location) => (
               <Link
                 key={location.slug}
-                href={`/service-areas/${location.slug}`}
-                className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                href={`/locations/${location.slug}`}
+                className="rounded-2xl border border-white/10 bg-slate-950/40 p-4 text-slate-200 transition hover:-translate-y-1 hover:border-amber-200/50"
               >
-                <h3 className="font-semibold text-[#0B3C5D] mb-2">{location.name}</h3>
+                <p className="text-sm font-semibold text-white">
+                  {location.name}
+                </p>
+                <p className="text-xs text-slate-400">
+                  Learn about {location.name} exchanges
+                </p>
               </Link>
             ))}
           </div>
-          <div className="mt-6">
-            <Link
-              href="/service-areas"
-              className="text-sm font-semibold text-[#16324F] underline decoration-2 underline-offset-4 transition hover:text-[#0f2236]"
-            >
-              View All {locationsData.length} Service Areas →
-            </Link>
-          </div>
         </section>
 
-        <section className="mb-12 rounded-lg border border-gray-200 bg-[#F8FAFB] p-8">
-          <h2 className="font-serif text-2xl font-bold text-[#0B3C5D] mb-4">
-            Get Started with {service.name}
+        <section className="mt-12 rounded-3xl border border-amber-200/30 bg-amber-50/5 p-6 text-white">
+          <h2 className="text-2xl font-semibold">
+            Launch {service.name.toLowerCase()}
           </h2>
-          <p className="text-gray-700 mb-6">
-            Contact our team to discuss how our {service.name.toLowerCase()} service can support your 1031 exchange.
+          <p className="mt-2 text-sm text-slate-200">
+            Share your objectives and we will confirm intermediary fit,
+            diligence needs, and reporting steps.
           </p>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <Link
-              href={`tel:${PHONE_TEL}`}
-              className="inline-flex items-center justify-center rounded-full bg-[#DAA520] px-6 py-3 text-sm font-semibold tracking-[0.18em] text-gray-900 transition hover:bg-[#c4911b]"
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={`tel:${PRIMARY_PHONE_TEL}`}
+              className="inline-flex items-center justify-center rounded-full border border-white/20 px-5 py-3 text-xs font-semibold uppercase tracking-[0.28em]"
             >
-              CALL {PHONE_DISPLAY}
-            </Link>
+              Call {PRIMARY_PHONE_DISPLAY}
+            </a>
             <Link
               href="#contact-form"
-              className="inline-flex items-center justify-center rounded-full border border-[#16324F] px-6 py-3 text-sm font-semibold text-[#16324F] transition hover:bg-[#16324F] hover:text-white"
+              className="inline-flex items-center justify-center rounded-full bg-amber-300 px-5 py-3 text-xs font-semibold uppercase tracking-[0.28em] text-slate-900"
             >
-              REQUEST CONSULTATION
+              Contact team
             </Link>
           </div>
         </section>
 
-        <section id="contact-form" className="mb-12">
-          <h2 className="font-serif text-2xl font-bold text-[#0B3C5D] mb-6">Contact Us</h2>
-          <div className="rounded-lg border border-gray-200 bg-white p-8">
-            <LeadForm prepopulatedService={service.name} />
+        <section id="contact-form" className="mt-12">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
+            <h2 className="text-2xl font-semibold text-white">
+              Tell us about your exchange
+            </h2>
+            <p className="text-sm text-slate-300">
+              Mention {service.name.toLowerCase()} so we can prefill workflow
+              steps before the first call.
+            </p>
+            <div className="mt-6 rounded-3xl border border-white/10 bg-slate-950/40 p-4">
+              <LeadForm prepopulatedService={service.name} />
+            </div>
           </div>
         </section>
       </div>

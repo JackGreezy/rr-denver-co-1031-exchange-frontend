@@ -21,7 +21,7 @@ export function RotatingHeroBackground() {
   }, []);
 
   return (
-    <div className="absolute inset-0 overflow-hidden rounded-3xl">
+    <div className="absolute inset-0 overflow-hidden">
       {images.map((src, index) => (
         <div
           key={src}
@@ -44,4 +44,5 @@ export function RotatingHeroBackground() {
     </div>
   );
 }
+
 

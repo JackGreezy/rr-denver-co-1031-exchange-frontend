@@ -9,7 +9,10 @@ import { RevealSection } from "@/components/RevealSection";
 import { LeadForm } from "@/components/LeadForm";
 import { RotatingHeroBackground } from "@/components/RotatingHeroBackground";
 import { locationsData } from "@/data/locations";
+import { servicesData } from "@/data/services";
 import { propertyTypesData } from "@/data/property-types";
+import { HomeServiceSearch } from "@/components/home/HomeServiceSearch";
+import { HomeLocationSearch } from "@/components/home/HomeLocationSearch";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -196,6 +199,20 @@ const CO_CITIES_SLUGS: CoverageItem[] = [
   },
 ];
 
+const FEATURED_LOCATIONS = CO_CITIES_SLUGS.map((city) => {
+  const match =
+    locationsData.find((location) => location.name === city.name) ||
+    locationsData.find((location) =>
+      location.slug.replace("-co", "") === city.slug
+    );
+  return {
+    name: city.name,
+    description: city.description,
+    slug: match?.slug ?? city.slug,
+    heroImage: match?.heroImage,
+  };
+}).slice(0, 8);
+
 const FAQ_ENTRIES = [
   {
     question: "What are the 45 and 180 day deadlines?",
@@ -281,7 +298,7 @@ export const metadata: Metadata = {
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "ProfessionalService",
   name: BRAND_NAME,
   url: "https://www.1031exchangedenver.com/",
   logo: "https://www.1031exchangedenver.com/logo.svg",
@@ -291,6 +308,15 @@ const organizationJsonLd = {
     addressRegion: "CO",
     addressCountry: "US",
   },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: PHONE_TEL,
+      contactType: "customer service",
+      areaServed: "US",
+      availableLanguage: "English",
+    },
+  ],
   sameAs: [
     "https://www.linkedin.com/company/1031-exchange-denver",
     "https://maps.google.com/?cid=1031",
@@ -329,18 +355,6 @@ const gradientOverlay =
   "bg-[radial-gradient(circle_at_20%_20%,rgba(218,165,32,0.18),transparent_55%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.22),transparent_60%)]";
 
 export default function Page() {
-  const sections = [
-    { id: "why-choose" },
-    { id: "how-it-works" },
-    { id: "services" },
-    { id: "property-types" },
-    { id: "coverage" },
-    { id: "tools" },
-    { id: "resources" },
-    { id: "faq" },
-    { id: "lead-form-section" },
-  ];
-
   return (
     <>
       <Script
@@ -358,59 +372,14 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <a
-        href="#main"
-        className="absolute left-4 top-4 z-50 inline-flex h-10 -translate-y-12 items-center rounded-full bg-white px-4 text-sm font-semibold text-[#16324F] shadow-md outline-none transition focus:translate-y-0 focus:ring-2 focus:ring-[#16324F]"
-      >
-        Skip to main content
-      </a>
       <div className={`bg-white ${inter.className} text-gray-900`}>
-        <header className="bg-[#F8FAFB]">
-          <div className={`mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-8`}>
-            <div className="flex flex-col gap-1">
-              <span className={`text-xs font-semibold tracking-[0.28em] text-[#16324F]`}>
-                ROCKY MOUNTAIN EQUITY
-              </span>
-              <p className={`text-xl font-semibold text-[#16324F] ${lora.className}`}>
-                {BRAND_NAME}
-              </p>
-            </div>
-            <div className="hidden items-center gap-8 md:flex">
-              {sections.map((section) => (
-                <Link
-                  key={section.id}
-                  href={`#${section.id}`}
-                  className="text-sm font-medium text-gray-700 transition hover:text-[#16324F] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16324F]"
-                >
-                  {section.id
-                    .replace(/-/g, " ")
-                    .replace(/\b\w/g, (char) => char.toUpperCase())}
-                </Link>
-              ))}
-            </div>
-            <div className="flex items-center gap-4">
-              <Link
-                href={`tel:${PHONE_TEL}`}
-                className="hidden rounded-full border border-[#16324F] px-4 py-2 text-sm font-semibold text-[#16324F] transition hover:bg-[#16324F] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16324F] md:inline-flex"
-              >
-                Call {PHONE_DISPLAY}
-              </Link>
-              <Link
-                href="#lead-form"
-                className="inline-flex items-center rounded-full bg-[#DAA520] px-4 py-2 text-sm font-semibold tracking-[0.18em] text-gray-900 transition hover:bg-[#c4911b] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16324F]"
-              >
-                START REQUEST
-              </Link>
-            </div>
-          </div>
-        </header>
         <main id="main">
-          <section className="relative overflow-hidden bg-[#F8FAFB]">
+          <section className={`relative overflow-hidden ${gradientOverlay}`}>
+            <RotatingHeroBackground />
             <div
-              className={`relative mx-auto flex max-w-7xl flex-col gap-14 rounded-3xl px-6 py-20 md:px-8 md:py-28 ${gradientOverlay}`}
+              className="relative mx-auto flex max-w-7xl flex-col gap-14 px-6 py-20 md:px-8 md:py-28 z-10"
             >
-              <RotatingHeroBackground />
-              <div className="relative flex flex-col gap-8 text-white z-10">
+              <div className="relative flex flex-col gap-8 text-white">
                 <div className="inline-flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-[#DAA520]" />
                   <span className="text-xs uppercase tracking-[0.38em]">
@@ -443,7 +412,7 @@ export default function Page() {
                   45 Day identification. 180 Day closing. We help you stay compliant.
                 </p>
               </div>
-              <div className="relative grid gap-8 rounded-3xl bg-white/10 p-6 backdrop-blur-sm sm:grid-cols-3 z-10">
+              <div className="relative grid gap-8 bg-white/10 p-6 backdrop-blur-sm sm:grid-cols-3 z-10">
                 {["CPA Alliance", "Attorney Review", "Qualified Intermediary"].map(
                   (badge) => (
                     <div
@@ -610,33 +579,9 @@ export default function Page() {
                   Services designed for Colorado exchanges, from planning through final reporting.
                 </h2>
               </RevealSection>
-              <RevealSection className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {TOP_SERVICES.map((service) => (
-                  <div
-                    key={service.slug}
-                    className="flex h-full flex-col justify-between rounded-2xl border border-gray-200/60 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-                  >
-                    <div className="flex items-center gap-4">
-                      <IconOutline
-                        title={service.title}
-                        path="M4 12l8-8 8 8-8 8-8-8z"
-                      />
-                      <h3 className={`text-lg font-semibold text-[#16324F] ${lora.className}`}>
-                        {service.title}
-                      </h3>
-                    </div>
-                    <p className="mt-4 text-sm leading-relaxed text-gray-700">
-                      {service.description}
-                    </p>
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className="mt-6 inline-flex text-sm font-semibold text-[#16324F] transition hover:text-[#0f2236] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16324F]"
-                    >
-                      View service
-                    </Link>
-                  </div>
-                ))}
-              </RevealSection>
+            <RevealSection>
+              <HomeServiceSearch services={servicesData} featured={TOP_SERVICES} />
+            </RevealSection>
               <RevealSection className="flex justify-end">
                 <Link
                   href="/services"
@@ -732,54 +677,17 @@ export default function Page() {
                   From the Front Range to the Arkansas Valley, the Rocky Mountain Equity network coordinates qualified intermediaries, attorneys, and local brokers to keep your exchange compliant and on schedule.
                 </p>
               </RevealSection>
-              <RevealSection className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
-                {CO_CITIES_SLUGS.map((city) => {
-                  const location = locationsData.find((loc) => loc.slug === `${city.slug}-co` || loc.slug === city.slug);
-                  return (
-                    <Link
-                      key={city.slug}
-                      href={`/service-areas/${city.slug}`}
-                      className="group flex h-full flex-col rounded-2xl border border-gray-200/60 bg-[#F8FAFB] overflow-hidden shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-                    >
-                      {location?.heroImage && (
-                        <div className="relative h-40 w-full overflow-hidden">
-                          <Image
-                            src={location.heroImage}
-                            alt={city.name}
-                            fill
-                            className="object-cover transition-transform group-hover:scale-105"
-                          />
-                        </div>
-                      )}
-                      <div className="flex flex-col p-5">
-                        <div className="flex items-center gap-3">
-                          <IconOutline
-                            title={city.name}
-                            path="M12 2l7 4v6c0 5.25-3.75 10.5-7 12-3.25-1.5-7-6.75-7-12V6l7-4z"
-                          />
-                          <h3 className={`text-lg font-semibold text-[#16324F] ${lora.className}`}>
-                            {city.name}
-                          </h3>
-                        </div>
-                        <p className="mt-3 text-sm leading-relaxed text-gray-700">
-                          {city.description}
-                        </p>
-                        <span className="mt-4 inline-flex text-sm font-semibold text-[#16324F] transition group-hover:text-[#0f2236]">
-                          See location
-                        </span>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </RevealSection>
-              <RevealSection className="flex justify-end">
-                <Link
-                  href="/service-areas"
-                  className="text-sm font-semibold text-[#16324F] underline decoration-2 underline-offset-4 transition hover:text-[#0f2236] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16324F]"
-                >
-                  See locations
-                </Link>
-              </RevealSection>
+            <RevealSection>
+              <HomeLocationSearch cards={FEATURED_LOCATIONS} locations={locationsData} />
+            </RevealSection>
+            <RevealSection className="flex justify-end">
+              <Link
+                href="/locations"
+                className="text-sm font-semibold text-[#16324F] underline decoration-2 underline-offset-4 transition hover:text-[#0f2236] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16324F]"
+              >
+                See locations
+              </Link>
+            </RevealSection>
             </div>
           </section>
 

@@ -1,125 +1,55 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
 import { locationsData } from "@/data/locations";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { SearchPanel } from "@/components/search/SearchPanel";
+import BottomCTA from "@/components/BottomCTA";
 
 export const metadata: Metadata = {
   title: "1031 Exchange Locations | 1031 Exchange Denver",
-  description: "1031 exchange services available across Colorado. Denver, Boulder, Colorado Springs, Fort Collins, and more.",
+  description:
+    "Explore Denver metro 1031 exchange coverage. Neighborhood intelligence, nearby FAQs, and rapid contact options.",
   alternates: {
     canonical: "https://www.1031exchangedenver.com/locations",
   },
 };
 
 export default function LocationsPage() {
-  const cities = locationsData.filter((loc) => loc.type === "city");
-  const neighborhoods = locationsData.filter((loc) => loc.type === "neighborhood" || loc.type === "district");
-  const suburbs = locationsData.filter((loc) => loc.type === "suburb");
+  const itemsWithLabels = locationsData.map((location) => ({
+    ...location,
+    label: location.name,
+    href: `/locations/${location.slug}`,
+  }));
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-12 md:px-8 md:py-20">
-      <h1 className="font-serif text-3xl font-bold text-[#0B3C5D] md:text-4xl mb-4">
-        1031 Exchange Locations
-      </h1>
-      <p className="text-lg text-gray-700 mb-12 max-w-3xl">
-        Our Denver-based team provides 1031 exchange coordination services across Colorado. 
-        Select a location below to learn more about 1031 exchange services in that area.
-      </p>
-
-      {cities.length > 0 && (
-        <section className="mb-12">
-          <h2 className="font-serif text-2xl font-bold text-[#0B3C5D] mb-6">Cities</h2>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {cities.map((location) => (
-              <Link
-                key={location.slug}
-                href={`/locations/${location.slug}`}
-                className="group rounded-lg border border-gray-200 bg-white overflow-hidden shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-              >
-                {location.heroImage && (
-                  <div className="relative h-48 w-full overflow-hidden">
-                    <Image
-                      src={location.heroImage}
-                      alt={`${location.name}, Colorado`}
-                      fill
-                      className="object-cover transition-transform group-hover:scale-105"
-                    />
-                  </div>
-                )}
-                <div className="p-6">
-                  <h3 className="font-semibold text-[#0B3C5D] mb-2">{location.name}</h3>
-                  <p className="text-sm text-gray-600">View 1031 exchange services</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {suburbs.length > 0 && (
-        <section className="mb-12">
-          <h2 className="font-serif text-2xl font-bold text-[#0B3C5D] mb-6">Suburbs</h2>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {suburbs.map((location) => (
-              <Link
-                key={location.slug}
-                href={`/locations/${location.slug}`}
-                className="group rounded-lg border border-gray-200 bg-white overflow-hidden shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-              >
-                {location.heroImage && (
-                  <div className="relative h-48 w-full overflow-hidden">
-                    <Image
-                      src={location.heroImage}
-                      alt={`${location.name}, Colorado`}
-                      fill
-                      className="object-cover transition-transform group-hover:scale-105"
-                    />
-                  </div>
-                )}
-                <div className="p-6">
-                  <h3 className="font-semibold text-[#0B3C5D] mb-2">{location.name}</h3>
-                  <p className="text-sm text-gray-600">View 1031 exchange services</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {neighborhoods.length > 0 && (
-        <section className="mb-12">
-          <h2 className="font-serif text-2xl font-bold text-[#0B3C5D] mb-6">Neighborhoods & Districts</h2>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {neighborhoods.map((location) => (
-              <Link
-                key={location.slug}
-                href={`/locations/${location.slug}`}
-                className="group rounded-lg border border-gray-200 bg-white overflow-hidden shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-              >
-                {location.heroImage && (
-                  <div className="relative h-48 w-full overflow-hidden">
-                    <Image
-                      src={location.heroImage}
-                      alt={`${location.name}, Colorado`}
-                      fill
-                      className="object-cover transition-transform group-hover:scale-105"
-                    />
-                  </div>
-                )}
-                <div className="p-6">
-                  <h3 className="font-semibold text-[#0B3C5D] mb-2">{location.name}</h3>
-                  {location.parent && (
-                    <p className="text-xs text-gray-500 mb-2">
-                      {locationsData.find((l) => l.slug === location.parent)?.name}
-                    </p>
-                  )}
-                  <p className="text-sm text-gray-600">View 1031 exchange services</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Locations" },
+        ]}
+      />
+      <div className="max-w-3xl space-y-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.32em] text-amber-300">
+          Metro Coverage
+        </p>
+        <h1 className="text-3xl font-semibold text-white sm:text-4xl">
+          1031 exchange locations around Denver
+        </h1>
+        <p className="text-base text-slate-300">
+          Search cities, suburbs, and business districts served by our 1031
+          exchange desk. Each page outlines FAQs, locally relevant services,
+          and a quick path to secure intake if your location does not appear.
+        </p>
+      </div>
+      <div className="mt-12">
+        <SearchPanel
+          items={itemsWithLabels}
+          type="location"
+          emptyTitle="Need help outside this list?"
+          emptyDescription="Send us your target market and we will coordinate remote sourcing support."
+        />
+      </div>
+      <BottomCTA />
     </div>
   );
 }

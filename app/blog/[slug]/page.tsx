@@ -4,6 +4,7 @@ import Script from "next/script";
 import imageUrlBuilder from "@sanity/image-url";
 import { PortableText } from "@portabletext/react";
 import BottomCTA from "@/components/BottomCTA";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 async function getPost(slug: string) {
   const query = `*[_type == "article" && slug.current == $slug && published == true][0] {
@@ -108,12 +109,16 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt || "",
-    image: post.featuredImage?.image ? builder.image(post.featuredImage.image).url() : undefined,
+    image: post.featuredImage?.image
+      ? builder.image(post.featuredImage.image).url()
+      : undefined,
     datePublished: post.publishedAt,
-    author: post.author ? {
-      "@type": "Person",
-      name: post.author.name,
-    } : undefined,
+    author: post.author
+      ? {
+          "@type": "Person",
+          name: post.author.name,
+        }
+      : undefined,
   };
 
   return (
@@ -123,9 +128,16 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <article className="mx-auto max-w-4xl px-6 py-12 md:px-8 md:py-20">
+      <article className="mx-auto max-w-3xl px-4 py-16 text-slate-100 sm:px-6 lg:px-0">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Blog", href: "/blog" },
+            { label: post.title },
+          ]}
+        />
         {post.featuredImage?.image && (
-          <div className="mb-8 aspect-video w-full overflow-hidden rounded-lg">
+          <div className="mb-8 aspect-video w-full overflow-hidden rounded-3xl">
             <img
               src={builder.image(post.featuredImage.image).width(1200).height(675).url()}
               alt={post.featuredImage.alt || post.title}
@@ -133,12 +145,10 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             />
           </div>
         )}
-        <header className="mb-8">
-          <h1 className="font-serif text-3xl font-bold text-[#0B3C5D] md:text-4xl mb-4">
-            {post.title}
-          </h1>
-          <div className="flex items-center gap-4 text-sm text-gray-600">
-            {post.publishedAt && (
+        <header className="mb-8 space-y-2">
+          <h1 className="text-4xl font-semibold text-white">{post.title}</h1>
+          <div className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.3em] text-amber-200">
+            {post.publishedAt ? (
               <time dateTime={post.publishedAt}>
                 {new Date(post.publishedAt).toLocaleDateString("en-US", {
                   year: "numeric",
@@ -146,14 +156,14 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                   day: "numeric",
                 })}
               </time>
-            )}
-            {post.author?.name && (
-              <span>By {post.author.name}</span>
-            )}
+            ) : null}
+            {post.author?.name ? <span>{post.author.name}</span> : null}
           </div>
         </header>
-        <div className="prose prose-lg max-w-none text-gray-700">
-          {post.content && <PortableText value={post.content} components={portableTextComponents} />}
+        <div className="prose prose-invert prose-lg max-w-none text-slate-100">
+          {post.content && (
+            <PortableText value={post.content} components={portableTextComponents} />
+          )}
         </div>
       </article>
       <BottomCTA />

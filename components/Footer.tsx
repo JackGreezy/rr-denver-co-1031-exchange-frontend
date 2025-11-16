@@ -1,169 +1,223 @@
 import Link from "next/link";
 import { servicesData } from "@/data/services";
 import { locationsData } from "@/data/locations";
+import { toolsData } from "@/data/tools";
+import {
+  BRAND_NAME,
+  CONTACT_ROUTE,
+  OFFICE_ADDRESS,
+  PRIMARY_CITY,
+  PRIMARY_EMAIL,
+  PRIMARY_PHONE_DISPLAY,
+  PRIMARY_PHONE_TEL,
+  PRIMARY_STATE_ABBR,
+  SUPPORT_HOURS,
+} from "@/lib/constants";
 
-const BRAND_NAME = "1031 Exchange Denver";
-const PHONE_DISPLAY = "(720) 738-1031";
-const PHONE_TEL = "+17207381031";
-const EMAIL = "team@1031exchangedenver.com";
-const IRS_FORM_8824_LINK = "https://www.irs.gov/forms-pubs/about-form-8824";
-const IRS_LIKE_KIND_LINK =
-  "https://www.irs.gov/businesses/small-businesses-self-employed/like-kind-exchanges-real-estate-tax-tips";
-const IRS_REV_PROC_2008_16_LINK =
-  "https://www.irs.gov/pub/irs-drop/rp-08-16.pdf";
+const mapSrc =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3067.475792859084!2d-104.9599987!3d39.7407368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876c78a4d7d9da07%3A0xf7b2f8fc86fae1e9!2s1510%20York%20St%2C%20Denver%2C%20CO%2080206!5e0!3m2!1sen!2sus!4v1731715200";
 
-const tools = [
-  { name: "Boot Calculator", href: "/tools/boot-calculator" },
-  { name: "Exchange Cost Estimator", href: "/tools/exchange-cost-estimator" },
-  { name: "Identification Rules Checker", href: "/tools/identification-rules-checker" },
+const resourceLinks = [
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: CONTACT_ROUTE },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+  { label: "Sitemaps", href: "/sitemap.xml" },
 ];
 
-const mainServices = servicesData.filter((s) => 
-  s.category === "Property Paths" || s.slug === "replacement-property-identification"
-).slice(0, 7);
+const topServices = servicesData
+  .filter((service) => service.category === "Property Paths")
+  .slice(0, 6);
 
-const mainLocations = [
-  locationsData.find((l) => l.slug === "denver-co"),
-  ...locationsData.filter((l) => 
-    l.type === "city" && l.slug !== "denver-co"
-  ).slice(0, 7)
-].filter((loc): loc is NonNullable<typeof loc> => loc !== undefined);
+const topLocations = locationsData
+  .filter((location) => location.type === "city")
+  .slice(0, 6);
 
 export default function Footer() {
+
   return (
-    <footer className="bg-[#16324F] text-slate-100">
-      <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-16 md:grid md:grid-cols-5 md:gap-12 md:px-8">
-        <div className="flex flex-col gap-4">
-          <span className="text-xs font-semibold uppercase tracking-[0.32em] text-[#DAA520]">
-            {BRAND_NAME}
-          </span>
-          <p className="text-2xl font-serif">
-            Rocky Mountain Equity
-          </p>
-          <p className="text-sm text-slate-200">
-            Trusted Colorado 1031 intermediary coordination, tax documentation, and statewide transaction management.
-          </p>
-        </div>
-        <div className="flex flex-col gap-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#DAA520]">
-            Services
-          </p>
-          {mainServices.map((service) => (
-            <Link
-              key={service.slug}
-              href={`/services/${service.slug}`}
-              className="text-sm text-slate-100 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            >
-              {service.name}
-            </Link>
-          ))}
-          <Link
-            href="/services"
-            className="text-sm text-slate-100 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            View All {servicesData.length} Services →
-          </Link>
-        </div>
-        <div className="flex flex-col gap-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#DAA520]">
-            Service Areas
-          </p>
-          {mainLocations.map((location) => (
-            <Link
-              key={location.slug}
-              href={`/service-areas/${location.slug}`}
-              className="text-sm text-slate-100 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            >
-              {location.name}
-            </Link>
-          ))}
-          <Link
-            href="/service-areas"
-            className="text-sm text-slate-100 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            View All {locationsData.length} Service Areas →
-          </Link>
-        </div>
-        <div className="flex flex-col gap-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#DAA520]">
-            Tools
-          </p>
-          {tools.map((tool) => (
-            <Link
-              key={tool.href}
-              href={tool.href}
-              className="text-sm text-slate-100 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            >
-              {tool.name}
-            </Link>
-          ))}
-          <Link
-            href="/tools"
-            className="text-sm text-slate-100 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            View All Tools →
-          </Link>
-        </div>
-        <div className="flex flex-col gap-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#DAA520]">
-            Contact
-          </p>
-          <Link
-            href={`tel:${PHONE_TEL}`}
-            className="text-sm text-slate-100 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            Call {PHONE_DISPLAY}
-          </Link>
-          <Link
-            href={`mailto:${EMAIL}`}
-            className="text-sm text-slate-100 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            {EMAIL}
-          </Link>
-          <p className="text-sm text-slate-200">
-            Statewide service with Denver headquarters available by appointment.
-          </p>
-          <div className="mt-4 flex flex-col gap-2">
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#DAA520]">
-              Compliance
+    <footer className="bg-slate-950 text-slate-200">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
+          <div className="space-y-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-amber-300">
+              {BRAND_NAME}
             </p>
-            <Link
-              href={IRS_FORM_8824_LINK}
-              className="text-sm text-slate-100 underline decoration-2 underline-offset-4 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            >
-              IRS Form 8824
-            </Link>
-            <Link
-              href={IRS_LIKE_KIND_LINK}
-              className="text-sm text-slate-100 underline decoration-2 underline-offset-4 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            >
-              IRS Like-Kind Property Rules
-            </Link>
-            <Link
-              href={IRS_REV_PROC_2008_16_LINK}
-              className="text-sm text-slate-100 underline decoration-2 underline-offset-4 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            >
-              Rev. Proc. 2008-16
-            </Link>
-            <p className="text-xs text-slate-300 mt-2">
-              Information provided is for educational purposes. Consult your tax advisor and attorney before executing a 1031 exchange.
+            <p className="text-3xl font-semibold text-white">
+              Denver 1031 Exchange Desk
             </p>
+            <p className="text-sm text-slate-400">
+              Secure intake, property matching, and intermediary coordination
+              for investors operating in {PRIMARY_CITY}, {PRIMARY_STATE_ABBR}.
+              We organize every milestone from relinquished sale through
+              replacement close.
+            </p>
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+              <p className="text-sm font-semibold text-white">
+                Visit by appointment
+              </p>
+              <p className="text-sm text-slate-300">{OFFICE_ADDRESS}</p>
+              <p className="text-xs text-slate-400">
+                Hours: {SUPPORT_HOURS} support line
+              </p>
+              <div className="mt-3 overflow-hidden rounded-2xl border border-white/10">
+                <iframe
+                  title={`Map of ${OFFICE_ADDRESS}`}
+                  src={mapSrc}
+                  loading="lazy"
+                  className="h-40 w-full"
+                />
+              </div>
+            </div>
           </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-300">
+              Services
+            </p>
+            <ul className="mt-4 space-y-2 text-sm">
+              {topServices.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="text-slate-200 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  >
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/services"
+              className="mt-3 inline-flex text-sm font-semibold text-amber-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              View all services
+            </Link>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-300">
+              Locations
+            </p>
+            <ul className="mt-4 space-y-2 text-sm">
+              {topLocations.map((location) => (
+                <li key={location.slug}>
+                  <Link
+                    href={`/locations/${location.slug}`}
+                    className="text-slate-200 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  >
+                    {location.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/locations"
+              className="mt-3 inline-flex text-sm font-semibold text-amber-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              View all locations
+            </Link>
+          </div>
+          <div className="space-y-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-300">
+              Contact
+            </p>
+            <Link
+              href={`tel:${PRIMARY_PHONE_TEL}`}
+              className="block text-sm text-white transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              Call {PRIMARY_PHONE_DISPLAY}
+            </Link>
+            <Link
+              href={`mailto:${PRIMARY_EMAIL}`}
+              className="block text-sm text-white transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              {PRIMARY_EMAIL}
+            </Link>
+            <Link
+              href={CONTACT_ROUTE}
+              className="inline-flex items-center justify-center rounded-full bg-amber-300 px-4 py-2 text-xs font-semibold tracking-[0.25em] text-slate-900 transition hover:bg-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+            >
+              START INTAKE
+            </Link>
+            <div className="pt-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-300">
+                Resources
+              </p>
+              <ul className="mt-3 space-y-2 text-sm">
+                {resourceLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-slate-200 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-300">
+              Tools
+            </p>
+            <ul className="mt-4 space-y-2 text-sm">
+              {toolsData.map((tool) => (
+                <li key={tool.slug}>
+                  <Link
+                    href={tool.href}
+                    className="text-slate-200 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  >
+                    {tool.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/tools"
+              className="mt-3 inline-flex text-sm font-semibold text-amber-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              View all tools
+            </Link>
+          </div>
+        </div>
+        <div className="mt-12 space-y-4 rounded-3xl border border-white/10 bg-white/5 p-6 text-xs text-slate-300">
+          <p>
+            This site helps investors identify potential replacement properties
+            for Section 1031 exchanges in {PRIMARY_CITY}, {PRIMARY_STATE_ABBR}.
+          </p>
+          <p>
+            This site is not a Qualified Intermediary, law firm, broker, or CPA.
+          </p>
+          <p>
+            Users should consult a Qualified Intermediary and tax advisor before
+            acting on educational material provided here.
+          </p>
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-6 text-xs text-slate-300 md:flex-row md:items-center md:justify-between md:px-8">
-          <p>© {new Date().getFullYear()} {BRAND_NAME}. All rights reserved.</p>
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-xs text-slate-400 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+          <p>
+            © {new Date().getFullYear()} {BRAND_NAME}. All rights reserved.
+          </p>
           <div className="flex flex-wrap gap-3">
-            <Link href="/privacy" className="hover:text-white transition">
-              Privacy Policy
+            <Link
+              href="/privacy"
+              className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              Privacy
             </Link>
-            <span>·</span>
-            <Link href="/terms" className="hover:text-white transition">
-              Terms of Service
+            <span aria-hidden="true">•</span>
+            <Link
+              href="/terms"
+              className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              Terms
             </Link>
-            <span>·</span>
-            <Link href="/sitemap.xml" className="hover:text-white transition">
+            <span aria-hidden="true">•</span>
+            <Link
+              href="/sitemap.xml"
+              className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
               Sitemap
             </Link>
           </div>

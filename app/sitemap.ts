@@ -1,92 +1,144 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 import { locationsData } from "@/data/locations";
 import { servicesData } from "@/data/services";
 import { propertyTypesData } from "@/data/property-types";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.1031exchangedenver.com";
 
-  const routes = [
+  const now = new Date();
+  const routes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
+      lastModified: now,
+      changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${baseUrl}/services`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
+      lastModified: now,
+      changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/service-areas`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
+      url: `${baseUrl}/locations`,
+      lastModified: now,
+      changeFrequency: "weekly",
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/property-types`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/tools`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: now,
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/privacy`,
-      lastModified: new Date(),
-      changeFrequency: "yearly" as const,
+      lastModified: now,
+      changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${baseUrl}/terms`,
-      lastModified: new Date(),
-      changeFrequency: "yearly" as const,
+      lastModified: now,
+      changeFrequency: "yearly",
       priority: 0.3,
     },
   ];
 
-  const serviceRoutes = servicesData.map((service) => ({
+  const serviceRoutes: MetadataRoute.Sitemap = servicesData.map((service) => ({
     url: `${baseUrl}/services/${service.slug}`,
-    lastModified: new Date(),
+    lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
-  const locationRoutes = locationsData.map((location) => ({
-    url: `${baseUrl}/service-areas/${location.slug}`,
-    lastModified: new Date(),
+  const locationRoutes: MetadataRoute.Sitemap = locationsData.map((location) => ({
+    url: `${baseUrl}/locations/${location.slug}`,
+    lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
-  const propertyTypeRoutes = propertyTypesData.map((propertyType) => ({
+  const propertyTypeRoutes: MetadataRoute.Sitemap = propertyTypesData.map((propertyType) => ({
     url: `${baseUrl}/property-types/${propertyType.slug}`,
-    lastModified: new Date(),
+    lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  const toolRoutes = [
-    {
-      url: `${baseUrl}/tools/boot-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/tools/exchange-cost-estimator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/tools/identification-rules-checker`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    },
+  const toolPages = [
+    "boot-calculator",
+    "exchange-cost-estimator",
+    "identification-rules-checker",
+    "depreciation-recapture-estimator",
+    "replacement-property-value-calculator",
+    "debt-relief-calculator",
   ];
 
-  return [...routes, ...serviceRoutes, ...locationRoutes, ...propertyTypeRoutes, ...toolRoutes];
+  const toolRoutes: MetadataRoute.Sitemap = toolPages.map((slug) => ({
+    url: `${baseUrl}/tools/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  let blogRoutes: MetadataRoute.Sitemap = [];
+  try {
+    const { createClient } = await import("@sanity/client");
+    const client = createClient({
+      projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
+      dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
+      useCdn: true,
+      apiVersion: "2024-01-01",
+    });
+    const posts: Array<{ slug: string; _updatedAt?: string }> =
+      await client.fetch(`*[_type == "article" && published == true] {
+        "slug": slug.current,
+        _updatedAt
+      }`);
+    blogRoutes = posts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: post._updatedAt ? new Date(post._updatedAt) : now,
+      changeFrequency: "weekly",
+      priority: 0.6,
+    }));
+  } catch (error) {
+    console.error("Unable to include blog posts in sitemap", error);
+  }
+
+  return [
+    ...routes,
+    ...serviceRoutes,
+    ...locationRoutes,
+    ...propertyTypeRoutes,
+    ...toolRoutes,
+    ...blogRoutes,
+  ];
 }
+
 

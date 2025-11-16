@@ -194,7 +194,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
       aria-describedby="contact-form-feedback"
     >
       <div className="grid gap-2">
-        <label htmlFor="name" className="text-sm font-medium text-gray-900">
+        <label htmlFor="name" className="text-sm font-medium !text-white">
           Name <span className="text-[#B42318]">*</span>
         </label>
         <input
@@ -216,7 +216,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
       </div>
 
       <div className="grid gap-2">
-        <label htmlFor="company" className="text-sm font-medium text-gray-900">
+        <label htmlFor="company" className="text-sm font-medium !text-white">
           Company
         </label>
         <input
@@ -230,7 +230,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
       </div>
 
       <div className="grid gap-2">
-        <label htmlFor="email" className="text-sm font-medium text-gray-900">
+        <label htmlFor="email" className="text-sm font-medium !text-white">
           Email <span className="text-[#B42318]">*</span>
         </label>
         <input
@@ -252,7 +252,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
       </div>
 
       <div className="grid gap-2">
-        <label htmlFor="phone" className="text-sm font-medium text-gray-900">
+        <label htmlFor="phone" className="text-sm font-medium !text-white">
           Phone <span className="text-[#B42318]">*</span>
         </label>
         <input
@@ -274,7 +274,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
       </div>
 
       <div className="grid gap-2" ref={projectTypeRef}>
-        <label htmlFor="projectType" className="text-sm font-medium text-gray-900">
+        <label htmlFor="projectType" className="text-sm font-medium !text-white">
           Project Type <span className="text-[#B42318]">*</span>
         </label>
         <div className="relative">
@@ -323,7 +323,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
       </div>
 
       <div className="grid gap-2">
-        <label htmlFor="timeline" className="text-sm font-medium text-gray-900">
+        <label htmlFor="timeline" className="text-sm font-medium !text-white">
           Timeline
         </label>
         <select
@@ -342,7 +342,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
       </div>
 
       <div className="grid gap-2">
-        <label htmlFor="details" className="text-sm font-medium text-gray-900">
+        <label htmlFor="details" className="text-sm font-medium !text-white">
           Details
         </label>
         <textarea
@@ -380,12 +380,12 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
 
       <p
         id="contact-form-feedback"
-        className="text-sm text-gray-700"
+        className="text-sm !text-white"
         role={state.status === "error" || state.status === "success" ? "alert" : undefined}
       >
         {state.feedback}
       </p>
-      <p className="text-xs text-gray-500">
+      <p className="text-xs !text-slate-300">
         Educational content only. Not tax or legal advice.
       </p>
     </form>

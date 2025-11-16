@@ -1,311 +1,240 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-interface CostCalculationResult {
-  qiFee: number;
-  escrowFee: number;
-  titleInsurance: number;
-  recordingFees: number;
-  totalCosts: number;
-  isValid: boolean;
-  errors: string[];
-}
+type FieldKey =
+  | "propertyValue"
+  | "qiFeePercentage"
+  | "escrowFee"
+  | "titleInsuranceRate"
+  | "recordingFees";
+
+type FieldState = Record<FieldKey, string>;
+
+const currencyFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 2,
+});
 
 export default function ExchangeCostEstimator() {
-  const [propertyValue, setPropertyValue] = useState<string>("");
-  const [qiFeePercentage, setQiFeePercentage] = useState<string>("1.0");
-  const [escrowFee, setEscrowFee] = useState<string>("");
-  const [titleInsuranceRate, setTitleInsuranceRate] = useState<string>("0.5");
-  const [recordingFees, setRecordingFees] = useState<string>("500");
-  const [results, setResults] = useState<CostCalculationResult | null>(null);
+  const [fields, setFields] = useState<FieldState>({
+    propertyValue: "",
+    qiFeePercentage: "1",
+    escrowFee: "1500",
+    titleInsuranceRate: "0.5",
+    recordingFees: "500",
+  });
 
-  const calculateCosts = () => {
-    const errors: string[] = [];
-    
-    const propValue = parseFloat(propertyValue);
-    const qiRate = parseFloat(qiFeePercentage);
-    const escrow = parseFloat(escrowFee) || 0;
-    const titleRate = parseFloat(titleInsuranceRate);
-    const recording = parseFloat(recordingFees) || 0;
+  const parsed = useMemo(() => {
+    const entries = Object.entries(fields).map(([key, value]) => [
+      key,
+      value === "" ? null : Number(value),
+    ]);
+    return Object.fromEntries(entries) as Record<FieldKey, number | null>;
+  }, [fields]);
 
-    if (isNaN(propValue) || propValue <= 0) {
-      errors.push("Property value must be greater than zero.");
+  const errors = useMemo(() => {
+    const result: Partial<Record<FieldKey, string>> = {};
+    if (!parsed.propertyValue || parsed.propertyValue <= 0) {
+      result.propertyValue = "Enter a value above zero";
     }
-    if (isNaN(qiRate) || qiRate < 0 || qiRate > 100) {
-      errors.push("QI fee percentage must be between 0 and 100.");
+    if (
+      parsed.qiFeePercentage === null ||
+      parsed.qiFeePercentage < 0 ||
+      parsed.qiFeePercentage > 100
+    ) {
+      result.qiFeePercentage = "Enter 0 - 100%";
     }
-    if (escrow < 0) {
-      errors.push("Escrow fee cannot be negative.");
+    (["escrowFee", "recordingFees"] as Array<"escrowFee" | "recordingFees">).forEach(
+      (key) => {
+        if (parsed[key] === null || parsed[key]! < 0) {
+          result[key] = "Must be zero or greater";
+        }
+      }
+    );
+    if (
+      parsed.titleInsuranceRate === null ||
+      parsed.titleInsuranceRate < 0 ||
+      parsed.titleInsuranceRate > 2
+    ) {
+      result.titleInsuranceRate = "Enter a realistic percent (0 - 2%)";
     }
-    if (isNaN(titleRate) || titleRate < 0 || titleRate > 100) {
-      errors.push("Title insurance rate must be between 0 and 100.");
-    }
-    if (recording < 0) {
-      errors.push("Recording fees cannot be negative.");
-    }
+    return result;
+  }, [parsed]);
 
-    if (errors.length > 0) {
-      setResults({ qiFee: 0, escrowFee: 0, titleInsurance: 0, recordingFees: 0, totalCosts: 0, isValid: false, errors });
-      return;
+  const canShowResults = useMemo(
+    () =>
+      (Object.keys(fields) as FieldKey[]).every(
+        (key) => fields[key] !== "" && !errors[key]
+      ),
+    [errors, fields]
+  );
+
+  const results = useMemo(() => {
+    if (!canShowResults) {
+      return null;
     }
+    const qiFee = (parsed.propertyValue ?? 0) * ((parsed.qiFeePercentage ?? 0) / 100);
+    const titleInsurance =
+      (parsed.propertyValue ?? 0) * ((parsed.titleInsuranceRate ?? 0) / 100);
+    const escrowFee = parsed.escrowFee ?? 0;
+    const recordingFees = parsed.recordingFees ?? 0;
+    const totalCosts = qiFee + titleInsurance + escrowFee + recordingFees;
+    return { qiFee, titleInsurance, escrowFee, recordingFees, totalCosts };
+  }, [canShowResults, parsed]);
 
-    const qiFee = propValue * (qiRate / 100);
-    const titleInsurance = propValue * (titleRate / 100);
-    const totalCosts = qiFee + escrow + titleInsurance + recording;
-
-    setResults({
-      qiFee,
-      escrowFee: escrow,
-      titleInsurance,
-      recordingFees: recording,
-      totalCosts,
-      isValid: true,
-      errors: [],
-    });
+  const handleChange = (field: FieldKey, value: string) => {
+    setFields((prev) => ({ ...prev, [field]: value.replace(/[^0-9.]/g, "") }));
   };
 
-  const handleInputChange = (field: string, value: string) => {
-    const numValue = value.replace(/[^0-9.]/g, "");
-    switch (field) {
-      case "property":
-        setPropertyValue(numValue);
-        break;
-      case "qi":
-        setQiFeePercentage(numValue);
-        break;
-      case "escrow":
-        setEscrowFee(numValue);
-        break;
-      case "title":
-        setTitleInsuranceRate(numValue);
-        break;
-      case "recording":
-        setRecordingFees(numValue);
-        break;
-    }
-    if (results) {
-      calculateCosts();
-    }
-  };
+  const getValue = (field: FieldKey) =>
+    fields[field] === "" ? "" : fields[field];
+
+  const fieldMeta: Array<{
+    key: FieldKey;
+    label: string;
+    helper: string;
+    placeholder: string;
+  }> = [
+    {
+      key: "propertyValue",
+      label: "Property value ($)",
+      helper: "Estimated purchase price of the Houston replacement property.",
+      placeholder: "1,000,000",
+    },
+    {
+      key: "qiFeePercentage",
+      label: "QI fee percentage (%)",
+      helper: "Typical Houston rates range from 0.5% to 1.5%.",
+      placeholder: "1",
+    },
+    {
+      key: "escrowFee",
+      label: "Escrow fee ($)",
+      helper: "Flat fee charged by the escrow or title company.",
+      placeholder: "1,500",
+    },
+    {
+      key: "titleInsuranceRate",
+      label: "Title insurance rate (%)",
+      helper: "Texas promulgated rates often range near 0.5%.",
+      placeholder: "0.5",
+    },
+    {
+      key: "recordingFees",
+      label: "Harris County recording fees ($)",
+      helper: "Most filings fall between $275 - $525.",
+      placeholder: "500",
+    },
+  ];
 
   return (
-    <div className="space-y-8">
-      <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
-        <h2 className="mb-6 font-serif text-2xl font-bold text-[#0B3C5D]">
-          Exchange Cost Estimator Inputs
-        </h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          <div>
-            <label
-              htmlFor="property-value"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              Property Value ($)
-            </label>
+    <div className="tool-card space-y-8 rounded-3xl border border-white/10 bg-white/5 p-6 text-white shadow-2xl">
+      <div>
+        <h2 className="text-2xl font-semibold text-white">Cost inputs</h2>
+        <p className="text-sm text-slate-300">
+          Estimate core expenses for a Houston 1031 exchange. Adjust values to match your
+          closing disclosure.
+        </p>
+      </div>
+      <div className="grid gap-6 md:grid-cols-2">
+        {fieldMeta.map(({ key, label, helper, placeholder }) => (
+          <label key={key} className="block text-sm font-semibold text-amber-200">
+            {label}
             <input
-              id="property-value"
-              type="text"
-              value={propertyValue}
-              onChange={(e) => handleInputChange("property", e.target.value)}
-              placeholder="1,000,000"
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 focus:border-[#0B3C5D] focus:outline-none focus:ring-2 focus:ring-[#0B3C5D]/20"
+              type="number"
+              inputMode="decimal"
+              value={getValue(key)}
+              onChange={(event) => handleChange(key, event.target.value)}
+              placeholder={placeholder}
+              className="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-200/40"
             />
-            <p className="mt-1 text-xs text-gray-500">
-              Purchase price of the replacement property
-            </p>
-          </div>
-
-          <div>
-            <label
-              htmlFor="qi-fee"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              QI Fee Percentage (%)
-            </label>
-            <input
-              id="qi-fee"
-              type="text"
-              value={qiFeePercentage}
-              onChange={(e) => handleInputChange("qi", e.target.value)}
-              placeholder="1.0"
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 focus:border-[#0B3C5D] focus:outline-none focus:ring-2 focus:ring-[#0B3C5D]/20"
-            />
-            <p className="mt-1 text-xs text-gray-500">
-              Qualified intermediary fee as percentage (typically 0.5% - 2%)
-            </p>
-          </div>
-
-          <div>
-            <label
-              htmlFor="escrow-fee"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              Escrow Fee ($)
-            </label>
-            <input
-              id="escrow-fee"
-              type="text"
-              value={escrowFee}
-              onChange={(e) => handleInputChange("escrow", e.target.value)}
-              placeholder="1,500"
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 focus:border-[#0B3C5D] focus:outline-none focus:ring-2 focus:ring-[#0B3C5D]/20"
-            />
-            <p className="mt-1 text-xs text-gray-500">
-              Escrow company fee (flat rate)
-            </p>
-          </div>
-
-          <div>
-            <label
-              htmlFor="title-rate"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              Title Insurance Rate (%)
-            </label>
-            <input
-              id="title-rate"
-              type="text"
-              value={titleInsuranceRate}
-              onChange={(e) => handleInputChange("title", e.target.value)}
-              placeholder="0.5"
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 focus:border-[#0B3C5D] focus:outline-none focus:ring-2 focus:ring-[#0B3C5D]/20"
-            />
-            <p className="mt-1 text-xs text-gray-500">
-              Title insurance premium rate (varies by state and property value)
-            </p>
-          </div>
-
-          <div>
-            <label
-              htmlFor="recording-fees"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              Recording Fees ($)
-            </label>
-            <input
-              id="recording-fees"
-              type="text"
-              value={recordingFees}
-              onChange={(e) => handleInputChange("recording", e.target.value)}
-              placeholder="500"
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 focus:border-[#0B3C5D] focus:outline-none focus:ring-2 focus:ring-[#0B3C5D]/20"
-            />
-            <p className="mt-1 text-xs text-gray-500">
-              County recording fees (varies by county)
-            </p>
-          </div>
-        </div>
-
-        <button
-          onClick={calculateCosts}
-          className="mt-6 w-full rounded-lg bg-[#C9A227] px-6 py-3 font-semibold text-gray-900 transition hover:bg-[#B8921F] focus:outline-none focus:ring-2 focus:ring-[#C9A227] focus:ring-offset-2"
-        >
-          Calculate Exchange Costs
-        </button>
+            <span className="mt-1 block text-xs text-slate-400">{helper}</span>
+            {errors[key] ? (
+              <span className="mt-1 block text-xs text-red-300">{errors[key]}</span>
+            ) : null}
+          </label>
+        ))}
       </div>
 
-      {results && (
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
-          <h2 className="mb-6 font-serif text-2xl font-bold text-[#0B3C5D]">
-            Exchange Cost Breakdown
-          </h2>
+      <div className="rounded-3xl border border-amber-200/40 bg-amber-50/5 p-6 text-white">
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-200">
+          Total estimated exchange costs
+        </p>
+        <p className="text-3xl font-semibold">
+          {results ? currencyFormatter.format(results.totalCosts) : "—"}
+        </p>
+        <p className="text-sm text-slate-200">
+          Includes qualified intermediary, escrow, title insurance, and Harris County
+          recording fees.
+        </p>
+      </div>
 
-          {!results.isValid && results.errors.length > 0 && (
-            <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4">
-              <h3 className="mb-2 font-semibold text-red-800">Please correct the following errors:</h3>
-              <ul className="list-disc list-inside space-y-1 text-sm text-red-700">
-                {results.errors.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {results.isValid && (
-            <div className="space-y-4">
-              <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-700">Qualified Intermediary Fee:</span>
-                  <span className="text-lg font-bold text-[#0B3C5D]">
-                    ${results.qiFee.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                  </span>
-                </div>
-                <p className="mt-1 text-xs text-gray-600">
-                  Fee for QI services (escrow, assignment, documentation)
-                </p>
-              </div>
-
-              <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-700">Escrow Fee:</span>
-                  <span className="text-lg font-bold text-[#0B3C5D]">
-                    ${results.escrowFee.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                  </span>
-                </div>
-                <p className="mt-1 text-xs text-gray-600">
-                  Escrow company processing fee
-                </p>
-              </div>
-
-              <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-700">Title Insurance:</span>
-                  <span className="text-lg font-bold text-[#0B3C5D]">
-                    ${results.titleInsurance.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                  </span>
-                </div>
-                <p className="mt-1 text-xs text-gray-600">
-                  Title insurance premium (protects against title defects)
-                </p>
-              </div>
-
-              <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-700">Recording Fees:</span>
-                  <span className="text-lg font-bold text-[#0B3C5D]">
-                    ${results.recordingFees.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                  </span>
-                </div>
-                <p className="mt-1 text-xs text-gray-600">
-                  County recording fees (Colorado does not impose state transfer tax)
-                </p>
-              </div>
-
-              <div className="rounded-lg border-2 border-[#0B3C5D] bg-[#0B3C5D]/5 p-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-base font-semibold text-gray-900">Total Exchange Costs:</span>
-                  <span className="text-2xl font-bold text-[#0B3C5D]">
-                    ${results.totalCosts.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                  </span>
-                </div>
-                <p className="mt-1 text-xs text-gray-600">
-                  Total estimated costs for completing your 1031 exchange
-                </p>
-              </div>
-            </div>
-          )}
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-200">
+            Qualified intermediary fee
+          </p>
+          <p className="text-2xl font-semibold">
+            {results ? currencyFormatter.format(results.qiFee) : "—"}
+          </p>
+          <p className="text-xs text-slate-300">
+            Covers escrow of exchange proceeds, assignment paperwork, and tracking.
+          </p>
         </div>
-      )}
-
-      <div className="rounded-lg border border-gray-200 bg-gray-50 p-6">
-        <h3 className="mb-3 font-semibold text-[#0B3C5D]">Understanding Exchange Costs</h3>
-        <div className="space-y-2 text-sm text-gray-700">
-          <p>
-            <strong>Qualified Intermediary Fee:</strong> The QI holds exchange proceeds in escrow and coordinates documentation. Fees typically range from 0.5% to 2% of the property value, with minimum fees often applying.
+        <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-200">
+            Escrow fee
           </p>
-          <p>
-            <strong>Escrow Fee:</strong> The escrow company processes the transaction, coordinates with all parties, and handles fund disbursement. This is typically a flat fee.
+          <p className="text-2xl font-semibold">
+            {results ? currencyFormatter.format(results.escrowFee) : "—"}
           </p>
-          <p>
-            <strong>Title Insurance:</strong> Protects against title defects and liens. Rates vary by state and property value, typically ranging from 0.3% to 1% of the property value.
+          <p className="text-xs text-slate-300">
+            Houston escrow providers typically quote a flat transaction fee.
           </p>
-          <p>
-            <strong>Recording Fees:</strong> County fees for recording the deed and mortgage documents. Colorado does not impose a state-level transfer tax, but recording fees still apply.
+        </div>
+        <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-200">
+            Title insurance
+          </p>
+          <p className="text-2xl font-semibold">
+            {results ? currencyFormatter.format(results.titleInsurance) : "—"}
+          </p>
+          <p className="text-xs text-slate-300">
+            Texas title premiums are regulated; enter your expected rate above.
+          </p>
+        </div>
+        <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-200">
+            Recording fees
+          </p>
+          <p className="text-2xl font-semibold">
+            {results ? currencyFormatter.format(results.recordingFees) : "—"}
+          </p>
+          <p className="text-xs text-slate-300">
+            Harris County recording averages $275–$525 depending on page counts.
           </p>
         </div>
       </div>
+
+      <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-sm text-slate-200">
+        <p className="mb-2 font-semibold text-white">Note on Texas transfer taxes</p>
+        <p>
+          Texas does not impose a state real estate transfer tax, but local recording,
+          documentary, and courier fees still apply. Always reconcile these estimates
+          with your preliminary closing statement.
+        </p>
+      </div>
+      <style jsx>{`
+        @media print {
+          .tool-card {
+            background: #ffffff !important;
+            color: #000000 !important;
+            box-shadow: none !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
-

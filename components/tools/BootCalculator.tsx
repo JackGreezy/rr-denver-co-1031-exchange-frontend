@@ -1,295 +1,210 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-interface BootCalculationResult {
-  cashBoot: number;
-  mortgageBoot: number;
-  totalBoot: number;
-  estimatedTax: number;
-  isValid: boolean;
-  errors: string[];
-}
+type FieldKey =
+  | "relinquishedValue"
+  | "replacementValue"
+  | "cashReceived"
+  | "oldMortgage"
+  | "newMortgage";
+
+type FieldState = Record<FieldKey, string>;
+
+const currencyFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 2,
+});
 
 export default function BootCalculator() {
-  const [relinquishedValue, setRelinquishedValue] = useState<string>("");
-  const [replacementValue, setReplacementValue] = useState<string>("");
-  const [cashReceived, setCashReceived] = useState<string>("");
-  const [oldMortgage, setOldMortgage] = useState<string>("");
-  const [newMortgage, setNewMortgage] = useState<string>("");
-  const [results, setResults] = useState<BootCalculationResult | null>(null);
+  const [fields, setFields] = useState<FieldState>({
+    relinquishedValue: "",
+    replacementValue: "",
+    cashReceived: "",
+    oldMortgage: "",
+    newMortgage: "",
+  });
 
-  const calculateBoot = () => {
-    const errors: string[] = [];
-    
-    const relValue = parseFloat(relinquishedValue);
-    const repValue = parseFloat(replacementValue);
-    const cash = parseFloat(cashReceived) || 0;
-    const oldMort = parseFloat(oldMortgage) || 0;
-    const newMort = parseFloat(newMortgage) || 0;
+  const parsed = useMemo(() => {
+    const entries = Object.entries(fields).map(([key, value]) => [
+      key,
+      value === "" ? null : Number(value),
+    ]);
+    return Object.fromEntries(entries) as Record<FieldKey, number | null>;
+  }, [fields]);
 
-    if (isNaN(relValue) || relValue <= 0) {
-      errors.push("Relinquished property value must be greater than zero.");
-    }
-    if (isNaN(repValue) || repValue <= 0) {
-      errors.push("Replacement property value must be greater than zero.");
-    }
-    if (cash < 0) {
-      errors.push("Cash received cannot be negative.");
-    }
-    if (oldMort < 0) {
-      errors.push("Old mortgage cannot be negative.");
-    }
-    if (newMort < 0) {
-      errors.push("New mortgage cannot be negative.");
-    }
-
-    if (errors.length > 0) {
-      setResults({ cashBoot: 0, mortgageBoot: 0, totalBoot: 0, estimatedTax: 0, isValid: false, errors });
-      return;
-    }
-
-    const cashBoot = Math.max(0, cash);
-    const mortgageBoot = Math.max(0, oldMort - newMort);
-    const totalBoot = cashBoot + mortgageBoot;
-    const estimatedTax = totalBoot * 0.20;
-
-    setResults({
-      cashBoot,
-      mortgageBoot,
-      totalBoot,
-      estimatedTax,
-      isValid: true,
-      errors: [],
+  const errors = useMemo(() => {
+    const map: Partial<Record<FieldKey, string>> = {};
+    (Object.keys(fields) as FieldKey[]).forEach((key) => {
+      const value = parsed[key];
+      if (value === null) {
+        map[key] = "Required";
+      } else if (Number.isNaN(value)) {
+        map[key] = "Enter a numeric value";
+      } else if (value < 0) {
+        map[key] = "Must be zero or greater";
+      }
     });
+    return map;
+  }, [parsed, fields]);
+
+  const canShowResults = useMemo(
+    () =>
+      (Object.keys(fields) as FieldKey[]).every(
+        (key) => fields[key] !== "" && !errors[key]
+      ),
+    [errors, fields]
+  );
+
+  const results = useMemo(() => {
+    if (!canShowResults) {
+      return null;
+    }
+    const cashBoot = Math.max(parsed.cashReceived ?? 0, 0);
+    const mortgageBoot = Math.max(
+      (parsed.oldMortgage ?? 0) - (parsed.newMortgage ?? 0),
+      0
+    );
+    const totalBoot = cashBoot + mortgageBoot;
+    const estimatedTax = totalBoot * 0.2;
+    return { cashBoot, mortgageBoot, totalBoot, estimatedTax };
+  }, [canShowResults, parsed]);
+
+  const handleChange = (field: FieldKey, value: string) => {
+    setFields((prev) => ({ ...prev, [field]: value.replace(/[^0-9.]/g, "") }));
   };
 
-  const handleInputChange = (field: string, value: string) => {
-    const numValue = value.replace(/[^0-9.]/g, "");
-    switch (field) {
-      case "relinquished":
-        setRelinquishedValue(numValue);
-        break;
-      case "replacement":
-        setReplacementValue(numValue);
-        break;
-      case "cash":
-        setCashReceived(numValue);
-        break;
-      case "oldMortgage":
-        setOldMortgage(numValue);
-        break;
-      case "newMortgage":
-        setNewMortgage(numValue);
-        break;
-    }
-    if (results) {
-      calculateBoot();
-    }
-  };
+  const fieldMeta: Array<{
+    key: FieldKey;
+    label: string;
+    helper: string;
+    placeholder: string;
+  }> = [
+    {
+      key: "relinquishedValue",
+      label: "Relinquished Property Value ($)",
+      helper: "Sale price of the property being sold",
+      placeholder: "1,000,000",
+    },
+    {
+      key: "replacementValue",
+      label: "Replacement Property Value ($)",
+      helper: "Purchase price of the incoming property",
+      placeholder: "1,200,000",
+    },
+    {
+      key: "cashReceived",
+      label: "Cash Received ($)",
+      helper: "Cash retained outside the exchange",
+      placeholder: "0",
+    },
+    {
+      key: "oldMortgage",
+      label: "Old Mortgage Balance ($)",
+      helper: "Debt paid off on relinquished property",
+      placeholder: "500,000",
+    },
+    {
+      key: "newMortgage",
+      label: "New Mortgage Balance ($)",
+      helper: "Debt on the replacement property",
+      placeholder: "600,000",
+    },
+  ];
 
   return (
-    <div className="space-y-8">
-      <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
-        <h2 className="mb-6 font-serif text-2xl font-bold text-[#0B3C5D]">
-          Boot Calculator Inputs
-        </h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          <div>
-            <label
-              htmlFor="relinquished-value"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              Relinquished Property Value ($)
-            </label>
+    <div className="tool-card space-y-8 rounded-3xl border border-white/10 bg-white/5 p-6 text-white shadow-2xl">
+      <div>
+        <h2 className="text-2xl font-semibold text-white">Boot inputs</h2>
+        <p className="text-sm text-slate-300">
+          Values update as you type. Leave the field at zero if it does not apply.
+        </p>
+      </div>
+      <div className="grid gap-6 md:grid-cols-2">
+        {fieldMeta.map(({ key, label, helper, placeholder }) => (
+          <label key={key} className="block text-sm font-semibold text-amber-200">
+            {label}
             <input
-              id="relinquished-value"
-              type="text"
-              value={relinquishedValue}
-              onChange={(e) => handleInputChange("relinquished", e.target.value)}
-              placeholder="1,000,000"
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 focus:border-[#0B3C5D] focus:outline-none focus:ring-2 focus:ring-[#0B3C5D]/20"
+              type="number"
+              inputMode="decimal"
+              value={fields[key]}
+              onChange={(event) => handleChange(key, event.target.value)}
+              placeholder={placeholder}
+              className="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-200/40"
             />
-            <p className="mt-1 text-xs text-gray-500">
-              Sale price of the property you are selling
-            </p>
-          </div>
-
-          <div>
-            <label
-              htmlFor="replacement-value"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              Replacement Property Value ($)
-            </label>
-            <input
-              id="replacement-value"
-              type="text"
-              value={replacementValue}
-              onChange={(e) => handleInputChange("replacement", e.target.value)}
-              placeholder="1,200,000"
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 focus:border-[#0B3C5D] focus:outline-none focus:ring-2 focus:ring-[#0B3C5D]/20"
-            />
-            <p className="mt-1 text-xs text-gray-500">
-              Purchase price of the replacement property
-            </p>
-          </div>
-
-          <div>
-            <label
-              htmlFor="cash-received"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              Cash Received ($)
-            </label>
-            <input
-              id="cash-received"
-              type="text"
-              value={cashReceived}
-              onChange={(e) => handleInputChange("cash", e.target.value)}
-              placeholder="0"
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 focus:border-[#0B3C5D] focus:outline-none focus:ring-2 focus:ring-[#0B3C5D]/20"
-            />
-            <p className="mt-1 text-xs text-gray-500">
-              Cash received from the sale (not reinvested)
-            </p>
-          </div>
-
-          <div>
-            <label
-              htmlFor="old-mortgage"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              Old Mortgage Balance ($)
-            </label>
-            <input
-              id="old-mortgage"
-              type="text"
-              value={oldMortgage}
-              onChange={(e) => handleInputChange("oldMortgage", e.target.value)}
-              placeholder="500,000"
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 focus:border-[#0B3C5D] focus:outline-none focus:ring-2 focus:ring-[#0B3C5D]/20"
-            />
-            <p className="mt-1 text-xs text-gray-500">
-              Mortgage balance on relinquished property
-            </p>
-          </div>
-
-          <div>
-            <label
-              htmlFor="new-mortgage"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              New Mortgage Balance ($)
-            </label>
-            <input
-              id="new-mortgage"
-              type="text"
-              value={newMortgage}
-              onChange={(e) => handleInputChange("newMortgage", e.target.value)}
-              placeholder="600,000"
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 focus:border-[#0B3C5D] focus:outline-none focus:ring-2 focus:ring-[#0B3C5D]/20"
-            />
-            <p className="mt-1 text-xs text-gray-500">
-              Mortgage balance on replacement property
-            </p>
-          </div>
-        </div>
-
-        <button
-          onClick={calculateBoot}
-          className="mt-6 w-full rounded-lg bg-[#C9A227] px-6 py-3 font-semibold text-gray-900 transition hover:bg-[#B8921F] focus:outline-none focus:ring-2 focus:ring-[#C9A227] focus:ring-offset-2"
-        >
-          Calculate Boot
-        </button>
+            <span className="mt-1 block text-xs text-slate-400">{helper}</span>
+            {errors[key] ? (
+              <span className="mt-1 block text-xs text-red-300">{errors[key]}</span>
+            ) : null}
+          </label>
+        ))}
       </div>
 
-      {results && (
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
-          <h2 className="mb-6 font-serif text-2xl font-bold text-[#0B3C5D]">
-            Boot Calculation Results
-          </h2>
-
-          {!results.isValid && results.errors.length > 0 && (
-            <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4">
-              <h3 className="mb-2 font-semibold text-red-800">Please correct the following errors:</h3>
-              <ul className="list-disc list-inside space-y-1 text-sm text-red-700">
-                {results.errors.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {results.isValid && (
-            <div className="space-y-4">
-              <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-700">Cash Boot:</span>
-                  <span className="text-lg font-bold text-[#0B3C5D]">
-                    ${results.cashBoot.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                  </span>
-                </div>
-                <p className="mt-1 text-xs text-gray-600">
-                  Cash received and not reinvested in the replacement property
-                </p>
-              </div>
-
-              <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-700">Mortgage Boot:</span>
-                  <span className="text-lg font-bold text-[#0B3C5D]">
-                    ${results.mortgageBoot.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                  </span>
-                </div>
-                <p className="mt-1 text-xs text-gray-600">
-                  Mortgage relief when new debt is less than old debt
-                </p>
-              </div>
-
-              <div className="rounded-lg border-2 border-[#0B3C5D] bg-[#0B3C5D]/5 p-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-base font-semibold text-gray-900">Total Boot:</span>
-                  <span className="text-2xl font-bold text-[#0B3C5D]">
-                    ${results.totalBoot.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                  </span>
-                </div>
-                <p className="mt-1 text-xs text-gray-600">
-                  Total boot equals cash boot plus mortgage boot
-                </p>
-              </div>
-
-              <div className="rounded-lg border border-[#C9A227] bg-[#C9A227]/10 p-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-700">Estimated Tax on Boot:</span>
-                  <span className="text-lg font-bold text-[#0B3C5D]">
-                    ${results.estimatedTax.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                  </span>
-                </div>
-                <p className="mt-1 text-xs text-gray-600">
-                  Estimated at 20% (illustrative only - actual rates vary)
-                </p>
-              </div>
-            </div>
-          )}
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-200">
+            Cash boot
+          </p>
+          <p className="text-2xl font-semibold">
+            {results ? currencyFormatter.format(results.cashBoot) : "—"}
+          </p>
+          <p className="text-sm text-slate-300">
+            Cash withheld from exchange proceeds and not reinvested.
+          </p>
         </div>
-      )}
-
-      <div className="rounded-lg border border-gray-200 bg-gray-50 p-6">
-        <h3 className="mb-3 font-semibold text-[#0B3C5D]">Understanding Boot</h3>
-        <div className="space-y-2 text-sm text-gray-700">
-          <p>
-            <strong>Cash Boot:</strong> Any cash received from the sale that is not reinvested in the replacement property. Cash boot is taxable to the extent of gain realized.
+        <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-200">
+            Mortgage boot
           </p>
-          <p>
-            <strong>Mortgage Boot:</strong> When the new mortgage is less than the old mortgage, the difference is considered mortgage relief and creates taxable boot. To avoid mortgage boot, ensure the replacement property debt equals or exceeds the relinquished property debt.
+          <p className="text-2xl font-semibold">
+            {results ? currencyFormatter.format(results.mortgageBoot) : "—"}
           </p>
-          <p>
-            <strong>Total Boot:</strong> The sum of cash boot and mortgage boot. This amount is recognized as taxable gain, subject to capital gains tax rates.
+          <p className="text-sm text-slate-300">
+            Mortgage relief when the new loan is smaller than the old loan.
           </p>
         </div>
       </div>
+
+      <div className="rounded-3xl border border-amber-200/30 bg-amber-50/5 p-6 text-white">
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-200">
+          Total boot
+        </p>
+        <p className="text-3xl font-semibold">
+          {results ? currencyFormatter.format(results.totalBoot) : "—"}
+        </p>
+        <p className="text-sm text-slate-200">
+          Total boot is the sum of cash boot and mortgage boot.
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-6">
+        <p className="text-sm font-semibold text-white">Illustrative tax (20%)</p>
+        <p className="text-2xl font-semibold text-amber-200">
+          {results ? currencyFormatter.format(results.estimatedTax) : "—"}
+        </p>
+        <p className="text-xs text-slate-300">
+          Uses a 20% rate for demonstration. Confirm actual exposure with your tax advisor.
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-sm text-slate-200">
+        <p className="mb-2 font-semibold text-white">Boot refresher</p>
+        <p>
+          <strong>Cash boot</strong> equals the equity removed from the exchange.{" "}
+          <strong>Mortgage boot</strong> occurs when debt decreases. Both amounts are
+          generally taxable to the extent of gain.
+        </p>
+      </div>
+      <style jsx>{`
+        @media print {
+          .tool-card {
+            background: #ffffff !important;
+            color: #000000 !important;
+            box-shadow: none !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
-

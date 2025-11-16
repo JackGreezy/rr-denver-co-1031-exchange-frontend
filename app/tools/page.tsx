@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { DeadlineCalculator } from "@/components/tools/DeadlineCalculator";
+import { IdentificationRulesExplainer } from "@/components/tools/IdentificationRulesExplainer";
+import { IdentificationLetterHelper } from "@/components/tools/IdentificationLetterHelper";
+import { TimelineTracker } from "@/components/tools/TimelineTracker";
 
 export const metadata: Metadata = {
   title: "1031 Exchange Tools | 1031 Exchange Denver",
@@ -76,11 +81,6 @@ const tools = [
 ];
 
 export default function ToolsPage() {
-  const breadcrumbItems = [
-    { label: "Home", href: "/" },
-    { label: "Tools" },
-  ];
-
   return (
     <>
       <Script
@@ -88,76 +88,54 @@ export default function ToolsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <nav className="mx-auto max-w-7xl px-6 pt-8 md:px-8" aria-label="Breadcrumb">
-        <ol className="flex items-center space-x-2 text-sm">
-          {breadcrumbItems.map((item, index) => (
-            <li key={index} className="flex items-center">
-              {index > 0 && <span className="mx-2 text-gray-400">/</span>}
-              {item.href ? (
-                <Link
-                  href={item.href}
-                  className="text-[#0B3C5D] hover:text-[#C9A227] transition"
-                >
-                  {item.label}
-                </Link>
-              ) : (
-                <span className="text-gray-600">{item.label}</span>
-              )}
-            </li>
-          ))}
-        </ol>
-      </nav>
-      <div className="mx-auto max-w-7xl px-6 py-12 md:px-8 md:py-20">
-        <h1 className="font-serif text-3xl font-bold text-[#0B3C5D] md:text-4xl mb-4">
-          1031 Exchange Tools
-        </h1>
-        <p className="text-lg text-gray-700 mb-12 max-w-3xl">
-          Free calculators and tools to help Denver, CO investors plan and execute compliant 1031 exchanges. 
-          Use these tools to estimate costs, calculate boot, validate identification rules, and more.
-        </p>
+      <div className="mx-auto max-w-5xl px-4 py-16 text-slate-100 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Tools" }]} />
+        <div className="space-y-4">
+          <h1 className="text-4xl font-semibold text-white">1031 exchange tools</h1>
+          <p className="text-base text-slate-300">
+            Calculators and templates that keep deadlines, underwriting, and documentation
+            organized. Every tool is educational. Confirm details with your intermediary,
+            lender, attorney, and CPA.
+          </p>
+        </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
           {tools.map((tool) => (
             <Link
               key={tool.slug}
               href={`/tools/${tool.slug}`}
-              className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-xl"
+              className="group rounded-3xl border border-white/10 bg-white/5 p-6 text-white transition hover:-translate-y-1 hover:border-amber-200/40 hover:bg-white/10"
             >
-              <div className="mb-4 flex items-center justify-center rounded-lg bg-[#0B3C5D]/10 p-3 w-fit">
+              <div className="mb-4 flex items-center justify-center rounded-lg bg-white/10 p-3 w-fit">
                 <svg
-                  className="h-8 w-8 text-[#0B3C5D]"
+                  className="h-8 w-8 text-amber-300"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   strokeWidth={1.5}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d={tool.icon}
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" d={tool.icon} />
                 </svg>
               </div>
-              <h2 className="mb-2 font-serif text-xl font-semibold text-[#0B3C5D] group-hover:text-[#C9A227] transition">
-                {tool.name}
-              </h2>
-              <p className="text-sm text-gray-700">
-                {tool.description}
-              </p>
-              <div className="mt-4 text-sm font-semibold text-[#0B3C5D] group-hover:text-[#C9A227] transition">
-                Use Tool →
+              <h2 className="text-xl font-semibold">{tool.name}</h2>
+              <p className="mt-2 text-sm text-slate-200">{tool.description}</p>
+              <div className="mt-4 text-xs font-semibold uppercase tracking-[0.3em] text-amber-200">
+                Launch tool
               </div>
             </Link>
           ))}
         </div>
 
-        <div className="mt-12 rounded-lg border border-gray-200 bg-gray-50 p-6">
-          <p className="text-sm text-gray-700">
-            <strong>Educational content only.</strong> Not tax, legal, or investment advice. 
-            Results are estimates only. Consult a qualified intermediary and tax advisor before 
-            making decisions. Colorado does not impose a state real estate transfer tax. Recording fees 
-            and title insurance premiums still apply.
-          </p>
+        <section className="mt-12 grid gap-6">
+          <DeadlineCalculator />
+          <TimelineTracker />
+          <IdentificationRulesExplainer />
+          <IdentificationLetterHelper />
+        </section>
+
+        <div className="mt-12 rounded-3xl border border-white/10 bg-white/5 p-6 text-sm text-slate-200">
+          <strong>Educational content only.</strong> Not tax, legal, or investment advice.
+          Results are estimates. Confirm every step with your Qualified Intermediary and advisors.
         </div>
       </div>
     </>
