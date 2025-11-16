@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { locationsData } from "@/data/locations";
 
 export const metadata: Metadata = {
@@ -33,10 +34,22 @@ export default function LocationsPage() {
               <Link
                 key={location.slug}
                 href={`/locations/${location.slug}`}
-                className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                className="group rounded-lg border border-gray-200 bg-white overflow-hidden shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <h3 className="font-semibold text-[#0B3C5D] mb-2">{location.name}</h3>
-                <p className="text-sm text-gray-600">View 1031 exchange services</p>
+                {location.heroImage && (
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image
+                      src={location.heroImage}
+                      alt={`${location.name}, Colorado`}
+                      fill
+                      className="object-cover transition-transform group-hover:scale-105"
+                    />
+                  </div>
+                )}
+                <div className="p-6">
+                  <h3 className="font-semibold text-[#0B3C5D] mb-2">{location.name}</h3>
+                  <p className="text-sm text-gray-600">View 1031 exchange services</p>
+                </div>
               </Link>
             ))}
           </div>
@@ -51,10 +64,22 @@ export default function LocationsPage() {
               <Link
                 key={location.slug}
                 href={`/locations/${location.slug}`}
-                className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                className="group rounded-lg border border-gray-200 bg-white overflow-hidden shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <h3 className="font-semibold text-[#0B3C5D] mb-2">{location.name}</h3>
-                <p className="text-sm text-gray-600">View 1031 exchange services</p>
+                {location.heroImage && (
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image
+                      src={location.heroImage}
+                      alt={`${location.name}, Colorado`}
+                      fill
+                      className="object-cover transition-transform group-hover:scale-105"
+                    />
+                  </div>
+                )}
+                <div className="p-6">
+                  <h3 className="font-semibold text-[#0B3C5D] mb-2">{location.name}</h3>
+                  <p className="text-sm text-gray-600">View 1031 exchange services</p>
+                </div>
               </Link>
             ))}
           </div>
@@ -69,15 +94,27 @@ export default function LocationsPage() {
               <Link
                 key={location.slug}
                 href={`/locations/${location.slug}`}
-                className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                className="group rounded-lg border border-gray-200 bg-white overflow-hidden shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <h3 className="font-semibold text-[#0B3C5D] mb-2">{location.name}</h3>
-                {location.parent && (
-                  <p className="text-xs text-gray-500 mb-2">
-                    {locationsData.find((l) => l.slug === location.parent)?.name}
-                  </p>
+                {location.heroImage && (
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image
+                      src={location.heroImage}
+                      alt={`${location.name}, Colorado`}
+                      fill
+                      className="object-cover transition-transform group-hover:scale-105"
+                    />
+                  </div>
                 )}
-                <p className="text-sm text-gray-600">View 1031 exchange services</p>
+                <div className="p-6">
+                  <h3 className="font-semibold text-[#0B3C5D] mb-2">{location.name}</h3>
+                  {location.parent && (
+                    <p className="text-xs text-gray-500 mb-2">
+                      {locationsData.find((l) => l.slug === location.parent)?.name}
+                    </p>
+                  )}
+                  <p className="text-sm text-gray-600">View 1031 exchange services</p>
+                </div>
               </Link>
             ))}
           </div>

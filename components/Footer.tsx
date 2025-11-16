@@ -5,6 +5,7 @@ import { locationsData } from "@/data/locations";
 const BRAND_NAME = "1031 Exchange Denver";
 const PHONE_DISPLAY = "(720) 738-1031";
 const PHONE_TEL = "+17207381031";
+const EMAIL = "team@1031exchangedenver.com";
 const IRS_FORM_8824_LINK = "https://www.irs.gov/forms-pubs/about-form-8824";
 const IRS_LIKE_KIND_LINK =
   "https://www.irs.gov/businesses/small-businesses-self-employed/like-kind-exchanges-real-estate-tax-tips";
@@ -17,8 +18,16 @@ const tools = [
   { name: "Identification Rules Checker", href: "/tools/identification-rules-checker" },
 ];
 
-const topServices = servicesData.slice(0, 6);
-const topLocations = locationsData.filter((loc) => loc.type === "city").slice(0, 6);
+const mainServices = servicesData.filter((s) => 
+  s.category === "Property Paths" || s.slug === "replacement-property-identification"
+).slice(0, 7);
+
+const mainLocations = [
+  locationsData.find((l) => l.slug === "denver-co"),
+  ...locationsData.filter((l) => 
+    l.type === "city" && l.slug !== "denver-co"
+  ).slice(0, 7)
+].filter((loc): loc is NonNullable<typeof loc> => loc !== undefined);
 
 export default function Footer() {
   return (
@@ -39,7 +48,7 @@ export default function Footer() {
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#DAA520]">
             Services
           </p>
-          {topServices.map((service) => (
+          {mainServices.map((service) => (
             <Link
               key={service.slug}
               href={`/services/${service.slug}`}
@@ -52,27 +61,27 @@ export default function Footer() {
             href="/services"
             className="text-sm text-slate-100 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
-            View All Services →
+            View All {servicesData.length} Services →
           </Link>
         </div>
         <div className="flex flex-col gap-3">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#DAA520]">
-            Locations
+            Service Areas
           </p>
-          {topLocations.map((location) => (
+          {mainLocations.map((location) => (
             <Link
               key={location.slug}
-              href={`/locations/${location.slug}`}
+              href={`/service-areas/${location.slug}`}
               className="text-sm text-slate-100 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
               {location.name}
             </Link>
           ))}
           <Link
-            href="/locations"
+            href="/service-areas"
             className="text-sm text-slate-100 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
-            View All Locations →
+            View All {locationsData.length} Service Areas →
           </Link>
         </div>
         <div className="flex flex-col gap-3">
@@ -106,10 +115,10 @@ export default function Footer() {
             Call {PHONE_DISPLAY}
           </Link>
           <Link
-            href="mailto:team@1031exchangedenver.com"
+            href={`mailto:${EMAIL}`}
             className="text-sm text-slate-100 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
-            team@1031exchangedenver.com
+            {EMAIL}
           </Link>
           <p className="text-sm text-slate-200">
             Statewide service with Denver headquarters available by appointment.
@@ -145,9 +154,19 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-6 text-xs text-slate-300 md:flex-row md:items-center md:justify-between md:px-8">
           <p>© {new Date().getFullYear()} {BRAND_NAME}. All rights reserved.</p>
-          <p>
-            Privacy Policy · Terms of Service
-          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/privacy" className="hover:text-white transition">
+              Privacy Policy
+            </Link>
+            <span>·</span>
+            <Link href="/terms" className="hover:text-white transition">
+              Terms of Service
+            </Link>
+            <span>·</span>
+            <Link href="/sitemap.xml" className="hover:text-white transition">
+              Sitemap
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

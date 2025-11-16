@@ -25,7 +25,7 @@ export const servicesData: ServiceItem[] = [
   {
     slug: "nnn-stnl-property-sourcing",
     name: "NNN and STNL Property Sourcing",
-    short: "Triple net and single tenant net lease replacement identification with credit tenant analysis.",
+    short: "Triple net lease and single tenant net lease replacement property identification featuring corporate-guaranteed tenants and hands-off income structures.",
     route: "nnn-stnl-property-sourcing",
     category: "Property Paths",
   },

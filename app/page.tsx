@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import React from "react";
 import { Inter, Lora } from "next/font/google";
 import { RevealSection } from "@/components/RevealSection";
 import { LeadForm } from "@/components/LeadForm";
+import { RotatingHeroBackground } from "@/components/RotatingHeroBackground";
+import { locationsData } from "@/data/locations";
+import { propertyTypesData } from "@/data/property-types";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -37,8 +41,8 @@ type CoverageItem = {
   slug: string;
 };
 
-const PHONE_DISPLAY = "(720) 738-1031";
-const PHONE_TEL = "+17207381031";
+const PHONE_DISPLAY = "(303) 835-0981";
+const PHONE_TEL = "+13038350981";
 const BRAND_NAME = "1031 Exchange Denver";
 const CO_TRANSFER_TAX_LINK =
   "https://cdola.colorado.gov/real-estate-transfer-tax";
@@ -403,18 +407,10 @@ export default function Page() {
         <main id="main">
           <section className="relative overflow-hidden bg-[#F8FAFB]">
             <div
-              className={`mx-auto flex max-w-7xl flex-col gap-14 rounded-3xl bg-gradient-to-br from-[#16324F] via-[#1f4570] to-white px-6 py-20 md:px-8 md:py-28 ${gradientOverlay}`}
+              className={`relative mx-auto flex max-w-7xl flex-col gap-14 rounded-3xl px-6 py-20 md:px-8 md:py-28 ${gradientOverlay}`}
             >
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 opacity-50 mix-blend-screen"
-                style={{
-                  backgroundImage: `url("${skylineSvg}")`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center bottom",
-                }}
-              />
-              <div className="relative flex flex-col gap-8 text-white">
+              <RotatingHeroBackground />
+              <div className="relative flex flex-col gap-8 text-white z-10">
                 <div className="inline-flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-[#DAA520]" />
                   <span className="text-xs uppercase tracking-[0.38em]">
@@ -447,7 +443,7 @@ export default function Page() {
                   45 Day identification. 180 Day closing. We help you stay compliant.
                 </p>
               </div>
-              <div className="relative grid gap-8 rounded-3xl bg-white/10 p-6 backdrop-blur-sm sm:grid-cols-3">
+              <div className="relative grid gap-8 rounded-3xl bg-white/10 p-6 backdrop-blur-sm sm:grid-cols-3 z-10">
                 {["CPA Alliance", "Attorney Review", "Qualified Intermediary"].map(
                   (badge) => (
                     <div
@@ -668,31 +664,44 @@ export default function Page() {
                 </h2>
               </RevealSection>
               <RevealSection className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {PROPERTY_TYPES.map((property) => (
-                  <div
-                    key={property.slug}
-                    className="flex h-full flex-col rounded-2xl border border-gray-200/60 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-                  >
-                    <div className="flex items-center gap-4">
-                      <IconOutline
-                        title={property.title}
-                        path="M3 18h18M3 10l9-6 9 6v8H3z"
-                      />
-                      <h3 className={`text-lg font-semibold text-[#16324F] ${lora.className}`}>
-                        {property.title}
-                      </h3>
-                    </div>
-                    <p className="mt-4 text-sm leading-relaxed text-gray-700">
-                      {property.description}
-                    </p>
+                {PROPERTY_TYPES.map((property) => {
+                  const propertyType = propertyTypesData.find((pt) => pt.slug === property.slug);
+                  return (
                     <Link
+                      key={property.slug}
                       href={`/property-types/${property.slug}`}
-                      className="mt-auto inline-flex text-sm font-semibold text-[#16324F] transition hover:text-[#0f2236] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16324F]"
+                      className="group flex h-full flex-col rounded-2xl border border-gray-200/60 bg-white overflow-hidden shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                     >
-                      Explore type
+                      {propertyType?.heroImage && (
+                        <div className="relative h-48 w-full overflow-hidden">
+                          <Image
+                            src={propertyType.heroImage}
+                            alt={property.title}
+                            fill
+                            className="object-cover transition-transform group-hover:scale-105"
+                          />
+                        </div>
+                      )}
+                      <div className="flex flex-col p-6">
+                        <div className="flex items-center gap-4">
+                          <IconOutline
+                            title={property.title}
+                            path="M3 18h18M3 10l9-6 9 6v8H3z"
+                          />
+                          <h3 className={`text-lg font-semibold text-[#16324F] ${lora.className}`}>
+                            {property.title}
+                          </h3>
+                        </div>
+                        <p className="mt-4 text-sm leading-relaxed text-gray-700">
+                          {property.description}
+                        </p>
+                        <span className="mt-auto mt-6 inline-flex text-sm font-semibold text-[#16324F] transition group-hover:text-[#0f2236]">
+                          Explore type
+                        </span>
+                      </div>
                     </Link>
-                  </div>
-                ))}
+                  );
+                })}
               </RevealSection>
               <RevealSection className="flex justify-end">
                 <Link
@@ -724,35 +733,48 @@ export default function Page() {
                 </p>
               </RevealSection>
               <RevealSection className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
-                {CO_CITIES_SLUGS.map((city) => (
-                  <div
-                    key={city.slug}
-                    className="flex h-full flex-col rounded-2xl border border-gray-200/60 bg-[#F8FAFB] p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-                  >
-                    <div className="flex items-center gap-3">
-                      <IconOutline
-                        title={city.name}
-                        path="M12 2l7 4v6c0 5.25-3.75 10.5-7 12-3.25-1.5-7-6.75-7-12V6l7-4z"
-                      />
-                      <h3 className={`text-lg font-semibold text-[#16324F] ${lora.className}`}>
-                        {city.name}
-                      </h3>
-                    </div>
-                    <p className="mt-3 text-sm leading-relaxed text-gray-700">
-                      {city.description}
-                    </p>
+                {CO_CITIES_SLUGS.map((city) => {
+                  const location = locationsData.find((loc) => loc.slug === `${city.slug}-co` || loc.slug === city.slug);
+                  return (
                     <Link
-                      href={`/locations/${city.slug}`}
-                      className="mt-4 inline-flex text-sm font-semibold text-[#16324F] transition hover:text-[#0f2236] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16324F]"
+                      key={city.slug}
+                      href={`/service-areas/${city.slug}`}
+                      className="group flex h-full flex-col rounded-2xl border border-gray-200/60 bg-[#F8FAFB] overflow-hidden shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                     >
-                      See location
+                      {location?.heroImage && (
+                        <div className="relative h-40 w-full overflow-hidden">
+                          <Image
+                            src={location.heroImage}
+                            alt={city.name}
+                            fill
+                            className="object-cover transition-transform group-hover:scale-105"
+                          />
+                        </div>
+                      )}
+                      <div className="flex flex-col p-5">
+                        <div className="flex items-center gap-3">
+                          <IconOutline
+                            title={city.name}
+                            path="M12 2l7 4v6c0 5.25-3.75 10.5-7 12-3.25-1.5-7-6.75-7-12V6l7-4z"
+                          />
+                          <h3 className={`text-lg font-semibold text-[#16324F] ${lora.className}`}>
+                            {city.name}
+                          </h3>
+                        </div>
+                        <p className="mt-3 text-sm leading-relaxed text-gray-700">
+                          {city.description}
+                        </p>
+                        <span className="mt-4 inline-flex text-sm font-semibold text-[#16324F] transition group-hover:text-[#0f2236]">
+                          See location
+                        </span>
+                      </div>
                     </Link>
-                  </div>
-                ))}
+                  );
+                })}
               </RevealSection>
               <RevealSection className="flex justify-end">
                 <Link
-                  href="/locations"
+                  href="/service-areas"
                   className="text-sm font-semibold text-[#16324F] underline decoration-2 underline-offset-4 transition hover:text-[#0f2236] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#16324F]"
                 >
                   See locations
@@ -779,7 +801,7 @@ export default function Page() {
                   Use our interactive tools to calculate boot, estimate exchange costs, validate identification rules, and more.
                 </p>
               </RevealSection>
-              <RevealSection className="grid gap-6 md:grid-cols-3">
+              <RevealSection className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {[
                   {
                     title: "Boot Calculator",
@@ -801,6 +823,27 @@ export default function Page() {
                       "Validate your replacement property identification against the 3-property, 200%, or 95% rules.",
                     href: "/tools/identification-rules-checker",
                     icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+                  },
+                  {
+                    title: "Depreciation Recapture Estimator",
+                    description:
+                      "Estimate depreciation recapture tax on your relinquished property and understand 1031 deferral benefits.",
+                    href: "/tools/depreciation-recapture-estimator",
+                    icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",
+                  },
+                  {
+                    title: "Replacement Property Value Calculator",
+                    description:
+                      "Calculate the minimum replacement property value needed to defer all gain in your exchange.",
+                    href: "/tools/replacement-property-value-calculator",
+                    icon: "M3 18h18M3 10l9-6 9 6v8H3z",
+                  },
+                  {
+                    title: "Debt Relief Calculator",
+                    description:
+                      "Calculate mortgage boot when new debt is less than old debt and understand tax implications.",
+                    href: "/tools/debt-relief-calculator",
+                    icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
                   },
                 ].map((tool) => (
                   <Link
@@ -997,13 +1040,13 @@ export default function Page() {
                 Call {PHONE_DISPLAY}
               </Link>
               <Link
-                href="mailto:team@1031exchangedenver.com"
+                href="mailto:contact@1031exchangedenver.com"
                 className="text-sm text-slate-100 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
-                team@1031exchangedenver.com
+                contact@1031exchangedenver.com
               </Link>
               <p className="text-sm text-slate-200">
-                Statewide service with Denver headquarters available by appointment.
+                1510 York St, Denver, CO 80206
               </p>
             </div>
             <div className="flex flex-col gap-3">

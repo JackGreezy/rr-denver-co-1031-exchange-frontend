@@ -55,6 +55,24 @@ const tools = [
     description: "Validate your replacement property identification against the 3-property, 200%, or 95% identification rules.",
     icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
   },
+  {
+    name: "Depreciation Recapture Estimator",
+    slug: "depreciation-recapture-estimator",
+    description: "Estimate depreciation recapture tax on your relinquished property and understand how 1031 exchanges can defer this tax.",
+    icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",
+  },
+  {
+    name: "Replacement Property Value Calculator",
+    slug: "replacement-property-value-calculator",
+    description: "Calculate the minimum replacement property value needed to defer all gain in your 1031 exchange.",
+    icon: "M3 18h18M3 10l9-6 9 6v8H3z",
+  },
+  {
+    name: "Debt Relief Calculator",
+    slug: "debt-relief-calculator",
+    description: "Calculate mortgage boot when new debt is less than old debt and understand debt relief tax implications.",
+    icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+  },
 ];
 
 export default function ToolsPage() {

@@ -189,43 +189,43 @@ export const servicesBatch01: Record<string, ServiceBatchItem> = {
   "nnn-stnl-property-sourcing": {
     layoutKey: "comparison",
     mainDescription:
-      "<p>NNN and STNL property sourcing provides Denver, CO investors with triple net and single tenant net lease replacement identification nationwide. This service focuses on credit tenant properties with long term leases where tenants pay all operating expenses including taxes, insurance, and maintenance.</p><p>We coordinate identification within forty five day deadlines and closing within one hundred eighty days. Each NNN or STNL property receives tenant credit analysis, lease term review, and property condition evaluation. Qualified intermediary coordination ensures proper escrow handling and identification letter delivery.</p><p>Our nationwide network includes NNN and STNL assets across retail, restaurant, medical, automotive, and other sectors with investment grade tenants. We provide lease abstracts, tenant financials, and market comparable cap rate analysis. DST or TIC structures may be securities and we provide introductions to licensed providers only.</p>",
+      "<p>Triple net lease (NNN) and single tenant net lease (STNL) property sourcing connects Denver, CO investors with commercial real estate investments featuring corporate-guaranteed tenants who assume responsibility for property expenses. These lease structures represent some of the most stable income-generating opportunities available in commercial real estate, offering predictable monthly cash flow with minimal ownership obligations.</p><p>Our identification process operates within IRS forty five day identification windows and one hundred eighty day closing requirements. Every NNN or STNL candidate undergoes comprehensive tenant creditworthiness assessment, lease structure analysis, and asset condition review. We coordinate with qualified intermediaries to facilitate proper escrow management and timely identification letter execution.</p><p>Our national property network encompasses triple net lease assets spanning essential retail, quick-service dining, healthcare facilities, automotive services, and other necessity-based sectors occupied by investment-grade corporate tenants. We deliver detailed lease documentation, corporate financial analysis, and regional market cap rate comparisons. Delaware Statutory Trust (DST) and Tenant-In-Common (TIC) arrangements may involve securities and require licensed securities professionals; we facilitate introductions to qualified providers when appropriate.</p>",
     faqs: [
       {
-        question: "What is the difference between NNN and STNL properties for Denver, CO exchanges?",
+        question: "What distinguishes NNN from STNL lease structures for Colorado 1031 exchanges?",
         answer:
-          "NNN properties in Denver, CO exchanges are triple net lease properties where tenants pay base rent plus all operating expenses including property taxes, insurance, and maintenance. STNL properties are single tenant net lease properties, which are typically NNN leases but emphasize the single tenant structure. Both qualify as like kind replacement properties and provide passive income with minimal landlord responsibilities.",
+          "Triple net lease (NNN) arrangements require tenants to cover base rental payments along with property tax obligations, insurance premiums, and maintenance costs. Single tenant net lease (STNL) properties follow similar expense allocation patterns but specifically feature one corporate tenant occupying the entire building. Both lease types qualify as like-kind replacement properties under Section 1031 and deliver hands-off income streams with reduced landlord operational duties.",
       },
       {
-        question: "How is boot calculated for NNN and STNL exchanges in Denver, CO?",
+        question: "How do I calculate boot exposure for NNN and STNL 1031 exchanges?",
         answer:
-          "Boot calculation for Denver, CO NNN and STNL exchanges includes cash received and mortgage relief not replaced. If the replacement property has less debt than the relinquished property, that difference is mortgage boot and creates taxable gain. We help structure acquisitions to match or exceed relinquished property debt levels to minimize boot recognition.",
+          "Boot calculation for Colorado NNN and STNL exchanges encompasses any cash proceeds received plus mortgage debt reduction that isn't replaced through the replacement property acquisition. When replacement property debt falls below relinquished property debt levels, that differential constitutes mortgage boot and triggers taxable gain recognition. We assist in structuring replacement acquisitions to maintain or increase debt levels relative to relinquished properties, thereby minimizing boot exposure.",
       },
       {
-        question: "Can DST or TIC structures be used for NNN and STNL replacements in Denver, CO?",
+        question: "Are DST or TIC arrangements suitable for NNN and STNL replacement properties?",
         answer:
-          "DST or TIC structures may be securities and require licensed securities providers. Denver, CO investors interested in DST or TIC structures for NNN and STNL replacements should consult licensed securities professionals. We provide introductions to licensed providers but do not sell securities. All DST or TIC structures must comply with securities regulations and investor suitability requirements.",
+          "Delaware Statutory Trust (DST) and Tenant-In-Common (TIC) structures may constitute securities offerings and necessitate involvement of licensed securities professionals. Colorado investors exploring DST or TIC options for NNN and STNL replacements should engage qualified securities advisors. We facilitate connections with licensed providers but do not offer securities directly. All DST and TIC arrangements must adhere to applicable securities regulations and investor qualification standards.",
       },
       {
-        question: "What tenant credit information do I need for NNN and STNL evaluation in Denver, CO?",
+        question: "What corporate tenant information is essential for NNN and STNL property evaluation?",
         answer:
-          "Denver, CO investors should review tenant credit ratings from major rating agencies, tenant financial statements and annual reports, lease terms including base rent, escalations, and renewal options, and property condition reports. We compile this information for each NNN or STNL candidate to support underwriting decisions within forty five day identification deadlines.",
+          "Colorado investors evaluating NNN and STNL candidates should examine corporate credit assessments from recognized rating organizations, tenant financial documentation and public filings, lease provisions covering rental rates, periodic increases, and extension rights, plus comprehensive property inspection reports. We aggregate this information for each NNN or STNL prospect to enable informed underwriting decisions within compressed forty five day identification periods.",
       },
     ],
     inclusions: [
-      "Nationwide NNN and STNL property database with filtering by tenant credit, sector, location, and price",
-      "Tenant credit rating analysis from major rating agencies",
-      "Lease abstract compilation with rent escalations and renewal terms",
-      "Property condition evaluation and market comparable cap rate analysis",
-      "Tenant financial statement review and annual report analysis",
-      "Identification letter coordination with qualified intermediary",
-      "DST or TIC introduction coordination with licensed securities providers when applicable",
-      "Property inspection scheduling and due diligence coordination",
+      "National triple net lease property inventory searchable by corporate credit quality, industry sector, geographic market, and acquisition price",
+      "Corporate tenant creditworthiness evaluation using recognized rating agency assessments",
+      "Comprehensive lease documentation review including rental rate adjustments and extension provisions",
+      "Asset condition assessment and regional market capitalization rate benchmarking",
+      "Corporate financial documentation analysis and public company reporting review",
+      "Identification letter preparation and qualified intermediary coordination",
+      "DST and TIC structure referrals to licensed securities professionals when requested",
+      "Property inspection coordination and comprehensive due diligence management",
     ],
     commonSituations: [
-      "A Denver investor selling a retail property wants to identify NNN replacements with investment grade tenants for passive income.",
-      "A Colorado Springs investor needs STNL properties with long term leases to match exchange timelines.",
-      "A Boulder investor is considering DST structures for NNN replacements and needs introductions to licensed providers.",
+      "A Denver metro investor divesting a commercial property seeks triple net lease replacements featuring investment-grade corporate tenants for hands-off income generation.",
+      "A Colorado Springs area investor requires single tenant net lease properties with extended lease terms aligned with exchange completion deadlines.",
+      "A Boulder County investor exploring Delaware Statutory Trust options for triple net lease replacements requests connections to licensed securities professionals.",
     ],
     complianceNote:
       "Educational content only. Not tax, legal, or investment advice. A 1031 exchange defers income tax on qualifying real property and does not remove transfer or documentary taxes. DST or TIC may be securities. We do not sell securities. We provide introductions to licensed providers only.",
@@ -237,11 +237,11 @@ export const servicesBatch01: Record<string, ServiceBatchItem> = {
       scope:
         "Identify three NNN replacement properties nationwide within forty five days, with tenant credit analysis, lease review, and identification letter coordination.",
       clientSituation:
-        "Investor selling a Denver retail property with one point five million in proceeds wants to identify NNN replacements with investment grade tenants for passive income and minimal management responsibilities.",
+        "A Denver area investor disposing of a retail asset with approximately one point five million in net proceeds seeks triple net lease replacement properties occupied by investment-grade corporate tenants, prioritizing passive income generation and reduced operational involvement.",
       ourApproach:
-        "We access nationwide NNN databases, filter by tenant credit rating and price range, compile lease abstracts and tenant financial analysis for each candidate, review property conditions and market comparables, coordinate identification letters with qualified intermediary, and provide DST introductions when requested.",
+        "We query national triple net lease property databases, apply filters based on corporate credit ratings and acquisition price parameters, assemble comprehensive lease documentation and corporate financial reviews for each prospect, evaluate asset conditions and regional market comparables, facilitate identification letter preparation with qualified intermediary coordination, and arrange Delaware Statutory Trust introductions when applicable.",
       expectedOutcome:
-        "Investor receives three qualified NNN replacement options with complete tenant credit analysis, lease abstracts, property condition reports, and identification letters properly executed. Properties feature investment grade tenants with long term leases to support passive income goals.",
+        "Investor obtains three qualified triple net lease replacement candidates accompanied by thorough corporate credit assessments, complete lease documentation, comprehensive property condition evaluations, and properly executed identification letters. Selected properties feature investment-grade corporate tenants with extended lease terms designed to support passive income objectives.",
       contactCTA:
         "Contact us to discuss your NNN and STNL property sourcing needs in Denver, CO. We can share references upon request.",
     },

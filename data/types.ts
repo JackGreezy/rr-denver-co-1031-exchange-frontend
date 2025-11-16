@@ -14,12 +14,14 @@ export interface LocationItem {
   parent?: Slug;
   route: Slug;
   type: "city" | "neighborhood" | "suburb" | "district" | "remote";
+  heroImage?: string;
 }
 
 export interface PropertyTypeItem {
   slug: Slug;
   name: string;
   route: Slug;
+  heroImage?: string;
 }
 
 export interface InventoryCategory {

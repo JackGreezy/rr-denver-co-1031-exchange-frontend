@@ -1,0 +1,47 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
+
+const images = [
+  "/hero-images/denver-1.jpg",
+  "/hero-images/denver-2.jpg",
+  "/hero-images/denver-3.jpg",
+];
+
+export function RotatingHeroBackground() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden rounded-3xl">
+      {images.map((src, index) => (
+        <div
+          key={src}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            index === currentIndex ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Image
+            src={src}
+            alt={`Denver, Colorado ${index + 1}`}
+            fill
+            className="object-cover"
+            priority={index === 0}
+            quality={90}
+          />
+        </div>
+      ))}
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#16324F]/80 via-[#1f4570]/70 to-black/60" />
+    </div>
+  );
+}
+

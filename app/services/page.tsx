@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import { servicesData } from "@/data/services";
+import BottomCTA from "@/components/BottomCTA";
 
 export const metadata: Metadata = {
   title: "1031 Exchange Services | 1031 Exchange Denver",
@@ -63,6 +65,7 @@ export default function ServicesPage() {
           </div>
         </section>
       )}
+      <BottomCTA />
     </div>
   );
 }
