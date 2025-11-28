@@ -13,6 +13,9 @@ type FormField =
   | "email"
   | "phone"
   | "projectType"
+  | "property"
+  | "estimatedCloseDate"
+  | "city"
   | "timeline"
   | "details";
 
@@ -31,6 +34,9 @@ const INITIAL_STATE: FormState = {
     email: "",
     phone: "",
     projectType: "",
+    property: "",
+    estimatedCloseDate: "",
+    city: "",
     timeline: "",
     details: "",
   },
@@ -320,6 +326,51 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
             {state.errors.projectType}
           </p>
         ) : null}
+      </div>
+
+      <div className="grid gap-2">
+        <label htmlFor="property" className="text-sm font-medium !text-white">
+          Property Being Sold
+        </label>
+        <input
+          id="property"
+          name="property"
+          type="text"
+          value={state.values.property}
+          onChange={(event) => handleChange("property", event.target.value)}
+          className="w-full rounded-full border border-slate-200 bg-white px-5 py-3 text-sm text-gray-900 shadow-sm focus:border-[#16324F] focus:outline-none focus:ring-2 focus:ring-[#16324F]/60"
+          placeholder="Include property type, location, and estimated value (optional)"
+        />
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-2">
+          <label htmlFor="estimatedCloseDate" className="text-sm font-medium !text-white">
+            Estimated Close Date
+          </label>
+          <input
+            id="estimatedCloseDate"
+            name="estimatedCloseDate"
+            type="date"
+            value={state.values.estimatedCloseDate}
+            onChange={(event) => handleChange("estimatedCloseDate", event.target.value)}
+            className="w-full rounded-full border border-slate-200 bg-white px-5 py-3 text-sm text-gray-900 shadow-sm focus:border-[#16324F] focus:outline-none focus:ring-2 focus:ring-[#16324F]/60"
+          />
+        </div>
+        <div className="grid gap-2">
+          <label htmlFor="city" className="text-sm font-medium !text-white">
+            City
+          </label>
+          <input
+            id="city"
+            name="city"
+            type="text"
+            value={state.values.city}
+            onChange={(event) => handleChange("city", event.target.value)}
+            className="w-full rounded-full border border-slate-200 bg-white px-5 py-3 text-sm text-gray-900 shadow-sm focus:border-[#16324F] focus:outline-none focus:ring-2 focus:ring-[#16324F]/60"
+            placeholder="Primary metro or submarket (optional)"
+          />
+        </div>
       </div>
 
       <div className="grid gap-2">
