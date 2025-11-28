@@ -1,21 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import sgMail from "@sendgrid/mail";
+import { getBrand } from '@/lib/brand';
+import { sendCustomerConfirmation, sendInternalNotifications } from '@/lib/email/sendgrid';
 
-if (!process.env.SENDGRID_API_KEY) {
-  console.warn("SENDGRID_API_KEY is not set");
-}
-if (!process.env.TURNSTILE_SECRET_KEY) {
-  console.warn("TURNSTILE_SECRET_KEY is not set");
-}
-if (!process.env.ZAPIER_WEBHOOK_URL) {
-  console.warn("ZAPIER_WEBHOOK_URL is not set");
-}
-
-if (process.env.SENDGRID_API_KEY) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-}
-
-async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
+async function verifyTurnstile(token: string, ip?: string): Promise<boolean> {
   if (!process.env.TURNSTILE_SECRET_KEY) {
     return true;
   }
@@ -53,22 +40,28 @@ export async function POST(request: NextRequest) {
       phone,
       company,
       service,
+      projectType,
       timeline,
       message,
       details,
+      property,
+      estimatedCloseDate,
+      city,
       turnstileToken,
+      'cf-turnstile-response': cfTurnstileToken,
     } = body;
 
+    const token = turnstileToken || cfTurnstileToken;
     if (process.env.TURNSTILE_SECRET_KEY) {
-      if (!turnstileToken) {
+      if (!token) {
         return NextResponse.json(
           { error: "Turnstile token is required" },
           { status: 400 }
         );
       }
 
-      const ip = request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "";
-      const turnstileValid = await verifyTurnstile(turnstileToken, ip);
+      const ip = request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || undefined;
+      const turnstileValid = await verifyTurnstile(token, ip);
 
       if (!turnstileValid) {
         return NextResponse.json(
@@ -78,40 +71,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const emailContent = `
-New 1031 Exchange Lead
-
-Name: ${name}
-${company ? `Company: ${company}` : ""}
-Email: ${email}
-Phone: ${phone}
-Project Type: ${service || "Not specified"}
-${timeline ? `Timeline: ${timeline}` : ""}
-
-${details || message ? `Details:\n${details || message}` : ""}
-    `.trim();
-
-    const emailHtml = `
-      <h2>New 1031 Exchange Lead</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      ${company ? `<p><strong>Company:</strong> ${company}</p>` : ""}
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Project Type:</strong> ${service || "Not specified"}</p>
-      ${timeline ? `<p><strong>Timeline:</strong> ${timeline}</p>` : ""}
-      ${details || message ? `<p><strong>Details:</strong></p><p>${(details || message || "").replace(/\n/g, "<br>")}</p>` : ""}
-    `;
-
-    if (process.env.SENDGRID_API_KEY && process.env.SENDGRID_TO_EMAIL) {
-      await sgMail.send({
-        to: process.env.SENDGRID_TO_EMAIL,
-        from: process.env.SENDGRID_FROM_EMAIL || "noreply@1031exchangedenver.com",
-        subject: `New 1031 Exchange Lead: ${name}`,
-        text: emailContent,
-        html: emailHtml,
-      });
-    }
-
+    // Send to Zapier
     if (process.env.ZAPIER_WEBHOOK_URL) {
       try {
         await fetch(process.env.ZAPIER_WEBHOOK_URL, {
@@ -124,15 +84,53 @@ ${details || message ? `Details:\n${details || message}` : ""}
             email,
             phone,
             company: company || "",
-            projectType: service || "",
+            projectType: projectType || service || "",
             timeline: timeline || "",
             details: details || message || "",
+            property: property || "",
+            estimatedCloseDate: estimatedCloseDate || "",
+            city: city || "",
             timestamp: new Date().toISOString(),
           }),
         });
       } catch (zapierError) {
         console.error("Zapier webhook error:", zapierError);
       }
+    }
+
+    // Send emails via SendGrid template
+    const brand = getBrand();
+    const lead = {
+      name: String(name || ''),
+      email: String(email || ''),
+      phone: phone ? String(phone).replace(/\D/g, '') : undefined,
+      phone_plain: phone ? String(phone).replace(/\D/g, '') : undefined,
+      projectType: String(projectType || service || '1031 Exchange Project'),
+      property: property ? String(property) : undefined,
+      estimatedCloseDate: estimatedCloseDate ? String(estimatedCloseDate) : undefined,
+      city: city ? String(city) : undefined,
+      company: company ? String(company) : undefined,
+      timeline: timeline ? String(timeline) : undefined,
+      message: message ? String(message) : (details ? String(details) : undefined),
+    };
+
+    const brandWithDate = {
+      ...brand,
+      submitted_date: new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
+    };
+
+    try {
+      await Promise.all([
+        sendCustomerConfirmation(brandWithDate, lead),
+        sendInternalNotifications(brandWithDate, lead),
+      ]);
+      console.log('SendGrid emails sent successfully to:', email);
+    } catch (error) {
+      console.error("SendGrid email failed", error);
     }
 
     return NextResponse.json({ success: true });
@@ -144,4 +142,3 @@ ${details || message ? `Details:\n${details || message}` : ""}
     );
   }
 }
-
