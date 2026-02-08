@@ -2,17 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Script from "next/script";
-import dynamic from "next/dynamic";
-import React from "react";
 import { Inter, Playfair_Display } from "next/font/google";
 import { RevealSection } from "@/components/RevealSection";
 import { LeadForm } from "@/components/LeadForm";
-import { RotatingHeroBackground } from "@/components/RotatingHeroBackground";
+import { VideoHeroBackground } from "@/components/VideoHeroBackground";
 import { locationsData } from "@/data/locations";
-import { servicesData } from "@/data/services";
-import { propertyTypesData } from "@/data/property-types";
-import { HomeServiceSearch } from "@/components/home/HomeServiceSearch";
-import { HomeLocationSearch } from "@/components/home/HomeLocationSearch";
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,13 +21,14 @@ const playfair = Playfair_Display({
   weight: ["400", "500", "600", "700"],
 });
 
+/* ─────────── Data types ─────────── */
+
 type Feature = {
   title: string;
   description: string;
-  href: string;
 };
 
-type CardItem = {
+type ServiceCard = {
   title: string;
   description: string;
   slug: string;
@@ -43,6 +39,8 @@ type CoverageItem = {
   description: string;
   slug: string;
 };
+
+/* ─────────── Constants ─────────── */
 
 const PHONE_DISPLAY = "(303) 835-0981";
 const PHONE_TEL = "+13038350981";
@@ -55,40 +53,32 @@ const IRS_LIKE_KIND_LINK =
 const IRS_REV_PROC_2008_16_LINK =
   "https://www.irs.gov/pub/irs-drop/rp-08-16.pdf";
 
+/* ─────────── Content arrays ─────────── */
+
 const WHY_CHOOSE_FEATURES: Feature[] = [
   {
-    title: "Colorado-specific 1031 knowledge",
+    title: "Colorado-Specific 1031 Knowledge",
     description:
       "Advisors trained on Colorado statutes, local transfer protocols, and state filings that complement federal guidance.",
-    href: "#why-choose",
   },
   {
-    title: "Denver tax and real-estate experience",
+    title: "Denver Tax & Real-Estate Experience",
     description:
       "Market intelligence drawn from Denver metro transactions, cap rates, and appreciation trends for precise reinvestment planning.",
-    href: "#why-choose",
   },
   {
-    title: "Qualified intermediary network",
+    title: "Qualified Intermediary Network",
     description:
       "Curated relationships with bonded, insured qualified intermediaries positioned across Colorado for compliant escrow handling.",
-    href: "#why-choose",
   },
   {
-    title: "Attorney and CPA coordination",
+    title: "Attorney & CPA Coordination",
     description:
       "Integrated review cycles with real-estate counsel and tax advisors to align purchase agreements and reporting packages.",
-    href: "#why-choose",
-  },
-  {
-    title: "Precise timeline and reporting discipline",
-    description:
-      "Deadline surveillance, milestone alerts, and Form 8824 documentation assembled for submission-ready accuracy.",
-    href: "#why-choose",
   },
 ];
 
-const TOP_SERVICES: CardItem[] = [
+const TOP_SERVICES: ServiceCard[] = [
   {
     title: "Exchange Strategy Planning",
     description:
@@ -120,98 +110,106 @@ const TOP_SERVICES: CardItem[] = [
     slug: "due-diligence-coordination",
   },
   {
-    title: "Reporting and Filing Support",
+    title: "Reporting & Filing Support",
     description:
       "Assemble transaction summaries, expense logs, and Form 8824 data for streamlined CPA handoff.",
     slug: "reporting-and-filing-support",
   },
 ];
 
-const PROPERTY_TYPES: CardItem[] = [
+const PROPERTY_TYPES = [
   {
-    title: "Multifamily Assets",
+    title: "Multifamily",
     description:
       "Stabilize income with Denver and Front Range apartments while deferring capital gains across unit portfolios.",
     slug: "multifamily",
+    image: "/inventory/1031-exchange-multifamily-denver-co.jpg",
   },
   {
-    title: "Industrial Flex",
+    title: "Industrial",
     description:
-      "Reposition proceeds into logistics and flex space serving Colorado’s manufacturing and aerospace sectors.",
+      "Reposition proceeds into logistics and flex space serving Colorado's manufacturing and aerospace sectors.",
     slug: "industrial",
+    image: "/inventory/1031-exchange-industrial-denver-co.jpg",
   },
   {
     title: "Medical Office",
     description:
       "Capture long-term tenancy with healthcare providers anchored in high-growth Colorado corridors.",
     slug: "medical-office",
+    image: "/inventory/1031-exchange-medical-office-denver-co.jpg",
   },
   {
-    title: "Retail Centers",
+    title: "Retail",
     description:
       "Leverage consumer traffic in urban and mountain gateway retail with tailored NOI expectations.",
     slug: "retail",
+    image: "/inventory/1031-exchange-retail-denver-co.jpg",
   },
   {
-    title: "Hospitality and Resort",
+    title: "Hospitality",
     description:
       "Evaluate boutique hotels and resort properties that align with safe harbor use standards.",
     slug: "hospitality",
+    image: "/inventory/1031-exchange-hospitality-denver-co.jpg",
   },
   {
-    title: "Agricultural Land",
+    title: "Land",
     description:
       "Exchange into irrigated cropland and ranch assets with conservation-minded yield strategies.",
     slug: "agricultural",
+    image: "/inventory/1031-exchange-land-denver-co.jpg",
   },
 ];
 
-const CO_CITIES_SLUGS: CoverageItem[] = [
+const CO_CITIES: CoverageItem[] = [
   {
     name: "Denver",
     description:
       "Headquartered guidance for metro Denver exchanges, from Cherry Creek to the Tech Center.",
-    slug: "denver",
+    slug: "denver-co",
   },
   {
     name: "Boulder",
     description:
       "Investor support for Boulder County assets with university and innovation-driven demand.",
-    slug: "boulder",
+    slug: "boulder-co",
   },
   {
     name: "Colorado Springs",
     description:
       "Military, aerospace, and logistics asset planning across El Paso County markets.",
-    slug: "colorado-springs",
+    slug: "colorado-springs-co",
   },
   {
     name: "Fort Collins",
     description:
       "Northern Colorado opportunities balanced between CSU growth and technology tenants.",
-    slug: "fort-collins",
+    slug: "fort-collins-co",
   },
   {
-    name: "Pueblo",
+    name: "Aurora",
     description:
-      "Industrial corridor repositioning with access to I-25 distribution and rail infrastructure.",
-    slug: "pueblo",
+      "Gateway to eastern metro investment with growing medical and logistics corridors.",
+    slug: "aurora-co",
+  },
+  {
+    name: "Lakewood",
+    description:
+      "West Denver suburbs with strong retail fundamentals and proximity to Federal Center employment.",
+    slug: "lakewood-co",
   },
 ];
 
-const FEATURED_LOCATIONS = CO_CITIES_SLUGS.map((city) => {
-  const match =
-    locationsData.find((location) => location.name === city.name) ||
-    locationsData.find((location) =>
-      location.slug.replace("-co", "") === city.slug
-    );
+const FEATURED_LOCATIONS = CO_CITIES.map((city) => {
+  const match = locationsData.find((l) => l.slug === city.slug);
   return {
     name: city.name,
     description: city.description,
     slug: match?.slug ?? city.slug,
-    heroImage: match?.heroImage,
+    heroImage: match?.heroImage ?? `/locations/1031-exchange-${city.slug}.jpg`,
   };
-}).slice(0, 8);
+});
 
 const FAQ_ENTRIES = [
   {
@@ -246,38 +244,32 @@ const FAQ_ENTRIES = [
   },
 ];
 
+const TESTIMONIALS = [
+  {
+    quote:
+      "Working with the 1031 Exchange Denver team made the entire process seamless. Their knowledge of Colorado-specific regulations and tight coordination with our qualified intermediary kept everything on track within the 45-day identification window.",
+    attribution: "Denver Metro, Investor",
+  },
+  {
+    quote:
+      "The timeline discipline was exceptional. Every milestone was tracked, every document prepared ahead of schedule, and the attorney coordination meant we closed our replacement property with weeks to spare on the 180-day deadline.",
+    attribution: "Boulder County, Property Owner",
+  },
+  {
+    quote:
+      "Understanding the nuances of boot taxation and debt replacement requirements is critical in a 1031 exchange. The advisory team walked us through every scenario and helped us structure the transaction to defer the maximum amount of capital gains.",
+    attribution: "Colorado Springs, Portfolio Manager",
+  },
+];
 
-const IconOutline: React.FC<{
-  title: string;
-  path: string;
-}> = ({ title, path }) => (
-  <svg
-    aria-hidden="true"
-    width={32}
-    height={32}
-    viewBox="0 0 24 24"
-    fill="none"
-    role="img"
-    className="h-8 w-8 text-warm-brown"
-  >
-    <title>{title}</title>
-    <path
-      d={path}
-      stroke="currentColor"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
+/* ─────────── SEO / Metadata ─────────── */
 
 export const metadata: Metadata = {
-  title: "Denver 1031 Exchange Experts | Colorado Qualified Intermediary Network",
+  title:
+    "Denver 1031 Exchange Experts | Colorado Qualified Intermediary Network",
   description:
     "Trusted 1031 exchange guidance for Colorado investors. Denver-based intermediary coordination, attorney review, and timeline management for compliant tax deferral.",
-  alternates: {
-    canonical: "https://www.1031exchangedenver.com/",
-  },
+  alternates: { canonical: "https://www.1031exchangedenver.com/" },
   openGraph: {
     title: "Denver 1031 Exchange Experts",
     description:
@@ -317,10 +309,6 @@ const organizationJsonLd = {
       availableLanguage: "English",
     },
   ],
-  sameAs: [
-    "https://www.linkedin.com/company/1031-exchange-denver",
-    "https://maps.google.com/?cid=1031",
-  ],
 };
 
 const websiteJsonLd = {
@@ -328,11 +316,6 @@ const websiteJsonLd = {
   "@type": "WebSite",
   name: "1031 Exchange Denver",
   url: "https://www.1031exchangedenver.com/",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: "https://www.1031exchangedenver.com/search?q={search_term_string}",
-    "query-input": "required name=search_term_string",
-  },
 };
 
 const faqJsonLd = {
@@ -341,24 +324,26 @@ const faqJsonLd = {
   mainEntity: FAQ_ENTRIES.map((item) => ({
     "@type": "Question",
     name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
   })),
 };
 
+/* ═══════════════════════════════════════
+   PAGE COMPONENT
+   ═══════════════════════════════════════ */
 
 export default function Page() {
   return (
     <>
       <Script
-        id="jsonld-organization"
+        id="jsonld-org"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationJsonLd),
+        }}
       />
       <Script
-        id="jsonld-website"
+        id="jsonld-site"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
       />
@@ -367,686 +352,706 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <div className={`bg-white ${inter.className} text-gray-800`}>
-        <main id="main">
-          {/* Hero Section - Full screen with centered text */}
-          <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-            <RotatingHeroBackground />
-            <div className="relative z-10 mx-auto max-w-5xl px-6 py-32 text-center">
-              <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/80">
-                Elevated Colorado Guidance
-              </p>
-              <h1
-                className={`text-4xl font-normal tracking-[0.08em] text-white md:text-6xl lg:text-7xl ${playfair.className}`}
-              >
-                Denver 1031 Exchange Experts
-              </h1>
-              <p className="mx-auto mt-8 max-w-2xl text-lg font-light leading-relaxed text-white/90 md:text-xl">
-                Investors have 45 days to identify replacement properties and 180 days to close. Local advisory keeps every Colorado deadline, intermediary instruction, and closing file on schedule.
-              </p>
-              <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <Link
-                  href={`tel:${PHONE_TEL}`}
-                  className="inline-flex items-center justify-center border border-white bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-warm-brown transition hover:bg-transparent hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                >
-                  Call {PHONE_DISPLAY}
-                </Link>
-                <Link
-                  href="#lead-form"
-                  className="inline-flex items-center justify-center border border-white/50 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:border-white hover:bg-white hover:text-warm-brown focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                >
-                  Start My Exchange
-                </Link>
-              </div>
-              <p className="mt-12 text-xs font-medium uppercase tracking-[0.25em] text-white/70">
-                45 Day identification. 180 Day closing. We help you stay compliant.
-              </p>
-            </div>
-            {/* Scroll indicator */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-              <div className="flex flex-col items-center gap-2 text-white/60">
-                <span className="text-xs uppercase tracking-[0.2em]">Scroll</span>
-                <svg className="h-5 w-5 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </div>
-            </div>
-          </section>
 
-          {/* Trust badges section */}
-          <section className="bg-warm-brown py-8">
-            <div className="mx-auto max-w-7xl px-6">
-              <div className="grid grid-cols-3 gap-4 md:gap-8">
-                {["CPA Alliance", "Attorney Review", "Qualified Intermediary"].map(
-                  (badge) => (
-                    <div
-                      key={badge}
-                      className="flex items-center justify-center py-2 text-center text-xs font-medium uppercase tracking-[0.2em] text-white/90 md:text-sm md:tracking-[0.25em]"
-                    >
-                      {badge}
-                    </div>
-                  )
-                )}
-              </div>
-            </div>
-          </section>
+      {/* ═══════════════════════════════════
+          HERO — fullscreen cinematic video
+          ═══════════════════════════════════ */}
+      <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+        <VideoHeroBackground />
+        <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
+          <h1
+            className={`${playfair.className} text-[clamp(2.5rem,7vw,6.5rem)] font-normal leading-[1.05] tracking-[-0.01em] text-white`}
+          >
+            Denver&rsquo;s Premier
+            <br />
+            1031 Exchange Advisors
+          </h1>
+          <p
+            className={`${inter.className} mx-auto mt-8 max-w-lg text-[15px] font-light tracking-[0.04em] text-white/70`}
+          >
+            Elevating Colorado Real Estate Investment
+          </p>
+          <div className="mt-14">
+            <Link
+              href="#lead-form"
+              className={`${inter.className} inline-block border border-white/50 px-14 py-5 text-[13px] font-normal uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-white hover:text-black`}
+            >
+              Start Your Exchange
+            </Link>
+          </div>
+        </div>
+        {/* Subtle nav arrows like the screenshot */}
+        <button
+          aria-label="Previous"
+          className="absolute bottom-12 left-12 z-10 text-white/30 transition hover:text-white/60"
+        >
+          <svg
+            width="40"
+            height="12"
+            viewBox="0 0 40 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 6H38M0 6L6 1M0 6L6 11"
+              stroke="currentColor"
+              strokeWidth="1"
+            />
+          </svg>
+        </button>
+        <button
+          aria-label="Next"
+          className="absolute bottom-12 right-12 z-10 text-white/30 transition hover:text-white/60"
+        >
+          <svg
+            width="40"
+            height="12"
+            viewBox="0 0 40 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M40 6H2M40 6L34 1M40 6L34 11"
+              stroke="currentColor"
+              strokeWidth="1"
+            />
+          </svg>
+        </button>
+      </section>
 
-          {/* Why Choose Section - Elegant two-column intro */}
-          <section id="why-choose" className="bg-white py-24 md:py-32">
-            <div className="mx-auto max-w-7xl px-6 md:px-8">
-              <RevealSection className="text-center mb-16">
-                <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
-                  Why Choose {BRAND_NAME}
-                </p>
-                <h2 className={`mt-4 text-3xl tracking-wide text-gray-900 md:text-4xl lg:text-5xl ${playfair.className}`}>
-                  Colorado 1031 exchange guidance engineered for precise compliance and investor confidence.
-                </h2>
-                <p className="mx-auto mt-6 max-w-3xl text-lg font-light leading-relaxed text-gray-600">
-                  Our Denver-based team integrates tax law interpretation, real estate underwriting, and transaction management to coordinate every qualified intermediary, attorney, and lender partner across Colorado.
-                </p>
-              </RevealSection>
-              <RevealSection className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {WHY_CHOOSE_FEATURES.map((feature, index) => (
-                  <div
-                    key={feature.title}
-                    className="group relative bg-cream p-8 transition-all hover:bg-warm-brown"
-                  >
-                    <div className="mb-4">
-                      <span className="text-xs font-semibold tracking-[0.2em] text-warm-brown group-hover:text-white/70">
-                        0{index + 1}
-                      </span>
-                    </div>
-                    <h3 className={`text-xl text-gray-900 group-hover:text-white ${playfair.className}`}>
-                      {feature.title}
-                    </h3>
-                    <p className="mt-4 text-sm leading-relaxed text-gray-600 group-hover:text-white/80">
-                      {feature.description}
-                    </p>
-                    <Link
-                      href={feature.href}
-                      className="mt-6 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.15em] text-warm-brown transition group-hover:text-white"
-                    >
-                      Learn more
-                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </Link>
-                  </div>
-                ))}
-              </RevealSection>
-              <RevealSection className="mt-16 border-l-4 border-warm-brown bg-cream p-8">
-                <p className="text-sm leading-relaxed text-gray-700">
-                  A 1031 exchange defers federal and Colorado state income tax on qualifying real property. It does not remove county transfer or recording fees.{" "}
-                  <Link
-                    href={CO_TRANSFER_TAX_LINK}
-                    className="font-semibold text-warm-brown underline underline-offset-4 hover:text-dark-brown"
-                  >
-                    Review Colorado transfer fee guidance
-                  </Link>
-                  .
-                </p>
-              </RevealSection>
-            </div>
-          </section>
-
-          {/* How It Works Section - Clean steps with warm brown accent */}
-          <section id="how-it-works" className="bg-cream py-24 md:py-32">
-            <div className="mx-auto max-w-7xl px-6 md:px-8">
-              <RevealSection className="text-center mb-16">
-                <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
-                  How a 1031 Works
-                </p>
-                <h2 className={`mt-4 text-3xl tracking-wide text-gray-900 md:text-4xl lg:text-5xl ${playfair.className}`}>
-                  Structure every phase of the exchange with documented reporting and partner oversight.
-                </h2>
-                <p className="mx-auto mt-6 max-w-3xl text-lg font-light leading-relaxed text-gray-600">
-                  We synchronize relinquished property sale activities, qualified intermediary assignments, and replacement closings to maintain Colorado compliance throughout the 180-day lifecycle.
-                </p>
-              </RevealSection>
-              <RevealSection className="grid gap-px bg-warm-brown/20 md:grid-cols-3">
-                {[
-                  {
-                    title: "Sell the relinquished property",
-                    description:
-                      "Execute sale agreements, assign them to your qualified intermediary, and ensure proceeds flow directly into escrow.",
-                    link: IRS_FORM_8824_LINK,
-                    step: "01",
-                  },
-                  {
-                    title: "Identify replacements within 45 days",
-                    description:
-                      "Document up to three properties or more under the 200 percent rule with traceable delivery to all parties.",
-                    link: IRS_LIKE_KIND_LINK,
-                    step: "02",
-                  },
-                  {
-                    title: "Close within 180 days",
-                    description:
-                      "Complete financing, due diligence, and closing statements before the IRS deadline to secure tax deferral.",
-                    link: IRS_FORM_8824_LINK,
-                    step: "03",
-                  },
-                ].map((step) => (
-                  <div
-                    key={step.title}
-                    className="group flex h-full flex-col bg-white p-10 transition-colors hover:bg-warm-brown"
-                  >
-                    <span className={`text-5xl font-light text-warm-brown/30 group-hover:text-white/30 ${playfair.className}`}>
-                      {step.step}
-                    </span>
-                    <h3 className={`mt-6 text-xl text-gray-900 group-hover:text-white ${playfair.className}`}>
-                      {step.title}
-                    </h3>
-                    <p className="mt-4 flex-grow text-sm leading-relaxed text-gray-600 group-hover:text-white/80">
-                      {step.description}
-                    </p>
-                    <Link
-                      href={step.link}
-                      className="mt-6 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-warm-brown transition group-hover:text-white"
-                    >
-                      IRS Guidance
-                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </Link>
-                  </div>
-                ))}
-              </RevealSection>
-              <RevealSection className="mt-16 border-l-4 border-warm-brown bg-white p-8">
-                <p className="text-sm leading-relaxed text-gray-700">
-                  Vacation and mixed-use properties may qualify under Rev. Proc. 2008-16 safe harbor.{" "}
-                  <Link
-                    href={IRS_REV_PROC_2008_16_LINK}
-                    className="font-semibold text-warm-brown underline underline-offset-4 hover:text-dark-brown"
-                  >
-                    Review IRS Rev. Proc. 2008-16
-                  </Link>
-                  .
-                </p>
-              </RevealSection>
-            </div>
-          </section>
-
-          {/* Services Section - Full width with image overlay style like the screenshot */}
-          <section id="services" className="bg-white py-24 md:py-32">
-            <div className="mx-auto max-w-7xl px-6 md:px-8">
-              <RevealSection className="text-center mb-16">
-                <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
-                  Services Preview
-                </p>
-                <h2 className={`mt-4 text-3xl tracking-wide text-gray-900 md:text-4xl lg:text-5xl ${playfair.className}`}>
-                  Services designed for Colorado exchanges, from planning through final reporting.
-                </h2>
-              </RevealSection>
-              <RevealSection>
-                <HomeServiceSearch services={servicesData} featured={TOP_SERVICES} />
-              </RevealSection>
-              <RevealSection className="mt-12 flex justify-center">
-                <Link
-                  href="/services"
-                  className="inline-flex items-center gap-2 border border-warm-brown px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-warm-brown transition hover:bg-warm-brown hover:text-white"
-                >
-                  See all services
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-              </RevealSection>
-            </div>
-          </section>
-
-          {/* Property Types Section - Grid with hover effect */}
-          <section id="property-types" className="bg-cream py-24 md:py-32">
-            <div className="mx-auto max-w-7xl px-6 md:px-8">
-              <RevealSection className="text-center mb-16">
-                <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
-                  Property Types
-                </p>
-                <h2 className={`mt-4 text-3xl tracking-wide text-gray-900 md:text-4xl lg:text-5xl ${playfair.className}`}>
-                  Target the Colorado property classes that align with your reinvestment strategy.
-                </h2>
-              </RevealSection>
-              <RevealSection className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {PROPERTY_TYPES.map((property) => {
-                  const propertyType = propertyTypesData.find((pt) => pt.slug === property.slug);
-                  return (
-                    <Link
-                      key={property.slug}
-                      href={`/property-types/${property.slug}`}
-                      className="group relative overflow-hidden bg-white"
-                    >
-                      {propertyType?.heroImage && (
-                        <div className="relative h-64 w-full overflow-hidden">
-                          <Image
-                            src={propertyType.heroImage}
-                            alt={property.title}
-                            fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                          <div className="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 className={`text-xl text-white ${playfair.className}`}>
-                              {property.title}
-                            </h3>
-                          </div>
-                        </div>
-                      )}
-                      <div className="p-6">
-                        <p className="text-sm leading-relaxed text-gray-600">
-                          {property.description}
-                        </p>
-                        <span className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
-                          Explore type
-                          <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                          </svg>
-                        </span>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </RevealSection>
-              <RevealSection className="mt-12 flex justify-center">
-                <Link
-                  href="/property-types"
-                  className="inline-flex items-center gap-2 border border-warm-brown px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-warm-brown transition hover:bg-warm-brown hover:text-white"
-                >
-                  Explore all property types
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-              </RevealSection>
-            </div>
-          </section>
-
-          {/* Coverage Section - Explore Communities style */}
-          <section id="coverage" className="bg-white py-24 md:py-32">
-            <div className="mx-auto max-w-7xl px-6 md:px-8">
-              <RevealSection className="text-center mb-16">
-                <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
-                  Colorado Coverage
-                </p>
-                <h2 className={`mt-4 text-3xl tracking-wide text-gray-900 md:text-4xl lg:text-5xl ${playfair.className}`}>
-                  Statewide 1031 exchange coverage with Denver metro specialization.
-                </h2>
-                <p className="mx-auto mt-6 max-w-3xl text-lg font-light leading-relaxed text-gray-600">
-                  From the Front Range to the Arkansas Valley, the Rocky Mountain Equity network coordinates qualified intermediaries, attorneys, and local brokers to keep your exchange compliant and on schedule.
-                </p>
-              </RevealSection>
-              <RevealSection>
-                <HomeLocationSearch cards={FEATURED_LOCATIONS} locations={locationsData} />
-              </RevealSection>
-              <RevealSection className="mt-12 flex justify-center">
-                <Link
-                  href="/locations"
-                  className="inline-flex items-center gap-2 border border-warm-brown px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-warm-brown transition hover:bg-warm-brown hover:text-white"
-                >
-                  See all locations
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-              </RevealSection>
-            </div>
-          </section>
-
-          {/* Tools Section - Luxury styled cards with warm brown */}
-          <section id="tools" className="bg-warm-brown py-24 md:py-32">
-            <div className="mx-auto max-w-7xl px-6 md:px-8">
-              <RevealSection className="text-center mb-16">
-                <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
-                  Exchange Tools
-                </p>
-                <h2 className={`mt-4 text-3xl tracking-wide text-white md:text-4xl lg:text-5xl ${playfair.className}`}>
-                  Free calculators and tools to help you plan your 1031 exchange.
-                </h2>
-                <p className="mx-auto mt-6 max-w-3xl text-lg font-light leading-relaxed text-white/80">
-                  Use our interactive tools to calculate boot, estimate exchange costs, validate identification rules, and more.
-                </p>
-              </RevealSection>
-              <RevealSection className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {[
-                  {
-                    title: "Boot Calculator",
-                    description:
-                      "Calculate boot (cash received, mortgage relief) and estimate tax implications for your exchange.",
-                    href: "/tools/boot-calculator",
-                    icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-                  },
-                  {
-                    title: "Exchange Cost Estimator",
-                    description:
-                      "Calculate QI fees, escrow costs, title insurance, recording fees, and other closing costs.",
-                    href: "/tools/exchange-cost-estimator",
-                    icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",
-                  },
-                  {
-                    title: "Identification Rules Checker",
-                    description:
-                      "Validate your replacement property identification against the 3-property, 200%, or 95% rules.",
-                    href: "/tools/identification-rules-checker",
-                    icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
-                  },
-                  {
-                    title: "Depreciation Recapture Estimator",
-                    description:
-                      "Estimate depreciation recapture tax on your relinquished property and understand 1031 deferral benefits.",
-                    href: "/tools/depreciation-recapture-estimator",
-                    icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",
-                  },
-                  {
-                    title: "Replacement Property Value Calculator",
-                    description:
-                      "Calculate the minimum replacement property value needed to defer all gain in your exchange.",
-                    href: "/tools/replacement-property-value-calculator",
-                    icon: "M3 18h18M3 10l9-6 9 6v8H3z",
-                  },
-                  {
-                    title: "Debt Relief Calculator",
-                    description:
-                      "Calculate mortgage boot when new debt is less than old debt and understand tax implications.",
-                    href: "/tools/debt-relief-calculator",
-                    icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-                  },
-                ].map((tool) => (
-                  <Link
-                    key={tool.href}
-                    href={tool.href}
-                    className="group bg-white p-8 transition-all hover:bg-cream"
-                  >
-                    <div className="mb-6 flex items-center justify-center w-12 h-12 border border-warm-brown/30">
-                      <svg
-                        className="h-6 w-6 text-warm-brown"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={1.5}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d={tool.icon}
-                        />
-                      </svg>
-                    </div>
-                    <h3 className={`text-xl text-gray-900 ${playfair.className}`}>
-                      {tool.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                      {tool.description}
-                    </p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
-                      Use Tool
-                      <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </span>
-                  </Link>
-                ))}
-              </RevealSection>
-              <RevealSection className="mt-12 flex justify-center">
-                <Link
-                  href="/tools"
-                  className="inline-flex items-center gap-2 border border-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-white hover:text-warm-brown"
-                >
-                  View All Tools
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-              </RevealSection>
-            </div>
-          </section>
-
-          {/* Resources Section - Clean two-column layout */}
-          <section id="resources" className="bg-cream py-24 md:py-32">
-            <div className="mx-auto max-w-7xl px-6 md:px-8">
-              <RevealSection className="grid gap-8 md:grid-cols-2">
-                {[
-                  {
-                    title: "Capital Gains Estimator",
-                    description:
-                      "Model potential capital gains exposure and evaluate the deferral impact before you list.",
-                    href: "/resources/calculator",
-                  },
-                  {
-                    title: "Timeline Reminders",
-                    description:
-                      "Subscribe to 45-day identification and 180-day closing alerts tailored to your transaction milestones.",
-                    href: "/resources/timeline",
-                  },
-                ].map((resource) => (
-                  <div
-                    key={resource.href}
-                    className="group flex h-full flex-col bg-white p-10 transition-all hover:shadow-luxury-lg"
-                  >
-                    <div className="mb-6 flex items-center justify-center w-12 h-12 border border-warm-brown/30">
-                      <IconOutline
-                        title={resource.title}
-                        path="M12 6v6l4 2M4 4h16v16H4z"
-                      />
-                    </div>
-                    <h3 className={`text-2xl text-gray-900 ${playfair.className}`}>
-                      {resource.title}
-                    </h3>
-                    <p className="mt-4 flex-grow text-sm leading-relaxed text-gray-600">
-                      {resource.description}
-                    </p>
-                    <Link
-                      href={resource.href}
-                      className="mt-6 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-warm-brown transition group-hover:text-dark-brown"
-                    >
-                      Open resource
-                      <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </Link>
-                  </div>
-                ))}
-              </RevealSection>
-            </div>
-          </section>
-
-          {/* FAQ Section - Clean accordion style */}
-          <section id="faq" className="bg-white py-24 md:py-32">
-            <div className="mx-auto max-w-4xl px-6 md:px-8">
-              <RevealSection className="text-center mb-16">
-                <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
-                  Frequently Asked Questions
-                </p>
-                <h2 className={`mt-4 text-3xl tracking-wide text-gray-900 md:text-4xl lg:text-5xl ${playfair.className}`}>
-                  Clear answers for Colorado investors completing a 1031 exchange.
-                </h2>
-              </RevealSection>
-              <RevealSection className="divide-y divide-warm-brown/20">
-                {FAQ_ENTRIES.map((item, index) => (
-                  <details
-                    key={item.question}
-                    className="group py-6"
-                  >
-                    <summary className="flex cursor-pointer items-center justify-between gap-4 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-warm-brown">
-                      <span className={`text-lg text-gray-900 group-open:text-warm-brown ${playfair.className}`}>
-                        {item.question}
-                      </span>
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-warm-brown/30 text-warm-brown transition group-open:bg-warm-brown group-open:text-white">
-                        <svg className="h-4 w-4 transition-transform group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                        </svg>
-                      </span>
-                    </summary>
-                    <div className="mt-4 text-sm leading-relaxed text-gray-600 pr-12">
-                      {item.answer}
-                    </div>
-                  </details>
-                ))}
-              </RevealSection>
-            </div>
-          </section>
-
-          {/* Lead Form Section - Work With Us style from screenshots */}
-          <section id="lead-form-section" className="relative py-24 md:py-32 overflow-hidden">
-            {/* Background image with overlay */}
-            <div className="absolute inset-0">
+      {/* ═══════════════════════════════════
+          WHY CHOOSE US — image left + highlight boxes right
+          Matches "Career Highlights" layout
+          ═══════════════════════════════════ */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-44">
+          <RevealSection className="grid items-start gap-16 lg:grid-cols-[1fr_1.1fr] lg:gap-24">
+            {/* Left — large photo */}
+            <div className="relative aspect-[3/4] w-full overflow-hidden">
               <Image
                 src="/hero-images/denver-1.jpg"
-                alt="Denver skyline"
+                alt="Denver Colorado skyline"
                 fill
                 className="object-cover"
+                sizes="(max-width:1024px) 100vw, 50vw"
+                priority
               />
-              <div className="absolute inset-0 bg-warm-brown/90" />
             </div>
-            <div className="relative z-10 mx-auto grid max-w-7xl gap-12 px-6 md:grid-cols-2 md:px-8">
-              <RevealSection className="flex flex-col justify-center">
-                <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
-                  Start Your 1031 Exchange
-                </p>
-                <h2 className={`mt-4 text-3xl tracking-wide text-white md:text-4xl lg:text-5xl ${playfair.className}`}>
-                  Share your transaction goals and we will coordinate the qualified intermediary, attorney, and timeline.
-                </h2>
-                <p className="mt-6 text-lg font-light leading-relaxed text-white/80">
-                  Provide your Colorado property details and any reinvestment criteria. A Denver 1031 exchange advisor will respond within one business day.
-                </p>
-                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                  <Link
-                    href="#lead-form"
-                    className="inline-flex items-center justify-center border border-white bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-warm-brown transition hover:bg-transparent hover:text-white"
+
+            {/* Right — heading + 2×2 feature grid */}
+            <div className="flex flex-col justify-center">
+              <h2
+                className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
+              >
+                Why Choose Us
+              </h2>
+              <div className="mt-14 grid grid-cols-2 gap-5">
+                {WHY_CHOOSE_FEATURES.map((f) => (
+                  <div
+                    key={f.title}
+                    className="border border-gray-200 px-7 py-9 text-center transition-colors hover:border-gray-400"
                   >
-                    Contact
-                  </Link>
-                  <Link
-                    href="/services"
-                    className="inline-flex items-center justify-center border border-white/50 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:border-white hover:bg-white hover:text-warm-brown"
-                  >
-                    Browse Services
-                  </Link>
-                </div>
-              </RevealSection>
-              <RevealSection as="div" className="bg-white p-10">
-                <h3
-                  id="lead-form"
-                  className={`text-2xl text-gray-900 ${playfair.className}`}
+                    <h3
+                      className={`${playfair.className} text-[17px] leading-snug text-black`}
+                    >
+                      {f.title}
+                    </h3>
+                    <p
+                      className={`${inter.className} mt-4 text-[13px] leading-relaxed text-gray-500`}
+                    >
+                      {f.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-12">
+                <Link
+                  href="#lead-form"
+                  className={`${inter.className} inline-block bg-black px-12 py-5 text-[13px] font-normal uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-gray-800`}
                 >
-                  Request a Consultation
+                  Work With Us
+                </Link>
+              </div>
+            </div>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          HOW IT WORKS — 3-step process
+          ═══════════════════════════════════ */}
+      <section className="bg-[#fafafa]">
+        <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-40">
+          <RevealSection className="text-center">
+            <h2
+              className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
+            >
+              How a 1031 Exchange Works
+            </h2>
+          </RevealSection>
+
+          <RevealSection className="mt-20 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                step: "01",
+                title: "Sell the Relinquished Property",
+                description:
+                  "Execute sale agreements, assign them to your qualified intermediary, and ensure proceeds flow directly into escrow.",
+                link: IRS_FORM_8824_LINK,
+              },
+              {
+                step: "02",
+                title: "Identify Replacements Within 45 Days",
+                description:
+                  "Document up to three properties or more under the 200 percent rule with traceable delivery to all parties.",
+                link: IRS_LIKE_KIND_LINK,
+              },
+              {
+                step: "03",
+                title: "Close Within 180 Days",
+                description:
+                  "Complete financing, due diligence, and closing statements before the IRS deadline to secure tax deferral.",
+                link: IRS_FORM_8824_LINK,
+              },
+            ].map((s) => (
+              <div
+                key={s.step}
+                className="group bg-white px-10 py-14 transition-all duration-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)]"
+              >
+                <span
+                  className={`${playfair.className} block text-[4rem] font-light leading-none text-gray-100 transition-colors group-hover:text-gray-200`}
+                >
+                  {s.step}
+                </span>
+                <h3
+                  className={`${playfair.className} mt-8 text-[22px] leading-snug text-black`}
+                >
+                  {s.title}
                 </h3>
-                <p className="mt-2 text-sm text-gray-600">
-                  Complete the form below and we will confirm timelines, qualified intermediary fit, and documentation requirements.
+                <p
+                  className={`${inter.className} mt-5 text-[14px] leading-[1.8] text-gray-500`}
+                >
+                  {s.description}
                 </p>
-                <div className="mt-8 border-t border-warm-brown/20 pt-6">
-                  <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
-                    Business Hours
-                  </p>
-                  <p className="mt-1 text-sm text-gray-700">
-                    Monday to Friday, 8:00 AM to 6:00 PM Mountain
-                  </p>
+                <Link
+                  href={s.link}
+                  className={`${inter.className} mt-8 inline-block text-[13px] text-black underline underline-offset-4 decoration-gray-300 transition hover:decoration-black`}
+                >
+                  IRS Guidance &rarr;
+                </Link>
+              </div>
+            ))}
+          </RevealSection>
+
+          <RevealSection className="mx-auto mt-20 max-w-3xl border-l-2 border-black bg-white px-10 py-8">
+            <p
+              className={`${inter.className} text-[14px] leading-[1.8] text-gray-600`}
+            >
+              Vacation and mixed-use properties may qualify under Rev. Proc.
+              2008-16 safe harbor.{" "}
+              <Link
+                href={IRS_REV_PROC_2008_16_LINK}
+                className="font-medium text-black underline underline-offset-4 decoration-gray-300 hover:decoration-black"
+              >
+                Review IRS Rev. Proc. 2008-16
+              </Link>
+              .
+            </p>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          SERVICES — numbered card grid
+          ═══════════════════════════════════ */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-40">
+          <RevealSection className="text-center">
+            <h2
+              className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
+            >
+              Our Exchange Services
+            </h2>
+            <p
+              className={`${inter.className} mx-auto mt-6 max-w-xl text-[15px] font-light leading-relaxed text-gray-500`}
+            >
+              Services designed for Colorado exchanges, from planning through
+              final reporting.
+            </p>
+          </RevealSection>
+
+          <RevealSection className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {TOP_SERVICES.map((svc, i) => (
+              <Link
+                key={svc.slug}
+                href={`/services/${svc.slug}`}
+                className="group flex flex-col border border-gray-200 px-10 py-12 transition-all duration-300 hover:border-gray-400 hover:shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
+              >
+                <span
+                  className={`${playfair.className} text-[3rem] font-light leading-none text-gray-100 group-hover:text-gray-200 transition-colors`}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3
+                  className={`${playfair.className} mt-6 text-[20px] leading-snug text-black`}
+                >
+                  {svc.title}
+                </h3>
+                <p
+                  className={`${inter.className} mt-4 flex-grow text-[13px] leading-[1.8] text-gray-500`}
+                >
+                  {svc.description}
+                </p>
+                <span
+                  className={`${inter.className} mt-8 text-[13px] text-black underline underline-offset-4 decoration-gray-300 group-hover:decoration-black transition`}
+                >
+                  Read More
+                </span>
+              </Link>
+            ))}
+          </RevealSection>
+
+          <RevealSection className="mt-16 text-center">
+            <Link
+              href="/services"
+              className={`${inter.className} inline-block border border-black px-12 py-5 text-[13px] font-normal uppercase tracking-[0.2em] text-black transition-all duration-300 hover:bg-black hover:text-white`}
+            >
+              See All Services
+            </Link>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          PROPERTY TYPES — photo card grid
+          ═══════════════════════════════════ */}
+      <section className="bg-[#fafafa]">
+        <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-40">
+          <RevealSection className="text-center">
+            <h2
+              className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
+            >
+              Explore Property Types
+            </h2>
+          </RevealSection>
+
+          <RevealSection className="mt-20 grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+            {PROPERTY_TYPES.map((pt) => (
+              <Link
+                key={pt.slug}
+                href={`/property-types/${pt.slug}`}
+                className="group block"
+              >
+                <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <Image
+                    src={pt.image}
+                    alt={pt.title}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+                  />
                 </div>
-                <div className="mt-6">
-                  <LeadForm />
+                <h3
+                  className={`${playfair.className} mt-7 text-[24px] leading-tight text-black`}
+                >
+                  {pt.title}
+                </h3>
+                <p
+                  className={`${inter.className} mt-3 text-[14px] leading-[1.7] text-gray-500`}
+                >
+                  {pt.description}
+                </p>
+                <span
+                  className={`${inter.className} mt-5 inline-block text-[13px] text-black underline underline-offset-4 decoration-gray-300 group-hover:decoration-black transition`}
+                >
+                  Read More
+                </span>
+              </Link>
+            ))}
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          LOCATIONS — photo card grid
+          Matches "Tour Our Most Desirable Neighborhoods"
+          ═══════════════════════════════════ */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-44">
+          <RevealSection className="mx-auto max-w-3xl text-center">
+            <h2
+              className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.15] text-black`}
+            >
+              Tour Our Most Desirable
+              <br className="hidden sm:block" />
+              Service Areas
+            </h2>
+          </RevealSection>
+
+          <RevealSection className="mt-20 grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+            {FEATURED_LOCATIONS.map((loc) => (
+              <Link
+                key={loc.slug}
+                href={`/locations/${loc.slug}`}
+                className="group block"
+              >
+                <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <Image
+                    src={loc.heroImage}
+                    alt={loc.name}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+                  />
                 </div>
-              </RevealSection>
-            </div>
-          </section>
-        </main>
-        {/* Footer with warm brown styling - keeping all content */}
-        <footer className="bg-dark-brown text-white">
-          <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-16 md:grid md:grid-cols-4 md:gap-12 md:px-8">
-            <div className="flex flex-col gap-4">
-              <span className="text-xs font-medium uppercase tracking-[0.25em] text-white/60">
-                {BRAND_NAME}
+                <h3
+                  className={`${playfair.className} mt-7 text-[24px] leading-tight text-black`}
+                >
+                  {loc.name}
+                </h3>
+                <p
+                  className={`${inter.className} mt-3 text-[14px] leading-[1.7] text-gray-500`}
+                >
+                  {loc.description}
+                </p>
+                <span
+                  className={`${inter.className} mt-5 inline-block text-[13px] text-black underline underline-offset-4 decoration-gray-300 group-hover:decoration-black transition`}
+                >
+                  Read More
+                </span>
+              </Link>
+            ))}
+          </RevealSection>
+
+          <RevealSection className="mt-16 text-center">
+            <Link
+              href="/locations"
+              className={`${inter.className} inline-block border border-black px-12 py-5 text-[13px] font-normal uppercase tracking-[0.2em] text-black transition-all duration-300 hover:bg-black hover:text-white`}
+            >
+              See All Locations
+            </Link>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          TESTIMONIALS — topographic bg + centered white card
+          ═══════════════════════════════════ */}
+      <section className="relative overflow-hidden bg-[#f3f1ed]">
+        {/* Dark band at top like the screenshot */}
+        <div className="absolute top-0 left-0 right-0 h-20 bg-black" />
+        {/* Topographic contour pattern */}
+        <div className="absolute inset-0 topo-pattern opacity-20" />
+
+        <div className="relative z-10 mx-auto max-w-[900px] px-6 py-40 md:px-12">
+          <RevealSection className="bg-white px-10 py-16 text-center shadow-[0_4px_60px_rgba(0,0,0,0.06)] md:px-20 md:py-24">
+            <p
+              className={`${inter.className} text-[13px] font-medium tracking-[0.04em] text-black underline underline-offset-4`}
+            >
+              There is a difference in 1031 exchange advisors. Don&apos;t ask
+              us. Ask our clients.
+            </p>
+            <blockquote
+              className={`${playfair.className} mx-auto mt-12 max-w-[640px] text-[20px] italic leading-[1.7] text-gray-700 md:text-[24px]`}
+            >
+              &ldquo;{TESTIMONIALS[0].quote}&rdquo;
+            </blockquote>
+            <p
+              className={`${inter.className} mt-10 text-[14px] italic text-gray-400`}
+            >
+              {TESTIMONIALS[0].attribution}
+            </p>
+            {/* Pagination dots */}
+            <div className="mt-12 flex items-center justify-center gap-8">
+              <span className="text-gray-300 transition hover:text-gray-500 cursor-pointer">
+                &larr;
               </span>
-              <p className={`text-2xl text-white ${playfair.className}`}>
-                Rocky Mountain Equity
-              </p>
-              <p className="text-sm font-light text-white/70">
-                Trusted Colorado 1031 intermediary coordination, tax documentation, and statewide transaction management.
-              </p>
+              <div
+                className={`${inter.className} flex gap-4 text-[13px] text-gray-300`}
+              >
+                {TESTIMONIALS.map((_, i) => (
+                  <span
+                    key={i}
+                    className={
+                      i === 0
+                        ? "text-black font-medium"
+                        : "hover:text-gray-500 cursor-pointer transition"
+                    }
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                ))}
+              </div>
+              <span className="text-gray-300 transition hover:text-gray-500 cursor-pointer">
+                &rarr;
+              </span>
             </div>
-            <div className="flex flex-col gap-3">
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/60">
-                Contact
-              </p>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          TOOLS — icon grid
+          ═══════════════════════════════════ */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-40">
+          <RevealSection className="text-center">
+            <h2
+              className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
+            >
+              Free Exchange Tools
+            </h2>
+            <p
+              className={`${inter.className} mx-auto mt-6 max-w-xl text-[15px] font-light leading-relaxed text-gray-500`}
+            >
+              Interactive calculators to model your exchange before you commit.
+            </p>
+          </RevealSection>
+
+          <RevealSection className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: "Boot Calculator",
+                description:
+                  "Calculate boot (cash received, mortgage relief) and estimate tax implications for your exchange.",
+                href: "/tools/boot-calculator",
+              },
+              {
+                title: "Exchange Cost Estimator",
+                description:
+                  "Calculate QI fees, escrow costs, title insurance, recording fees, and other closing costs.",
+                href: "/tools/exchange-cost-estimator",
+              },
+              {
+                title: "Identification Rules Checker",
+                description:
+                  "Validate your replacement property identification against the 3-property, 200%, or 95% rules.",
+                href: "/tools/identification-rules-checker",
+              },
+              {
+                title: "Depreciation Recapture Estimator",
+                description:
+                  "Estimate depreciation recapture tax on your relinquished property and understand 1031 deferral benefits.",
+                href: "/tools/depreciation-recapture-estimator",
+              },
+              {
+                title: "Replacement Value Calculator",
+                description:
+                  "Calculate the minimum replacement property value needed to defer all gain in your exchange.",
+                href: "/tools/replacement-property-value-calculator",
+              },
+              {
+                title: "Debt Relief Calculator",
+                description:
+                  "Calculate mortgage boot when new debt is less than old debt and understand tax implications.",
+                href: "/tools/debt-relief-calculator",
+              },
+            ].map((tool) => (
+              <Link
+                key={tool.href}
+                href={tool.href}
+                className="group flex flex-col border border-gray-200 px-10 py-12 transition-all duration-300 hover:border-gray-400 hover:shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
+              >
+                <h3
+                  className={`${playfair.className} text-[20px] leading-snug text-black`}
+                >
+                  {tool.title}
+                </h3>
+                <p
+                  className={`${inter.className} mt-4 flex-grow text-[13px] leading-[1.8] text-gray-500`}
+                >
+                  {tool.description}
+                </p>
+                <span
+                  className={`${inter.className} mt-8 text-[13px] text-black underline underline-offset-4 decoration-gray-300 group-hover:decoration-black transition`}
+                >
+                  Use Tool
+                </span>
+              </Link>
+            ))}
+          </RevealSection>
+
+          <RevealSection className="mt-16 text-center">
+            <Link
+              href="/tools"
+              className={`${inter.className} inline-block border border-black px-12 py-5 text-[13px] font-normal uppercase tracking-[0.2em] text-black transition-all duration-300 hover:bg-black hover:text-white`}
+            >
+              View All Tools
+            </Link>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          RESOURCES
+          ═══════════════════════════════════ */}
+      <section className="bg-[#fafafa]">
+        <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-36">
+          <RevealSection className="grid gap-8 md:grid-cols-2">
+            {[
+              {
+                title: "Capital Gains Estimator",
+                description:
+                  "Model potential capital gains exposure and evaluate the deferral impact before you list.",
+                href: "/resources/calculator",
+              },
+              {
+                title: "Timeline Reminders",
+                description:
+                  "Subscribe to 45-day identification and 180-day closing alerts tailored to your transaction milestones.",
+                href: "/resources/timeline",
+              },
+            ].map((r) => (
+              <div
+                key={r.href}
+                className="group flex h-full flex-col bg-white px-12 py-14 transition-all duration-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
+              >
+                <h3
+                  className={`${playfair.className} text-[26px] leading-tight text-black`}
+                >
+                  {r.title}
+                </h3>
+                <p
+                  className={`${inter.className} mt-5 flex-grow text-[14px] leading-[1.8] text-gray-500`}
+                >
+                  {r.description}
+                </p>
+                <Link
+                  href={r.href}
+                  className={`${inter.className} mt-8 text-[13px] text-black underline underline-offset-4 decoration-gray-300 hover:decoration-black transition`}
+                >
+                  Open Resource
+                </Link>
+              </div>
+            ))}
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          FAQ — clean accordion
+          ═══════════════════════════════════ */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-[800px] px-6 py-32 md:px-12 lg:py-40">
+          <RevealSection className="text-center">
+            <h2
+              className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
+            >
+              Frequently Asked Questions
+            </h2>
+          </RevealSection>
+
+          <RevealSection className="mt-16 divide-y divide-gray-200">
+            {FAQ_ENTRIES.map((item) => (
+              <details key={item.question} className="group">
+                <summary
+                  className={`flex cursor-pointer items-center justify-between gap-6 py-7 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-black`}
+                >
+                  <span
+                    className={`${playfair.className} text-[18px] leading-snug text-black group-open:text-gray-500 transition-colors`}
+                  >
+                    {item.question}
+                  </span>
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-gray-200 text-gray-300 transition-all group-open:border-black group-open:bg-black group-open:text-white">
+                    <svg
+                      className="h-4 w-4 transition-transform group-open:rotate-45"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M12 4v16m8-8H4"
+                      />
+                    </svg>
+                  </span>
+                </summary>
+                <div
+                  className={`${inter.className} pb-7 pr-16 text-[14px] leading-[1.8] text-gray-500`}
+                >
+                  {item.answer}
+                </div>
+              </details>
+            ))}
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          DISCLAIMER
+          ═══════════════════════════════════ */}
+      <section className="bg-[#fafafa]">
+        <div className="mx-auto max-w-3xl px-6 py-16 md:px-12">
+          <div className="border-l-2 border-black bg-white px-10 py-8">
+            <p
+              className={`${inter.className} text-[13px] leading-[1.8] text-gray-500`}
+            >
+              A 1031 exchange defers federal and Colorado state income tax on
+              qualifying real property. It does not remove county transfer or
+              recording fees.{" "}
+              <Link
+                href={CO_TRANSFER_TAX_LINK}
+                className="font-medium text-black underline underline-offset-4 decoration-gray-300 hover:decoration-black"
+              >
+                Review Colorado transfer fee guidance
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          LEAD FORM — dark section with white form card
+          ═══════════════════════════════════ */}
+      <section className="relative overflow-hidden bg-black" id="lead-form-section">
+        <div className="relative z-10 mx-auto grid max-w-[1400px] gap-16 px-6 py-32 md:grid-cols-2 md:px-12 lg:py-44">
+          <RevealSection className="flex flex-col justify-center">
+            <h2
+              className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-white`}
+            >
+              Start Your
+              <br />
+              1031 Exchange
+            </h2>
+            <p
+              className={`${inter.className} mt-8 max-w-md text-[15px] font-light leading-[1.8] text-white/50`}
+            >
+              Share your transaction goals and we will coordinate the qualified
+              intermediary, attorney, and timeline. A Denver 1031 exchange
+              advisor will respond within one business day.
+            </p>
+            <div className="mt-12 flex flex-col gap-4 sm:flex-row">
               <Link
                 href={`tel:${PHONE_TEL}`}
-                className="text-sm text-white/90 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className={`${inter.className} inline-flex items-center justify-center border border-white/40 px-10 py-5 text-[13px] font-normal uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-white hover:text-black`}
               >
                 Call {PHONE_DISPLAY}
               </Link>
-              <Link
-                href="mailto:contact@1031exchangedenver.com"
-                className="text-sm text-white/90 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-              >
-                contact@1031exchangedenver.com
-              </Link>
-              <p className="text-sm text-white/70">
-                1510 York St, Denver, CO 80206
-              </p>
             </div>
-            <div className="flex flex-col gap-3">
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/60">
-                Quick Links
-              </p>
-              <Link
-                href="/services"
-                className="text-sm text-white/90 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-              >
-                Services
-              </Link>
-              <Link
-                href="/property-types"
-                className="text-sm text-white/90 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-              >
-                Property Types
-              </Link>
-              <Link
-                href="/locations"
-                className="text-sm text-white/90 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-              >
-                Locations
-              </Link>
-              <Link
-                href="/resources"
-                className="text-sm text-white/90 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-              >
-                Resources
-              </Link>
+          </RevealSection>
+
+          <RevealSection as="div" className="bg-white px-10 py-14 md:px-14">
+            <h3
+              id="lead-form"
+              className={`${playfair.className} text-[28px] leading-tight text-black`}
+            >
+              Request a Consultation
+            </h3>
+            <p
+              className={`${inter.className} mt-3 text-[14px] leading-relaxed text-gray-500`}
+            >
+              Complete the form below and we will confirm timelines, qualified
+              intermediary fit, and documentation requirements.
+            </p>
+            <div className="mt-10 border-t border-gray-100 pt-8">
+              <LeadForm />
             </div>
-            <div className="flex flex-col gap-3">
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/60">
-                Compliance
-              </p>
-              <Link
-                href={IRS_FORM_8824_LINK}
-                className="text-sm text-white/90 underline underline-offset-4 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-              >
-                IRS Form 8824
-              </Link>
-              <Link
-                href={IRS_LIKE_KIND_LINK}
-                className="text-sm text-white/90 underline underline-offset-4 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-              >
-                IRS Like-Kind Property Rules
-              </Link>
-              <Link
-                href={IRS_REV_PROC_2008_16_LINK}
-                className="text-sm text-white/90 underline underline-offset-4 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-              >
-                Rev. Proc. 2008-16
-              </Link>
-              <p className="text-xs text-white/50">
-                Information provided is for educational purposes. Consult your tax advisor and attorney before executing a 1031 exchange.
-              </p>
-            </div>
-          </div>
-          <div className="border-t border-white/10">
-            <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-6 text-xs text-white/50 md:flex-row md:items-center md:justify-between md:px-8">
-              <p>© {new Date().getFullYear()} {BRAND_NAME}. All rights reserved.</p>
-              <p>
-                Privacy Policy · Terms of Service
-              </p>
-            </div>
-          </div>
-        </footer>
-      </div>
+          </RevealSection>
+        </div>
+      </section>
     </>
   );
 }

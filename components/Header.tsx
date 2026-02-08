@@ -90,12 +90,12 @@ export default function Header() {
   );
 
   return (
-    <header 
+    <header
       className={clsx(
         "sticky top-0 z-50 transition-all duration-300",
-        scrolled 
-          ? "bg-warm-brown/95 backdrop-blur shadow-lg" 
-          : "bg-warm-brown"
+        scrolled
+          ? "bg-black/95 backdrop-blur shadow-lg"
+          : "bg-black"
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8 lg:py-5">
@@ -137,13 +137,13 @@ export default function Header() {
               role="menu"
               aria-label="Services"
               className={clsx(
-                "absolute left-0 top-full mt-2 w-80 border border-warm-brown/20 bg-white p-4 shadow-luxury-lg transition-all duration-200",
+                "absolute left-0 top-full mt-2 w-80 border border-gray-200 bg-white p-4 shadow-luxury-lg transition-all duration-200",
                 openMenu === "services"
                   ? "pointer-events-auto opacity-100 translate-y-0"
                   : "pointer-events-none opacity-0 -translate-y-2"
               )}
             >
-              <p className="px-3 text-xs font-semibold uppercase tracking-[0.2em] text-warm-brown">
+              <p className="px-3 text-xs font-semibold uppercase tracking-[0.2em] text-gray-900">
                 Exchange Support
               </p>
               <ul className="mt-3 space-y-1">
@@ -151,7 +151,7 @@ export default function Header() {
                   <li key={service.slug}>
                     <Link
                       href={`/services/${service.slug}`}
-                      className="block px-3 py-2 text-sm text-gray-700 transition hover:bg-cream hover:text-warm-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-brown"
+                      className="block px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-50 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
                     >
                       <span className="block font-medium text-gray-900">
                         {service.name}
@@ -165,7 +165,7 @@ export default function Header() {
               </ul>
               <Link
                 href="/services"
-                className="mt-4 inline-flex w-full items-center justify-center border border-warm-brown px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.15em] text-warm-brown transition hover:bg-warm-brown hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-brown"
+                className="mt-4 inline-flex w-full items-center justify-center border border-gray-900 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.15em] text-gray-900 transition hover:bg-gray-900 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
               >
                 View all {servicesData.length} services
               </Link>
@@ -195,13 +195,13 @@ export default function Header() {
               role="menu"
               aria-label="Locations"
               className={clsx(
-                "absolute left-0 top-full mt-2 w-72 border border-warm-brown/20 bg-white p-4 shadow-luxury-lg transition-all duration-200",
+                "absolute left-0 top-full mt-2 w-72 border border-gray-200 bg-white p-4 shadow-luxury-lg transition-all duration-200",
                 openMenu === "locations"
                   ? "pointer-events-auto opacity-100 translate-y-0"
                   : "pointer-events-none opacity-0 -translate-y-2"
               )}
             >
-              <p className="px-3 text-xs font-semibold uppercase tracking-[0.2em] text-warm-brown">
+              <p className="px-3 text-xs font-semibold uppercase tracking-[0.2em] text-gray-900">
                 Metro Coverage
               </p>
               <ul className="mt-3 space-y-1">
@@ -209,7 +209,7 @@ export default function Header() {
                   <li key={location.slug}>
                     <Link
                       href={`/locations/${location.slug}`}
-                      className="block px-3 py-2 text-sm text-gray-700 transition hover:bg-cream hover:text-warm-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-brown"
+                      className="block px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-50 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
                     >
                       <span className="block font-medium text-gray-900">
                         {location.name}
@@ -223,7 +223,7 @@ export default function Header() {
               </ul>
               <Link
                 href="/locations"
-                className="mt-4 inline-flex w-full items-center justify-center border border-warm-brown px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.15em] text-warm-brown transition hover:bg-warm-brown hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-brown"
+                className="mt-4 inline-flex w-full items-center justify-center border border-gray-900 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.15em] text-gray-900 transition hover:bg-gray-900 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
               >
                 View all locations
               </Link>
@@ -253,13 +253,13 @@ export default function Header() {
               role="menu"
               aria-label="Tools"
               className={clsx(
-                "absolute left-0 top-full mt-2 w-80 border border-warm-brown/20 bg-white p-4 shadow-luxury-lg transition-all duration-200",
+                "absolute left-0 top-full mt-2 w-80 border border-gray-200 bg-white p-4 shadow-luxury-lg transition-all duration-200",
                 openMenu === "tools"
                   ? "pointer-events-auto opacity-100 translate-y-0"
                   : "pointer-events-none opacity-0 -translate-y-2"
               )}
             >
-              <p className="px-3 text-xs font-semibold uppercase tracking-[0.2em] text-warm-brown">
+              <p className="px-3 text-xs font-semibold uppercase tracking-[0.2em] text-gray-900">
                 Calculators
               </p>
               <ul className="mt-3 space-y-1">
@@ -267,7 +267,7 @@ export default function Header() {
                   <li key={tool.slug}>
                     <Link
                       href={tool.href}
-                      className="block px-3 py-2 text-sm text-gray-700 transition hover:bg-cream hover:text-warm-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-brown"
+                      className="block px-3 py-2 text-sm text-gray-700 transition hover:bg-gray-50 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
                     >
                       <span className="block font-medium text-gray-900">
                         {tool.name}
@@ -281,7 +281,7 @@ export default function Header() {
               </ul>
               <Link
                 href="/tools"
-                className="mt-4 inline-flex w-full items-center justify-center border border-warm-brown px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.15em] text-warm-brown transition hover:bg-warm-brown hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-brown"
+                className="mt-4 inline-flex w-full items-center justify-center border border-gray-900 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.15em] text-gray-900 transition hover:bg-gray-900 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
               >
                 View all tools
               </Link>
@@ -300,7 +300,7 @@ export default function Header() {
           </Link>
           <Link
             href={CONTACT_ROUTE}
-            className="inline-flex items-center border border-white/40 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.15em] text-white transition hover:bg-white hover:text-warm-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="inline-flex items-center border border-white/40 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.15em] text-white transition hover:bg-white hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             Contact
           </Link>
@@ -321,7 +321,7 @@ export default function Header() {
       <div
         id="mobile-menu"
         className={clsx(
-          "border-t border-white/10 bg-warm-brown px-4 pb-6 pt-4 text-white lg:hidden overflow-y-auto max-h-[calc(100vh-80px)]",
+          "border-t border-white/10 bg-black px-4 pb-6 pt-4 text-white lg:hidden overflow-y-auto max-h-[calc(100vh-80px)]",
           mobileOpen ? "block" : "hidden"
         )}
       >
@@ -423,7 +423,7 @@ export default function Header() {
             </Link>
             <Link
               href={CONTACT_ROUTE}
-              className="block w-full border border-white py-3 text-center text-xs font-semibold uppercase tracking-[0.15em] text-white transition hover:bg-white hover:text-warm-brown"
+              className="block w-full border border-white py-3 text-center text-xs font-semibold uppercase tracking-[0.15em] text-white transition hover:bg-white hover:text-gray-900"
               onClick={() => setMobileOpen(false)}
             >
               Contact Us
