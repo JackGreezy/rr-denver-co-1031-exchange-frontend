@@ -165,7 +165,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                 </>
               )}
             </div>
-            <h1 className={`mt-4 text-3xl tracking-wide text-white sm:text-4xl ${playfair.className}`}>
+            <h1 className={`mt-4 text-3xl tracking-wide text-white sm:text-4xl uppercase ${playfair.className}`}>
               {post.title}
             </h1>
           </div>

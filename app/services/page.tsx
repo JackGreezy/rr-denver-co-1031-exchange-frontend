@@ -43,7 +43,7 @@ export default function ServicesPage() {
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
               Exchange Operations
             </p>
-            <h1 className={`mt-4 text-3xl tracking-wide text-white sm:text-4xl md:text-5xl ${playfair.className}`}>
+            <h1 className={`mt-4 text-3xl tracking-wide text-white sm:text-4xl md:text-5xl uppercase ${playfair.className}`}>
               1031 exchange services for Denver investors
             </h1>
             <p className="mt-6 text-lg font-light leading-relaxed text-white/80">

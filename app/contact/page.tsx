@@ -42,106 +42,98 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
     <div className="bg-white">
       {/* Hero Section */}
       <section className="bg-black py-20 md:py-28">
-        <div className="mx-auto max-w-5xl px-6 md:px-8">
+        <div className="mx-auto max-w-3xl px-6 md:px-8 text-center">
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
               { label: "Contact" },
             ]}
-            className="mb-8 text-sm"
+            className="mb-8 text-sm flex justify-center"
           />
-          <div className="max-w-3xl">
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
-              Contact {BRAND_NAME}
-            </p>
-            <h1 className={`mt-4 text-3xl tracking-wide text-white sm:text-4xl md:text-5xl ${playfair.className}`}>
-              Talk with a Denver 1031 specialist
-            </h1>
-            <p className="mt-6 text-lg font-light leading-relaxed text-white/80">
-              We coordinate replacement property identification, underwriting, and
-              partner communication for investors across {PRIMARY_CITY}, {PRIMARY_STATE_ABBR}.
-              We are not a Qualified Intermediary, law firm, broker, or CPA. We work
-              with your selected professionals to keep every deadline organized.
-            </p>
-          </div>
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
+            Contact {BRAND_NAME}
+          </p>
+          <h1 className={`mt-4 text-3xl uppercase tracking-wide text-white sm:text-4xl md:text-5xl ${playfair.className}`}>
+            Talk With a Denver 1031 Specialist
+          </h1>
+          <p className="mt-6 text-lg font-light leading-relaxed text-white/80">
+            We coordinate replacement property identification, underwriting, and
+            partner communication for investors across {PRIMARY_CITY}, {PRIMARY_STATE_ABBR}.
+          </p>
         </div>
       </section>
 
-      {/* Contact Form Section */}
+      {/* Single Centered Form Section */}
       <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-5xl px-6 md:px-8">
-          <div className="grid gap-12 lg:grid-cols-[2fr,1fr]">
-            {/* Form Column */}
-            <div>
-              <h2 className={`text-2xl text-gray-900 ${playfair.className}`}>Request a consultation</h2>
-              <p className="mt-2 text-gray-600">
-                Send the secure form. We respond within one business day with next steps.
-              </p>
-              <div className="mt-8 bg-[#fafafa] p-8">
-                <ContactForm prepopulatedProjectType={prefill} />
-              </div>
-            </div>
+        <div className="mx-auto max-w-2xl px-6 md:px-8">
+          <div className="text-center mb-10">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-black">
+              Request a Consultation
+            </p>
+            <h2 className={`mt-4 text-2xl text-gray-900 uppercase ${playfair.className}`}>
+              Send the Secure Form
+            </h2>
+            <p className="mt-2 text-gray-600">
+              We respond within one business day with next steps.
+            </p>
+          </div>
 
-            {/* Info Column */}
-            <div className="space-y-8">
-              <div className="bg-[#fafafa] p-8">
-                <h3 className={`text-lg text-gray-900 ${playfair.className}`}>Contact information</h3>
-                <div className="mt-6 space-y-4 text-sm">
-                  <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
-                      Phone
-                    </p>
-                    <Link
-                      href={`tel:${PRIMARY_PHONE_TEL}`}
-                      className="mt-1 block text-gray-900 hover:text-black"
-                    >
-                      {PRIMARY_PHONE_DISPLAY}
-                    </Link>
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
-                      Email
-                    </p>
-                    <Link
-                      href={`mailto:${PRIMARY_EMAIL}`}
-                      className="mt-1 block text-gray-900 hover:text-black"
-                    >
-                      {PRIMARY_EMAIL}
-                    </Link>
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
-                      Address
-                    </p>
-                    <p className="mt-1 text-gray-700">{OFFICE_ADDRESS}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
-                      Hours
-                    </p>
-                    <p className="mt-1 text-gray-700">{SUPPORT_HOURS}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-[#fafafa] p-8">
-                <h3 className={`text-lg text-gray-900 ${playfair.className}`}>Map</h3>
-                <p className="mt-1 text-sm text-gray-600">
-                  Meetings by appointment only.
-                </p>
-                <div className="mt-4 overflow-hidden border border-gray-200">
-                  <iframe
-                    src="https://www.google.com/maps?q=1510+York+St,+Denver,+CO+80206&output=embed"
-                    width="100%"
-                    height="200"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title={`${BRAND_NAME} Map`}
-                    className="grayscale"
-                  />
-                </div>
-              </div>
+          <div className="bg-[#fafafa] p-8">
+            <ContactForm prepopulatedProjectType={prefill} />
+          </div>
+
+          {/* Contact Details */}
+          <div className="mt-12 grid gap-6 sm:grid-cols-3 text-center">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
+                Phone
+              </p>
+              <Link
+                href={`tel:${PRIMARY_PHONE_TEL}`}
+                className="mt-2 block text-sm text-gray-700 hover:text-black"
+              >
+                {PRIMARY_PHONE_DISPLAY}
+              </Link>
+            </div>
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
+                Email
+              </p>
+              <Link
+                href={`mailto:${PRIMARY_EMAIL}`}
+                className="mt-2 block text-sm text-gray-700 hover:text-black"
+              >
+                {PRIMARY_EMAIL}
+              </Link>
+            </div>
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
+                Hours
+              </p>
+              <p className="mt-2 text-sm text-gray-700">{SUPPORT_HOURS}</p>
+            </div>
+          </div>
+
+          {/* Map */}
+          <div className="mt-12">
+            <p className="text-center text-xs font-medium uppercase tracking-[0.15em] text-black">
+              {OFFICE_ADDRESS}
+            </p>
+            <p className="mt-1 text-center text-xs text-gray-500">
+              Meetings by appointment only
+            </p>
+            <div className="mt-4 overflow-hidden border border-gray-200">
+              <iframe
+                src="https://www.google.com/maps?q=1510+York+St,+Denver,+CO+80206&output=embed"
+                width="100%"
+                height="200"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title={`${BRAND_NAME} Map`}
+                className="grayscale"
+              />
             </div>
           </div>
         </div>
@@ -149,4 +141,3 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
     </div>
   );
 }
-

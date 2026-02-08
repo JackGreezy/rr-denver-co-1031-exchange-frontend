@@ -73,7 +73,7 @@ export default function AboutPage() {
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
               About {BRAND_NAME}
             </p>
-            <h1 className={`mt-4 text-3xl tracking-wide text-white sm:text-4xl md:text-5xl ${playfair.className}`}>
+            <h1 className={`mt-4 text-3xl tracking-wide text-white sm:text-4xl md:text-5xl uppercase ${playfair.className}`}>
               Focused on 1031 exchange execution in {PRIMARY_CITY}, {PRIMARY_STATE_ABBR}
             </h1>
             <p className="mt-6 text-lg font-light leading-relaxed text-white/80">
@@ -117,7 +117,7 @@ export default function AboutPage() {
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
               Our Process
             </p>
-            <h2 className={`mt-4 text-3xl tracking-wide text-gray-900 ${playfair.className}`}>
+            <h2 className={`mt-4 text-3xl tracking-wide text-gray-900 uppercase ${playfair.className}`}>
               How our process works
             </h2>
           </div>
@@ -139,7 +139,7 @@ export default function AboutPage() {
       <section className="bg-black py-16 md:py-24">
         <div className="mx-auto max-w-5xl px-6 md:px-8">
           <div className="max-w-2xl">
-            <h2 className={`text-3xl tracking-wide text-white ${playfair.className}`}>Why we exist</h2>
+            <h2 className={`text-3xl tracking-wide text-white uppercase ${playfair.className}`}>Why we exist</h2>
             <p className="mt-6 text-lg font-light leading-relaxed text-white/80">
               Wide execution gaps remain between Qualified Intermediaries, lenders,
               attorneys, and investors. We fill that gap with disciplined project
@@ -174,7 +174,7 @@ export default function AboutPage() {
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
               Get Started
             </p>
-            <h2 className={`mt-4 text-3xl tracking-wide text-gray-900 ${playfair.className}`}>
+            <h2 className={`mt-4 text-3xl tracking-wide text-gray-900 uppercase ${playfair.className}`}>
               Request a consultation
             </h2>
             <p className="mt-4 text-gray-600">

@@ -1,4 +1,4 @@
-import type { ServiceBatchItem, LocationBatchItem } from "@/data/types";
+import type { ServiceBatchItem, LocationBatchItem, PropertyTypeBatchItem } from "@/data/types";
 import { servicesBatch01 } from "@/data/batches/services/batch-01";
 import { servicesBatch02 } from "@/data/batches/services/batch-02";
 import { servicesBatch03 } from "@/data/batches/services/batch-03";
@@ -7,6 +7,10 @@ import { servicesBatch05 } from "@/data/batches/services/batch-05";
 import { locationsBatch01 } from "@/data/batches/locations/batch-01";
 import { locationsBatch02 } from "@/data/batches/locations/batch-02";
 import { locationsBatch03 } from "@/data/batches/locations/batch-03";
+import { locationsBatch04 } from "@/data/batches/locations/batch-04";
+import { locationsBatch05 } from "@/data/batches/locations/batch-05";
+import { propertyTypesBatch01 } from "@/data/batches/property-types/batch-01";
+import { propertyTypesBatch02 } from "@/data/batches/property-types/batch-02";
 
 // Merge all service batches
 export const allServiceBatches: Record<string, ServiceBatchItem> = {
@@ -22,6 +26,14 @@ export const allLocationBatches: Record<string, LocationBatchItem> = {
   ...locationsBatch01,
   ...locationsBatch02,
   ...locationsBatch03,
+  ...locationsBatch04,
+  ...locationsBatch05,
+};
+
+// Merge all property type batches
+export const allPropertyTypeBatches: Record<string, PropertyTypeBatchItem> = {
+  ...propertyTypesBatch01,
+  ...propertyTypesBatch02,
 };
 
 // Helper function to get service batch content
@@ -32,4 +44,9 @@ export function getServiceBatch(slug: string): ServiceBatchItem | null {
 // Helper function to get location batch content
 export function getLocationBatch(slug: string): LocationBatchItem | null {
   return allLocationBatches[slug] || null;
+}
+
+// Helper function to get property type batch content
+export function getPropertyTypeBatch(slug: string): PropertyTypeBatchItem | null {
+  return allPropertyTypeBatches[slug] || null;
 }

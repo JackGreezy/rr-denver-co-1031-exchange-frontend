@@ -104,7 +104,7 @@ export default function ToolsPage() {
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
                 Exchange Calculators
               </p>
-              <h1 className={`mt-4 text-3xl tracking-wide text-white sm:text-4xl md:text-5xl ${playfair.className}`}>
+              <h1 className={`mt-4 text-3xl tracking-wide text-white sm:text-4xl md:text-5xl uppercase ${playfair.className}`}>
                 1031 exchange tools
               </h1>
               <p className="mt-6 text-lg font-light leading-relaxed text-white/80">
@@ -137,7 +137,7 @@ export default function ToolsPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" d={tool.icon} />
                     </svg>
                   </div>
-                  <h2 className={`text-xl text-gray-900 group-hover:text-white ${playfair.className}`}>
+                  <h2 className={`text-xl text-gray-900 group-hover:text-white uppercase ${playfair.className}`}>
                     {tool.name}
                   </h2>
                   <p className="mt-3 text-sm text-gray-600 group-hover:text-white/80">

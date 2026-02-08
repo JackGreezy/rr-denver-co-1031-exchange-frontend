@@ -95,6 +95,20 @@ export interface LocationBatchItem {
   };
 }
 
+export interface PropertyTypeBatchItem {
+  mainDescription: string;
+  investorBenefits: string[];
+  dueDiligenceItems: string[];
+  faqs: Array<{ question: string; answer: string }>;
+  exampleCapability: {
+    disclaimer: string;
+    propertyType: string;
+    situation: string;
+    ourApproach: string;
+    expectedOutcome: string;
+  };
+}
+
 export interface InventorySpotlightItem {
   type: string;
   title: string;

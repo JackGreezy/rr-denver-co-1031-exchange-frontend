@@ -136,7 +136,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
                 {location.type === "remote" ? "Remote Support" : "Local Focus"}
               </p>
-              <h1 className={`mt-4 text-3xl tracking-wide text-white sm:text-4xl md:text-5xl ${playfair.className}`}>
+              <h1 className={`mt-4 text-3xl tracking-wide text-white sm:text-4xl md:text-5xl uppercase ${playfair.className}`}>
                 1031 exchange services in {location.name}
                 {parentLocation ? `, ${parentLocation.name}` : ""}
               </h1>
@@ -156,7 +156,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                 <p className="text-xs font-medium uppercase tracking-[0.2em] text-black">
                   About {location.name}
                 </p>
-                <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
+                <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
                   1031 Exchange Services in {location.name}
                 </h2>
                 <div 
@@ -176,7 +176,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                 <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                   Popular in {location.name}
                 </p>
-                <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
+                <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
                   Most requested services and property types
                 </h2>
               </div>
@@ -225,7 +225,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                 <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                   Example Project
                 </p>
-                <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
+                <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
                   {location.name} Exchange Coordination
                 </h2>
                 <p className="mt-2 text-sm text-gray-600">
@@ -269,7 +269,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
               <p className="text-xs font-medium uppercase tracking-[0.2em] text-black">
                 Available Services
               </p>
-              <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
+              <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
                 Featured services for {location.name}
               </h2>
               <p className="mt-4 text-gray-600">
@@ -324,7 +324,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                 Investment Options
               </p>
-              <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
+              <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
                 Property types popular in {location.name}
               </h2>
             </div>
@@ -360,7 +360,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                 Common Questions
               </p>
-              <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
+              <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
                 {location.name} FAQ
               </h2>
             </div>
@@ -392,7 +392,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         {/* CTA Section */}
         <section className="bg-black py-16 md:py-24">
           <div className="mx-auto max-w-3xl px-6 md:px-8 text-center">
-            <h2 className={`text-3xl text-white ${playfair.className}`}>
+            <h2 className={`text-3xl text-white uppercase ${playfair.className}`}>
               Plan your {location.name} 1031 exchange
             </h2>
             <p className="mt-4 text-lg font-light text-white/80">
@@ -424,7 +424,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                 Get Started
               </p>
-              <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
+              <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
                 Tell us about your timelines
               </h2>
               <p className="mt-4 text-gray-600">

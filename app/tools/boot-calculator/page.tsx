@@ -91,7 +91,7 @@ export default function BootCalculatorPage() {
               ]}
               className="mb-8 text-sm"
             />
-            <h1 className={`text-3xl tracking-wide text-white md:text-4xl ${playfair.className}`}>
+            <h1 className={`text-3xl tracking-wide text-white md:text-4xl uppercase ${playfair.className}`}>
               Boot Calculator
             </h1>
             <p className="mt-4 text-lg font-light leading-relaxed text-white/80">
@@ -122,7 +122,7 @@ export default function BootCalculatorPage() {
         {/* Related Resources */}
         <section className="border-t border-gray-200 py-12 md:py-16">
           <div className="mx-auto max-w-4xl px-6 md:px-8">
-            <h2 className={`text-2xl text-gray-900 mb-6 ${playfair.className}`}>
+            <h2 className={`text-2xl text-gray-900 mb-6 uppercase ${playfair.className}`}>
               Related Resources
             </h2>
             <ul className="space-y-3">

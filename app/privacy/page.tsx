@@ -29,7 +29,7 @@ export default function PrivacyPage() {
             ]}
             className="mb-8 text-sm"
           />
-          <h1 className={`text-3xl tracking-wide text-white md:text-4xl ${playfair.className}`}>
+          <h1 className={`text-3xl tracking-wide text-white md:text-4xl uppercase ${playfair.className}`}>
             Privacy Policy
           </h1>
           <p className="mt-4 text-sm text-white/70">
@@ -43,7 +43,7 @@ export default function PrivacyPage() {
         <div className="mx-auto max-w-4xl px-6 md:px-8">
           <div className="space-y-12">
             <div>
-              <h2 className={`text-2xl text-gray-900 mb-4 ${playfair.className}`}>
+              <h2 className={`text-2xl text-gray-900 mb-4 uppercase ${playfair.className}`}>
                 Information We Collect
               </h2>
               <p className="text-gray-600 leading-relaxed">
@@ -54,7 +54,7 @@ export default function PrivacyPage() {
             </div>
 
             <div className="border-t border-gray-200 pt-12">
-              <h2 className={`text-2xl text-gray-900 mb-4 ${playfair.className}`}>
+              <h2 className={`text-2xl text-gray-900 mb-4 uppercase ${playfair.className}`}>
                 How We Use Your Information
               </h2>
               <p className="text-gray-600 leading-relaxed">
@@ -64,7 +64,7 @@ export default function PrivacyPage() {
             </div>
 
             <div className="border-t border-gray-200 pt-12">
-              <h2 className={`text-2xl text-gray-900 mb-4 ${playfair.className}`}>
+              <h2 className={`text-2xl text-gray-900 mb-4 uppercase ${playfair.className}`}>
                 Information Sharing
               </h2>
               <p className="text-gray-600 leading-relaxed">
@@ -75,7 +75,7 @@ export default function PrivacyPage() {
             </div>
 
             <div className="border-t border-gray-200 pt-12">
-              <h2 className={`text-2xl text-gray-900 mb-4 ${playfair.className}`}>
+              <h2 className={`text-2xl text-gray-900 mb-4 uppercase ${playfair.className}`}>
                 Security
               </h2>
               <p className="text-gray-600 leading-relaxed">
@@ -85,7 +85,7 @@ export default function PrivacyPage() {
             </div>
 
             <div className="border-t border-gray-200 pt-12">
-              <h2 className={`text-2xl text-gray-900 mb-4 ${playfair.className}`}>
+              <h2 className={`text-2xl text-gray-900 mb-4 uppercase ${playfair.className}`}>
                 Contact Us
               </h2>
               <p className="text-gray-600 leading-relaxed">

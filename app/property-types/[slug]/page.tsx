@@ -10,6 +10,7 @@ import { locationsData } from "@/data/locations";
 import BottomCTA from "@/components/BottomCTA";
 import { LeadForm } from "@/components/LeadForm";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { getPropertyTypeBatch } from "@/lib/batch-loader";
 import {
   BRAND_NAME,
   PRIMARY_CITY,
@@ -33,7 +34,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const propertyType = propertyTypesData.find((pt) => pt.slug === slug);
-  
+
   if (!propertyType) {
     return {
       title: "Property Type Not Found | 1031 Exchange Denver",
@@ -56,6 +57,8 @@ export default async function PropertyTypePage({ params }: { params: Promise<{ s
   if (!propertyType) {
     notFound();
   }
+
+  const batchContent = getPropertyTypeBatch(slug);
 
   const relatedServices = servicesData
     .filter(
@@ -81,7 +84,7 @@ export default async function PropertyTypePage({ params }: { params: Promise<{ s
     description: `${propertyType.name} identification and underwriting guidance for ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} exchanges.`,
   };
 
-  const faqs = [
+  const faqs = batchContent?.faqs || [
     {
       question: `How do investors use ${propertyType.name.toLowerCase()} assets in ${PRIMARY_CITY}?`,
       answer: `${propertyType.name} assets in ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} are often selected to balance yield with long-term depreciation schedules. We align the underwriting to your basis and debt targets before identification.`,
@@ -131,8 +134,8 @@ export default async function PropertyTypePage({ params }: { params: Promise<{ s
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
                 Property Type
               </p>
-              <h1 className={`mt-4 text-3xl tracking-wide text-white sm:text-4xl md:text-5xl ${playfair.className}`}>
-                {propertyType.name} replacement properties
+              <h1 className={`mt-4 text-3xl uppercase tracking-wide text-white sm:text-4xl md:text-5xl ${playfair.className}`}>
+                {propertyType.name} Replacement Properties
               </h1>
               <p className="mt-4 max-w-2xl text-lg font-light leading-relaxed text-white/80">
                 Understand how {propertyType.name.toLowerCase()} assets fit within
@@ -143,31 +146,52 @@ export default async function PropertyTypePage({ params }: { params: Promise<{ s
           </div>
         </section>
 
-        {/* Why Investors Choose Section */}
-        <section className="py-16 md:py-24">
+        {/* Main Description Section */}
+        {batchContent?.mainDescription && (
+          <section className="py-16 md:py-24">
+            <div className="mx-auto max-w-7xl px-6 md:px-8">
+              <div className="mx-auto max-w-4xl">
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-black">
+                  Overview
+                </p>
+                <h2 className={`mt-4 text-3xl uppercase text-gray-900 ${playfair.className}`}>
+                  {propertyType.name} in Denver 1031 Exchanges
+                </h2>
+                <div
+                  className="mt-6 prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: batchContent.mainDescription }}
+                />
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Investor Benefits Section */}
+        <section className="bg-[#fafafa] py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-6 md:px-8">
             <div className="grid gap-12 lg:grid-cols-2">
               <div>
                 <p className="text-xs font-medium uppercase tracking-[0.2em] text-black">
                   Investment Insights
                 </p>
-                <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
-                  Why investors choose {propertyType.name.toLowerCase()}
+                <h2 className={`mt-4 text-3xl uppercase text-gray-900 ${playfair.className}`}>
+                  Why Investors Choose {propertyType.name}
                 </h2>
                 <p className="mt-4 text-gray-600 leading-relaxed">
-                  We surface rent roll considerations, operating expense norms, and
-                  disposition risks unique to {propertyType.name.toLowerCase()} assets.
+                  {batchContent
+                    ? `${propertyType.name} replacement properties offer Denver investors specific advantages within 1031 exchange structures.`
+                    : `We surface rent roll considerations, operating expense norms, and disposition risks unique to ${propertyType.name.toLowerCase()} assets.`}
                 </p>
               </div>
               <div className="space-y-4">
-                {[
+                {(batchContent?.investorBenefits || [
                   `Basis planning and depreciation reset modeling for ${propertyType.name.toLowerCase()} portfolios.`,
                   `Identification strategy that covers both three property and 200 percent paths.`,
                   `Lender prep packages that highlight income durability for ${propertyType.name.toLowerCase()} replacements.`,
-                ].map((item, index) => (
-                  <div key={index} className="flex gap-4 bg-[#fafafa] p-6">
+                ]).map((item, index) => (
+                  <div key={index} className="flex gap-4 bg-white p-6">
                     <span className={`text-2xl font-light text-black/40 ${playfair.className}`}>
-                      0{index + 1}
+                      {String(index + 1).padStart(2, '0')}
                     </span>
                     <p className="text-gray-700">{item}</p>
                   </div>
@@ -176,6 +200,79 @@ export default async function PropertyTypePage({ params }: { params: Promise<{ s
             </div>
           </div>
         </section>
+
+        {/* Due Diligence Section */}
+        {batchContent?.dueDiligenceItems && batchContent.dueDiligenceItems.length > 0 && (
+          <section className="py-16 md:py-24">
+            <div className="mx-auto max-w-7xl px-6 md:px-8">
+              <div className="text-center mb-12">
+                <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
+                  Due Diligence
+                </p>
+                <h2 className={`mt-4 text-3xl uppercase text-gray-900 ${playfair.className}`}>
+                  What We Review for {propertyType.name}
+                </h2>
+              </div>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+                {batchContent.dueDiligenceItems.map((item, index) => (
+                  <div key={index} className="bg-[#fafafa] p-6">
+                    <div className="mb-4">
+                      <span className={`text-5xl font-light text-black/20 ${playfair.className}`}>
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-700 leading-relaxed">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Example Capability Section */}
+        {batchContent?.exampleCapability && (
+          <section className="bg-gray-50 py-16 md:py-24">
+            <div className="mx-auto max-w-4xl px-6 md:px-8">
+              <div className="text-center mb-12">
+                <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
+                  Example Project
+                </p>
+                <h2 className={`mt-4 text-3xl uppercase text-gray-900 ${playfair.className}`}>
+                  {propertyType.name} Exchange Coordination
+                </h2>
+                <p className="mt-2 text-sm text-gray-600">
+                  {batchContent.exampleCapability.disclaimer}
+                </p>
+              </div>
+              <div className="space-y-8 bg-white p-8 md:p-12">
+                <div>
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-black mb-3">
+                    Situation
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    {batchContent.exampleCapability.situation}
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-black mb-3">
+                    Our Approach
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    {batchContent.exampleCapability.ourApproach}
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-black mb-3">
+                    Expected Outcome
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    {batchContent.exampleCapability.expectedOutcome}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Related Services */}
         {relatedServices.length > 0 && (
@@ -186,8 +283,8 @@ export default async function PropertyTypePage({ params }: { params: Promise<{ s
                   <p className="text-xs font-medium uppercase tracking-[0.2em] text-black">
                     Available Support
                   </p>
-                  <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
-                    Related services
+                  <h2 className={`mt-4 text-3xl uppercase text-gray-900 ${playfair.className}`}>
+                    Related Services
                   </h2>
                 </div>
                 <Link
@@ -225,8 +322,8 @@ export default async function PropertyTypePage({ params }: { params: Promise<{ s
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                 Coverage Areas
               </p>
-              <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
-                Popular markets for {propertyType.name}
+              <h2 className={`mt-4 text-3xl uppercase text-gray-900 ${playfair.className}`}>
+                Popular Markets for {propertyType.name}
               </h2>
             </div>
             <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-6">
@@ -258,7 +355,7 @@ export default async function PropertyTypePage({ params }: { params: Promise<{ s
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                 Common Questions
               </p>
-              <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
+              <h2 className={`mt-4 text-3xl uppercase text-gray-900 ${playfair.className}`}>
                 {propertyType.name} FAQ
               </h2>
             </div>
@@ -290,8 +387,8 @@ export default async function PropertyTypePage({ params }: { params: Promise<{ s
         {/* CTA Section */}
         <section className="bg-black py-16 md:py-24">
           <div className="mx-auto max-w-3xl px-6 md:px-8 text-center">
-            <h2 className={`text-3xl text-white ${playfair.className}`}>
-              Start a {propertyType.name} exchange plan
+            <h2 className={`text-3xl uppercase text-white ${playfair.className}`}>
+              Start a {propertyType.name} Exchange Plan
             </h2>
             <p className="mt-4 text-lg font-light text-white/80">
               We can review current debt, lender hurdles, and intermediary options
@@ -308,7 +405,7 @@ export default async function PropertyTypePage({ params }: { params: Promise<{ s
                 href="#contact-form"
                 className="inline-flex items-center justify-center border border-white bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-transparent hover:text-white"
               >
-                Contact team
+                Contact Team
               </Link>
             </div>
           </div>
@@ -321,8 +418,8 @@ export default async function PropertyTypePage({ params }: { params: Promise<{ s
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                 Get Started
               </p>
-              <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
-                Request underwriting support
+              <h2 className={`mt-4 text-3xl uppercase text-gray-900 ${playfair.className}`}>
+                Request Underwriting Support
               </h2>
               <p className="mt-4 text-gray-600">
                 Mention the property type so we can prefill lender-ready materials.
@@ -340,4 +437,3 @@ export default async function PropertyTypePage({ params }: { params: Promise<{ s
     </>
   );
 }
-

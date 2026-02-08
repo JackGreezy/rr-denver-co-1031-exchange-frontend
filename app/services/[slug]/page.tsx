@@ -125,7 +125,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                   {service.category}
                 </p>
               ) : null}
-              <h1 className={`mt-4 text-3xl tracking-wide text-white sm:text-4xl md:text-5xl ${playfair.className}`}>
+              <h1 className={`mt-4 text-3xl tracking-wide text-white sm:text-4xl md:text-5xl uppercase ${playfair.className}`}>
                 {service.name}
               </h1>
               <p className="mt-6 text-lg font-light leading-relaxed text-white/80">{service.short}</p>
@@ -141,7 +141,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 <p className="text-xs font-medium uppercase tracking-[0.2em] text-black">
                   Service Overview
                 </p>
-                <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
+                <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
                   How this service works
                 </h2>
                 <div 
@@ -161,7 +161,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 <p className="text-xs font-medium uppercase tracking-[0.2em] text-black">
                   Service Details
                 </p>
-                <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
+                <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
                   What is included
                 </h2>
                 <p className="mt-4 text-gray-600 leading-relaxed">
@@ -197,7 +197,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                   Common Scenarios
                 </p>
-                <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
+                <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
                   When this service helps
                 </h2>
               </div>
@@ -225,7 +225,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                   Example Project
                 </p>
-                <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
+                <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
                   {batchContent.exampleCapability.serviceType}
                 </h2>
                 <p className="mt-2 text-sm text-gray-600">
@@ -283,7 +283,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                 Common Questions
               </p>
-              <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
+              <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
                 Frequently asked questions
               </h2>
             </div>
@@ -319,7 +319,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                 Coverage Areas
               </p>
-              <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
+              <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
                 Where we deliver {service.name.toLowerCase()}
               </h2>
             </div>
@@ -345,7 +345,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         {/* CTA Section */}
         <section className="bg-black py-16 md:py-24">
           <div className="mx-auto max-w-3xl px-6 md:px-8 text-center">
-            <h2 className={`text-3xl text-white ${playfair.className}`}>
+            <h2 className={`text-3xl text-white uppercase ${playfair.className}`}>
               Launch {service.name.toLowerCase()}
             </h2>
             <p className="mt-4 text-lg font-light text-white/80">
@@ -376,7 +376,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                 Get Started
               </p>
-              <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
+              <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
                 Tell us about your exchange
               </h2>
               <p className="mt-4 text-gray-600">

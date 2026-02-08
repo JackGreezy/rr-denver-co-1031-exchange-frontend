@@ -360,7 +360,7 @@ export default function Page() {
         <VideoHeroBackground />
         <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
           <h1
-            className={`${playfair.className} text-[clamp(2.5rem,7vw,6.5rem)] font-normal leading-[1.05] tracking-[-0.01em] text-white`}
+            className={`${playfair.className} uppercase text-[clamp(2.5rem,7vw,6.5rem)] font-normal leading-[1.05] tracking-[-0.01em] text-white`}
           >
             Denver&rsquo;s Premier
             <br />
@@ -441,7 +441,7 @@ export default function Page() {
             {/* Right — heading + 2×2 feature grid */}
             <div className="flex flex-col justify-center">
               <h2
-                className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
+                className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
               >
                 Why Choose Us
               </h2>
@@ -484,7 +484,7 @@ export default function Page() {
         <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-40">
           <RevealSection className="text-center">
             <h2
-              className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
+              className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
             >
               How a 1031 Exchange Works
             </h2>
@@ -568,7 +568,7 @@ export default function Page() {
         <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-40">
           <RevealSection className="text-center">
             <h2
-              className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
+              className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
             >
               Our Exchange Services
             </h2>
@@ -629,7 +629,7 @@ export default function Page() {
         <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-40">
           <RevealSection className="text-center">
             <h2
-              className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
+              className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
             >
               Explore Property Types
             </h2>
@@ -680,7 +680,7 @@ export default function Page() {
         <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-44">
           <RevealSection className="mx-auto max-w-3xl text-center">
             <h2
-              className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.15] text-black`}
+              className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.15] text-black`}
             >
               Tour Our Most Desirable
               <br className="hidden sm:block" />
@@ -797,7 +797,7 @@ export default function Page() {
         <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-40">
           <RevealSection className="text-center">
             <h2
-              className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
+              className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
             >
               Free Exchange Tools
             </h2>
@@ -935,7 +935,7 @@ export default function Page() {
         <div className="mx-auto max-w-[800px] px-6 py-32 md:px-12 lg:py-40">
           <RevealSection className="text-center">
             <h2
-              className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
+              className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
             >
               Frequently Asked Questions
             </h2>
@@ -1010,7 +1010,7 @@ export default function Page() {
         <div className="relative z-10 mx-auto grid max-w-[1400px] gap-16 px-6 py-32 md:grid-cols-2 md:px-12 lg:py-44">
           <RevealSection className="flex flex-col justify-center">
             <h2
-              className={`${playfair.className} text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-white`}
+              className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-white`}
             >
               Start Your
               <br />
