@@ -29,7 +29,7 @@ export function RelatedServiceGrid({ services }: RelatedServiceGridProps) {
       <div className="flex flex-col gap-4">
         <label
           htmlFor="related-service-search"
-          className="text-xs font-medium uppercase tracking-[0.2em] text-warm-brown"
+          className="text-xs font-medium uppercase tracking-[0.2em] text-black"
         >
           Related services
         </label>
@@ -39,13 +39,13 @@ export function RelatedServiceGrid({ services }: RelatedServiceGridProps) {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Filter related services"
-            className="w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           {query ? (
             <button
               type="button"
               onClick={() => setQuery("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium uppercase tracking-[0.1em] text-warm-brown hover:text-dark-brown"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium uppercase tracking-[0.1em] text-black hover:text-gray-800"
             >
               Clear
             </button>
@@ -62,7 +62,7 @@ export function RelatedServiceGrid({ services }: RelatedServiceGridProps) {
           </p>
           <Link
             href={buildContactHref(query)}
-            className="mt-4 inline-flex items-center bg-warm-brown px-6 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-white transition hover:bg-dark-brown"
+            className="mt-4 inline-flex items-center bg-black px-6 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-white transition hover:bg-gray-800"
           >
             Contact team
           </Link>
@@ -73,9 +73,9 @@ export function RelatedServiceGrid({ services }: RelatedServiceGridProps) {
             <Link
               key={service.slug}
               href={`/services/${service.slug}`}
-              className="group bg-white p-6 transition-all hover:shadow-luxury"
+              className="group bg-white p-6 transition-all hover:shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
             >
-              <p className="font-medium text-gray-900 group-hover:text-warm-brown">{service.name}</p>
+              <p className="font-medium text-gray-900 group-hover:text-black">{service.name}</p>
               <p className="mt-2 text-sm text-gray-500">{service.short}</p>
             </Link>
           ))}

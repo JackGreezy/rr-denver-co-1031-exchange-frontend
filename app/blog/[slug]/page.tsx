@@ -138,7 +138,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       />
       <div className="bg-white">
         {/* Hero Section */}
-        <section className="bg-warm-brown py-16 md:py-20">
+        <section className="bg-black py-16 md:py-20">
           <div className="mx-auto max-w-3xl px-6 md:px-8">
             <Breadcrumbs
               items={[
@@ -187,7 +187,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         {/* Article Content */}
         <article className="py-16 md:py-24">
           <div className="mx-auto max-w-3xl px-6 md:px-8">
-            <div className="prose prose-lg max-w-none prose-headings:font-normal prose-headings:tracking-wide prose-h2:text-2xl prose-h3:text-xl prose-p:text-gray-600 prose-p:leading-relaxed prose-a:text-warm-brown prose-a:underline-offset-4 hover:prose-a:text-dark-brown prose-strong:text-gray-900 prose-li:text-gray-600">
+            <div className="prose prose-lg max-w-none prose-headings:font-normal prose-headings:tracking-wide prose-h2:text-2xl prose-h3:text-xl prose-p:text-gray-600 prose-p:leading-relaxed prose-a:text-black prose-a:underline-offset-4 hover:prose-a:text-gray-800 prose-strong:text-gray-900 prose-li:text-gray-600">
               {post.content && (
                 <PortableText value={post.content} components={portableTextComponents} />
               )}
@@ -196,11 +196,11 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         </article>
 
         {/* Back to Blog */}
-        <section className="border-t border-warm-brown/20 py-12">
+        <section className="border-t border-gray-200 py-12">
           <div className="mx-auto max-w-3xl px-6 md:px-8">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm font-medium text-warm-brown hover:text-dark-brown"
+              className="inline-flex items-center gap-2 text-sm font-medium text-black hover:text-gray-800"
             >
               <svg className="h-4 w-4 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

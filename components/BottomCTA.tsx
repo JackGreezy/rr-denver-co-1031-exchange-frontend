@@ -5,7 +5,7 @@ const PHONE_TEL = "+17207381031";
 
 export default function BottomCTA() {
   return (
-    <section className="bg-warm-brown">
+    <section className="bg-black">
       <div className="mx-auto max-w-7xl px-6 py-16 md:px-8 md:py-20">
         <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
           <div className="text-center md:text-left">
@@ -19,13 +19,13 @@ export default function BottomCTA() {
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
               href={`tel:${PHONE_TEL}`}
-              className="inline-flex items-center justify-center border border-white bg-white px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.15em] text-warm-brown transition hover:bg-transparent hover:text-white"
+              className="inline-flex items-center justify-center border border-white bg-white px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.15em] text-black transition hover:bg-transparent hover:text-white"
             >
               Call {PHONE_DISPLAY}
             </Link>
             <Link
               href="#lead-form"
-              className="inline-flex items-center justify-center border border-white/50 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.15em] text-white transition hover:border-white hover:bg-white hover:text-warm-brown"
+              className="inline-flex items-center justify-center border border-white/50 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.15em] text-white transition hover:border-white hover:bg-white hover:text-black"
             >
               Request Consultation
             </Link>

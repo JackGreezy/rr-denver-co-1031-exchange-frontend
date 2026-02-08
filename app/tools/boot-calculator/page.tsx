@@ -81,7 +81,7 @@ export default function BootCalculatorPage() {
       />
       <div className="bg-white">
         {/* Hero Section */}
-        <section className="bg-warm-brown py-16 md:py-20">
+        <section className="bg-black py-16 md:py-20">
           <div className="mx-auto max-w-4xl px-6 md:px-8">
             <Breadcrumbs
               items={[
@@ -110,7 +110,7 @@ export default function BootCalculatorPage() {
         {/* Disclaimer */}
         <section className="py-8">
           <div className="mx-auto max-w-4xl px-6 md:px-8">
-            <div className="border-l-4 border-warm-brown bg-cream p-6 text-sm text-gray-700">
+            <div className="border-l-2 border-black bg-[#fafafa] p-6 text-sm text-gray-700">
               <strong className="text-gray-900">Educational content only.</strong> Not tax, legal, or investment advice. 
               Results are estimates only. Consult a qualified intermediary and tax advisor before 
               making decisions. Colorado does not impose a state real estate transfer tax. Recording fees 
@@ -120,24 +120,24 @@ export default function BootCalculatorPage() {
         </section>
 
         {/* Related Resources */}
-        <section className="border-t border-warm-brown/20 py-12 md:py-16">
+        <section className="border-t border-gray-200 py-12 md:py-16">
           <div className="mx-auto max-w-4xl px-6 md:px-8">
             <h2 className={`text-2xl text-gray-900 mb-6 ${playfair.className}`}>
               Related Resources
             </h2>
             <ul className="space-y-3">
               <li>
-                <Link href="/services/boot-calculation-analysis" className="text-warm-brown underline underline-offset-4 hover:text-dark-brown">
+                <Link href="/services/boot-calculation-analysis" className="text-black underline underline-offset-4 hover:text-gray-800">
                   Boot Calculation Analysis Services
                 </Link>
               </li>
               <li>
-                <Link href="/services/qualified-intermediary-coordination" className="text-warm-brown underline underline-offset-4 hover:text-dark-brown">
+                <Link href="/services/qualified-intermediary-coordination" className="text-black underline underline-offset-4 hover:text-gray-800">
                   Qualified Intermediary Coordination
                 </Link>
               </li>
               <li>
-                <Link href="/tools/exchange-cost-estimator" className="text-warm-brown underline underline-offset-4 hover:text-dark-brown">
+                <Link href="/tools/exchange-cost-estimator" className="text-black underline underline-offset-4 hover:text-gray-800">
                   Exchange Cost Estimator
                 </Link>
               </li>

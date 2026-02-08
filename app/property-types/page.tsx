@@ -30,7 +30,7 @@ export default function PropertyTypesPage() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="bg-warm-brown py-20 md:py-28">
+      <section className="bg-black py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <Breadcrumbs
             items={[

@@ -92,9 +92,9 @@ export default function DepreciationRecaptureEstimator() {
   };
 
   return (
-    <div className="space-y-8 bg-cream p-8">
+    <div className="space-y-8 bg-[#fafafa] p-8">
       <div>
-        <h2 className="text-2xl font-medium text-warm-brown">
+        <h2 className="text-2xl font-medium text-black">
           Depreciation Recapture Estimator
         </h2>
         <p className="mt-2 text-sm text-gray-600">
@@ -104,7 +104,7 @@ export default function DepreciationRecaptureEstimator() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <div>
-          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             Original Cost Basis ($)
           </label>
           <input
@@ -112,7 +112,7 @@ export default function DepreciationRecaptureEstimator() {
             value={originalCost}
             onChange={(e) => handleInputChange("originalCost", e.target.value)}
             placeholder="500,000"
-            className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           <p className="mt-1 text-xs text-gray-500">
             Original purchase price plus improvements
@@ -120,7 +120,7 @@ export default function DepreciationRecaptureEstimator() {
         </div>
 
         <div>
-          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             Accumulated Depreciation ($)
           </label>
           <input
@@ -128,7 +128,7 @@ export default function DepreciationRecaptureEstimator() {
             value={accumulatedDepreciation}
             onChange={(e) => handleInputChange("depreciation", e.target.value)}
             placeholder="100,000"
-            className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           <p className="mt-1 text-xs text-gray-500">
             Total depreciation taken over ownership period
@@ -136,7 +136,7 @@ export default function DepreciationRecaptureEstimator() {
         </div>
 
         <div>
-          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             Sale Price ($)
           </label>
           <input
@@ -144,7 +144,7 @@ export default function DepreciationRecaptureEstimator() {
             value={salePrice}
             onChange={(e) => handleInputChange("salePrice", e.target.value)}
             placeholder="750,000"
-            className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           <p className="mt-1 text-xs text-gray-500">
             Sale price of the relinquished property
@@ -152,7 +152,7 @@ export default function DepreciationRecaptureEstimator() {
         </div>
 
         <div>
-          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             Recapture Tax Rate (%)
           </label>
           <input
@@ -160,7 +160,7 @@ export default function DepreciationRecaptureEstimator() {
             value={recaptureRate}
             onChange={(e) => handleInputChange("rate", e.target.value)}
             placeholder="25"
-            className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           <p className="mt-1 text-xs text-gray-500">
             Typically 25% for unrecaptured Section 1250 gain (illustrative)
@@ -170,14 +170,14 @@ export default function DepreciationRecaptureEstimator() {
 
       <button
         onClick={calculateRecapture}
-        className="w-full bg-warm-brown px-6 py-3 font-medium text-white transition hover:bg-warm-brown/90 focus:outline-none focus:ring-2 focus:ring-warm-brown focus:ring-offset-2"
+        className="w-full bg-black px-6 py-3 font-medium text-white transition hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
       >
         Calculate Depreciation Recapture
       </button>
 
       {results && (
         <div className="space-y-6">
-          <h3 className="text-xl font-medium text-warm-brown">
+          <h3 className="text-xl font-medium text-black">
             Recapture Results
           </h3>
 
@@ -195,7 +195,7 @@ export default function DepreciationRecaptureEstimator() {
           {results.isValid && (
             <div className="space-y-4">
               <div className="bg-white p-6">
-                <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">Adjusted Basis</p>
+                <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">Adjusted Basis</p>
                 <p className="mt-2 text-2xl font-medium text-gray-900">
                   ${(parseFloat(originalCost) - (parseFloat(accumulatedDepreciation) || 0)).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
@@ -205,7 +205,7 @@ export default function DepreciationRecaptureEstimator() {
               </div>
 
               <div className="bg-white p-6">
-                <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">Total Gain</p>
+                <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">Total Gain</p>
                 <p className="mt-2 text-2xl font-medium text-gray-900">
                   ${(parseFloat(salePrice) - (parseFloat(originalCost) - (parseFloat(accumulatedDepreciation) || 0))).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
@@ -215,7 +215,7 @@ export default function DepreciationRecaptureEstimator() {
               </div>
 
               <div className="bg-white p-6">
-                <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">Depreciation Recapture</p>
+                <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">Depreciation Recapture</p>
                 <p className="mt-2 text-2xl font-medium text-gray-900">
                   ${results.totalDepreciation.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
@@ -224,7 +224,7 @@ export default function DepreciationRecaptureEstimator() {
                 </p>
               </div>
 
-              <div className="bg-warm-brown p-6 text-white">
+              <div className="bg-black p-6 text-white">
                 <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/70">Recapture Tax</p>
                 <p className="mt-2 text-3xl font-medium">
                   ${results.recaptureTax.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
@@ -235,7 +235,7 @@ export default function DepreciationRecaptureEstimator() {
               </div>
 
               <div className="bg-white p-6">
-                <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">Net Proceeds After Recapture</p>
+                <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">Net Proceeds After Recapture</p>
                 <p className="mt-2 text-2xl font-medium text-gray-900">
                   ${results.netAfterRecapture.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
@@ -248,8 +248,8 @@ export default function DepreciationRecaptureEstimator() {
         </div>
       )}
 
-      <div className="border-l-4 border-warm-brown bg-white p-6 text-sm text-gray-700">
-        <h3 className="mb-3 font-medium text-warm-brown">Understanding Depreciation Recapture</h3>
+      <div className="border-l-2 border-black bg-white p-6 text-sm text-gray-700">
+        <h3 className="mb-3 font-medium text-black">Understanding Depreciation Recapture</h3>
         <div className="space-y-2">
           <p>
             <strong>Depreciation Recapture:</strong> When you sell a rental property, the IRS requires you to "recapture" depreciation deductions you've taken. This recaptured depreciation is taxed at a higher rate (typically 25% for unrecaptured Section 1250 gain) than long-term capital gains.

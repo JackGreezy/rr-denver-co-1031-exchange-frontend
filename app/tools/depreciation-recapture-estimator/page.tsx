@@ -86,7 +86,7 @@ export default function DepreciationRecaptureEstimatorPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(toolJsonLd) }}
       />
       <div className="bg-white">
-        <section className="bg-warm-brown py-16 md:py-20">
+        <section className="bg-black py-16 md:py-20">
           <div className="mx-auto max-w-4xl px-6 md:px-8">
             <Breadcrumbs items={breadcrumbItems} className="mb-8 text-sm" />
             <h1 className={`text-3xl tracking-wide text-white md:text-4xl ${playfair.className}`}>
@@ -108,7 +108,7 @@ export default function DepreciationRecaptureEstimatorPage() {
 
         <section className="py-8">
           <div className="mx-auto max-w-4xl px-6 md:px-8">
-            <div className="border-l-4 border-warm-brown bg-cream p-6 text-sm text-gray-700">
+            <div className="border-l-2 border-black bg-[#fafafa] p-6 text-sm text-gray-700">
               <strong>Educational content only.</strong> Not tax, legal, or investment advice. 
               Results are estimates only. Consult a qualified intermediary and tax advisor before 
               making decisions. Colorado does not impose a state real estate transfer tax. Recording fees 
@@ -117,24 +117,24 @@ export default function DepreciationRecaptureEstimatorPage() {
           </div>
         </section>
 
-        <section className="border-t border-warm-brown/20 py-12 md:py-16">
+        <section className="border-t border-gray-200 py-12 md:py-16">
           <div className="mx-auto max-w-4xl px-6 md:px-8">
             <h2 className={`text-2xl text-gray-900 mb-6 ${playfair.className}`}>
               Related Resources
             </h2>
             <ul className="space-y-3">
               <li>
-                <Link href="/tools/boot-calculator" className="text-warm-brown underline underline-offset-4 hover:text-dark-brown">
+                <Link href="/tools/boot-calculator" className="text-black underline underline-offset-4 hover:text-gray-800">
                   Boot Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/tools/replacement-property-value-calculator" className="text-warm-brown underline underline-offset-4 hover:text-dark-brown">
+                <Link href="/tools/replacement-property-value-calculator" className="text-black underline underline-offset-4 hover:text-gray-800">
                   Replacement Property Value Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/services/reporting-and-filing-support" className="text-warm-brown underline underline-offset-4 hover:text-dark-brown">
+                <Link href="/services/reporting-and-filing-support" className="text-black underline underline-offset-4 hover:text-gray-800">
                   Reporting and Filing Support
                 </Link>
               </li>

@@ -70,9 +70,9 @@ export default function DebtReliefCalculator() {
   };
 
   return (
-    <div className="space-y-8 bg-cream p-8">
+    <div className="space-y-8 bg-[#fafafa] p-8">
       <div>
-        <h2 className="text-2xl font-medium text-warm-brown">
+        <h2 className="text-2xl font-medium text-black">
           Debt Relief Calculator
         </h2>
         <p className="mt-2 text-sm text-gray-600">
@@ -82,7 +82,7 @@ export default function DebtReliefCalculator() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <div>
-          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             Old Mortgage Balance ($)
           </label>
           <input
@@ -90,7 +90,7 @@ export default function DebtReliefCalculator() {
             value={oldMortgage}
             onChange={(e) => handleInputChange("oldMortgage", e.target.value)}
             placeholder="500,000"
-            className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           <p className="mt-1 text-xs text-gray-500">
             Mortgage balance on relinquished property
@@ -98,7 +98,7 @@ export default function DebtReliefCalculator() {
         </div>
 
         <div>
-          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             New Mortgage Balance ($)
           </label>
           <input
@@ -106,7 +106,7 @@ export default function DebtReliefCalculator() {
             value={newMortgage}
             onChange={(e) => handleInputChange("newMortgage", e.target.value)}
             placeholder="400,000"
-            className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           <p className="mt-1 text-xs text-gray-500">
             Mortgage balance on replacement property
@@ -114,7 +114,7 @@ export default function DebtReliefCalculator() {
         </div>
 
         <div>
-          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             Estimated Tax Rate (%)
           </label>
           <input
@@ -122,7 +122,7 @@ export default function DebtReliefCalculator() {
             value={taxRate}
             onChange={(e) => handleInputChange("taxRate", e.target.value)}
             placeholder="20"
-            className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           <p className="mt-1 text-xs text-gray-500">
             Estimated capital gains tax rate (illustrative only)
@@ -132,14 +132,14 @@ export default function DebtReliefCalculator() {
 
       <button
         onClick={calculateDebtRelief}
-        className="w-full bg-warm-brown px-6 py-3 font-medium text-white transition hover:bg-warm-brown/90 focus:outline-none focus:ring-2 focus:ring-warm-brown focus:ring-offset-2"
+        className="w-full bg-black px-6 py-3 font-medium text-white transition hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
       >
         Calculate Debt Relief
       </button>
 
       {results && (
         <div className="space-y-6">
-          <h3 className="text-xl font-medium text-warm-brown">
+          <h3 className="text-xl font-medium text-black">
             Debt Relief Results
           </h3>
 
@@ -159,7 +159,7 @@ export default function DebtReliefCalculator() {
               {results.mortgageBoot > 0 ? (
                 <>
                   <div className="bg-white p-6 border-l-4 border-yellow-500">
-                    <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">Mortgage Boot</p>
+                    <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">Mortgage Boot</p>
                     <p className="mt-2 text-2xl font-medium text-gray-900">
                       ${results.mortgageBoot.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </p>
@@ -168,7 +168,7 @@ export default function DebtReliefCalculator() {
                     </p>
                   </div>
 
-                  <div className="bg-warm-brown p-6 text-white">
+                  <div className="bg-black p-6 text-white">
                     <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/70">Estimated Tax on Mortgage Boot</p>
                     <p className="mt-2 text-3xl font-medium">
                       ${results.estimatedTax.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
@@ -195,7 +195,7 @@ export default function DebtReliefCalculator() {
               )}
 
               <div className="bg-white p-6">
-                <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">Debt Difference</p>
+                <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">Debt Difference</p>
                 <p className="mt-2 text-2xl font-medium text-gray-900">
                   ${(parseFloat(oldMortgage) - parseFloat(newMortgage)).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
@@ -208,8 +208,8 @@ export default function DebtReliefCalculator() {
         </div>
       )}
 
-      <div className="border-l-4 border-warm-brown bg-white p-6 text-sm text-gray-700">
-        <h3 className="mb-3 font-medium text-warm-brown">Understanding Debt Relief and Mortgage Boot</h3>
+      <div className="border-l-2 border-black bg-white p-6 text-sm text-gray-700">
+        <h3 className="mb-3 font-medium text-black">Understanding Debt Relief and Mortgage Boot</h3>
         <div className="space-y-2">
           <p>
             <strong>Mortgage Boot:</strong> When the new mortgage on your replacement property is less than the old mortgage on your relinquished property, the difference is considered "mortgage relief" or "mortgage boot." This creates taxable income even in a 1031 exchange.

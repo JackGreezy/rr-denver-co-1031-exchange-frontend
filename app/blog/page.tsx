@@ -49,7 +49,7 @@ export default async function BlogPage() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="bg-warm-brown py-20 md:py-28">
+      <section className="bg-black py-20 md:py-28">
         <div className="mx-auto max-w-5xl px-6 md:px-8">
           <Breadcrumbs
             items={[

@@ -39,7 +39,7 @@ export function BlogGrid({ posts }: BlogGridProps) {
 
   if (!posts.length) {
     return (
-      <div className="border border-warm-brown/20 bg-cream p-8 text-gray-600">
+      <div className="border border-gray-200 bg-[#fafafa] p-8 text-gray-600">
         No published posts yet. Check back soon.
       </div>
     );
@@ -52,10 +52,10 @@ export function BlogGrid({ posts }: BlogGridProps) {
           <Link
             key={post._id}
             href={`/blog/${post.slug.current}`}
-            className="group flex h-full flex-col bg-cream transition-all hover:shadow-luxury"
+            className="group flex h-full flex-col bg-[#fafafa] transition-all hover:shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
           >
             <div className="flex flex-1 flex-col p-6 gap-3">
-              <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+              <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
                 {post.publishedAt
                   ? new Date(post.publishedAt).toLocaleDateString("en-US", {
                       year: "numeric",
@@ -64,13 +64,13 @@ export function BlogGrid({ posts }: BlogGridProps) {
                     })
                   : "Draft"}
               </p>
-              <h3 className="text-lg font-medium text-gray-900 group-hover:text-warm-brown">
+              <h3 className="text-lg font-medium text-gray-900 group-hover:text-black">
                 {post.title}
               </h3>
               {post.excerpt ? (
                 <p className="text-sm text-gray-600">{post.excerpt}</p>
               ) : null}
-              <span className="mt-auto flex items-center gap-2 pt-2 text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+              <span className="mt-auto flex items-center gap-2 pt-2 text-xs font-medium uppercase tracking-[0.15em] text-black">
                 Read post
                 <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -86,7 +86,7 @@ export function BlogGrid({ posts }: BlogGridProps) {
             type="button"
             disabled={clampedPage === 0}
             onClick={() => setPage((current) => Math.max(0, current - 1))}
-            className="border border-warm-brown/30 px-4 py-2 text-xs font-medium uppercase tracking-[0.15em] text-warm-brown transition hover:bg-warm-brown hover:text-white disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-warm-brown"
+            className="border border-gray-300 px-4 py-2 text-xs font-medium uppercase tracking-[0.15em] text-black transition hover:bg-black hover:text-white disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-black"
           >
             Prev
           </button>
@@ -99,7 +99,7 @@ export function BlogGrid({ posts }: BlogGridProps) {
             onClick={() =>
               setPage((current) => Math.min(totalPages - 1, current + 1))
             }
-            className="border border-warm-brown/30 px-4 py-2 text-xs font-medium uppercase tracking-[0.15em] text-warm-brown transition hover:bg-warm-brown hover:text-white disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-warm-brown"
+            className="border border-gray-300 px-4 py-2 text-xs font-medium uppercase tracking-[0.15em] text-black transition hover:bg-black hover:text-white disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-black"
           >
             Next
           </button>

@@ -86,7 +86,7 @@ export default function IdentificationRulesCheckerPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(toolJsonLd) }}
       />
       <div className="bg-white">
-        <section className="bg-warm-brown py-16 md:py-20">
+        <section className="bg-black py-16 md:py-20">
           <div className="mx-auto max-w-4xl px-6 md:px-8">
             <Breadcrumbs items={breadcrumbItems} className="mb-8 text-sm" />
             <h1 className={`text-3xl tracking-wide text-white md:text-4xl ${playfair.className}`}>
@@ -106,7 +106,7 @@ export default function IdentificationRulesCheckerPage() {
 
         <section className="py-8">
           <div className="mx-auto max-w-4xl px-6 md:px-8">
-            <div className="border-l-4 border-warm-brown bg-cream p-6 text-sm text-gray-700">
+            <div className="border-l-2 border-black bg-[#fafafa] p-6 text-sm text-gray-700">
               <strong>Educational content only.</strong> Not tax, legal, or investment advice. 
               Results are estimates only. Consult a qualified intermediary and tax advisor before 
               making decisions. Colorado does not impose a state real estate transfer tax. Recording fees 
@@ -115,24 +115,24 @@ export default function IdentificationRulesCheckerPage() {
           </div>
         </section>
 
-        <section className="border-t border-warm-brown/20 py-12 md:py-16">
+        <section className="border-t border-gray-200 py-12 md:py-16">
           <div className="mx-auto max-w-4xl px-6 md:px-8">
             <h2 className={`text-2xl text-gray-900 mb-6 ${playfair.className}`}>
               Related Resources
             </h2>
             <ul className="space-y-3">
               <li>
-                <Link href="/services/forty-five-day-identification-strategy" className="text-warm-brown underline underline-offset-4 hover:text-dark-brown">
+                <Link href="/services/forty-five-day-identification-strategy" className="text-black underline underline-offset-4 hover:text-gray-800">
                   Forty Five Day Identification Strategy
                 </Link>
               </li>
               <li>
-                <Link href="/services/replacement-property-identification" className="text-warm-brown underline underline-offset-4 hover:text-dark-brown">
+                <Link href="/services/replacement-property-identification" className="text-black underline underline-offset-4 hover:text-gray-800">
                   Replacement Property Identification
                 </Link>
               </li>
               <li>
-                <Link href="/services/identification-rules-education" className="text-warm-brown underline underline-offset-4 hover:text-dark-brown">
+                <Link href="/services/identification-rules-education" className="text-black underline underline-offset-4 hover:text-gray-800">
                   Identification Rules Education
                 </Link>
               </li>

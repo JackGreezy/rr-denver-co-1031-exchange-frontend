@@ -114,7 +114,7 @@ export default function BootCalculator() {
   ];
 
   return (
-    <div className="tool-card space-y-8 bg-cream p-8">
+    <div className="tool-card space-y-8 bg-[#fafafa] p-8">
       <div>
         <h2 className="text-2xl font-medium text-gray-900">Boot inputs</h2>
         <p className="mt-1 text-sm text-gray-600">
@@ -123,7 +123,7 @@ export default function BootCalculator() {
       </div>
       <div className="grid gap-6 md:grid-cols-2">
         {fieldMeta.map(({ key, label, helper, placeholder }) => (
-          <label key={key} className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label key={key} className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             {label}
             <input
               type="number"
@@ -131,7 +131,7 @@ export default function BootCalculator() {
               value={fields[key]}
               onChange={(event) => handleChange(key, event.target.value)}
               placeholder={placeholder}
-              className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+              className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
             />
             <span className="mt-1 block text-xs font-normal normal-case tracking-normal text-gray-500">{helper}</span>
             {errors[key] ? (
@@ -143,7 +143,7 @@ export default function BootCalculator() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <div className="bg-white p-6">
-          <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+          <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
             Cash boot
           </p>
           <p className="mt-2 text-2xl font-medium text-gray-900">
@@ -154,7 +154,7 @@ export default function BootCalculator() {
           </p>
         </div>
         <div className="bg-white p-6">
-          <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+          <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
             Mortgage boot
           </p>
           <p className="mt-2 text-2xl font-medium text-gray-900">
@@ -166,7 +166,7 @@ export default function BootCalculator() {
         </div>
       </div>
 
-      <div className="bg-warm-brown p-6 text-white">
+      <div className="bg-black p-6 text-white">
         <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/70">
           Total boot
         </p>
@@ -180,7 +180,7 @@ export default function BootCalculator() {
 
       <div className="bg-white p-6">
         <p className="text-sm font-medium text-gray-900">Illustrative tax (20%)</p>
-        <p className="mt-2 text-2xl font-medium text-warm-brown">
+        <p className="mt-2 text-2xl font-medium text-black">
           {results ? currencyFormatter.format(results.estimatedTax) : "—"}
         </p>
         <p className="mt-2 text-xs text-gray-500">
@@ -188,7 +188,7 @@ export default function BootCalculator() {
         </p>
       </div>
 
-      <div className="border-l-4 border-warm-brown bg-white p-6 text-sm text-gray-700">
+      <div className="border-l-2 border-black bg-white p-6 text-sm text-gray-700">
         <p className="mb-2 font-medium text-gray-900">Boot refresher</p>
         <p>
           <strong>Cash boot</strong> equals the equity removed from the exchange.{" "}

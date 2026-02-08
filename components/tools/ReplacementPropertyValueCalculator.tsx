@@ -102,9 +102,9 @@ export default function ReplacementPropertyValueCalculator() {
   };
 
   return (
-    <div className="space-y-8 bg-cream p-8">
+    <div className="space-y-8 bg-[#fafafa] p-8">
       <div>
-        <h2 className="text-2xl font-medium text-warm-brown">
+        <h2 className="text-2xl font-medium text-black">
           Replacement Property Value Calculator
         </h2>
         <p className="mt-2 text-sm text-gray-600">
@@ -114,7 +114,7 @@ export default function ReplacementPropertyValueCalculator() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <div>
-          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             Relinquished Property Sale Price ($)
           </label>
           <input
@@ -122,7 +122,7 @@ export default function ReplacementPropertyValueCalculator() {
             value={relinquishedSalePrice}
             onChange={(e) => handleInputChange("salePrice", e.target.value)}
             placeholder="1,000,000"
-            className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           <p className="mt-1 text-xs text-gray-500">
             Sale price of the property you are selling
@@ -130,7 +130,7 @@ export default function ReplacementPropertyValueCalculator() {
         </div>
 
         <div>
-          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             Relinquished Mortgage Balance ($)
           </label>
           <input
@@ -138,7 +138,7 @@ export default function ReplacementPropertyValueCalculator() {
             value={relinquishedMortgage}
             onChange={(e) => handleInputChange("mortgage", e.target.value)}
             placeholder="500,000"
-            className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           <p className="mt-1 text-xs text-gray-500">
             Outstanding mortgage balance on relinquished property
@@ -146,7 +146,7 @@ export default function ReplacementPropertyValueCalculator() {
         </div>
 
         <div>
-          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             Exchange Costs ($)
           </label>
           <input
@@ -154,7 +154,7 @@ export default function ReplacementPropertyValueCalculator() {
             value={exchangeCosts}
             onChange={(e) => handleInputChange("costs", e.target.value)}
             placeholder="15,000"
-            className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           <p className="mt-1 text-xs text-gray-500">
             QI fees, escrow, title insurance, recording fees
@@ -162,7 +162,7 @@ export default function ReplacementPropertyValueCalculator() {
         </div>
 
         <div>
-          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             Cash to Receive ($)
           </label>
           <input
@@ -170,7 +170,7 @@ export default function ReplacementPropertyValueCalculator() {
             value={cashToReceive}
             onChange={(e) => handleInputChange("cashOut", e.target.value)}
             placeholder="0"
-            className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           <p className="mt-1 text-xs text-gray-500">
             Cash you plan to take out (creates boot if not zero)
@@ -178,7 +178,7 @@ export default function ReplacementPropertyValueCalculator() {
         </div>
 
         <div>
-          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             New Mortgage Amount ($)
           </label>
           <input
@@ -186,7 +186,7 @@ export default function ReplacementPropertyValueCalculator() {
             value={newMortgageAmount}
             onChange={(e) => handleInputChange("newMortgage", e.target.value)}
             placeholder="600,000"
-            className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           <p className="mt-1 text-xs text-gray-500">
             Mortgage amount on replacement property
@@ -196,14 +196,14 @@ export default function ReplacementPropertyValueCalculator() {
 
       <button
         onClick={calculateReplacementValue}
-        className="w-full bg-warm-brown px-6 py-3 font-medium text-white transition hover:bg-warm-brown/90 focus:outline-none focus:ring-2 focus:ring-warm-brown focus:ring-offset-2"
+        className="w-full bg-black px-6 py-3 font-medium text-white transition hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
       >
         Calculate Minimum Replacement Value
       </button>
 
       {results && (
         <div className="space-y-6">
-          <h3 className="text-xl font-medium text-warm-brown">
+          <h3 className="text-xl font-medium text-black">
             Replacement Value Results
           </h3>
 
@@ -221,7 +221,7 @@ export default function ReplacementPropertyValueCalculator() {
           {results.isValid && (
             <div className="space-y-4">
               <div className="bg-white p-6">
-                <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">Net Proceeds from Sale</p>
+                <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">Net Proceeds from Sale</p>
                 <p className="mt-2 text-2xl font-medium text-gray-900">
                   ${results.equityToReinvest.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
@@ -230,7 +230,7 @@ export default function ReplacementPropertyValueCalculator() {
                 </p>
               </div>
 
-              <div className="bg-warm-brown p-6 text-white">
+              <div className="bg-black p-6 text-white">
                 <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/70">Minimum Replacement Value</p>
                 <p className="mt-2 text-3xl font-medium">
                   ${results.minimumReplacementValue.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
@@ -241,7 +241,7 @@ export default function ReplacementPropertyValueCalculator() {
               </div>
 
               <div className="bg-white p-6">
-                <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">Recommended Replacement Value</p>
+                <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">Recommended Replacement Value</p>
                 <p className="mt-2 text-2xl font-medium text-gray-900">
                   ${results.recommendedReplacementValue.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
@@ -251,7 +251,7 @@ export default function ReplacementPropertyValueCalculator() {
               </div>
 
               <div className="bg-white p-6">
-                <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">Equity to Reinvest</p>
+                <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">Equity to Reinvest</p>
                 <p className="mt-2 text-2xl font-medium text-gray-900">
                   ${results.equityToReinvest.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
@@ -264,8 +264,8 @@ export default function ReplacementPropertyValueCalculator() {
         </div>
       )}
 
-      <div className="border-l-4 border-warm-brown bg-white p-6 text-sm text-gray-700">
-        <h3 className="mb-3 font-medium text-warm-brown">Understanding Replacement Property Value Requirements</h3>
+      <div className="border-l-2 border-black bg-white p-6 text-sm text-gray-700">
+        <h3 className="mb-3 font-medium text-black">Understanding Replacement Property Value Requirements</h3>
         <div className="space-y-2">
           <p>
             <strong>Minimum Replacement Value:</strong> To defer all gain in a 1031 exchange, the replacement property value must equal or exceed the sale price of the relinquished property. This calculator accounts for your equity, new mortgage, and exchange costs.

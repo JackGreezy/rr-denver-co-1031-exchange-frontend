@@ -41,7 +41,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="bg-warm-brown py-20 md:py-28">
+      <section className="bg-black py-20 md:py-28">
         <div className="mx-auto max-w-5xl px-6 md:px-8">
           <Breadcrumbs
             items={[
@@ -77,58 +77,58 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
               <p className="mt-2 text-gray-600">
                 Send the secure form. We respond within one business day with next steps.
               </p>
-              <div className="mt-8 bg-cream p-8">
+              <div className="mt-8 bg-[#fafafa] p-8">
                 <ContactForm prepopulatedProjectType={prefill} />
               </div>
             </div>
 
             {/* Info Column */}
             <div className="space-y-8">
-              <div className="bg-cream p-8">
+              <div className="bg-[#fafafa] p-8">
                 <h3 className={`text-lg text-gray-900 ${playfair.className}`}>Contact information</h3>
                 <div className="mt-6 space-y-4 text-sm">
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+                    <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
                       Phone
                     </p>
                     <Link
                       href={`tel:${PRIMARY_PHONE_TEL}`}
-                      className="mt-1 block text-gray-900 hover:text-warm-brown"
+                      className="mt-1 block text-gray-900 hover:text-black"
                     >
                       {PRIMARY_PHONE_DISPLAY}
                     </Link>
                   </div>
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+                    <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
                       Email
                     </p>
                     <Link
                       href={`mailto:${PRIMARY_EMAIL}`}
-                      className="mt-1 block text-gray-900 hover:text-warm-brown"
+                      className="mt-1 block text-gray-900 hover:text-black"
                     >
                       {PRIMARY_EMAIL}
                     </Link>
                   </div>
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+                    <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
                       Address
                     </p>
                     <p className="mt-1 text-gray-700">{OFFICE_ADDRESS}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+                    <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
                       Hours
                     </p>
                     <p className="mt-1 text-gray-700">{SUPPORT_HOURS}</p>
                   </div>
                 </div>
               </div>
-              <div className="bg-cream p-8">
+              <div className="bg-[#fafafa] p-8">
                 <h3 className={`text-lg text-gray-900 ${playfair.className}`}>Map</h3>
                 <p className="mt-1 text-sm text-gray-600">
                   Meetings by appointment only.
                 </p>
-                <div className="mt-4 overflow-hidden border border-warm-brown/20">
+                <div className="mt-4 overflow-hidden border border-gray-200">
                   <iframe
                     src="https://www.google.com/maps?q=1510+York+St,+Denver,+CO+80206&output=embed"
                     width="100%"

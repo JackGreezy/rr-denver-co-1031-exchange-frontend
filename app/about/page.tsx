@@ -60,7 +60,7 @@ export default function AboutPage() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="bg-warm-brown py-20 md:py-28">
+      <section className="bg-black py-20 md:py-28">
         <div className="mx-auto max-w-5xl px-6 md:px-8">
           <Breadcrumbs
             items={[
@@ -89,16 +89,16 @@ export default function AboutPage() {
       {/* Pillars Section */}
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-5xl px-6 md:px-8">
-          <div className="grid gap-px bg-warm-brown/20 md:grid-cols-3">
+          <div className="grid gap-px bg-gray-200 md:grid-cols-3">
             {PILLARS.map((pillar, index) => (
               <div
                 key={pillar.title}
-                className="group bg-cream p-8 transition-colors hover:bg-warm-brown"
+                className="group bg-[#fafafa] p-8 transition-colors hover:bg-black"
               >
-                <span className={`text-4xl font-light text-warm-brown/30 group-hover:text-white/30 ${playfair.className}`}>
+                <span className={`text-4xl font-light text-black/30 group-hover:text-white/30 ${playfair.className}`}>
                   0{index + 1}
                 </span>
-                <p className="mt-4 text-xs font-medium uppercase tracking-[0.2em] text-warm-brown group-hover:text-white/70">
+                <p className="mt-4 text-xs font-medium uppercase tracking-[0.2em] text-black group-hover:text-white/70">
                   {pillar.title}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-gray-600 group-hover:text-white/80">
@@ -111,10 +111,10 @@ export default function AboutPage() {
       </section>
 
       {/* Workflow Section */}
-      <section className="bg-cream py-16 md:py-24">
+      <section className="bg-[#fafafa] py-16 md:py-24">
         <div className="mx-auto max-w-5xl px-6 md:px-8">
           <div className="text-center mb-12">
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
               Our Process
             </p>
             <h2 className={`mt-4 text-3xl tracking-wide text-gray-900 ${playfair.className}`}>
@@ -136,7 +136,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why We Exist Section */}
-      <section className="bg-warm-brown py-16 md:py-24">
+      <section className="bg-black py-16 md:py-24">
         <div className="mx-auto max-w-5xl px-6 md:px-8">
           <div className="max-w-2xl">
             <h2 className={`text-3xl tracking-wide text-white ${playfair.className}`}>Why we exist</h2>
@@ -152,13 +152,13 @@ export default function AboutPage() {
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Link
                 href="/services"
-                className="inline-flex items-center justify-center border border-white/50 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:border-white hover:bg-white hover:text-warm-brown"
+                className="inline-flex items-center justify-center border border-white/50 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:border-white hover:bg-white hover:text-black"
               >
                 View services
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center border border-white bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-warm-brown transition hover:bg-transparent hover:text-white"
+                className="inline-flex items-center justify-center border border-white bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-transparent hover:text-white"
               >
                 Talk to the team
               </Link>
@@ -171,7 +171,7 @@ export default function AboutPage() {
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-3xl px-6 md:px-8">
           <div className="text-center mb-10">
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
               Get Started
             </p>
             <h2 className={`mt-4 text-3xl tracking-wide text-gray-900 ${playfair.className}`}>
@@ -181,7 +181,7 @@ export default function AboutPage() {
               Complete the secure form. We respond within one business day.
             </p>
           </div>
-          <div className="bg-cream p-8">
+          <div className="bg-[#fafafa] p-8">
             <LeadForm />
           </div>
         </div>

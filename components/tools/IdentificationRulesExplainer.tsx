@@ -1,8 +1,8 @@
 export function IdentificationRulesExplainer() {
   return (
-    <div className="space-y-8 bg-cream p-8">
+    <div className="space-y-8 bg-[#fafafa] p-8">
       <div>
-        <h2 className="text-2xl font-medium text-warm-brown">Identification Rule Refresher</h2>
+        <h2 className="text-2xl font-medium text-black">Identification Rule Refresher</h2>
         <p className="mt-2 text-sm text-gray-600">
           These summaries are informational only. Confirm details with your Qualified
           Intermediary and advisors.
@@ -11,7 +11,7 @@ export function IdentificationRulesExplainer() {
 
       <div className="grid gap-4 md:grid-cols-3">
         <div className="bg-white p-6">
-          <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+          <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
             Three Property Rule
           </p>
           <p className="mt-2 text-sm text-gray-700">
@@ -20,7 +20,7 @@ export function IdentificationRulesExplainer() {
           </p>
         </div>
         <div className="bg-white p-6">
-          <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+          <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
             Two Hundred Percent Rule
           </p>
           <p className="mt-2 text-sm text-gray-700">
@@ -29,7 +29,7 @@ export function IdentificationRulesExplainer() {
           </p>
         </div>
         <div className="bg-white p-6">
-          <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+          <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
             Ninety Five Percent Rule
           </p>
           <p className="mt-2 text-sm text-gray-700">

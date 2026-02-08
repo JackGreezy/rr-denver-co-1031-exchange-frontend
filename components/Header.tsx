@@ -119,25 +119,35 @@ export default function Header() {
             onMouseLeave={() => setOpenMenu(null)}
             onBlur={handleBlur}
           >
-            <button
-              type="button"
+            <Link
+              href="/services"
               className="flex items-center gap-1 px-4 py-2 text-sm font-medium uppercase tracking-[0.12em] text-white/90 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               aria-haspopup="true"
               aria-expanded={openMenu === "services"}
               aria-controls="services-menu"
               onFocus={() => setOpenMenu("services")}
+              onClick={(e) => {
+                if (openMenu === "services") {
+                  // Already open, let the link navigate
+                } else {
+                  e.preventDefault();
+                  handleMenuToggle("services");
+                }
+              }}
             >
               Services
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
-            </button>
+            </Link>
+            {/* Invisible bridge to prevent hover gap */}
+            <div className="absolute left-0 top-full h-3 w-full" />
             <div
               id="services-menu"
               role="menu"
               aria-label="Services"
               className={clsx(
-                "absolute left-0 top-full mt-2 w-80 border border-gray-200 bg-white p-4 shadow-luxury-lg transition-all duration-200",
+                "absolute left-0 top-full mt-3 w-80 border border-gray-200 bg-white p-4 shadow-luxury-lg transition-all duration-200",
                 openMenu === "services"
                   ? "pointer-events-auto opacity-100 translate-y-0"
                   : "pointer-events-none opacity-0 -translate-y-2"
@@ -177,25 +187,35 @@ export default function Header() {
             onMouseLeave={() => setOpenMenu(null)}
             onBlur={handleBlur}
           >
-            <button
-              type="button"
+            <Link
+              href="/locations"
               className="flex items-center gap-1 px-4 py-2 text-sm font-medium uppercase tracking-[0.12em] text-white/90 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               aria-haspopup="true"
               aria-expanded={openMenu === "locations"}
               aria-controls="locations-menu"
               onFocus={() => setOpenMenu("locations")}
+              onClick={(e) => {
+                if (openMenu === "locations") {
+                  // Already open, let the link navigate
+                } else {
+                  e.preventDefault();
+                  handleMenuToggle("locations");
+                }
+              }}
             >
               Locations
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
-            </button>
+            </Link>
+            {/* Invisible bridge to prevent hover gap */}
+            <div className="absolute left-0 top-full h-3 w-full" />
             <div
               id="locations-menu"
               role="menu"
               aria-label="Locations"
               className={clsx(
-                "absolute left-0 top-full mt-2 w-72 border border-gray-200 bg-white p-4 shadow-luxury-lg transition-all duration-200",
+                "absolute left-0 top-full mt-3 w-72 border border-gray-200 bg-white p-4 shadow-luxury-lg transition-all duration-200",
                 openMenu === "locations"
                   ? "pointer-events-auto opacity-100 translate-y-0"
                   : "pointer-events-none opacity-0 -translate-y-2"
@@ -235,25 +255,35 @@ export default function Header() {
             onMouseLeave={() => setOpenMenu(null)}
             onBlur={handleBlur}
           >
-            <button
-              type="button"
+            <Link
+              href="/tools"
               className="flex items-center gap-1 px-4 py-2 text-sm font-medium uppercase tracking-[0.12em] text-white/90 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               aria-haspopup="true"
               aria-expanded={openMenu === "tools"}
               aria-controls="tools-menu"
               onFocus={() => setOpenMenu("tools")}
+              onClick={(e) => {
+                if (openMenu === "tools") {
+                  // Already open, let the link navigate
+                } else {
+                  e.preventDefault();
+                  handleMenuToggle("tools");
+                }
+              }}
             >
               Tools
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
-            </button>
+            </Link>
+            {/* Invisible bridge to prevent hover gap */}
+            <div className="absolute left-0 top-full h-3 w-full" />
             <div
               id="tools-menu"
               role="menu"
               aria-label="Tools"
               className={clsx(
-                "absolute left-0 top-full mt-2 w-80 border border-gray-200 bg-white p-4 shadow-luxury-lg transition-all duration-200",
+                "absolute left-0 top-full mt-3 w-80 border border-gray-200 bg-white p-4 shadow-luxury-lg transition-all duration-200",
                 openMenu === "tools"
                   ? "pointer-events-auto opacity-100 translate-y-0"
                   : "pointer-events-none opacity-0 -translate-y-2"

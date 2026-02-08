@@ -209,7 +209,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
           type="text"
           value={state.values.name}
           onChange={(event) => handleChange("name", event.target.value)}
-          className="border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-[#785530] focus:outline-none focus:ring-1 focus:ring-[#785530]"
+          className="border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           aria-invalid={Boolean(state.errors.name)}
           aria-describedby={state.errors.name ? "name-error" : undefined}
           required
@@ -231,7 +231,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
           type="text"
           value={state.values.company}
           onChange={(event) => handleChange("company", event.target.value)}
-          className="border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-[#785530] focus:outline-none focus:ring-1 focus:ring-[#785530]"
+          className="border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
         />
       </div>
 
@@ -245,7 +245,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
           type="email"
           value={state.values.email}
           onChange={(event) => handleChange("email", event.target.value)}
-          className="border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-[#785530] focus:outline-none focus:ring-1 focus:ring-[#785530]"
+          className="border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           aria-invalid={Boolean(state.errors.email)}
           aria-describedby={state.errors.email ? "email-error" : undefined}
           required
@@ -267,7 +267,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
           type="tel"
           value={state.values.phone}
           onChange={(event) => handlePhoneChange(event.target.value)}
-          className="border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-[#785530] focus:outline-none focus:ring-1 focus:ring-[#785530]"
+          className="border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           aria-invalid={Boolean(state.errors.phone)}
           aria-describedby={state.errors.phone ? "phone-error" : undefined}
           required
@@ -300,7 +300,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
               }
               setShowProjectTypeDropdown(true);
             }}
-            className="w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-[#785530] focus:outline-none focus:ring-1 focus:ring-[#785530]"
+            className="w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
             aria-invalid={Boolean(state.errors.projectType)}
             aria-describedby={state.errors.projectType ? "projectType-error" : undefined}
             placeholder="Start typing to search..."
@@ -313,7 +313,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
                   key={service.slug}
                   type="button"
                   onClick={() => handleProjectTypeSelect(service.name)}
-                  className="w-full px-4 py-2 text-left text-sm text-gray-700 transition hover:bg-[#F5F0E8] hover:text-[#785530]"
+                  className="w-full px-4 py-2 text-left text-sm text-gray-700 transition hover:bg-gray-50 hover:text-black"
                 >
                   {service.name}
                 </button>
@@ -338,7 +338,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
           type="text"
           value={state.values.property}
           onChange={(event) => handleChange("property", event.target.value)}
-          className="w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-[#785530] focus:outline-none focus:ring-1 focus:ring-[#785530]"
+          className="w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           placeholder="Include property type, location, and estimated value (optional)"
         />
       </div>
@@ -354,7 +354,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
             type="date"
             value={state.values.estimatedCloseDate}
             onChange={(event) => handleChange("estimatedCloseDate", event.target.value)}
-            className="w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-[#785530] focus:outline-none focus:ring-1 focus:ring-[#785530]"
+            className="w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
         </div>
         <div className="grid gap-2">
@@ -367,7 +367,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
             type="text"
             value={state.values.city}
             onChange={(event) => handleChange("city", event.target.value)}
-            className="w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-[#785530] focus:outline-none focus:ring-1 focus:ring-[#785530]"
+            className="w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
             placeholder="Primary metro or submarket (optional)"
           />
         </div>
@@ -382,7 +382,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
           name="timeline"
           value={state.values.timeline}
           onChange={(event) => handleChange("timeline", event.target.value)}
-          className="border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-[#785530] focus:outline-none focus:ring-1 focus:ring-[#785530]"
+          className="border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
         >
           {TIMELINE_OPTIONS.map((option) => (
             <option key={option.value} value={option.value}>
@@ -401,7 +401,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
           name="details"
           value={state.values.details}
           onChange={(event) => handleChange("details", event.target.value)}
-          className="min-h-[100px] border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-[#785530] focus:outline-none focus:ring-1 focus:ring-[#785530]"
+          className="min-h-[100px] border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           rows={4}
         />
       </div>
@@ -424,7 +424,7 @@ export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ pr
       <button
         type="submit"
         disabled={state.status === "submitting" || !state.turnstileToken}
-        className="inline-flex items-center justify-center bg-[#785530] px-6 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#4A3520] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#785530] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex items-center justify-center bg-black px-6 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {state.status === "submitting" ? "Sending..." : "Submit Request"}
       </button>

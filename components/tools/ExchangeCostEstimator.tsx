@@ -130,9 +130,9 @@ export default function ExchangeCostEstimator() {
   ];
 
   return (
-    <div className="space-y-8 bg-cream p-8">
+    <div className="space-y-8 bg-[#fafafa] p-8">
       <div>
-        <h2 className="text-2xl font-medium text-warm-brown">Cost Inputs</h2>
+        <h2 className="text-2xl font-medium text-black">Cost Inputs</h2>
         <p className="mt-2 text-sm text-gray-600">
           Estimate core expenses for a Houston 1031 exchange. Adjust values to match your
           closing disclosure.
@@ -141,7 +141,7 @@ export default function ExchangeCostEstimator() {
       <div className="grid gap-6 md:grid-cols-2">
         {fieldMeta.map(({ key, label, helper, placeholder }) => (
           <div key={key}>
-            <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+            <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
               {label}
             </label>
             <input
@@ -150,7 +150,7 @@ export default function ExchangeCostEstimator() {
               value={getValue(key)}
               onChange={(event) => handleChange(key, event.target.value)}
               placeholder={placeholder}
-              className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+              className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
             />
             <span className="mt-1 block text-xs text-gray-500">{helper}</span>
             {errors[key] ? (
@@ -160,7 +160,7 @@ export default function ExchangeCostEstimator() {
         ))}
       </div>
 
-      <div className="bg-warm-brown p-6 text-white">
+      <div className="bg-black p-6 text-white">
         <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/70">
           Total Estimated Exchange Costs
         </p>
@@ -175,7 +175,7 @@ export default function ExchangeCostEstimator() {
 
       <div className="grid gap-4 md:grid-cols-2">
         <div className="bg-white p-6">
-          <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+          <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
             Qualified Intermediary Fee
           </p>
           <p className="mt-2 text-2xl font-medium text-gray-900">
@@ -186,7 +186,7 @@ export default function ExchangeCostEstimator() {
           </p>
         </div>
         <div className="bg-white p-6">
-          <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+          <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
             Escrow Fee
           </p>
           <p className="mt-2 text-2xl font-medium text-gray-900">
@@ -197,7 +197,7 @@ export default function ExchangeCostEstimator() {
           </p>
         </div>
         <div className="bg-white p-6">
-          <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+          <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
             Title Insurance
           </p>
           <p className="mt-2 text-2xl font-medium text-gray-900">
@@ -208,7 +208,7 @@ export default function ExchangeCostEstimator() {
           </p>
         </div>
         <div className="bg-white p-6">
-          <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+          <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">
             Recording Fees
           </p>
           <p className="mt-2 text-2xl font-medium text-gray-900">
@@ -220,8 +220,8 @@ export default function ExchangeCostEstimator() {
         </div>
       </div>
 
-      <div className="border-l-4 border-warm-brown bg-white p-6 text-sm text-gray-700">
-        <p className="mb-2 font-medium text-warm-brown">Note on Texas Transfer Taxes</p>
+      <div className="border-l-2 border-black bg-white p-6 text-sm text-gray-700">
+        <p className="mb-2 font-medium text-black">Note on Texas Transfer Taxes</p>
         <p>
           Texas does not impose a state real estate transfer tax, but local recording,
           documentary, and courier fees still apply. Always reconcile these estimates

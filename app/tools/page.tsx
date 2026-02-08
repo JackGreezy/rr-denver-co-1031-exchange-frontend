@@ -97,7 +97,7 @@ export default function ToolsPage() {
       />
       <div className="bg-white">
         {/* Hero Section */}
-        <section className="bg-warm-brown py-20 md:py-28">
+        <section className="bg-black py-20 md:py-28">
           <div className="mx-auto max-w-5xl px-6 md:px-8">
             <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Tools" }]} className="mb-8 text-sm" />
             <div className="max-w-3xl">
@@ -124,11 +124,11 @@ export default function ToolsPage() {
                 <Link
                   key={tool.slug}
                   href={`/tools/${tool.slug}`}
-                  className="group bg-cream p-8 transition-all hover:bg-warm-brown"
+                  className="group bg-[#fafafa] p-8 transition-all hover:bg-black"
                 >
-                  <div className="mb-6 flex h-12 w-12 items-center justify-center border border-warm-brown/30 group-hover:border-white/30">
+                  <div className="mb-6 flex h-12 w-12 items-center justify-center border border-gray-300 group-hover:border-white/30">
                     <svg
-                      className="h-6 w-6 text-warm-brown group-hover:text-white"
+                      className="h-6 w-6 text-black group-hover:text-white"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -143,7 +143,7 @@ export default function ToolsPage() {
                   <p className="mt-3 text-sm text-gray-600 group-hover:text-white/80">
                     {tool.description}
                   </p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-warm-brown group-hover:text-white">
+                  <span className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-black group-hover:text-white">
                     Launch tool
                     <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -156,7 +156,7 @@ export default function ToolsPage() {
         </section>
 
         {/* Embedded Tools Section */}
-        <section className="bg-cream py-16 md:py-24">
+        <section className="bg-[#fafafa] py-16 md:py-24">
           <div className="mx-auto max-w-5xl px-6 md:px-8 space-y-8">
             <DeadlineCalculator />
             <TimelineTracker />
@@ -168,7 +168,7 @@ export default function ToolsPage() {
         {/* Disclaimer */}
         <section className="py-12">
           <div className="mx-auto max-w-5xl px-6 md:px-8">
-            <div className="border-l-4 border-warm-brown bg-cream p-6 text-sm text-gray-700">
+            <div className="border-l-2 border-black bg-[#fafafa] p-6 text-sm text-gray-700">
               <strong className="text-gray-900">Educational content only.</strong> Not tax, legal, or investment advice.
               Results are estimates. Confirm every step with your Qualified Intermediary and advisors.
             </div>

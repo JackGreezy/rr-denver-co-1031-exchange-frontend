@@ -20,7 +20,7 @@ export default function PrivacyPage() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="bg-warm-brown py-16 md:py-20">
+      <section className="bg-black py-16 md:py-20">
         <div className="mx-auto max-w-4xl px-6 md:px-8">
           <Breadcrumbs
             items={[
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
               </p>
             </div>
 
-            <div className="border-t border-warm-brown/20 pt-12">
+            <div className="border-t border-gray-200 pt-12">
               <h2 className={`text-2xl text-gray-900 mb-4 ${playfair.className}`}>
                 How We Use Your Information
               </h2>
@@ -63,7 +63,7 @@ export default function PrivacyPage() {
               </p>
             </div>
 
-            <div className="border-t border-warm-brown/20 pt-12">
+            <div className="border-t border-gray-200 pt-12">
               <h2 className={`text-2xl text-gray-900 mb-4 ${playfair.className}`}>
                 Information Sharing
               </h2>
@@ -74,7 +74,7 @@ export default function PrivacyPage() {
               </p>
             </div>
 
-            <div className="border-t border-warm-brown/20 pt-12">
+            <div className="border-t border-gray-200 pt-12">
               <h2 className={`text-2xl text-gray-900 mb-4 ${playfair.className}`}>
                 Security
               </h2>
@@ -84,13 +84,13 @@ export default function PrivacyPage() {
               </p>
             </div>
 
-            <div className="border-t border-warm-brown/20 pt-12">
+            <div className="border-t border-gray-200 pt-12">
               <h2 className={`text-2xl text-gray-900 mb-4 ${playfair.className}`}>
                 Contact Us
               </h2>
               <p className="text-gray-600 leading-relaxed">
                 If you have questions about this Privacy Policy, please contact us at{" "}
-                <a href="mailto:team@1031exchangedenver.com" className="text-warm-brown hover:text-dark-brown underline underline-offset-4">
+                <a href="mailto:team@1031exchangedenver.com" className="text-black hover:text-gray-800 underline underline-offset-4">
                   team@1031exchangedenver.com
                 </a>
                 .

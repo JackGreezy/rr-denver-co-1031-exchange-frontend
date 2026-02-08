@@ -120,10 +120,10 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                 className="object-cover"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-warm-brown/60 to-warm-brown/90" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/90" />
             </div>
           )}
-          <div className={`${location.heroImage ? 'absolute inset-0 flex items-end' : 'bg-warm-brown'}`}>
+          <div className={`${location.heroImage ? 'absolute inset-0 flex items-end' : 'bg-black'}`}>
             <div className="mx-auto max-w-7xl px-6 md:px-8 py-12 md:py-16 w-full">
               <Breadcrumbs
                 items={[
@@ -153,7 +153,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           <section className="py-16 md:py-24">
             <div className="mx-auto max-w-7xl px-6 md:px-8">
               <div className="mx-auto max-w-4xl">
-                <p className="text-xs font-medium uppercase tracking-[0.2em] text-warm-brown">
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-black">
                   About {location.name}
                 </p>
                 <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
@@ -170,10 +170,10 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
 
         {/* Popular Paths Section */}
         {batchContent?.popularPaths && batchContent.popularPaths.length > 0 && (
-          <section className="bg-cream py-16 md:py-24">
+          <section className="bg-[#fafafa] py-16 md:py-24">
             <div className="mx-auto max-w-7xl px-6 md:px-8">
               <div className="text-center mb-12">
-                <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
+                <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                   Popular in {location.name}
                 </p>
                 <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
@@ -187,10 +187,10 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                     <Link
                       key={path.slug}
                       href={href}
-                      className="group bg-white p-6 transition-all hover:bg-warm-brown"
+                      className="group bg-white p-6 transition-all hover:bg-black"
                     >
                       <div className="flex items-start justify-between mb-4">
-                        <span className={`text-4xl font-light text-warm-brown/30 group-hover:text-white/30 ${playfair.className}`}>
+                        <span className={`text-4xl font-light text-black/30 group-hover:text-white/30 ${playfair.className}`}>
                           {String(path.rank).padStart(2, '0')}
                         </span>
                         <span className="text-xs uppercase tracking-[0.2em] text-gray-500 group-hover:text-white/70">
@@ -203,7 +203,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                       <p className="mt-3 text-sm text-gray-600 group-hover:text-white/80">
                         {path.whyPopular}
                       </p>
-                      <span className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-warm-brown group-hover:text-white">
+                      <span className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-black group-hover:text-white">
                         Explore
                         <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -222,7 +222,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           <section className="py-16 md:py-24">
             <div className="mx-auto max-w-4xl px-6 md:px-8">
               <div className="text-center mb-12">
-                <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
+                <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                   Example Project
                 </p>
                 <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
@@ -232,9 +232,9 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                   {batchContent.exampleCapability.disclaimer}
                 </p>
               </div>
-              <div className="space-y-8 bg-cream p-8 md:p-12">
+              <div className="space-y-8 bg-[#fafafa] p-8 md:p-12">
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-warm-brown mb-3">
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-black mb-3">
                     Situation
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
@@ -242,7 +242,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-warm-brown mb-3">
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-black mb-3">
                     Our Approach
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
@@ -250,7 +250,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-warm-brown mb-3">
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-black mb-3">
                     Expected Outcome
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
@@ -266,7 +266,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <section className="bg-white py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-6 md:px-8">
             <div className="mb-12">
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-warm-brown">
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-black">
                 Available Services
               </p>
               <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
@@ -282,16 +282,16 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}
-                  className="group bg-cream p-8 transition-all hover:bg-warm-brown"
+                  className="group bg-[#fafafa] p-8 transition-all hover:bg-black"
                 >
-                  <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown group-hover:text-white/70">
+                  <p className="text-xs font-medium uppercase tracking-[0.15em] text-black group-hover:text-white/70">
                     {service.category}
                   </p>
                   <h3 className={`mt-3 text-xl text-gray-900 group-hover:text-white ${playfair.className}`}>
                     {service.name}
                   </h3>
                   <p className="mt-3 text-sm text-gray-600 group-hover:text-white/80">{service.short}</p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-warm-brown group-hover:text-white">
+                  <span className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-black group-hover:text-white">
                     Learn more
                     <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -303,13 +303,13 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             <div className="mt-8 flex flex-wrap gap-6">
               <Link
                 href="/services"
-                className="text-sm font-medium text-warm-brown underline underline-offset-4 hover:text-dark-brown"
+                className="text-sm font-medium text-black underline underline-offset-4 hover:text-gray-800"
               >
                 View all {servicesData.length} services
               </Link>
               <Link
                 href="/locations"
-                className="text-sm font-medium text-warm-brown underline underline-offset-4 hover:text-dark-brown"
+                className="text-sm font-medium text-black underline underline-offset-4 hover:text-gray-800"
               >
                 View all locations
               </Link>
@@ -318,10 +318,10 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         </section>
 
         {/* Property Types Section */}
-        <section className="bg-cream py-16 md:py-24">
+        <section className="bg-[#fafafa] py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-6 md:px-8">
             <div className="text-center mb-12">
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                 Investment Options
               </p>
               <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
@@ -333,7 +333,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                 <Link
                   key={propertyType.slug}
                   href={`/property-types/${propertyType.slug}`}
-                  className="group bg-white p-6 transition-all hover:shadow-luxury"
+                  className="group bg-white p-6 transition-all hover:shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
                 >
                   <p className={`text-lg text-gray-900 ${playfair.className}`}>
                     {propertyType.name}
@@ -341,7 +341,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                   <p className="mt-2 text-sm text-gray-500">
                     Explore {propertyType.name.toLowerCase()} use cases
                   </p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">
+                  <span className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-black">
                     Explore
                     <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -357,24 +357,24 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <section className="py-16 md:py-24">
           <div className="mx-auto max-w-4xl px-6 md:px-8">
             <div className="text-center mb-12">
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                 Common Questions
               </p>
               <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
                 {location.name} FAQ
               </h2>
             </div>
-            <div className="divide-y divide-warm-brown/20">
+            <div className="divide-y divide-gray-200">
               {faqs.map((faq) => (
                 <details
                   key={faq.question}
                   className="group py-6"
                 >
                   <summary className="flex cursor-pointer items-center justify-between gap-4 text-left">
-                    <span className={`text-lg text-gray-900 group-open:text-warm-brown ${playfair.className}`}>
+                    <span className={`text-lg text-gray-900 group-open:text-gray-500 ${playfair.className}`}>
                       {faq.question}
                     </span>
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-warm-brown/30 text-warm-brown transition group-open:bg-warm-brown group-open:text-white">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-gray-300 text-black transition group-open:bg-black group-open:text-white">
                       <svg className="h-4 w-4 transition-transform group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                       </svg>
@@ -390,7 +390,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         </section>
 
         {/* CTA Section */}
-        <section className="bg-warm-brown py-16 md:py-24">
+        <section className="bg-black py-16 md:py-24">
           <div className="mx-auto max-w-3xl px-6 md:px-8 text-center">
             <h2 className={`text-3xl text-white ${playfair.className}`}>
               Plan your {location.name} 1031 exchange
@@ -403,13 +403,13 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
                 href={`tel:${PRIMARY_PHONE_TEL}`}
-                className="inline-flex items-center justify-center border border-white/50 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:border-white hover:bg-white hover:text-warm-brown"
+                className="inline-flex items-center justify-center border border-white/50 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:border-white hover:bg-white hover:text-black"
               >
                 Call {PRIMARY_PHONE_DISPLAY}
               </a>
               <Link
                 href="#contact-form"
-                className="inline-flex items-center justify-center border border-white bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-warm-brown transition hover:bg-transparent hover:text-white"
+                className="inline-flex items-center justify-center border border-white bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-transparent hover:text-white"
               >
                 Contact team
               </Link>
@@ -421,7 +421,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <section id="contact-form" className="py-16 md:py-24">
           <div className="mx-auto max-w-3xl px-6 md:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                 Get Started
               </p>
               <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
@@ -432,7 +432,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                 one business day.
               </p>
             </div>
-            <div className="bg-cream p-8">
+            <div className="bg-[#fafafa] p-8">
               <LeadForm prepopulatedService={`${location.name} location`} />
             </div>
           </div>

@@ -39,8 +39,8 @@ export function RotatingHeroBackground() {
           />
         </div>
       ))}
-      {/* Warm brown overlay for luxury aesthetic */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#785530]/70 via-[#785530]/60 to-[#4A3520]/80" />
+      {/* Dark overlay for luxury aesthetic */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
     </div>
   );
 }

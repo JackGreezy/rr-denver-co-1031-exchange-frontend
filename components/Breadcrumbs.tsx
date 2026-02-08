@@ -22,7 +22,7 @@ export function Breadcrumbs({ items, className, withSchema = true }: Props) {
               {item.href ? (
                 <Link
                   href={item.href}
-                  className="text-xs font-medium uppercase tracking-[0.1em] text-warm-brown/70 transition hover:text-warm-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-brown"
+                  className="text-xs font-medium uppercase tracking-[0.1em] text-black/70 transition hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
                 >
                   {item.label}
                 </Link>
@@ -32,7 +32,7 @@ export function Breadcrumbs({ items, className, withSchema = true }: Props) {
                 </span>
               )}
               {index < items.length - 1 && (
-                <span className="text-warm-brown/40" aria-hidden="true">
+                <span className="text-gray-400" aria-hidden="true">
                   /
                 </span>
               )}

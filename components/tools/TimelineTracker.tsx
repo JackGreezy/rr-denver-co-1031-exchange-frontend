@@ -53,23 +53,23 @@ export function TimelineTracker() {
   }, [closingDate]);
 
   return (
-    <div className="space-y-8 bg-cream p-8">
+    <div className="space-y-8 bg-[#fafafa] p-8">
       <div>
-        <h2 className="text-2xl font-medium text-warm-brown">Timeline Tracker</h2>
+        <h2 className="text-2xl font-medium text-black">Timeline Tracker</h2>
         <p className="mt-2 text-sm text-gray-600">
           Visualize major actions between the relinquished sale and replacement closing.
         </p>
       </div>
 
       <div>
-        <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+        <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
           Sale Closing Date
         </label>
         <input
           type="date"
           value={closingDate}
           onChange={(event) => setClosingDate(event.target.value)}
-          className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+          className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
         />
       </div>
 
@@ -77,9 +77,9 @@ export function TimelineTracker() {
         {milestones.map((milestone, index) => (
           <li
             key={milestone.label}
-            className={index === 2 || index === 4 ? "bg-warm-brown p-6 text-white" : "bg-white p-6"}
+            className={index === 2 || index === 4 ? "bg-black p-6 text-white" : "bg-white p-6"}
           >
-            <p className={`text-xs font-medium uppercase tracking-[0.15em] ${index === 2 || index === 4 ? "text-white/70" : "text-warm-brown"}`}>
+            <p className={`text-xs font-medium uppercase tracking-[0.15em] ${index === 2 || index === 4 ? "text-white/70" : "text-black"}`}>
               {milestone.label}
             </p>
             <p className={`mt-2 text-2xl font-medium ${index === 2 || index === 4 ? "text-white" : "text-gray-900"}`}>

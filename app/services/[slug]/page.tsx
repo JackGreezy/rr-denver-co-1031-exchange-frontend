@@ -109,7 +109,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       />
       <div className="bg-white">
         {/* Hero Section */}
-        <section className="bg-warm-brown py-20 md:py-28">
+        <section className="bg-black py-20 md:py-28">
           <div className="mx-auto max-w-7xl px-6 md:px-8">
             <Breadcrumbs
               items={[
@@ -138,7 +138,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <section className="py-16 md:py-24">
             <div className="mx-auto max-w-7xl px-6 md:px-8">
               <div className="mx-auto max-w-4xl">
-                <p className="text-xs font-medium uppercase tracking-[0.2em] text-warm-brown">
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-black">
                   Service Overview
                 </p>
                 <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
@@ -154,11 +154,11 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         )}
 
         {/* What's Included Section */}
-        <section className="bg-cream py-16 md:py-24">
+        <section className="bg-[#fafafa] py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-6 md:px-8">
             <div className="grid gap-12 lg:grid-cols-2">
               <div>
-                <p className="text-xs font-medium uppercase tracking-[0.2em] text-warm-brown">
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-black">
                   Service Details
                 </p>
                 <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
@@ -178,7 +178,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                   "Secure document exchange for intermediaries, attorneys, and lenders.",
                 ]).map((item, index) => (
                   <div key={index} className="flex gap-4 bg-white p-6">
-                    <span className={`text-2xl font-light text-warm-brown/40 ${playfair.className}`}>
+                    <span className={`text-2xl font-light text-black/40 ${playfair.className}`}>
                       {String(index + 1).padStart(2, '0')}
                     </span>
                     <p className="text-gray-700">{item}</p>
@@ -194,7 +194,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <section className="py-16 md:py-24">
             <div className="mx-auto max-w-7xl px-6 md:px-8">
               <div className="text-center mb-12">
-                <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
+                <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                   Common Scenarios
                 </p>
                 <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
@@ -203,9 +203,9 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               </div>
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
                 {batchContent.commonSituations.map((situation, index) => (
-                  <div key={index} className="bg-cream p-6">
+                  <div key={index} className="bg-[#fafafa] p-6">
                     <div className="mb-4">
-                      <span className={`text-5xl font-light text-warm-brown/20 ${playfair.className}`}>
+                      <span className={`text-5xl font-light text-black/20 ${playfair.className}`}>
                         {String(index + 1).padStart(2, '0')}
                       </span>
                     </div>
@@ -219,10 +219,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
         {/* Example Capability Section */}
         {batchContent?.exampleCapability && (
-          <section className="bg-warm-brown/5 py-16 md:py-24">
+          <section className="bg-gray-50 py-16 md:py-24">
             <div className="mx-auto max-w-4xl px-6 md:px-8">
               <div className="text-center mb-12">
-                <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
+                <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                   Example Project
                 </p>
                 <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
@@ -234,7 +234,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               </div>
               <div className="space-y-8 bg-white p-8 md:p-12">
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-warm-brown mb-3">
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-black mb-3">
                     Client Situation
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
@@ -242,7 +242,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-warm-brown mb-3">
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-black mb-3">
                     Our Approach
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
@@ -250,7 +250,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-warm-brown mb-3">
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-black mb-3">
                     Expected Outcome
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
@@ -258,7 +258,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                   </p>
                 </div>
                 {batchContent.complianceNote && (
-                  <div className="border-l-4 border-warm-brown bg-cream p-6 mt-8">
+                  <div className="border-l-2 border-black bg-[#fafafa] p-6 mt-8">
                     <p className="text-sm text-gray-700">
                       {batchContent.complianceNote}
                     </p>
@@ -270,7 +270,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         )}
 
         {/* Related Services */}
-        <section className="bg-cream py-16 md:py-24">
+        <section className="bg-[#fafafa] py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-6 md:px-8">
             <RelatedServiceGrid services={relatedServices.length > 0 ? relatedServices : servicesData.slice(0, 4)} />
           </div>
@@ -280,24 +280,24 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         <section className="py-16 md:py-24">
           <div className="mx-auto max-w-4xl px-6 md:px-8">
             <div className="text-center mb-12">
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                 Common Questions
               </p>
               <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
                 Frequently asked questions
               </h2>
             </div>
-            <div className="divide-y divide-warm-brown/20">
+            <div className="divide-y divide-gray-200">
               {faqs.map((faq) => (
                 <details
                   key={faq.question}
                   className="group py-6"
                 >
                   <summary className="flex cursor-pointer items-center justify-between gap-4 text-left">
-                    <span className={`text-lg text-gray-900 group-open:text-warm-brown ${playfair.className}`}>
+                    <span className={`text-lg text-gray-900 group-open:text-gray-500 ${playfair.className}`}>
                       {faq.question}
                     </span>
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-warm-brown/30 text-warm-brown transition group-open:bg-warm-brown group-open:text-white">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-gray-300 text-black transition group-open:bg-black group-open:text-white">
                       <svg className="h-4 w-4 transition-transform group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                       </svg>
@@ -313,10 +313,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         </section>
 
         {/* Locations Section */}
-        <section className="bg-cream py-16 md:py-24">
+        <section className="bg-[#fafafa] py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-6 md:px-8">
             <div className="text-center mb-12">
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                 Coverage Areas
               </p>
               <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
@@ -328,7 +328,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 <Link
                   key={location.slug}
                   href={`/locations/${location.slug}`}
-                  className="group bg-white p-6 transition-all hover:bg-warm-brown"
+                  className="group bg-white p-6 transition-all hover:bg-black"
                 >
                   <p className={`text-lg text-gray-900 group-hover:text-white ${playfair.className}`}>
                     {location.name}
@@ -343,7 +343,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         </section>
 
         {/* CTA Section */}
-        <section className="bg-warm-brown py-16 md:py-24">
+        <section className="bg-black py-16 md:py-24">
           <div className="mx-auto max-w-3xl px-6 md:px-8 text-center">
             <h2 className={`text-3xl text-white ${playfair.className}`}>
               Launch {service.name.toLowerCase()}
@@ -355,13 +355,13 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
                 href={`tel:${PRIMARY_PHONE_TEL}`}
-                className="inline-flex items-center justify-center border border-white/50 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:border-white hover:bg-white hover:text-warm-brown"
+                className="inline-flex items-center justify-center border border-white/50 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:border-white hover:bg-white hover:text-black"
               >
                 Call {PRIMARY_PHONE_DISPLAY}
               </a>
               <Link
                 href="#contact-form"
-                className="inline-flex items-center justify-center border border-white bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-warm-brown transition hover:bg-transparent hover:text-white"
+                className="inline-flex items-center justify-center border border-white bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-transparent hover:text-white"
               >
                 Contact team
               </Link>
@@ -373,7 +373,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         <section id="contact-form" className="py-16 md:py-24">
           <div className="mx-auto max-w-3xl px-6 md:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-warm-brown">
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
                 Get Started
               </p>
               <h2 className={`mt-4 text-3xl text-gray-900 ${playfair.className}`}>
@@ -384,7 +384,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 steps before the first call.
               </p>
             </div>
-            <div className="bg-cream p-8">
+            <div className="bg-[#fafafa] p-8">
               <LeadForm prepopulatedService={service.name} />
             </div>
           </div>

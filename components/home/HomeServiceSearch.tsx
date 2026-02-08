@@ -57,7 +57,7 @@ export function HomeServiceSearch({ services, featured }: HomeServiceSearchProps
       >
         <label
           htmlFor="home-service-search"
-          className="text-xs font-semibold uppercase tracking-[0.3em] text-warm-brown"
+          className="text-xs font-semibold uppercase tracking-[0.3em] text-black"
         >
           Search services
         </label>
@@ -67,11 +67,11 @@ export function HomeServiceSearch({ services, featured }: HomeServiceSearchProps
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Timeline tracking, replacement sourcing..."
-            className="flex-1 rounded-2xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-500 focus:border-warm-brown focus:outline-none focus:ring-2 focus:ring-warm-brown/20"
+            className="flex-1 rounded-2xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-500 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/20"
           />
           <button
             type="submit"
-            className="rounded-2xl bg-warm-brown px-4 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-dark-brown"
+            className="rounded-2xl bg-black px-4 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-gray-800"
           >
             Go
           </button>
@@ -82,13 +82,13 @@ export function HomeServiceSearch({ services, featured }: HomeServiceSearchProps
           <Link
             key={service.slug}
             href={`/services/${service.slug}`}
-            className="flex h-full flex-col rounded-3xl border border-gray-200 bg-white p-6 text-left transition hover:-translate-y-1 hover:border-warm-brown hover:shadow-lg"
+            className="flex h-full flex-col rounded-3xl border border-gray-200 bg-white p-6 text-left transition hover:-translate-y-1 hover:border-black hover:shadow-lg"
           >
             <h3 className="text-lg font-semibold text-gray-900">
               {service.title}
             </h3>
             <p className="mt-2 text-sm text-gray-700">{service.description}</p>
-            <span className="mt-auto pt-4 text-xs font-semibold uppercase tracking-[0.28em] text-warm-brown">
+            <span className="mt-auto pt-4 text-xs font-semibold uppercase tracking-[0.28em] text-black">
               View service
             </span>
           </Link>

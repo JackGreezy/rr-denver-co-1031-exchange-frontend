@@ -123,9 +123,9 @@ export default function IdentificationRulesChecker() {
   };
 
   return (
-    <div className="space-y-8 bg-cream p-8">
+    <div className="space-y-8 bg-[#fafafa] p-8">
       <div>
-        <h2 className="text-2xl font-medium text-warm-brown">
+        <h2 className="text-2xl font-medium text-black">
           Identification Rules Checker
         </h2>
         <p className="mt-2 text-sm text-gray-600">
@@ -135,7 +135,7 @@ export default function IdentificationRulesChecker() {
 
       <div className="grid gap-6 md:grid-cols-3">
         <div>
-          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             Number of Properties Identified
           </label>
           <input
@@ -143,7 +143,7 @@ export default function IdentificationRulesChecker() {
             value={numProperties}
             onChange={(e) => handleInputChange("numProperties", e.target.value)}
             placeholder="3"
-            className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           <p className="mt-1 text-xs text-gray-500">
             Total number of replacement properties identified
@@ -151,7 +151,7 @@ export default function IdentificationRulesChecker() {
         </div>
 
         <div>
-          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             Total Value of Identified Properties ($)
           </label>
           <input
@@ -159,7 +159,7 @@ export default function IdentificationRulesChecker() {
             value={totalIdentifiedValue}
             onChange={(e) => handleInputChange("totalValue", e.target.value)}
             placeholder="2,000,000"
-            className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           <p className="mt-1 text-xs text-gray-500">
             Sum of all identified property values
@@ -167,7 +167,7 @@ export default function IdentificationRulesChecker() {
         </div>
 
         <div>
-          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-warm-brown">
+          <label className="block text-xs font-medium uppercase tracking-[0.1em] text-black">
             Relinquished Property Value ($)
           </label>
           <input
@@ -175,7 +175,7 @@ export default function IdentificationRulesChecker() {
             value={relinquishedValue}
             onChange={(e) => handleInputChange("relinquished", e.target.value)}
             placeholder="1,000,000"
-            className="mt-2 w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="mt-2 w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           <p className="mt-1 text-xs text-gray-500">
             Sale price of the relinquished property
@@ -185,14 +185,14 @@ export default function IdentificationRulesChecker() {
 
       <button
         onClick={validateRules}
-        className="w-full bg-warm-brown px-6 py-3 font-medium text-white transition hover:bg-warm-brown/90 focus:outline-none focus:ring-2 focus:ring-warm-brown focus:ring-offset-2"
+        className="w-full bg-black px-6 py-3 font-medium text-white transition hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
       >
         Validate Identification Rules
       </button>
 
       {results && (
         <div className="space-y-6">
-          <h3 className="text-xl font-medium text-warm-brown">
+          <h3 className="text-xl font-medium text-black">
             Validation Results
           </h3>
 
@@ -214,7 +214,7 @@ export default function IdentificationRulesChecker() {
                   ? "border-l-4 border-green-500"
                   : "border-l-4 border-yellow-500"
               }`}>
-                <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">3-Property Rule</p>
+                <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">3-Property Rule</p>
                 <p className={`mt-2 text-sm ${
                   results.threePropertyRule.satisfied ? "text-green-800" : "text-yellow-800"
                 }`}>
@@ -227,7 +227,7 @@ export default function IdentificationRulesChecker() {
                   ? "border-l-4 border-green-500"
                   : "border-l-4 border-red-500"
               }`}>
-                <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">200% Rule</p>
+                <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">200% Rule</p>
                 <p className={`mt-2 text-sm ${
                   results.twoHundredPercentRule.satisfied ? "text-green-800" : "text-red-800"
                 }`}>
@@ -243,7 +243,7 @@ export default function IdentificationRulesChecker() {
                   ? "border-l-4 border-green-500"
                   : "border-l-4 border-yellow-500"
               }`}>
-                <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-brown">95% Rule</p>
+                <p className="text-xs font-medium uppercase tracking-[0.15em] text-black">95% Rule</p>
                 <p className={`mt-2 text-sm ${
                   results.ninetyFivePercentRule.satisfied ? "text-green-800" : "text-yellow-800"
                 }`}>
@@ -254,7 +254,7 @@ export default function IdentificationRulesChecker() {
                 </p>
               </div>
 
-              <div className="bg-warm-brown p-6 text-white">
+              <div className="bg-black p-6 text-white">
                 <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/70">Compliance Status</p>
                 <p className="mt-2 text-sm">
                   {results.threePropertyRule.satisfied || results.twoHundredPercentRule.satisfied
@@ -267,8 +267,8 @@ export default function IdentificationRulesChecker() {
         </div>
       )}
 
-      <div className="border-l-4 border-warm-brown bg-white p-6 text-sm text-gray-700">
-        <h3 className="mb-3 font-medium text-warm-brown">Understanding Identification Rules</h3>
+      <div className="border-l-2 border-black bg-white p-6 text-sm text-gray-700">
+        <h3 className="mb-3 font-medium text-black">Understanding Identification Rules</h3>
         <div className="space-y-3">
           <div>
             <p className="font-medium mb-1">3-Property Rule:</p>

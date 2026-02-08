@@ -79,11 +79,11 @@ export function SearchPanel({
     <div className="space-y-8">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-4 border border-warm-brown/20 bg-cream p-6"
+        className="flex flex-col gap-4 border border-gray-200 bg-[#fafafa] p-6"
       >
         <label
           htmlFor={`search-${type}`}
-          className="text-xs font-medium uppercase tracking-[0.2em] text-warm-brown"
+          className="text-xs font-medium uppercase tracking-[0.2em] text-black"
         >
           Search {type === "property" ? "property types" : `${type}s`}
         </label>
@@ -94,13 +94,13 @@ export function SearchPanel({
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={`Search ${type}s`}
-            className="w-full border border-warm-brown/20 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-warm-brown focus:outline-none focus:ring-1 focus:ring-warm-brown"
+            className="w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
           />
           {query ? (
             <button
               type="button"
               onClick={handleClear}
-              className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 text-xs font-medium uppercase tracking-[0.1em] text-warm-brown hover:text-dark-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-brown"
+              className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 text-xs font-medium uppercase tracking-[0.1em] text-black hover:text-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
               aria-label="Clear search"
             >
               Clear
@@ -111,7 +111,7 @@ export function SearchPanel({
           <span>{filtered.length} result{filtered.length === 1 ? "" : "s"}</span>
           <button
             type="submit"
-            className="font-medium text-warm-brown hover:text-dark-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-brown"
+            className="font-medium text-black hover:text-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
           >
             {exactMatchHref ? "Open match" : "Contact us"}
           </button>
@@ -146,7 +146,7 @@ export function SearchPanel({
           })}
         </div>
       ) : (
-        <div className="border border-warm-brown/20 bg-cream p-8 text-sm">
+        <div className="border border-gray-200 bg-[#fafafa] p-8 text-sm">
           <p className="text-lg font-medium text-gray-900">{emptyTitle}</p>
           <p className="mt-2 text-gray-600">{emptyDescription}</p>
           <button
@@ -154,7 +154,7 @@ export function SearchPanel({
             onClick={() =>
               router.push(buildContactHref(query || "Other"))
             }
-            className="mt-6 inline-flex items-center bg-warm-brown px-6 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-white transition hover:bg-dark-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-brown"
+            className="mt-6 inline-flex items-center bg-black px-6 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-white transition hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
           >
             Contact Team
           </button>

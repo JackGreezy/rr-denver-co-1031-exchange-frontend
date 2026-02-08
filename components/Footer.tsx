@@ -36,7 +36,7 @@ const topLocations = locationsData
 export default function Footer() {
 
   return (
-    <footer className="bg-[#4A3520] text-white">
+    <footer className="bg-black text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
           <div className="space-y-4">
@@ -134,7 +134,7 @@ export default function Footer() {
             </Link>
             <Link
               href={CONTACT_ROUTE}
-              className="inline-flex items-center justify-center border border-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-white transition hover:bg-white hover:text-[#4A3520] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              className="inline-flex items-center justify-center border border-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-white transition hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
               Start Intake
             </Link>
