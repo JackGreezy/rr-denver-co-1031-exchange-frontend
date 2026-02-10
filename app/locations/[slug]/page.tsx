@@ -24,6 +24,14 @@ const playfair = Playfair_Display({
   weight: ["400", "500", "600", "700"],
 });
 
+const LOCATION_TYPE_LABELS: Record<string, string> = {
+  city: "City",
+  neighborhood: "Neighborhood",
+  suburb: "Suburb",
+  district: "District",
+  remote: "Remote",
+};
+
 export async function generateStaticParams() {
   return locationsData.map((location) => ({
     slug: location.slug,
@@ -33,18 +41,30 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const location = locationsData.find((l) => l.slug === slug);
-  
+
   if (!location) {
     return {
       title: "Location Not Found | 1031 Exchange Denver",
     };
   }
 
+  const typeLabel = LOCATION_TYPE_LABELS[location.type] || "Area";
+  const description = location.type === "remote"
+    ? `Remote 1031 exchange coordination for out-of-state investors targeting Colorado replacement properties. Qualified intermediary alignment, 45-day identification strategy, and 180-day closing support from ${BRAND_NAME}.`
+    : `Expert 1031 exchange services in ${location.name}, ${PRIMARY_STATE_ABBR}. ${typeLabel}-level replacement property identification, qualified intermediary coordination, and IRS deadline management for ${location.name} investors.`;
+
   return {
-    title: `1031 Exchange Services in ${location.name}, CO | ${BRAND_NAME}`,
-    description: `Location-specific 1031 exchange coordination for ${location.name}, ${PRIMARY_STATE_ABBR}. Identification help, underwriting, and intermediary alignment for regional investors.`,
+    title: `1031 Exchange in ${location.name}, CO | Replacement Property & QI Services | ${BRAND_NAME}`,
+    description,
     alternates: {
       canonical: `https://www.1031exchangedenver.com/locations/${location.slug}`,
+    },
+    openGraph: {
+      title: `1031 Exchange Services in ${location.name}, Colorado`,
+      description,
+      url: `https://www.1031exchangedenver.com/locations/${location.slug}`,
+      siteName: BRAND_NAME,
+      type: "website",
     },
   };
 }
@@ -58,15 +78,48 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
   }
 
   const parentLocation = location.parent ? locationsData.find((l) => l.slug === location.parent) : null;
-
-  // Get rich content from batch data
   const batchContent = getLocationBatch(slug);
+  const typeLabel = LOCATION_TYPE_LABELS[location.type] || "Area";
 
-  const jsonLd = {
+  const featuredServices = servicesData
+    .filter((service) => service.category === "Property Paths")
+    .slice(0, 6);
+
+  // Use batch FAQs if available, otherwise use defaults
+  const faqs = batchContent?.faqs || [
+    {
+      question: `What 1031 exchange services are available in ${location.name}, ${PRIMARY_STATE_ABBR}?`,
+      answer: `${location.name}, ${PRIMARY_STATE_ABBR} investors have access to replacement property identification, qualified intermediary coordination, 45-day identification strategy, 180-day closing management, and due diligence support through our Denver-based team.`,
+    },
+    {
+      question: `Can ${location.name} investors identify replacement properties outside Colorado?`,
+      answer: `Yes. IRS like-kind rules allow ${location.name}, ${PRIMARY_STATE_ABBR} investors to identify replacement properties anywhere in the United States. Geographic location is not restricted as long as the property is real property held for investment or business use.`,
+    },
+    {
+      question: `What are the 1031 exchange deadlines for ${location.name}, ${PRIMARY_STATE_ABBR}?`,
+      answer: `${location.name} exchanges follow standard IRS timelines: 45 calendar days from sale closing to identify replacement properties and 180 calendar days to complete acquisition. Our team provides deadline tracking and milestone management throughout.`,
+    },
+    {
+      question: `How is boot taxed in a ${location.name} 1031 exchange?`,
+      answer: `Boot in ${location.name}, ${PRIMARY_STATE_ABBR} exchanges includes cash not reinvested and mortgage relief not replaced. Boot is recognized as taxable income. We help structure exchanges to minimize boot through proper debt matching and full reinvestment.`,
+    },
+    {
+      question: `Do you coordinate reverse exchanges in ${location.name}?`,
+      answer: `Yes, we align qualified intermediaries and exchange accommodation titleholders for reverse exchanges in ${location.name}, ${PRIMARY_STATE_ABBR}. Reverse exchanges require parking arrangements compliant with IRS Revenue Procedure 2000-37.`,
+    },
+  ];
+
+  // Nearby locations for internal linking
+  const nearbyLocations = locationsData
+    .filter((l) => l.slug !== slug && l.type !== "remote")
+    .slice(0, 6);
+
+  // JSON-LD: LocalBusiness
+  const localBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: `${BRAND_NAME} - ${location.name}`,
-    description: `1031 exchange coordination services for ${location.name}, ${PRIMARY_STATE_ABBR} investors.`,
+    description: `1031 exchange coordination services for ${location.name}, ${PRIMARY_STATE_ABBR} investors. Replacement property identification, qualified intermediary alignment, and IRS deadline management.`,
     address: {
       "@type": "PostalAddress",
       addressLocality: location.name,
@@ -75,38 +128,54 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
     },
     telephone: PRIMARY_PHONE_TEL,
     url: `https://www.1031exchangedenver.com/locations/${location.slug}`,
+    areaServed: {
+      "@type": "City",
+      name: location.name,
+      containedInPlace: {
+        "@type": "State",
+        name: "Colorado",
+      },
+    },
   };
 
-  const featuredServices = servicesData
-    .filter((service) => service.category === "Property Paths")
-    .slice(0, 4);
+  // JSON-LD: FAQPage
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
 
-  // Use batch FAQs if available, otherwise use defaults
-  const faqs = batchContent?.faqs || [
-    {
-      question: `How fast can you mobilize in ${location.name}?`,
-      answer: `We stage intake calls within one business day for ${location.name}, ${PRIMARY_STATE_ABBR} investors and begin property matching once debt and equity targets are confirmed.`,
-    },
-    {
-      question: `Do you cover identification tours in ${location.name}?`,
-      answer: `Yes, we coordinate broker and property tours in ${location.name}, ${PRIMARY_STATE_ABBR} when travel makes sense and supply remote alternatives when timelines are compressed.`,
-    },
-    {
-      question: `Can you support reverse exchanges in ${location.name}?`,
-      answer: `We align qualified intermediaries and exchange accommodation arrangements that meet IRS requirements for reverse exchanges in ${location.name}, ${PRIMARY_STATE_ABBR}.`,
-    },
-    {
-      question: `Who manages closing calendars for ${location.name}?`,
-      answer: `Our Denver desk tracks the 45 and 180 day milestones for ${location.name}, ${PRIMARY_STATE_ABBR} projects and updates your intermediary, lender, and attorney weekly.`,
-    },
-  ];
+  // JSON-LD: BreadcrumbList
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.1031exchangedenver.com/" },
+      { "@type": "ListItem", position: 2, name: "Locations", item: "https://www.1031exchangedenver.com/locations" },
+      { "@type": "ListItem", position: 3, name: location.name, item: `https://www.1031exchangedenver.com/locations/${location.slug}` },
+    ],
+  };
 
   return (
     <>
       <Script
         id="jsonld-location"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
+      <Script
+        id="jsonld-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <Script
+        id="jsonld-breadcrumb"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <div className="bg-white">
         {/* Hero Section with Image */}
@@ -115,7 +184,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             <div className="relative h-80 md:h-96 w-full overflow-hidden">
               <Image
                 src={location.heroImage}
-                alt={`${location.name}, Colorado`}
+                alt={`1031 exchange services in ${location.name}, Colorado`}
                 fill
                 className="object-cover"
                 priority
@@ -123,50 +192,118 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
               <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/90" />
             </div>
           )}
-          <div className={`${location.heroImage ? 'absolute inset-0 flex items-end' : 'bg-black'}`}>
+          <div className={`${location.heroImage ? 'absolute inset-0 flex items-end' : 'bg-black py-20'}`}>
             <div className="mx-auto max-w-7xl px-6 md:px-8 py-12 md:py-16 w-full">
               <Breadcrumbs
                 items={[
                   { label: "Home", href: "/" },
                   { label: "Locations", href: "/locations" },
+                  ...(parentLocation ? [{ label: parentLocation.name, href: `/locations/${parentLocation.slug}` }] : []),
                   { label: location.name },
                 ]}
                 className="mb-6 text-sm"
               />
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
-                {location.type === "remote" ? "Remote Support" : "Local Focus"}
+                {typeLabel} &middot; {PRIMARY_STATE_ABBR}
               </p>
               <h1 className={`mt-4 text-3xl tracking-wide text-white sm:text-4xl md:text-5xl uppercase ${playfair.className}`}>
-                1031 exchange services in {location.name}
-                {parentLocation ? `, ${parentLocation.name}` : ""}
+                1031 Exchange in {location.name}
+                {parentLocation ? `, ${parentLocation.name}` : ""}, Colorado
               </h1>
               <p className="mt-4 max-w-2xl text-lg font-light leading-relaxed text-white/80">
-                Deadline surveillance, identification planning, and lender prep
-                tailored to {location.name}, {PRIMARY_STATE_ABBR}.
+                Qualified intermediary coordination, replacement property identification,
+                and IRS deadline management for {location.name}, {PRIMARY_STATE_ABBR} investors.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Main Description Section */}
-        {batchContent?.mainDescription && (
-          <section className="py-16 md:py-24">
-            <div className="mx-auto max-w-7xl px-6 md:px-8">
-              <div className="mx-auto max-w-4xl">
-                <p className="text-xs font-medium uppercase tracking-[0.2em] text-black">
-                  About {location.name}
-                </p>
-                <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
-                  1031 Exchange Services in {location.name}
-                </h2>
-                <div 
+        {/* Main Description / Market Overview Section */}
+        <section className="py-16 md:py-24">
+          <div className="mx-auto max-w-7xl px-6 md:px-8">
+            <div className="mx-auto max-w-4xl">
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-black">
+                {location.name}, {PRIMARY_STATE_ABBR} Market
+              </p>
+              <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
+                1031 Exchange Services in {location.name}, Colorado
+              </h2>
+              {batchContent?.mainDescription ? (
+                <div
                   className="mt-6 prose prose-lg max-w-none text-gray-700 leading-relaxed"
                   dangerouslySetInnerHTML={{ __html: batchContent.mainDescription }}
                 />
-              </div>
+              ) : (
+                <div className="mt-6 space-y-4 text-gray-700 leading-relaxed">
+                  <p>
+                    {location.name}, {PRIMARY_STATE_ABBR} offers distinct opportunities for 1031 exchange
+                    investors seeking tax-deferred reinvestment across Colorado{`'`}s real estate markets.
+                    As a {typeLabel.toLowerCase()} within the Denver metro corridor, {location.name} provides
+                    access to multifamily, industrial, retail, and mixed-use replacement properties.
+                  </p>
+                  <p>
+                    Our Denver-based team coordinates every phase of the exchange process for {location.name} investors,
+                    including qualified intermediary selection, 45-day identification letter preparation,
+                    replacement property underwriting, lender coordination, and 180-day closing management.
+                  </p>
+                  <p>
+                    {location.name} investors can identify replacement properties locally within Colorado
+                    or nationwide. IRS Section 1031 requires only that the replacement property be like-kind
+                    real property held for investment or business use — geographic restrictions do not apply.
+                  </p>
+                </div>
+              )}
             </div>
-          </section>
-        )}
+          </div>
+        </section>
+
+        {/* Key Exchange Facts for Location */}
+        <section className="bg-black py-16 md:py-24">
+          <div className="mx-auto max-w-7xl px-6 md:px-8">
+            <div className="text-center mb-12">
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
+                Exchange Requirements
+              </p>
+              <h2 className={`mt-4 text-3xl text-white uppercase ${playfair.className}`}>
+                Key 1031 Deadlines for {location.name} Investors
+              </h2>
+            </div>
+            <div className="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
+              {[
+                {
+                  stat: "45 Days",
+                  label: "Identification Deadline",
+                  copy: `${location.name} investors must formally identify up to three replacement properties within 45 calendar days of the relinquished property sale closing.`,
+                },
+                {
+                  stat: "180 Days",
+                  label: "Closing Deadline",
+                  copy: `All replacement property acquisitions for ${location.name} exchanges must close within 180 calendar days. Missing this deadline disqualifies the exchange.`,
+                },
+                {
+                  stat: "100%",
+                  label: "Tax Deferral",
+                  copy: `A properly structured 1031 exchange defers 100% of federal capital gains and depreciation recapture tax for ${location.name}, ${PRIMARY_STATE_ABBR} investors.`,
+                },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="border border-white/10 px-8 py-10 text-center"
+                >
+                  <span className={`block text-4xl font-light text-white ${playfair.className}`}>
+                    {item.stat}
+                  </span>
+                  <h3 className={`mt-4 text-base text-white/90 ${playfair.className}`}>
+                    {item.label}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-white/50">
+                    {item.copy}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Popular Paths Section */}
         {batchContent?.popularPaths && batchContent.popularPaths.length > 0 && (
@@ -177,7 +314,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                   Popular in {location.name}
                 </p>
                 <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
-                  Most requested services and property types
+                  Top 1031 Exchange Services &amp; Property Types in {location.name}
                 </h2>
               </div>
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
@@ -226,7 +363,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                   Example Project
                 </p>
                 <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
-                  {location.name} Exchange Coordination
+                  {location.name} 1031 Exchange Coordination
                 </h2>
                 <p className="mt-2 text-sm text-gray-600">
                   {batchContent.exampleCapability.disclaimer}
@@ -270,14 +407,14 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                 Available Services
               </p>
               <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
-                Featured services for {location.name}
+                1031 Exchange Services for {location.name}, {PRIMARY_STATE_ABBR}
               </h2>
               <p className="mt-4 text-gray-600">
-                Property sourcing and underwriting paths Denver investors most
-                often request for {location.name}.
+                Property sourcing, underwriting, and exchange coordination paths {location.name} investors
+                most frequently request.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {featuredServices.map((service) => (
                 <Link
                   key={service.slug}
@@ -307,48 +444,62 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
               >
                 View all {servicesData.length} services
               </Link>
-              <Link
-                href="/locations"
-                className="text-sm font-medium text-black underline underline-offset-4 hover:text-gray-800"
-              >
-                View all locations
-              </Link>
             </div>
           </div>
         </section>
 
-        {/* Property Types Section */}
+        {/* Property Types Section — with images */}
         <section className="bg-[#fafafa] py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-6 md:px-8">
             <div className="text-center mb-12">
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
-                Investment Options
+                Replacement Property Options
               </p>
               <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
-                Property types popular in {location.name}
+                1031 Exchange Property Types in {location.name}
               </h2>
+              <p className="mt-4 mx-auto max-w-2xl text-gray-600">
+                {location.name}, {PRIMARY_STATE_ABBR} investors exchange into these property types
+                to defer capital gains and reposition their portfolios.
+              </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-3">
-              {propertyTypesData.slice(0, 3).map((propertyType) => (
+            <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+              {propertyTypesData.slice(0, 6).map((propertyType) => (
                 <Link
                   key={propertyType.slug}
                   href={`/property-types/${propertyType.slug}`}
-                  className="group bg-white p-6 transition-all hover:shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
+                  className="group block"
                 >
-                  <p className={`text-lg text-gray-900 ${playfair.className}`}>
+                  {propertyType.heroImage && (
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                      <Image
+                        src={propertyType.heroImage}
+                        alt={`${propertyType.name} 1031 exchange properties in ${location.name}`}
+                        fill
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+                      />
+                    </div>
+                  )}
+                  <h3 className={`mt-5 text-xl text-gray-900 ${playfair.className}`}>
                     {propertyType.name}
-                  </p>
+                  </h3>
                   <p className="mt-2 text-sm text-gray-500">
-                    Explore {propertyType.name.toLowerCase()} use cases
+                    Explore {propertyType.name.toLowerCase()} replacement options for {location.name} investors
                   </p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-black">
-                    Explore
-                    <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                  <span className="mt-3 inline-block text-xs font-medium text-black underline underline-offset-4 decoration-gray-300 group-hover:decoration-black transition">
+                    View {propertyType.name}
                   </span>
                 </Link>
               ))}
+            </div>
+            <div className="mt-12 text-center">
+              <Link
+                href="/property-types"
+                className="inline-block border border-black px-10 py-4 text-xs font-medium uppercase tracking-[0.2em] text-black transition-all hover:bg-black hover:text-white"
+              >
+                View All Property Types
+              </Link>
             </div>
           </div>
         </section>
@@ -361,7 +512,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                 Common Questions
               </p>
               <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
-                {location.name} FAQ
+                {location.name}, {PRIMARY_STATE_ABBR} 1031 Exchange FAQ
               </h2>
             </div>
             <div className="divide-y divide-gray-200">
@@ -389,11 +540,63 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           </div>
         </section>
 
+        {/* Nearby Locations — internal linking */}
+        <section className="bg-[#fafafa] py-16 md:py-24">
+          <div className="mx-auto max-w-7xl px-6 md:px-8">
+            <div className="text-center mb-12">
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-black">
+                Nearby Service Areas
+              </p>
+              <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
+                Other Colorado 1031 Exchange Locations
+              </h2>
+            </div>
+            <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+              {nearbyLocations.map((loc) => (
+                <Link
+                  key={loc.slug}
+                  href={`/locations/${loc.slug}`}
+                  className="group block"
+                >
+                  {loc.heroImage && (
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                      <Image
+                        src={loc.heroImage}
+                        alt={`1031 exchange services in ${loc.name}, Colorado`}
+                        fill
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+                      />
+                    </div>
+                  )}
+                  <h3 className={`mt-5 text-xl text-gray-900 ${playfair.className}`}>
+                    {loc.name}
+                  </h3>
+                  <p className="mt-1 text-xs uppercase tracking-[0.15em] text-gray-400">
+                    {LOCATION_TYPE_LABELS[loc.type] || "Area"}
+                  </p>
+                  <span className="mt-2 inline-block text-xs font-medium text-black underline underline-offset-4 decoration-gray-300 group-hover:decoration-black transition">
+                    View Location
+                  </span>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-12 text-center">
+              <Link
+                href="/locations"
+                className="inline-block border border-black px-10 py-4 text-xs font-medium uppercase tracking-[0.2em] text-black transition-all hover:bg-black hover:text-white"
+              >
+                View All {locationsData.length} Locations
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="bg-black py-16 md:py-24">
           <div className="mx-auto max-w-3xl px-6 md:px-8 text-center">
             <h2 className={`text-3xl text-white uppercase ${playfair.className}`}>
-              Plan your {location.name} 1031 exchange
+              Start Your {location.name} 1031 Exchange
             </h2>
             <p className="mt-4 text-lg font-light text-white/80">
               Call or message to confirm relinquished sale status, lender needs,
@@ -411,7 +614,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                 href="#contact-form"
                 className="inline-flex items-center justify-center border border-white bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-transparent hover:text-white"
               >
-                Contact team
+                Contact Team
               </Link>
             </div>
           </div>
@@ -425,15 +628,15 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                 Get Started
               </p>
               <h2 className={`mt-4 text-3xl text-gray-900 uppercase ${playfair.className}`}>
-                Tell us about your timelines
+                Plan Your {location.name} Exchange
               </h2>
               <p className="mt-4 text-gray-600">
                 The form routes to an encrypted intake workflow. We respond within
-                one business day.
+                one business day with next steps for your {location.name} 1031 exchange.
               </p>
             </div>
             <div className="bg-[#fafafa] p-8">
-              <LeadForm prepopulatedService={`${location.name} location`} />
+              <LeadForm prepopulatedService={`${location.name} 1031 exchange`} />
             </div>
           </div>
         </section>
@@ -442,4 +645,3 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
     </>
   );
 }
-

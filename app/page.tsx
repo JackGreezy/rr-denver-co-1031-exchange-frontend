@@ -123,42 +123,42 @@ const PROPERTY_TYPES = [
     description:
       "Stabilize income with Denver and Front Range apartments while deferring capital gains across unit portfolios.",
     slug: "multifamily",
-    image: "/inventory/1031-exchange-multifamily-denver-co.jpg",
+    image: "/inventory/multifamily/multifamily.jpg",
   },
   {
     title: "Industrial",
     description:
       "Reposition proceeds into logistics and flex space serving Colorado's manufacturing and aerospace sectors.",
     slug: "industrial",
-    image: "/inventory/1031-exchange-industrial-denver-co.jpg",
+    image: "/inventory/industrial/industrial.jpeg",
   },
   {
     title: "Medical Office",
     description:
       "Capture long-term tenancy with healthcare providers anchored in high-growth Colorado corridors.",
     slug: "medical-office",
-    image: "/inventory/1031-exchange-medical-office-denver-co.jpg",
+    image: "/inventory/medical-office/medical-office.jpg",
   },
   {
     title: "Retail",
     description:
       "Leverage consumer traffic in urban and mountain gateway retail with tailored NOI expectations.",
     slug: "retail",
-    image: "/inventory/1031-exchange-retail-denver-co.jpg",
+    image: "/inventory/retail/retail.jpg",
   },
   {
     title: "Hospitality",
     description:
       "Evaluate boutique hotels and resort properties that align with safe harbor use standards.",
     slug: "hospitality",
-    image: "/inventory/1031-exchange-hospitality-denver-co.jpg",
+    image: "/inventory/hospitality/hospitality.png",
   },
   {
     title: "Land",
     description:
       "Exchange into irrigated cropland and ranch assets with conservation-minded yield strategies.",
-    slug: "agricultural",
-    image: "/inventory/1031-exchange-land-denver-co.jpg",
+    slug: "land",
+    image: "/inventory/land/land.webp",
   },
 ];
 
@@ -244,21 +244,42 @@ const FAQ_ENTRIES = [
   },
 ];
 
-const TESTIMONIALS = [
+const EXCHANGE_FACTS = [
   {
-    quote:
-      "Working with the 1031 Exchange Denver team made the entire process seamless. Their knowledge of Colorado-specific regulations and tight coordination with our qualified intermediary kept everything on track within the 45-day identification window.",
-    attribution: "Denver Metro, Investor",
+    stat: "$100B+",
+    label: "Annual 1031 Exchange Volume",
+    description:
+      "Section 1031 exchanges facilitate over one hundred billion dollars in real estate transactions annually across the United States, making it one of the most widely used tax deferral strategies for property investors.",
   },
   {
-    quote:
-      "The timeline discipline was exceptional. Every milestone was tracked, every document prepared ahead of schedule, and the attorney coordination meant we closed our replacement property with weeks to spare on the 180-day deadline.",
-    attribution: "Boulder County, Property Owner",
+    stat: "45",
+    label: "Day Identification Window",
+    description:
+      "Investors have exactly 45 calendar days from the closing of their relinquished property to formally identify up to three potential replacement properties under the standard identification rules.",
   },
   {
-    quote:
-      "Understanding the nuances of boot taxation and debt replacement requirements is critical in a 1031 exchange. The advisory team walked us through every scenario and helped us structure the transaction to defer the maximum amount of capital gains.",
-    attribution: "Colorado Springs, Portfolio Manager",
+    stat: "180",
+    label: "Day Closing Deadline",
+    description:
+      "The IRS requires all replacement property acquisitions to close within 180 calendar days of the original sale. Missing this deadline disqualifies the entire exchange from tax deferral.",
+  },
+  {
+    stat: "0%",
+    label: "Tax on Deferred Gains",
+    description:
+      "A properly structured 1031 exchange defers 100 percent of federal capital gains tax, depreciation recapture, and applicable state income tax on qualifying investment real estate transactions.",
+  },
+  {
+    stat: "3",
+    label: "Property Identification Rule",
+    description:
+      "The three property rule allows investors to identify up to three replacement properties of any value. Alternative rules include the 200 percent rule and the 95 percent exception for larger portfolios.",
+  },
+  {
+    stat: "1921",
+    label: "Year Section 1031 Was Enacted",
+    description:
+      "Like-kind exchange provisions have existed in the U.S. tax code for over a century. The Tax Cuts and Jobs Act of 2017 narrowed eligibility to real property only, eliminating personal property exchanges.",
   },
 ];
 
@@ -380,43 +401,6 @@ export default function Page() {
             </Link>
           </div>
         </div>
-        {/* Subtle nav arrows like the screenshot */}
-        <button
-          aria-label="Previous"
-          className="absolute bottom-12 left-12 z-10 text-white/30 transition hover:text-white/60"
-        >
-          <svg
-            width="40"
-            height="12"
-            viewBox="0 0 40 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0 6H38M0 6L6 1M0 6L6 11"
-              stroke="currentColor"
-              strokeWidth="1"
-            />
-          </svg>
-        </button>
-        <button
-          aria-label="Next"
-          className="absolute bottom-12 right-12 z-10 text-white/30 transition hover:text-white/60"
-        >
-          <svg
-            width="40"
-            height="12"
-            viewBox="0 0 40 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M40 6H2M40 6L34 1M40 6L34 11"
-              stroke="currentColor"
-              strokeWidth="1"
-            />
-          </svg>
-        </button>
       </section>
 
       {/* ═══════════════════════════════════
@@ -735,57 +719,47 @@ export default function Page() {
       </section>
 
       {/* ═══════════════════════════════════
-          TESTIMONIALS — topographic bg + centered white card
+          1031 EXCHANGE FACTS — all black background
           ═══════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-[#f3f1ed]">
-        {/* Dark band at top like the screenshot */}
-        <div className="absolute top-0 left-0 right-0 h-20 bg-black" />
-        {/* Topographic contour pattern */}
-        <div className="absolute inset-0 topo-pattern opacity-20" />
+      <section className="bg-black">
+        <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-40">
+          <RevealSection className="text-center">
+            <h2
+              className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-white`}
+            >
+              1031 Exchange Facts
+            </h2>
+            <p
+              className={`${inter.className} mx-auto mt-6 max-w-xl text-[15px] font-light leading-relaxed text-white/50`}
+            >
+              Key numbers every Colorado investor should know before starting an
+              exchange.
+            </p>
+          </RevealSection>
 
-        <div className="relative z-10 mx-auto max-w-[900px] px-6 py-40 md:px-12">
-          <RevealSection className="bg-white px-10 py-16 text-center shadow-[0_4px_60px_rgba(0,0,0,0.06)] md:px-20 md:py-24">
-            <p
-              className={`${inter.className} text-[13px] font-medium tracking-[0.04em] text-black underline underline-offset-4`}
-            >
-              There is a difference in 1031 exchange advisors. Don&apos;t ask
-              us. Ask our clients.
-            </p>
-            <blockquote
-              className={`${playfair.className} mx-auto mt-12 max-w-[640px] text-[20px] italic leading-[1.7] text-gray-700 md:text-[24px]`}
-            >
-              &ldquo;{TESTIMONIALS[0].quote}&rdquo;
-            </blockquote>
-            <p
-              className={`${inter.className} mt-10 text-[14px] italic text-gray-400`}
-            >
-              {TESTIMONIALS[0].attribution}
-            </p>
-            {/* Pagination dots */}
-            <div className="mt-12 flex items-center justify-center gap-8">
-              <span className="text-gray-300 transition hover:text-gray-500 cursor-pointer">
-                &larr;
-              </span>
+          <RevealSection className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {EXCHANGE_FACTS.map((fact) => (
               <div
-                className={`${inter.className} flex gap-4 text-[13px] text-gray-300`}
+                key={fact.label}
+                className="group border border-white/10 px-10 py-12 transition-all duration-300 hover:border-white/30"
               >
-                {TESTIMONIALS.map((_, i) => (
-                  <span
-                    key={i}
-                    className={
-                      i === 0
-                        ? "text-black font-medium"
-                        : "hover:text-gray-500 cursor-pointer transition"
-                    }
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                ))}
+                <span
+                  className={`${playfair.className} block text-[3.5rem] font-light leading-none text-white`}
+                >
+                  {fact.stat}
+                </span>
+                <h3
+                  className={`${playfair.className} mt-6 text-[18px] leading-snug text-white/90`}
+                >
+                  {fact.label}
+                </h3>
+                <p
+                  className={`${inter.className} mt-4 text-[13px] leading-[1.8] text-white/50`}
+                >
+                  {fact.description}
+                </p>
               </div>
-              <span className="text-gray-300 transition hover:text-gray-500 cursor-pointer">
-                &rarr;
-              </span>
-            </div>
+            ))}
           </RevealSection>
         </div>
       </section>
