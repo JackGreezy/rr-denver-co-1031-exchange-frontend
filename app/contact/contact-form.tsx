@@ -1,447 +1,279 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import Turnstile from "react-turnstile";
-import { servicesData } from "@/data/services";
+import { useState, useEffect, Suspense, useRef } from "react";
+import { FormEvent } from "react";
 
-const PHONE_TEL = "+17207381031";
-const PHONE_DISPLAY = "(720) 738-1031";
-
-type FormField =
-  | "name"
-  | "company"
-  | "email"
-  | "phone"
-  | "projectType"
-  | "property"
-  | "estimatedCloseDate"
-  | "city"
-  | "timeline"
-  | "details";
-
-type FormState = {
-  values: Record<FormField, string>;
-  errors: Partial<Record<FormField, string>>;
-  status: "idle" | "submitting" | "success" | "error";
-  feedback: string;
-  turnstileToken: string | null;
-};
-
-const INITIAL_STATE: FormState = {
-  values: {
-    name: "",
-    company: "",
-    email: "",
-    phone: "",
-    projectType: "",
-    property: "",
-    estimatedCloseDate: "",
-    city: "",
-    timeline: "",
-    details: "",
-  },
-  errors: {},
-  status: "idle",
-  feedback: "",
-  turnstileToken: null,
-};
-
-const sortedServices = [...servicesData].sort((a, b) => a.name.localeCompare(b.name));
-
-const TIMELINE_OPTIONS = [
-  { value: "", label: "Select timeline..." },
-  { value: "immediate", label: "Immediate" },
-  { value: "45-days", label: "45 days" },
-  { value: "180-days", label: "180 days" },
-  { value: "planning", label: "Planning phase" },
-];
-
-export const ContactForm: React.FC<{ prepopulatedProjectType?: string }> = ({ prepopulatedProjectType }) => {
-  const [state, setState] = useState<FormState>(INITIAL_STATE);
-  const [projectTypeFilter, setProjectTypeFilter] = useState("");
-  const [showProjectTypeDropdown, setShowProjectTypeDropdown] = useState(false);
-  const projectTypeRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (prepopulatedProjectType) {
-      setState((prev) => ({
-        ...prev,
-        values: { ...prev.values, projectType: prepopulatedProjectType },
-      }));
-    }
-  }, [prepopulatedProjectType]);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (projectTypeRef.current && !projectTypeRef.current.contains(event.target as Node)) {
-        setShowProjectTypeDropdown(false);
-      }
+declare global {
+  interface Window {
+    _turnstileLoaded?: boolean;
+    _lastTurnstileToken?: string;
+    turnstile?: {
+      render: (element: HTMLElement, options: Record<string, unknown>) => string;
+      execute: (widgetId: string, options?: Record<string, unknown>) => Promise<string>;
+      reset: (widgetId: string) => void;
     };
+  }
+}
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+function loadTurnstile(): Promise<void> {
+  if (typeof window === "undefined") return Promise.resolve();
+  if (window._turnstileLoaded) return Promise.resolve();
+
+  return new Promise<void>((resolve, reject) => {
+    const existing = document.querySelector<HTMLScriptElement>(
+      'script[src^="https://challenges.cloudflare.com/turnstile/v0/api.js"]'
+    );
+    if (existing) {
+      window._turnstileLoaded = true;
+      return resolve();
+    }
+    const s = document.createElement("script");
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    s.async = true;
+    s.defer = true;
+    s.onload = () => { window._turnstileLoaded = true; resolve(); };
+    s.onerror = () => reject(new Error("Turnstile script failed to load"));
+    document.head.appendChild(s);
+  });
+}
+
+type FormData = {
+  name: string;
+  email: string;
+  phone: string;
+  projectType: string;
+  city: string;
+  property: string;
+  estimatedCloseDate: string;
+  company: string;
+  timeline: string;
+  message: string;
+};
+
+function ContactForm() {
+  const captchaRef = useRef<HTMLDivElement | null>(null);
+  const [formData, setFormData] = useState<FormData>({
+    name: "", email: "", phone: "", projectType: "", city: "",
+    property: "", estimatedCloseDate: "", company: "", timeline: "", message: "",
+  });
+  const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [feedback, setFeedback] = useState("");
+  const [turnstileId, setTurnstileId] = useState<string | null>(null);
+  const [turnstileReady, setTurnstileReady] = useState(false);
+
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
+  useEffect(() => {
+    let cancelled = false;
+    const initTimeout = setTimeout(async () => {
+      if (cancelled || !siteKey) return;
+      try {
+        await loadTurnstile();
+        if (cancelled || !window.turnstile || !captchaRef.current) return;
+        const id: string = window.turnstile.render(captchaRef.current, {
+          sitekey: siteKey,
+          size: "normal",
+          callback: () => setTurnstileReady(true),
+          "error-callback": () => setTurnstileReady(false),
+          "timeout-callback": () => setTurnstileReady(false),
+        });
+        setTurnstileId(id);
+        setTurnstileReady(true);
+      } catch (error) {
+        console.error("Failed to initialize Turnstile:", error);
+        setTurnstileReady(false);
+      }
+    }, 500);
+    return () => { cancelled = true; clearTimeout(initTimeout); };
+  }, [siteKey]);
+
+  useEffect(() => {
+    if (window.location.hash === "#contact-form") {
+      const el = document.getElementById("contact-form");
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
+    }
   }, []);
 
-  const filteredServices = sortedServices.filter((service) =>
-    service.name.toLowerCase().includes(projectTypeFilter.toLowerCase())
-  );
-
-  const validate = (values: FormState["values"]) => {
-    const errors: Partial<Record<FormField, string>> = {};
-    if (!values.name.trim()) {
-      errors.name = "Please provide your full name.";
-    }
-    if (!values.email.trim()) {
-      errors.email = "Please provide an email address.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
-      errors.email = "Enter a valid email address.";
-    }
-    if (!values.phone.trim()) {
-      errors.phone = "Please provide a phone number.";
-    } else if (!/^\+?[0-9()\-\s.]{7,}$/.test(values.phone.trim())) {
-      errors.phone = "Enter a valid phone number.";
-    }
-    if (!values.projectType.trim()) {
-      errors.projectType = "Please select a project type.";
-    }
-    return errors;
+  const handleChange = (field: keyof FormData) => (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setFormData(prev => ({ ...prev, [field]: e.target.value }));
+    setErrors(prev => ({ ...prev, [field]: undefined }));
   };
 
-  const handlePhoneChange = (value: string) => {
-    const cleaned = value.replace(/[^\d+\-().\s]/g, "");
-    handleChange("phone", cleaned);
-  };
-
-  const handleChange = (field: FormField, value: string) => {
-    setState((prev) => ({
-      ...prev,
-      values: { ...prev.values, [field]: value },
-      errors: { ...prev.errors, [field]: undefined },
-      status: prev.status === "success" ? "idle" : prev.status,
-      feedback: prev.status === "success" ? "" : prev.feedback,
-    }));
-  };
-
-  const handleProjectTypeSelect = (serviceName: string) => {
-    handleChange("projectType", serviceName);
-    setProjectTypeFilter("");
-    setShowProjectTypeDropdown(false);
-  };
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setState((prev) => ({
-      ...prev,
-      status: "submitting",
-      feedback: "",
-    }));
-
-    if (!state.turnstileToken) {
-      setState((prev) => ({
-        ...prev,
-        status: "error",
-        feedback: "Please complete the security verification.",
-      }));
-      return;
+  const validate = (): boolean => {
+    const newErrors: Partial<FormData> = {};
+    if (!formData.name.trim()) newErrors.name = "Required";
+    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      newErrors.email = "Invalid email";
     }
+    if (!formData.phone.trim()) newErrors.phone = "Required";
+    if (!formData.projectType.trim()) newErrors.projectType = "Required";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
-    const errors = validate(state.values);
-    if (Object.keys(errors).length > 0) {
-      setState((prev) => ({
-        ...prev,
-        errors,
-        status: "error",
-        feedback: "Please correct the highlighted fields.",
-      }));
-      return;
-    }
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!validate()) { setFeedback("Please complete all required fields."); return; }
+    setStatus("submitting");
+    setErrors({});
+    setFeedback("");
 
     try {
-      const response = await fetch("/api/lead", {
+      if (siteKey && (!turnstileReady || !window.turnstile || !turnstileId)) {
+        setFeedback("Please complete the security verification.");
+        setStatus("error");
+        return;
+      }
+
+      let turnstileToken = '';
+      if (siteKey && window.turnstile && turnstileId) {
+        try {
+          window.turnstile.reset(turnstileId);
+          turnstileToken = await new Promise<string>((resolve, reject) => {
+            if (!window.turnstile) { reject(new Error("Turnstile not available")); return; }
+            window.turnstile.execute(turnstileId, {
+              async: true, action: "form_submit",
+              callback: (t: string) => resolve(t),
+              "error-callback": () => reject(new Error("turnstile-error")),
+              "timeout-callback": () => reject(new Error("turnstile-timeout")),
+            });
+          });
+        } catch {
+          setFeedback("Security verification failed. Please try again.");
+          setStatus("error");
+          if (window.turnstile && turnstileId) window.turnstile.reset(turnstileId);
+          return;
+        }
+      }
+
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: state.values.name,
-          email: state.values.email,
-          phone: state.values.phone,
-          company: state.values.company,
-          service: state.values.projectType,
-          message: state.values.details,
-          timeline: state.values.timeline,
-          turnstileToken: state.turnstileToken,
+          name: formData.name, email: formData.email,
+          phone: formData.phone.replace(/\D/g, ''),
+          projectType: formData.projectType, city: formData.city,
+          property: formData.property, estimatedCloseDate: formData.estimatedCloseDate,
+          company: formData.company, timeline: formData.timeline,
+          details: formData.message, turnstileToken,
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Request failed");
+      if (response.ok) {
+        setFormData({ name: "", email: "", phone: "", projectType: "", city: "", property: "", estimatedCloseDate: "", company: "", timeline: "", message: "" });
+        if (window.turnstile && turnstileId) window.turnstile.reset(turnstileId);
+        setStatus("success");
+        setFeedback("Thank you. An exchange specialist will follow up within one business day.");
+      } else {
+        const errorData = await response.json().catch(() => ({ error: 'Failed to submit form' }));
+        setFeedback(errorData.error || 'Failed to submit form. Please try again.');
+        setStatus("error");
+        if (window.turnstile && turnstileId) window.turnstile.reset(turnstileId);
       }
-
-      setState({
-        ...INITIAL_STATE,
-        status: "success",
-        feedback:
-          "Thank you. A Denver 1031 exchange specialist will reach out shortly.",
-      });
-    } catch (error) {
-      setState((prev) => ({
-        ...prev,
-        status: "error",
-        feedback:
-          "We could not submit the form. Please try again or call our team.",
-      }));
+    } catch {
+      setFeedback("An error occurred. Please try again or contact us directly.");
+      setStatus("error");
+      if (window.turnstile && turnstileId) window.turnstile.reset(turnstileId);
     }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      noValidate
-      className="grid gap-5"
-      aria-describedby="contact-form-feedback"
-    >
-      <div className="grid gap-2">
-        <label htmlFor="name" className="text-xs font-medium uppercase tracking-[0.1em] text-gray-700">
-          Name <span className="text-red-600">*</span>
-        </label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          value={state.values.name}
-          onChange={(event) => handleChange("name", event.target.value)}
-          className="border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
-          aria-invalid={Boolean(state.errors.name)}
-          aria-describedby={state.errors.name ? "name-error" : undefined}
-          required
-        />
-        {state.errors.name ? (
-          <p id="name-error" className="text-xs text-red-600">
-            {state.errors.name}
-          </p>
-        ) : null}
-      </div>
-
-      <div className="grid gap-2">
-        <label htmlFor="company" className="text-xs font-medium uppercase tracking-[0.1em] text-gray-700">
-          Company
-        </label>
-        <input
-          id="company"
-          name="company"
-          type="text"
-          value={state.values.company}
-          onChange={(event) => handleChange("company", event.target.value)}
-          className="border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
-        />
-      </div>
-
-      <div className="grid gap-2">
-        <label htmlFor="email" className="text-xs font-medium uppercase tracking-[0.1em] text-gray-700">
-          Email <span className="text-red-600">*</span>
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          value={state.values.email}
-          onChange={(event) => handleChange("email", event.target.value)}
-          className="border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
-          aria-invalid={Boolean(state.errors.email)}
-          aria-describedby={state.errors.email ? "email-error" : undefined}
-          required
-        />
-        {state.errors.email ? (
-          <p id="email-error" className="text-xs text-red-600">
-            {state.errors.email}
-          </p>
-        ) : null}
-      </div>
-
-      <div className="grid gap-2">
-        <label htmlFor="phone" className="text-xs font-medium uppercase tracking-[0.1em] text-gray-700">
-          Phone <span className="text-red-600">*</span>
-        </label>
-        <input
-          id="phone"
-          name="phone"
-          type="tel"
-          value={state.values.phone}
-          onChange={(event) => handlePhoneChange(event.target.value)}
-          className="border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
-          aria-invalid={Boolean(state.errors.phone)}
-          aria-describedby={state.errors.phone ? "phone-error" : undefined}
-          required
-        />
-        {state.errors.phone ? (
-          <p id="phone-error" className="text-xs text-red-600">
-            {state.errors.phone}
-          </p>
-        ) : null}
-      </div>
-
-      <div className="grid gap-2" ref={projectTypeRef}>
-        <label htmlFor="projectType" className="text-xs font-medium uppercase tracking-[0.1em] text-gray-700">
-          Project Type <span className="text-red-600">*</span>
-        </label>
-        <div className="relative">
-          <input
-            id="projectType"
-            name="projectType"
-            type="text"
-            value={state.values.projectType}
-            onChange={(event) => {
-              handleChange("projectType", event.target.value);
-              setProjectTypeFilter(event.target.value);
-              setShowProjectTypeDropdown(true);
-            }}
-            onFocus={() => {
-              if (state.values.projectType) {
-                setProjectTypeFilter(state.values.projectType);
-              }
-              setShowProjectTypeDropdown(true);
-            }}
-            className="w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
-            aria-invalid={Boolean(state.errors.projectType)}
-            aria-describedby={state.errors.projectType ? "projectType-error" : undefined}
-            placeholder="Start typing to search..."
-            required
-          />
-          {showProjectTypeDropdown && filteredServices.length > 0 && (
-            <div className="absolute z-50 mt-1 max-h-60 w-full overflow-auto border border-gray-200 bg-white shadow-lg">
-              {filteredServices.slice(0, 10).map((service) => (
-                <button
-                  key={service.slug}
-                  type="button"
-                  onClick={() => handleProjectTypeSelect(service.name)}
-                  className="w-full px-4 py-2 text-left text-sm text-gray-700 transition hover:bg-gray-50 hover:text-black"
-                >
-                  {service.name}
-                </button>
-              ))}
+    <div id="contact-form" className="border border-white/10 bg-brand-charcoal/50 p-8">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <fieldset disabled={status === "submitting"} className="space-y-6">
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <label htmlFor="name" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Name <span className="text-brand-copper">*</span></label>
+              <input id="name" type="text" required value={formData.name} onChange={handleChange("name")} aria-describedby={errors.name ? "name-error" : undefined} aria-invalid={!!errors.name} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="Your name" />
+              {errors.name && <p id="name-error" className="mt-1 text-xs text-red-400">{errors.name}</p>}
+            </div>
+            <div>
+              <label htmlFor="email" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Email <span className="text-brand-copper">*</span></label>
+              <input id="email" type="email" required value={formData.email} onChange={handleChange("email")} aria-describedby={errors.email ? "email-error" : undefined} aria-invalid={!!errors.email} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="your@email.com" />
+              {errors.email && <p id="email-error" className="mt-1 text-xs text-red-400">{errors.email}</p>}
+            </div>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <label htmlFor="phone" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Phone <span className="text-brand-copper">*</span></label>
+              <input id="phone" type="tel" required value={formData.phone} onChange={handleChange("phone")} aria-describedby={errors.phone ? "phone-error" : undefined} aria-invalid={!!errors.phone} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="(555) 555-5555" />
+              {errors.phone && <p id="phone-error" className="mt-1 text-xs text-red-400">{errors.phone}</p>}
+            </div>
+            <div>
+              <label htmlFor="company" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Company</label>
+              <input id="company" type="text" value={formData.company} onChange={handleChange("company")} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="Company name (optional)" />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="projectType" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Service <span className="text-brand-copper">*</span></label>
+            <select id="projectType" required value={formData.projectType} onChange={handleChange("projectType")} aria-describedby={errors.projectType ? "projectType-error" : undefined} aria-invalid={!!errors.projectType} className="w-full bg-brand-dark border border-white/20 px-4 py-3 text-sm text-white focus:border-brand-copper focus:outline-none transition-colors">
+              <option value="">Select a service</option>
+              <option value="Forward Exchange">Forward Exchange</option>
+              <option value="Reverse Exchange">Reverse Exchange</option>
+              <option value="Qualified Intermediary Services">Qualified Intermediary Services</option>
+              <option value="Property Identification">Property Identification</option>
+              <option value="NNN Property Identification">NNN Property Identification</option>
+              <option value="Exchange Consultation">Exchange Consultation</option>
+              <option value="Form 8824 Preparation">Form 8824 Preparation</option>
+              <option value="Boot Analysis">Boot Analysis</option>
+            </select>
+            {errors.projectType && <p id="projectType-error" className="mt-1 text-xs text-red-400">{errors.projectType}</p>}
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <label htmlFor="city" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">City</label>
+              <input id="city" type="text" value={formData.city} onChange={handleChange("city")} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="Primary metro (optional)" />
+            </div>
+            <div>
+              <label htmlFor="timeline" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Timeline</label>
+              <select id="timeline" value={formData.timeline} onChange={handleChange("timeline")} className="w-full bg-brand-dark border border-white/20 px-4 py-3 text-sm text-white focus:border-brand-copper focus:outline-none transition-colors">
+                <option value="">Select timeline (optional)</option>
+                <option value="Immediate">Immediate</option>
+                <option value="45 days">45 days</option>
+                <option value="180 days">180 days</option>
+                <option value="Planning phase">Planning phase</option>
+              </select>
+            </div>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <label htmlFor="property" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Property Being Sold</label>
+              <input id="property" type="text" value={formData.property} onChange={handleChange("property")} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="Type, location, value (optional)" />
+            </div>
+            <div>
+              <label htmlFor="estimatedCloseDate" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Estimated Close Date</label>
+              <input id="estimatedCloseDate" type="date" value={formData.estimatedCloseDate} onChange={handleChange("estimatedCloseDate")} className="w-full bg-brand-dark border border-white/20 px-4 py-3 text-sm text-white focus:border-brand-copper focus:outline-none transition-colors" />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="message" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Message</label>
+            <textarea id="message" rows={4} value={formData.message} onChange={handleChange("message")} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors resize-none" placeholder="Goals, preferences, or coordination needs (optional)" />
+          </div>
+          {siteKey && (
+            <div className="flex justify-center">
+              <div ref={captchaRef} className="min-h-[78px]" />
             </div>
           )}
-        </div>
-        {state.errors.projectType ? (
-          <p id="projectType-error" className="text-xs text-red-600">
-            {state.errors.projectType}
-          </p>
-        ) : null}
-      </div>
-
-      <div className="grid gap-2">
-        <label htmlFor="property" className="text-xs font-medium uppercase tracking-[0.1em] text-gray-700">
-          Property Being Sold
-        </label>
-        <input
-          id="property"
-          name="property"
-          type="text"
-          value={state.values.property}
-          onChange={(event) => handleChange("property", event.target.value)}
-          className="w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
-          placeholder="Include property type, location, and estimated value (optional)"
-        />
-      </div>
-
-      <div className="grid gap-5 md:grid-cols-2">
-        <div className="grid gap-2">
-          <label htmlFor="estimatedCloseDate" className="text-xs font-medium uppercase tracking-[0.1em] text-gray-700">
-            Estimated Close Date
-          </label>
-          <input
-            id="estimatedCloseDate"
-            name="estimatedCloseDate"
-            type="date"
-            value={state.values.estimatedCloseDate}
-            onChange={(event) => handleChange("estimatedCloseDate", event.target.value)}
-            className="w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
-          />
-        </div>
-        <div className="grid gap-2">
-          <label htmlFor="city" className="text-xs font-medium uppercase tracking-[0.1em] text-gray-700">
-            City
-          </label>
-          <input
-            id="city"
-            name="city"
-            type="text"
-            value={state.values.city}
-            onChange={(event) => handleChange("city", event.target.value)}
-            className="w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
-            placeholder="Primary metro or submarket (optional)"
-          />
-        </div>
-      </div>
-
-      <div className="grid gap-2">
-        <label htmlFor="timeline" className="text-xs font-medium uppercase tracking-[0.1em] text-gray-700">
-          Timeline
-        </label>
-        <select
-          id="timeline"
-          name="timeline"
-          value={state.values.timeline}
-          onChange={(event) => handleChange("timeline", event.target.value)}
-          className="border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
-        >
-          {TIMELINE_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="grid gap-2">
-        <label htmlFor="details" className="text-xs font-medium uppercase tracking-[0.1em] text-gray-700">
-          Details
-        </label>
-        <textarea
-          id="details"
-          name="details"
-          value={state.values.details}
-          onChange={(event) => handleChange("details", event.target.value)}
-          className="min-h-[100px] border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 transition focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
-          rows={4}
-        />
-      </div>
-
-      <div className="flex justify-center">
-        <Turnstile
-          sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
-            onSuccess={(token: string) => {
-              setState((prev) => ({ ...prev, turnstileToken: token }));
-            }}
-          onError={() => {
-            setState((prev) => ({ ...prev, turnstileToken: null }));
-          }}
-          onExpire={() => {
-            setState((prev) => ({ ...prev, turnstileToken: null }));
-          }}
-        />
-      </div>
-
-      <button
-        type="submit"
-        disabled={state.status === "submitting" || !state.turnstileToken}
-        className="inline-flex items-center justify-center bg-black px-6 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
-      >
-        {state.status === "submitting" ? "Sending..." : "Submit Request"}
-      </button>
-
-      {state.feedback && (
-        <p
-          id="contact-form-feedback"
-          className={`text-sm ${state.status === "success" ? "text-green-700" : "text-red-600"}`}
-          role="alert"
-        >
-          {state.feedback}
-        </p>
-      )}
-      <p className="text-xs text-gray-500">
-        Educational content only. Not tax or legal advice.
-      </p>
-    </form>
+          <button type="submit" disabled={status === "submitting" || !!(siteKey && !turnstileReady)} className="w-full border border-brand-copper bg-brand-copper px-8 py-4 text-sm font-medium uppercase tracking-widest text-white transition-all duration-300 hover:bg-brand-copper-light disabled:opacity-50 disabled:cursor-not-allowed">
+            {status === "submitting" ? "Submitting..." : "Submit →"}
+          </button>
+          <p className="text-xs text-white/40 text-center">Educational content only. Not tax or legal advice.</p>
+          {feedback && (
+            <p role="status" aria-live="polite" className={"text-sm text-center " + (status === "success" ? "text-green-400" : "text-red-400")}>{feedback}</p>
+          )}
+        </fieldset>
+      </form>
+    </div>
   );
-};
+}
 
+export function ContactFormWrapper() {
+  return (
+    <Suspense fallback={<div className="border border-white/10 bg-brand-charcoal/50 p-8 text-white/60">Loading form...</div>}>
+      <ContactForm />
+    </Suspense>
+  );
+}
