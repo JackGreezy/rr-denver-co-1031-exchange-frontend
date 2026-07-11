@@ -1,0 +1,58 @@
+{
+ "slug": "medical-office-replacement-sourcing",
+ "taxonomy": "services",
+ "title": "Medical Office Replacement Sourcing",
+ "name": "Medical Office Replacement Sourcing",
+ "metaTitle": "Medical Office Replacement Sourcing in Denver, CO",
+ "metaDescription": "Sourcing medical office buildings for 1031 exchange investors selling Denver-area property, from DTC clinics to Lakewood and east Denver specialty practices.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>An investor selling a Denver rental or a small industrial building often wants a tenant that doesn't turn over every eighteen months. Medical office buildings do that. Physician groups sign longer leases than most retail or office tenants, and a lot of that stock sits in predictable pockets of the metro. We track which buildings have that kind of tenant locked in before the listing goes wide.</p>"
+  },
+  {
+   "heading": "Where the medical office stock sits",
+   "html": "<p>The Denver Tech Center holds a mix of health-system-anchored buildings and smaller physician-owned suites, largely because the DTC office base already pulls in insurance and healthcare-adjacent tenants. Lakewood has its own cluster near St. Anthony Hospital, with imaging centers, orthopedic groups, and urgent care operators filling buildings within a few blocks of the campus. East Denver has a similar pattern near Rose Medical Center. We watch those three areas closest because that's where buildings trade hands most often.</p><p>Outside those clusters, medical office thins out fast. A single-tenant dental or urgent care pad in Aurora or Centennial can still work, but the pool is smaller and the diligence has to be tighter since there's less comparable data nearby.</p>"
+  },
+  {
+   "heading": "What we check before calling it a fit",
+   "html": "<p>Tenant mix comes first. A building leased entirely to one health system reads differently than one carrying five independent practices on staggered lease terms. We look at weighted average lease term, whether rent is triple net or modified gross, and parking ratio, since medical tenants typically need more spaces per thousand square feet than a standard office user and a building that's short on parking will struggle to re-lease.</p><p>We also flag build-out cost. Medical suites carry plumbing, lead-lined walls, and specialty electrical that a standard office tenant would never need, so a vacancy in this asset class costs more to re-fill than it looks on paper.</p>"
+  },
+  {
+   "heading": "How the 45-day window shapes the search",
+   "html": "<p>Because Denver's medical office inventory concentrates in a handful of submarkets, we start pulling candidates the day an investor tells us they're listing their relinquished property, not after closing. That gives us a real list ready before the 45-day identification clock starts, instead of scrambling once it's already running. Investors should still confirm identification mechanics and timing with their qualified intermediary and tax advisor, since we handle sourcing, not the exchange paperwork itself.</p><p>We usually put together a short list of three to five buildings, ranked by how confident we are in the tenant's staying power, then keep a backup candidate or two in reserve in case a seller pulls a listing or a lender comes back with a lower valuation than expected. That backup step has saved a deal more than once when a DTC building went under contract to another buyer two days before an investor was ready to sign.</p>"
+  },
+  {
+   "heading": "Property types we track",
+   "html": "<p>Within medical office, the sourcing pipeline usually covers a few recurring building types across the metro:</p><ul><li>Single-tenant, physician-owned buildings with sale-leaseback structures</li><li>Multi-tenant MOBs with a hospital system or large group practice as the lead tenant</li><li>Ambulatory surgery center buildings with specialized suite build-outs</li><li>Urgent care and specialty imaging pad sites near retail corridors</li><li>Dental and behavioral health office condos in suburban clusters</li></ul>"
+  },
+  {
+   "heading": "Watchouts specific to this asset class",
+   "html": "<p>If a hospital system consolidates or drops a lease, a building carrying only one credit tenant can sit vacant a long time given the specialized layout. We flag single-tenant health-system buildings for closer lease review rather than ruling them out outright. Older suites also carry deferred maintenance on medical-grade HVAC and backup power that a standard building inspection can miss, so we push for a mechanical walkthrough before a property makes the final identification list. Parking is worth a second look too. A Lakewood building two blocks from the hospital can lose tenants over a striping change that cuts ten spaces, even if the rent roll otherwise looks solid.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What makes a medical office building a stronger 1031 replacement than a standard office building?",
+   "a": "Lease terms tend to run longer and tenants are less likely to relocate on short notice, since medical suites are expensive to build out again elsewhere. That gives an exchange buyer steadier income than a typical office tenant roll."
+  },
+  {
+   "q": "Can a medical office deal actually close inside the 180-day exchange period?",
+   "a": "Most single-tenant medical deals close in that window if title work starts early and the seller's lender has already reviewed the tenant's lease. Multi-tenant buildings with several practices can take longer because there's more lease abstraction to review before closing."
+  },
+  {
+   "q": "Do you source both single-tenant and multi-tenant medical buildings?",
+   "a": "Yes. Single-tenant sale-leasebacks are simpler to underwrite quickly, while multi-tenant MOBs take more lease-by-lease review but often carry stronger cash flow once occupancy is confirmed."
+  },
+  {
+   "q": "I'm exchanging out of a residential rental. Does the like-kind rule still cover a move into medical office?",
+   "a": "Real property held for investment or business use generally qualifies as like-kind to other real property held the same way, which covers a move from residential rental into medical office. Confirm the specifics with your tax advisor before you commit to a property."
+  },
+  {
+   "q": "How do you evaluate a physician group's lease if full financials aren't available before the identification deadline?",
+   "a": "We pull what's public first, lease abstract, rent roll, and certificate of occupancy history, then flag any building where the group's financial strength can't be confirmed in time so it doesn't become the only property on the identification list."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 873
+}

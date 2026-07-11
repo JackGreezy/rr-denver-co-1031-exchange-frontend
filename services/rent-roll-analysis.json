@@ -1,0 +1,62 @@
+{
+ "slug": "rent-roll-analysis",
+ "taxonomy": "services",
+ "title": "Rent Roll Analysis",
+ "name": "Rent Roll Analysis",
+ "metaTitle": "Rent Roll Analysis in Denver, CO",
+ "metaDescription": "Reading rent rolls on candidate replacement properties across metro Denver so exchange buyers see real income, not seller marketing numbers.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>A rent roll on paper and the actual income a property throws off are two different documents more often than sellers like to admit. Before a property goes on an identification list, we pull the rent roll apart line by line, tenant by tenant, and check it against the actual lease copies rather than the summary a broker hands over. In a market moving as fast as Denver's, that step gets skipped more than it should.</p>"
+  },
+  {
+   "heading": "What we check on a multifamily rent roll",
+   "html": "<p>For an apartment building in Aurora or Lakewood, we check actual in-place rent against market rent the seller is projecting, since a big gap usually means either upside for a new owner or units that were recently marked up and haven't turned yet. We also check concessions, since a rent roll showing gross rent without netting out a free month or two overstates real income. For newer RiNo or LoDo buildings still in lease-up, we look at absorption pace month over month rather than trusting a stabilized pro forma on a building that hasn't stabilized yet.</p>"
+  },
+  {
+   "heading": "What we check on a commercial rent roll",
+   "html": "<p>Office and retail rent rolls, common in DTC buildings and along retail corridors in the southern suburbs, need a different read. We track base rent, expense reimbursement structure, escalation schedule, and any free-rent or tenant-improvement concession still being amortized. A rent roll that looks strong on gross rent alone can hide a tenant paying well below market because of a concession package baked in years ago that's still running.</p>"
+  },
+  {
+   "heading": "Cross-checking against lease documents",
+   "html": "<p>We don't take a seller's rent roll at face value. Wherever possible, we pull the underlying lease for the largest tenants and confirm renewal options, rent bumps, and any early termination rights that the summary rent roll leaves out. A tenant with a one-time termination right at year five can turn a stable-looking rent roll into a much riskier bet than it appears.</p>"
+  },
+  {
+   "heading": "Red flags we look for",
+   "html": "<p>A handful of patterns show up often enough that we flag them on every file:</p><ul><li>Below-market rents recently bumped to market without a corresponding lease renewal</li><li>Concessions or free rent periods missing from the summary rent roll</li><li>A tenant paying rent through a related entity rather than a standard lease</li><li>Vacancy backfilled with month-to-month tenants right before the sale</li><li>Expense reimbursements calculated on stale operating expense figures</li></ul>"
+  },
+  {
+   "heading": "How this feeds the identification decision",
+   "html": "<p>Once we've cross-checked a rent roll, we give the investor a clean picture of trailing income versus what the seller is marketing, so the identification decision gets made on real numbers instead of a broker's projection. That comparison often changes which property makes the final list, especially when two candidates in Aurora or the DTC look similar on the surface but carry very different actual cash flow underneath.</p>"
+  },
+  {
+   "heading": "Turning the analysis into a comparable number",
+   "html": "<p>Once we've adjusted a rent roll for concessions, below-market bumps, and any related-party leases, we recalculate net operating income on the same basis across every candidate property so the investor is comparing like against like. A Lakewood apartment building and a DTC office building will never look identical on paper, but running both through the same adjustment process keeps the comparison honest instead of letting a seller's more polished marketing package win out over the property with actually stronger fundamentals.</p><p>We put that adjusted number next to the seller's asking price and show the investor the resulting yield on both bases, marketed and adjusted, so the gap between the two is visible rather than buried in a footnote somewhere in the offering package.</p><p>For a building already generating cash flow, that adjusted figure also becomes the starting point for negotiating price, since a seller who's marketed on an inflated number has a harder time defending it once the underlying leases are laid out clearly.</p><p>We keep every adjustment documented with a note on where the number came from, so if a lender's underwriter has a question about a specific line item weeks later, the answer is already on file instead of requiring us to go back and rebuild the analysis from scratch.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Why doesn't a seller's rent roll match the actual income a building generates?",
+   "a": "Sellers sometimes present projected or market rent instead of in-place rent, or leave out concessions and free-rent periods that reduce real income. We cross-check against lease documents to find the gap before you commit."
+  },
+  {
+   "q": "How do you analyze a rent roll for a building still in lease-up?",
+   "a": "We look at month-over-month absorption pace and actual signed leases rather than a stabilized pro forma, since a building that hasn't reached stabilization yet can't be judged the same way as one with a full, seasoned rent roll."
+  },
+  {
+   "q": "What's the biggest red flag you look for on a rent roll?",
+   "a": "A tenant whose rent was recently bumped to market without a new lease behind it. That kind of increase can disappear at the next renewal if the lease itself never actually changed."
+  },
+  {
+   "q": "Do you review commercial rent rolls differently than multifamily ones?",
+   "a": "Yes. Commercial rent rolls need a look at expense reimbursement structure and escalation schedules on top of base rent, since two tenants paying the same base rent can carry very different net income once reimbursements are factored in."
+  },
+  {
+   "q": "Can a rent roll review change which property I put on my identification list?",
+   "a": "It happens regularly. Two candidate properties can look similar on a summary sheet and turn out to have very different real cash flow once the underlying leases are checked against the numbers a seller is marketing."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 891
+}

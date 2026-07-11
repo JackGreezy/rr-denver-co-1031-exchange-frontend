@@ -1,0 +1,66 @@
+{
+ "slug": "market-comparable-analysis",
+ "taxonomy": "services",
+ "title": "Market Comparable Analysis",
+ "name": "Market Comparable Analysis",
+ "metaTitle": "Market Comparable Analysis in Denver, CO",
+ "metaDescription": "Building the comp set behind a Denver identification memo, pricing replacement candidates against recent sales across each relevant submarket.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>An identification list is only as good as the pricing behind it. Before a Denver candidate goes on that list, we build a comp set to confirm the asking price is actually close to fair market value, separate from whatever number the seller happens to want.</p>"
+  },
+  {
+   "heading": "Why a Generic Comp Set Doesn't Work Here",
+   "html": "<p>Denver's submarkets price differently enough that a citywide average tells an investor almost nothing useful. A RiNo multifamily building sells on a different cap rate basis than a similar-sized property in Aurora or Thornton, largely because of rent growth assumptions tied to the neighborhood's redevelopment pace. A Denver Tech Center office comp set has to separate recent leasing activity from older, pre-vacancy sales, since office pricing has moved enough in the last few years that a three-year-old comp can be close to meaningless on its own.</p>"
+  },
+  {
+   "heading": "How We Build the Comp Set for Each Candidate",
+   "html": "<p>We start with closed sales in the same submarket from the trailing twelve months, then narrow to properties of similar size, vintage, and condition before pulling in anything older or from an adjacent submarket to fill gaps. Industrial comps along the I-70 corridor get adjusted for clear height and dock configuration, since those specs move price more than raw square footage does. Where recent sales are thin, which happens on larger or more specialized assets, we lean on active listings and broker price opinions to bracket a reasonable range instead of relying on a single stale data point, and we flag those thinner comp sets clearly rather than presenting them with the same confidence as a submarket with plenty of recent closings.</p>"
+  },
+  {
+   "heading": "What Goes Into Every Comp Package",
+   "html": "<p>The same components go into a comp package regardless of asset class.</p><ul><li>Closed sales from the trailing twelve months in the same submarket</li><li>Price per square foot or per unit adjusted for size and condition</li><li>Cap rate range where income data is available</li><li>Active competing listings for context on pricing direction</li><li>Notes on any comp that needs a size, vintage, or location adjustment</li></ul>"
+  },
+  {
+   "heading": "Why This Matters More Under a Value Cap",
+   "html": "<p>When an identification list is built under the 200 percent rule, the running value total depends on getting fair market value right for every candidate on the list, well beyond only the one the investor ends up buying. An inflated comp on a property that never closes does not matter much on its own, but if it was used to justify the value total on the identification list, a challenge to that number later can put the whole exchange at risk. We price every candidate on the list to the same standard as the top choice, not to a looser one.</p>"
+  },
+  {
+   "heading": "Where Broker Opinions Fill the Gaps",
+   "html": "<p>Not every Denver submarket has enough recent closed sales to build a confident comp set, especially on larger multifamily buildings or specialized industrial space that trades infrequently. In those cases we bring in a broker price opinion from someone actively working that specific submarket, since a broker tracking live deal flow often has context on pending sales that have not shown up in public records yet. We treat a broker opinion as a supplement to the closed-sale data, not a replacement for it, and note clearly in the packet which figures rest on which source.</p>"
+  },
+  {
+   "heading": "Keeping the Analysis Current Through the Window",
+   "html": "<p>Denver submarkets move enough over a few months that a comp set built in week one of the identification window can be stale by week six. We refresh pricing on any candidate still active as the closing approaches, particularly on multifamily and industrial assets where sale activity has been steady enough to shift the range meaningfully inside a single exchange period.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Why doesn't a citywide average work for pricing a Denver replacement property?",
+   "a": "Submarkets price on different bases. RiNo multifamily, Denver Tech Center office, and I-70 corridor industrial each move on different drivers, so a blended citywide number tells an investor very little about a specific candidate."
+  },
+  {
+   "q": "What timeframe do comps typically cover?",
+   "a": "We start with closed sales from the trailing twelve months in the same submarket, expanding to older sales or adjacent areas only when recent data is too thin to build a reliable range."
+  },
+  {
+   "q": "How are industrial comps adjusted for building specs?",
+   "a": "Clear height, dock door count, and configuration get factored in alongside square footage, since those specs affect price more than raw size does on a warehouse or flex building, and we adjust the comp set accordingly rather than treating every building as interchangeable."
+  },
+  {
+   "q": "Why does comp accuracy matter more under the 200 percent rule?",
+   "a": "The value cap depends on accurate fair market value for every property on the identification list, well beyond only the one purchased. An inflated valuation used to justify the list total can put the whole exchange at risk if challenged."
+  },
+  {
+   "q": "Do you update pricing during the identification window?",
+   "a": "Yes, particularly on candidates still active as a closing date approaches, since submarket pricing can shift meaningfully over the course of a single exchange period."
+  },
+  {
+   "q": "How do you handle a submarket with very few recent sales?",
+   "a": "We widen the search to nearby submarkets and lean more heavily on broker price opinions and active listings, clearly noting in the analysis which figures rest on thinner data so the investor can weigh that uncertainty before committing to a value on the identification list rather than after it has already been signed and delivered."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 860
+}

@@ -1,0 +1,70 @@
+{
+ "slug": "lender-preflight-coordination",
+ "taxonomy": "services",
+ "title": "Lender Preflight Coordination",
+ "name": "Lender Preflight Coordination",
+ "metaTitle": "Lender Preflight Coordination in Denver, CO",
+ "metaDescription": "Lining up loan terms and lender readiness for a Denver exchange before the 45-day clock starts, so financing isn't the reason a deadline slips.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>Financing is the piece of a Denver exchange most likely to blow past the identification deadline if nobody starts it early. A lender pre-approval that gets requested after the 45-day clock is already running is starting from behind, and there is no mechanism to buy that time back.</p>"
+  },
+  {
+   "heading": "Why We Start This Before the Relinquished Sale Closes",
+   "html": "<p>Lender underwriting takes weeks regardless of how motivated the investor is, and rate locks, loan-to-value requirements, and debt service coverage minimums vary enough by asset class that a generic pre-approval is not always useful. We start gathering the investor's financial documentation and talking to lenders about likely terms while the relinquished property is still under contract, so real numbers exist before a single replacement candidate is even toured.</p>"
+  },
+  {
+   "heading": "Where Denver Lending Terms Diverge by Asset Type",
+   "html": "<p>A Denver Tech Center office refinance or acquisition loan is priced and underwritten differently than a multifamily purchase in Aurora, where several lenders apply stricter debt service coverage overlays than they did a few years ago. Industrial financing along the I-70 corridor tends to move faster when the building is owner-occupied versus leased to a third party, since tenant credit adds a layer of underwriting that an owner-user deal skips entirely. Knowing which lenders are actually active and competitive in each of these categories, rather than approaching whichever bank the investor already uses, is most of what preflight coordination is doing.</p>"
+  },
+  {
+   "heading": "What Gets Confirmed Before Identification",
+   "html": "<p>Every Denver exchange gets the same preflight review before candidates go on the identification list.</p><ul><li>Loan-to-value and debt service coverage requirements by asset class</li><li>Rate environment and lock timing options</li><li>Required documentation and expected underwriting timeline</li><li>Lender appetite for the specific submarket and property type</li><li>Whether financing can realistically close within the 180-day window</li></ul>"
+  },
+  {
+   "heading": "Matching Financing Capacity to the Boot Question",
+   "html": "<p>How much debt the replacement property can actually carry connects directly to whether the investor avoids mortgage boot. If lender terms only support a smaller loan than the relinquished property carried, that gap either needs to be covered with additional cash or accepted as taxable, and both are easier decisions to make before identification than after a specific property is under contract.</p>"
+  },
+  {
+   "heading": "Comparing Local Banks Against National Lenders",
+   "html": "<p>A local Denver bank often moves faster on a straightforward deal and can be more flexible on a smaller commercial property, while a national lender or agency source may offer better long-term rate and term combinations on larger multifamily or office purchases. We compare both paths for a given candidate rather than assuming one is always better, since a small industrial building might close faster and cheaper through a local relationship lender than through a national program built for larger loan sizes.</p>"
+  },
+  {
+   "heading": "What a Pre-Approval Actually Covers",
+   "html": "<p>A pre-approval is not a guarantee, and it typically covers a loan amount range and general terms rather than a specific property, since the property itself has not been identified yet at the time preflight work starts. Once a specific candidate is added to the identification list, the lender still needs to underwrite that exact property, including its own appraisal, environmental review, and lease or tenant analysis where applicable. We treat preflight as the groundwork that shortens the property-specific underwriting later, not a substitute for it.</p>"
+  },
+  {
+   "heading": "Keeping Financing on Track Through Closing",
+   "html": "<p>Preflight coordination does not stop once a term sheet exists. We track the loan file alongside the rest of the closing calendar, flagging any appraisal delay, underwriting condition, or rate lock expiration that could put the 180-day deadline at risk, and escalating directly to the lender when a condition looks like it will not clear on schedule. That same tracking extends to the title company and any co-lender involved, since a stalled condition on either side can hold up funding just as easily as one on the loan itself.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "When should lender preflight start on a Denver exchange?",
+   "a": "While the relinquished property is still under contract, before the 45-day identification clock starts. Underwriting takes weeks regardless of urgency, so starting early is the only way to buy time back."
+  },
+  {
+   "q": "Do financing terms differ much by asset class in Denver?",
+   "a": "Yes. Multifamily lenders in Aurora, for example, apply stricter debt service coverage requirements than a few years ago, while owner-occupied industrial financing along I-70 tends to move faster than leased industrial deals."
+  },
+  {
+   "q": "How does financing capacity relate to mortgage boot?",
+   "a": "If the replacement loan amount comes in lower than the relinquished property's debt, that gap can be taxable unless covered with additional cash. Knowing the likely loan size early makes that decision easier."
+  },
+  {
+   "q": "What happens if a rate lock expires before closing?",
+   "a": "We track lock expiration against the closing calendar and flag it well before it happens, since a lapsed lock can force a re-price or delay that puts the 180-day deadline at risk."
+  },
+  {
+   "q": "Should I use my existing bank or shop the loan?",
+   "a": "Depends on the asset type and submarket. We identify which lenders are actively competitive for the specific property category rather than defaulting to whichever bank the investor already uses."
+  },
+  {
+   "q": "Does preflight coordination replace the lender's own underwriting?",
+   "a": "No. Preflight establishes realistic terms and readiness before a specific property is identified. The lender still underwrites the exact candidate once it is under contract, including its own appraisal and property-level review, and that process starts as soon as the candidate is added to the identification list rather than waiting for a signed purchase contract."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 856
+}

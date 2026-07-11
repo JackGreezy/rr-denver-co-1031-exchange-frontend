@@ -1,0 +1,58 @@
+{
+ "slug": "180-day-closing-coordination",
+ "taxonomy": "services",
+ "title": "180-Day Closing Coordination",
+ "name": "180-Day Closing Coordination",
+ "metaTitle": "180-Day Closing Coordination in Denver, CO",
+ "metaDescription": "A field-superintendent approach to sequencing title, lender, HOA, and utility sign-off on the back half of a Denver 1031 exchange before day 180 runs out.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>A construction schedule only holds if you build it backward from the completion date and never let a downstream trade start before the upstream work clears. A Denver 1031 exchange runs on the same logic once the replacement property goes under contract: title, lender underwriting, HOA or association estoppel, and utility sign-off sit in a chain, and the qualified intermediary cannot release funding instructions until everything ahead of it in that chain is clear. We build the sequence out the day escrow opens and walk it like a job site until the wire moves.</p>"
+  },
+  {
+   "heading": "Building the Schedule Backward From Day 180",
+   "html": "<p>A field superintendent does not hand out one deadline and hope the trades sort out the order; they set the finish date, then work backward, giving the most float to whichever task has the least control over its own timeline. A Denver closing gets the same treatment. Day 180 is fixed. Everything else, title curative work, lender conditions, HOA estoppel requests, utility clearance, gets a target date set by counting backward from that fixed point, not by estimating forward from the contract date.</p><p>The float assigned to each task depends on the asset. A condo or multifamily building in LoDo or RiNo needs real float in front of the HOA estoppel request, since an association manager working through a stack of unrelated resale packages has no reason to prioritize a closing on someone else's schedule. A Denver Tech Center office building needs its float in front of lease abstract review, since the lender wants every tenant's term, rent step, and renewal option confirmed before the loan clears, and that review moves at underwriting speed, not investor speed. Land near the growth edge of the metro, out toward Parker or Castle Rock along the I-25 corridor, needs its float in front of the utility and tap-fee track, because those approvals run on a municipal calendar that has never heard of a 1031 deadline.</p>"
+  },
+  {
+   "heading": "The Sequence That Can't Be Reordered",
+   "html": "<p>Skipping a step in this chain does not save time, it just moves the delay downstream where it is harder to see coming. Here is the order a Denver closing file actually runs in.</p><ul><li>Title commitment clears and exceptions get resolved before anything downstream is scheduled</li><li>Lender conditions and appraisal sign-off follow, using the cleared title as their baseline</li><li>HOA estoppel or utility and tap-fee clearance run in parallel once title is clear, not before</li><li>Settlement statement reconciliation locks the final numbers against every cleared condition</li><li>Qualified intermediary funding instructions go out only after the settlement statement is locked</li></ul><p>That order matters because working title and HOA requests at the same time, before either is confirmed clear, means a change in one can force rework in the other. We hold the sequence in that order on every file, even when a client wants to push ahead on funding instructions before title is fully clear.</p>"
+  },
+  {
+   "heading": "Growth-Edge Parcels Carry Their Own Critical Path",
+   "html": "<p>Front Range in-migration over the last decade pushed a lot of new building activity out along the I-25 corridor toward Douglas County and out I-70 into Adams County, and that growth means water and utility sign-off is rarely a same-week task on land parcels in those areas. A parcel near the edge of Parker or Castle Rock can need a water tap commitment letter, an augmentation plan review, or a special district sign-off before a lender will fund, and none of that moves faster because an exchange deadline is close.</p><p>We treat utility clearance as its own line on the schedule instead of folding it into general lender conditions, because a stalled tap-fee letter can hold up funding even after title and insurance have already cleared. On a scattered infill site closer to the urban core this step barely registers. On growth-edge land, it is usually the single biggest risk to day 180.</p>"
+  },
+  {
+   "heading": "Funding Day: What the QI Needs in Hand",
+   "html": "<p>The qualified intermediary holds the exchange funds, not the closing file, so instructions need to reach the QI ahead of wire day, not on it. We confirm the QI has current settlement figures, that assignment paperwork matches the purchase contract, and that funding authorization is signed with enough lead time to avoid a same-day scramble.</p><p>Day 180 is a ceiling, not always the actual number funding day lands on. Whenever the investor's tax-filing deadline for the year the relinquished property closed, extensions counted, falls before the calendar hits 180, that filing deadline becomes the real cutoff instead, and funding has to happen ahead of it. A Denver seller closing out a relinquished property late in the calendar year is the one who most often runs into this, since fewer months remain before the original filing date unless the return gets pushed to extension, a call that sits with the investor and their tax advisor rather than with the closing calendar.</p>"
+  },
+  {
+   "heading": "When the Chain Breaks: Finding the Actual Blocker",
+   "html": "<p>If a lender condition, an unresolved title exception, or a slow HOA response threatens day 180, the job is finding the specific blocking item instead of only watching the calendar count down. We escalate that one dependency to whoever can actually clear it, a title examiner, an underwriter, or an association manager, and keep the investor's tax advisor and QI in the loop so funding day has no surprises.</p><p>We run this as a standing weekly review, not a one-time checklist built at the start and forgotten. A closing file with a single checklist tends to miss the moment something quietly stalls; a weekly walk of the same five items, title, lender, HOA, utility, and QI, catches a stuck tap-fee letter or a slow-moving association manager within days instead of at the point it has already become a deadline problem.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What's the first task on a Denver closing file once escrow opens?",
+   "a": "Locking the title commitment and getting exceptions into review, since every other milestone, lender conditions, HOA estoppel, utility clearance, gets scheduled backward from that point rather than assumed to run on its own timeline."
+  },
+  {
+   "q": "Why does a LoDo or RiNo condo need more estoppel float than a DTC office deal?",
+   "a": "An association manager is working through a stack of resale packages with no reason to prioritize your closing, while a DTC office lease abstract review moves at a lender's underwriting pace instead. Both need real float, just in front of different milestones."
+  },
+  {
+   "q": "Can a lender or the qualified intermediary grant extra days if day 180 is close?",
+   "a": "No. The QI operates strictly inside the statutory window, and no lender condition or title delay changes that fixed date, which is why the schedule is built backward from day 180 rather than tracked forward from the contract date."
+  },
+  {
+   "q": "How can a compressed tax year shorten the real closing runway?",
+   "a": "If your tax-filing deadline for the year the relinquished property closed, extensions counted, lands before day 180 on the calendar, that filing deadline takes over as the real cutoff. Late-year sellers feel this most, since fewer months separate the sale from the original filing date unless the return is pushed to extension."
+  },
+  {
+   "q": "What happens first when a growth-edge parcel's utility sign-off stalls?",
+   "a": "We identify whether the hold is a tap-fee commitment letter, an augmentation plan review, or a special district sign-off, then escalate that specific item directly rather than waiting on a general lender status update, since these approvals run on a municipal calendar that does not accelerate for a closing deadline."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 1204
+}

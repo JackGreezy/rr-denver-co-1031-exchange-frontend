@@ -1,0 +1,66 @@
+{
+ "slug": "exchange-documentation-assembly",
+ "taxonomy": "services",
+ "title": "Exchange Documentation Assembly",
+ "name": "Exchange Documentation Assembly",
+ "metaTitle": "Exchange Documentation Assembly in Denver, CO",
+ "metaDescription": "Assembling the full paper trail for a Denver 1031 exchange, from the exchange agreement through assignment notices and the final closing statement.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>A 1031 exchange is a paper trail before it is anything else. Miss one notice, misdate one assignment, and a clean Denver closing can turn into a documentation problem that surfaces months later when a return gets reviewed. We assemble the file the same way every time, in the order the pieces actually have to exist.</p>"
+  },
+  {
+   "heading": "The Documents That Have to Exist Before Day One",
+   "html": "<p>The exchange agreement between the investor and the qualified intermediary has to be signed before the relinquished property closes, not after. That single sequencing point trips up more first-time exchangers than any other part of the process, because the sale itself can look identical whether or not the agreement was in place first. We confirm the exchange agreement is executed and the QI is assigned into the sale contract ahead of the relinquished closing on every Denver file we touch.</p>"
+  },
+  {
+   "heading": "What Follows on the Relinquished Side",
+   "html": "<p>Once the exchange agreement is in place, the assignment of the purchase and sale contract to the QI needs written notice to the buyer, and that notice actually has to be delivered rather than sitting drafted and unsent. The same pattern repeats on the replacement side: an assignment of the purchase contract to the QI and notice to the seller, both before that closing happens. Skipping notice to either party does not necessarily kill the exchange, but it creates a gap in the file that is harder to explain later than it is to avoid up front.</p>"
+  },
+  {
+   "heading": "The Full Checklist We Run Per File",
+   "html": "<p>Every Denver exchange file gets built against the same list before either closing.</p><ul><li>Signed exchange agreement with the qualified intermediary</li><li>Assignment of the relinquished sale contract plus notice to the buyer</li><li>Assignment of the replacement purchase contract plus notice to the seller</li><li>Deed and closing statement matching the exchange agreement's legal descriptions</li><li>Qualified intermediary funds transfer instructions in writing</li><li>Written identification of replacement property, signed and dated</li></ul>"
+  },
+  {
+   "heading": "Where Small Industrial Deals Add a Wrinkle",
+   "html": "<p>A relinquished sale of a small industrial building, the kind that shows up around Commerce City, sometimes includes fixtures, equipment, or a lease with a tenant improvement allowance still outstanding. Those pieces need to be described correctly in the assignment paperwork so the exchange documentation matches what is actually changing hands, since personal property mixed into the transaction can complicate what qualifies as like-kind. We flag any equipment or fixture language early so it gets sorted out before the closing statement is final, not after.</p>"
+  },
+  {
+   "heading": "Matching Legal Descriptions Across Every Document",
+   "html": "<p>The legal description on the exchange agreement, the assignment paperwork, the deed, and the closing statement all need to match exactly, down to the parcel number and lot description. A mismatch is easy to miss when a title company generates the deed independently of the exchange documents, and it is the kind of small inconsistency that can raise questions during a later review even when the underlying transaction was handled correctly. We cross-check every document against the same legal description before either closing, rather than assuming the title company's paperwork automatically lines up with the exchange file, and we resolve any discrepancy with the title company directly instead of leaving it to surface at the closing table.</p>"
+  },
+  {
+   "heading": "Keeping the File Ready for a Later Review",
+   "html": "<p>The documentation does not stop mattering once the exchange closes. A complete file, organized in the order the transaction actually happened, is what an investor's tax advisor needs to prepare the return and what stands behind the exchange if it is ever questioned later. We hand off a single organized file at the end of a Denver exchange rather than a folder of scattered emails and PDFs, and investors should keep that file with their tax records going forward.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What has to be signed before the relinquished property closes?",
+   "a": "The exchange agreement with the qualified intermediary, along with the assignment of the sale contract to the QI. Both need to be in place before that closing, not arranged afterward."
+  },
+  {
+   "q": "Does the buyer or seller need to be notified about the QI's involvement?",
+   "a": "Yes, written notice of the assignment to the qualified intermediary typically goes to the buyer on the relinquished side and the seller on the replacement side."
+  },
+  {
+   "q": "What happens if a notice or assignment is missed?",
+   "a": "It does not automatically void the exchange, but it creates a gap in the documentation that is harder to explain during a later review than it would have been to avoid at the time."
+  },
+  {
+   "q": "How do equipment or fixtures in a sale affect the paperwork?",
+   "a": "They need to be described accurately in the assignment documents, since personal property mixed into a real estate sale can affect what qualifies as like-kind. We flag this early on industrial and commercial deals."
+  },
+  {
+   "q": "Do you keep a copy of the completed exchange file?",
+   "a": "We hand off a full organized file at closing. Investors should keep it with their tax records, since it supports the return their CPA prepares and stands behind the exchange if it is ever reviewed."
+  },
+  {
+   "q": "What if a document is missing after both closings are done?",
+   "a": "We go back to the title company, lender, or qualified intermediary to reconstruct it as soon as a gap is found, since a missing assignment or notice is easier to fix close to closing than it is months later during a review of the completed exchange file."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 851
+}

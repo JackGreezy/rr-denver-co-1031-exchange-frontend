@@ -1,0 +1,62 @@
+{
+ "slug": "three-property-rule-strategy",
+ "taxonomy": "services",
+ "title": "Three-Property Rule Strategy",
+ "name": "Three-Property Rule Strategy",
+ "metaTitle": "Three-Property Rule Strategy in Denver, CO",
+ "metaDescription": "Building a three-property identification list across metro Denver submarkets so your 1031 exchange has real options, not one property and a hope.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>The three-property rule lets an investor identify up to three properties within the 45-day window regardless of their combined value, no percentage cap attached. It's the simplest of the identification rules and the one most Denver exchange investors end up using, mainly because it fits a straightforward one relinquished property, one replacement property situation without extra math.</p>"
+  },
+  {
+   "heading": "Why three properties instead of one",
+   "html": "<p>Naming only one property on the identification notice is legal, but it leaves zero room for error if that deal falls through, whether from a lender declining financing, an inspection turning up a problem, or a seller backing out. We build every three-property list around a primary choice the investor actually wants, plus two others that could genuinely close if needed, not filler names added just to check a box.</p>"
+  },
+  {
+   "heading": "How we pick the other two slots",
+   "html": "<p>The second and third properties usually come from a different submarket or a different asset class than the primary pick, on purpose. If the primary is a RiNo apartment building, we'll often put a DTC office property or an I-25 net lease pad in one of the other slots rather than a second RiNo building, since a submarket-wide issue, a financing freeze or a zoning change, would otherwise threaten all three at once.</p>"
+  },
+  {
+   "heading": "When three properties isn't enough",
+   "html": "<p>Some investors are buying more than one replacement property, splitting exchange proceeds across a multifamily deal and a net lease deal, for example. The three-property rule caps out at three total, so if the strategy calls for four or more replacement properties, the 200 percent rule or the 95 percent rule generally applies instead. We flag that distinction early so the identification notice gets built under the right rule from the start.</p>"
+  },
+  {
+   "heading": "What goes wrong with a three-property list",
+   "html": "<p>A few mistakes come up often enough to watch for:</p><ul><li>Listing three properties in the same submarket with correlated risk</li><li>Naming a property still under negotiation without a signed contract in hand</li><li>Leaving off a property address or unit number that makes the identification ambiguous</li><li>Submitting the notice to the qualified intermediary after the 45-day deadline</li><li>Treating a verbal agreement with a seller as sufficient identification</li></ul>"
+  },
+  {
+   "heading": "Confirming the notice itself",
+   "html": "<p>The identification has to be a written, signed, unambiguous description delivered to the qualified intermediary before midnight on day forty-five. We help make sure the property descriptions on the notice match the actual purchase contracts down to the address and unit details, since a mismatch there has caused real problems for exchanges that otherwise had everything else in order.</p>"
+  },
+  {
+   "heading": "A practical Denver example",
+   "html": "<p>Say an investor is selling a small industrial building near the I-70 corridor and wants to move into multifamily. A typical three-property list might name a value-add apartment complex in Aurora as the primary pick, a net lease pad along I-25 as a second option in case financing on the apartment deal stalls, and a smaller self-storage facility as a third option that could close quickly if both other deals fall through. None of the three need to close; only one has to, but all three need to be real, purchasable properties at the time of identification.</p><p>That mix also spreads financing risk. An apartment loan, a net lease loan, and a self-storage loan each get evaluated differently by a lender, so if one loan application stalls for reasons specific to that asset class, the other two candidates aren't affected by the same underwriting issue.</p><p>We walk through that kind of scenario with every investor before the notice goes to the qualified intermediary, since understanding the tradeoffs ahead of time makes it easier to move fast if one property needs to be dropped in favor of another as the 180-day period runs on.</p><p>Most investors find the three-property rule easier to explain to a lender or a spouse than the percentage-based alternatives, simply because there's no math involved beyond counting to three, and that simplicity is part of why it stays the default choice for a single-replacement exchange.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Is the three-property rule the same thing as the 200 percent rule?",
+   "a": "No. The three-property rule caps the count at three properties with no value limit. The 200 percent rule allows more than three properties as long as their combined value stays under twice the relinquished property's sale price. Investors typically use whichever fits their specific deal."
+  },
+  {
+   "q": "Why would I list two properties I don't actually plan to buy?",
+   "a": "As backups. If your top choice falls through due to financing, inspection issues, or a seller backing out, having two additional qualifying properties on the identification notice keeps the exchange alive instead of forcing you to start over."
+  },
+  {
+   "q": "Should my three properties all be in the same Denver submarket?",
+   "a": "Generally no. We spread picks across different submarkets or asset classes where practical, since a submarket-specific issue could otherwise affect all three candidates at the same time."
+  },
+  {
+   "q": "What happens if I want to buy four replacement properties instead of one?",
+   "a": "The three-property rule won't cover that. You'd typically move to the 200 percent rule, identifying more than three properties as long as their combined value stays under 200 percent of your relinquished property's sale price, or the 95 percent rule in other cases."
+  },
+  {
+   "q": "Does a verbal agreement with a seller count as identifying a property?",
+   "a": "No. Identification requires a written, signed, unambiguous description of the property delivered to your qualified intermediary before the 45-day deadline. A verbal understanding with a seller doesn't satisfy that requirement."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 878
+}

@@ -1,0 +1,70 @@
+{
+ "slug": "boot-calculation-support",
+ "taxonomy": "services",
+ "title": "Boot Calculation Support",
+ "name": "Boot Calculation Support",
+ "metaTitle": "Boot Calculation Support in Denver, CO",
+ "metaDescription": "Tracking mortgage and cash boot on Denver exchanges, flagging debt-relief and cash-out gaps before they surprise an investor at closing.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>Boot is the part of an exchange that does not get deferred, and it catches Denver investors most often on the debt side, not the cash side. Somebody sells a building with a bigger loan than the replacement property carries, and the gap between those two debt numbers shows up as taxable, whether or not any cash ever hit the investor's account.</p>"
+  },
+  {
+   "heading": "Mortgage Boot Is the One People Miss",
+   "html": "<p>If the relinquished property carried a six hundred thousand dollar loan and the replacement property is financed with only four hundred thousand, the investor is relieved of two hundred thousand dollars in debt that is not replaced. That gap is treated as boot even if every dollar of sale proceeds went straight into the next purchase. We see this most on Denver Tech Center office sales, where an investor pays down debt aggressively during the hold period and then buys a smaller or less leveraged replacement without realizing the debt gap itself is taxable.</p>"
+  },
+  {
+   "heading": "Cash Boot Shows Up When Money Leaves the Exchange",
+   "html": "<p>Cash boot is more straightforward: any proceeds the investor pulls out instead of running through the qualified intermediary. A LoDo condo owner refinancing to pull equity out right before listing, then running the sale through an exchange, can end up with boot if the refinance proceeds were not properly separated from the exchange funds. Timing the refinance and the sale correctly is the difference between clean debt planning and an unintended taxable event.</p>"
+  },
+  {
+   "heading": "What Gets Checked on Every File",
+   "html": "<p>We run the same boot check on every Denver exchange regardless of asset class.</p><ul><li>Relinquished property debt balance at closing</li><li>Replacement property debt balance at closing</li><li>Any cash proceeds not run through the QI</li><li>Timing of refinances relative to the sale and purchase</li><li>Non-like-kind property or personal property included in either transaction</li></ul>"
+  },
+  {
+   "heading": "Matching or Exceeding Debt on the Replacement Side",
+   "html": "<p>The general approach to avoiding mortgage boot is replacing debt with equal or greater debt, or covering the gap with additional cash into the deal. On a Denver Tech Center or industrial purchase, that can mean structuring the new loan larger than the investor's comfort level, or bringing outside cash to close the gap. Neither option is automatically better, and the right call depends on the investor's broader financial picture, which is a conversation for their tax advisor.</p>"
+  },
+  {
+   "heading": "Other Boot Sources That Get Missed",
+   "html": "<p>Boot is not limited to debt gaps and pulled-out cash. Personal property included in a sale, like furniture in a furnished LoDo short-term rental or equipment left behind in a Golden industrial building, does not qualify as like-kind real property and can generate boot even in an otherwise clean exchange. Prorated rent, security deposits transferred at closing, and seller-paid closing costs that exceed what is typical for the market can also create small amounts of boot that add up if nobody checks the settlement statement line by line.</p>"
+  },
+  {
+   "heading": "A Simple Way to Think About the Math",
+   "html": "<p>Investors sometimes assume that reinvesting all the sale proceeds automatically avoids boot, but the debt side of the ledger has to be checked separately from the cash side. An investor can put every dollar of proceeds into a Denver replacement property and still generate mortgage boot if the new loan is meaningfully smaller than the old one. We walk through both sides of that math, proceeds and debt, as two separate checks rather than one combined number, since treating them as the same thing is where this mistake usually starts.</p>"
+  },
+  {
+   "heading": "Why We Flag This Early, Not at Closing",
+   "html": "<p>Boot exposure is much easier to manage in the identification phase than after a replacement property is already under contract. If a candidate property's likely debt structure would leave a large mortgage boot gap, we surface that before the identification list is finalized, so the investor can either adjust the target loan amount or choose a different replacement property while there is still time to react.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What is the difference between cash boot and mortgage boot?",
+   "a": "Cash boot is money the investor actually receives outside the exchange. Mortgage boot is debt relief that is not replaced on the new property, and it is taxable even if the investor never touches cash."
+  },
+  {
+   "q": "Can boot be avoided entirely on a Denver exchange?",
+   "a": "Often, by matching or exceeding the relinquished debt on the replacement property and running all proceeds through the qualified intermediary. Whether full deferral is achievable depends on the specific numbers, which your tax advisor should confirm."
+  },
+  {
+   "q": "Does refinancing before a sale create boot risk?",
+   "a": "It can, if the refinance proceeds are not clearly separated from the exchange and the timing looks like it was designed to pull equity out ahead of the sale. We flag refinance timing early for exactly this reason."
+  },
+  {
+   "q": "How early should boot exposure be checked?",
+   "a": "Before the identification list is finalized. A replacement property with a debt structure that leaves a large gap is easier to swap out during identification than to fix after it is under contract."
+  },
+  {
+   "q": "Do you calculate the actual tax owed on boot?",
+   "a": "No, we identify and quantify the exposure on the closing numbers. The tax treatment and any liability calculation should come from the investor's own CPA or tax advisor."
+  },
+  {
+   "q": "Does boot exposure look different on a multi-property Denver exchange?",
+   "a": "Yes, since debt and cash have to be checked across every relinquished and replacement property together rather than a single pair of closings, which is why we consolidate the boot check into one running total on those files."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 864
+}

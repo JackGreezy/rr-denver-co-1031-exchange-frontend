@@ -1,0 +1,62 @@
+{
+ "slug": "reverse-exchange-coordination",
+ "taxonomy": "services",
+ "title": "Reverse Exchange Coordination",
+ "name": "Reverse Exchange Coordination",
+ "metaTitle": "Reverse Exchange Coordination in Denver, CO",
+ "metaDescription": "Coordinating reverse 1031 exchanges for Denver investors who need to buy a replacement property before their relinquished property sells.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>Sometimes the right RiNo apartment building or DTC office deal shows up before an investor's current property has sold. A reverse exchange lets them buy first and sell second, but it needs a specific structure set up before the purchase closes, not after. We coordinate the moving pieces on that structure so it holds up.</p>"
+  },
+  {
+   "heading": "Why a reverse exchange comes up so often in this market",
+   "html": "<p>Denver's competitive submarkets move fast enough that waiting for a relinquished property to close before making an offer can mean losing the replacement property entirely. A RiNo multifamily building or a well-leased I-25 net lease pad can go under contract to another buyer within days of listing. Investors who know their current property will sell, but not on a guaranteed timeline, often turn to a reverse structure specifically to avoid losing a property they've already found.</p>"
+  },
+  {
+   "heading": "How the parking arrangement works",
+   "html": "<p>In a reverse exchange, an exchange accommodation titleholder, generally set up through the qualified intermediary, takes and holds title to either the replacement property or the relinquished property while the other side of the transaction gets sorted out. The investor doesn't hold both properties directly at the same time. We coordinate with the QI and the title company to make sure the parking entity is set up and funded correctly before the replacement property purchase closes, since this has to be in place ahead of that closing, not arranged afterward.</p>"
+  },
+  {
+   "heading": "The 180-day clock still applies",
+   "html": "<p>A reverse exchange still runs on a 180-day period, and the property being identified during that window is the relinquished property rather than the replacement, since the replacement is already under the accommodation titleholder's ownership. We keep that distinction clear for every investor, because it's easy to assume the clock works the same direction as a standard forward exchange when it doesn't.</p>"
+  },
+  {
+   "heading": "What we coordinate on a reverse file",
+   "html": "<p>A reverse exchange touches more parties at once than a standard forward exchange, and we keep a checklist running across all of them:</p><ul><li>Qualified intermediary setup of the exchange accommodation titleholder entity</li><li>Financing for the parked property, since most lenders won't lend directly to the titleholder entity</li><li>Coordination with the Denver title company on the parking transaction closing</li><li>Marketing and sale timeline for the relinquished property still to be sold</li><li>Documentation trail connecting the parked property back to the eventual exchange</li></ul>"
+  },
+  {
+   "heading": "Cost and complexity, honestly",
+   "html": "<p>A reverse exchange costs more than a standard exchange and takes more coordination, largely because of the financing and entity setup involved in parking a property. We tell every investor that upfront rather than downplaying it, since the decision to go reverse should be made with clear eyes about the extra cost against the risk of losing the replacement property to another buyer.</p>"
+  },
+  {
+   "heading": "When we recommend against it",
+   "html": "<p>A reverse exchange isn't the right answer for every tight-timeline situation. If a relinquished property hasn't been listed yet and there's no realistic sale timeline in sight, parking a replacement property can leave an investor carrying financing costs on the parked deal for far longer than expected. We ask investors how firm their sale plan actually is before recommending a reverse structure, since a standard forward exchange with a well-built backup identification list sometimes solves the same problem with less complexity.</p><p>We also look at how the investor plans to carry financing on the parked property in the meantime, since some lenders require a defined exit date before approving a loan tied to a reverse structure, and an open-ended sale timeline can make that conversation harder than it needs to be.</p><p>We ask investors to have at least a rough listing date and pricing strategy worked out for their current property before we recommend moving forward with a reverse structure, since that gives the lender and the exchange accommodation titleholder something concrete to plan around instead of an open question.</p><p>Investors who've already talked to a listing agent about pricing and timing tend to move through this conversation faster than those still deciding whether to sell at all, since the parking structure works best when the sale side of the exchange has a realistic path forward already in motion.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "When does a reverse exchange make sense instead of a standard forward exchange?",
+   "a": "When a strong replacement property shows up before your current property has sold, and you're confident it will sell within the 180-day window but can't guarantee the timing. Denver's faster-moving submarkets make this situation come up more than in slower markets."
+  },
+  {
+   "q": "Who actually holds title to the property during a reverse exchange?",
+   "a": "An exchange accommodation titleholder, typically an entity set up by the qualified intermediary, holds title to either the replacement or relinquished property temporarily. The investor doesn't hold both properties directly at once."
+  },
+  {
+   "q": "Does the 45-day identification rule still apply in a reverse exchange?",
+   "a": "A form of it does, but it applies to identifying the relinquished property being sold, not the replacement being bought, since the replacement is already under the accommodation titleholder's ownership by that point."
+  },
+  {
+   "q": "Can I get a normal mortgage on a property being parked with an exchange accommodation titleholder?",
+   "a": "Usually not directly. Most conventional lenders won't lend to the titleholder entity, so reverse exchanges often need a lender familiar with this structure or a different financing approach entirely."
+  },
+  {
+   "q": "Is a reverse exchange more expensive than a standard exchange?",
+   "a": "Yes, generally. The entity setup, financing complexity, and extra coordination involved in parking a property add cost that a standard forward exchange doesn't carry. We walk through that cost with every investor before recommending the structure."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 888
+}

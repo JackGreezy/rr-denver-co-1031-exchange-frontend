@@ -1,0 +1,70 @@
+{
+ "slug": "improvement-exchange-planning",
+ "taxonomy": "services",
+ "title": "Improvement Exchange Planning",
+ "name": "Improvement Exchange Planning",
+ "metaTitle": "Improvement Exchange Planning in Denver, CO",
+ "metaDescription": "Planning a build-to-suit 1031 exchange in Denver, where exchange funds pay for construction on replacement property before title transfers to the investor.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>Sometimes the right replacement property does not exist yet. An improvement exchange lets a Denver investor use exchange funds to build or renovate a replacement property before taking title, instead of only buying something finished and available on the open market.</p>"
+  },
+  {
+   "heading": "How Title Is Held During Construction",
+   "html": "<p>An exchange accommodation titleholder, a separate entity set up for this purpose, holds legal title to the replacement property while construction happens. The investor directs the improvements and the exchange funds pay the contractors, but the property itself does not transfer to the investor until the work is done or the 180-day period runs out, whichever comes first. This structure exists specifically because the tax code requires the investor to receive the replacement property, improvements included, within that window.</p>"
+  },
+  {
+   "heading": "Where This Shows Up in a Denver Deal",
+   "html": "<p>The clearest example we coordinate is an investor buying a raw industrial shell along the I-70 corridor or a pad site in Commerce City that needs tenant improvements, dock doors, or site work before it functions as the intended use. Buying the finished version of that property on the open market either does not exist at the right price or does not exist at all, so the exchange funds go toward finishing the building instead of just acquiring it as-is.</p>"
+  },
+  {
+   "heading": "The Timeline Pressure This Structure Creates",
+   "html": "<p>Every dollar of construction has to be complete, in the sense of being reflected in the property's value, by day 180, rather than merely started or under contract. That compresses the usable construction window well below 180 days once permitting, site work, and lead times on materials are factored in. We build the construction schedule backward from day 180 the same way we build a closing schedule, treating permit approval and contractor mobilization as milestones with hard deadlines, not flexible target dates.</p>"
+  },
+  {
+   "heading": "What We Track Through the Construction Period",
+   "html": "<p>An improvement exchange file carries more moving pieces than a standard purchase.</p><ul><li>Exchange accommodation titleholder formation and agreement</li><li>Permit approval timeline against day 180</li><li>Contractor draw schedule tied to exchange fund releases</li><li>Completed value of improvements at the transfer date</li><li>Title transfer to the investor before or at day 180</li></ul>"
+  },
+  {
+   "heading": "Choosing the Right Contractor for a Fixed Deadline",
+   "html": "<p>A general contractor used to normal project timelines does not always adjust well to a hard, non-negotiable completion date tied to a tax deadline rather than a lease start date. We look for contractors on Denver improvement exchanges who have handled fixed-deadline work before, since the ability to compress a schedule when a permit runs late matters more here than on a typical build-out where a two-week slip is only an inconvenience.</p>"
+  },
+  {
+   "heading": "What Happens If Construction Runs Long",
+   "html": "<p>If day 180 arrives before construction is finished, the investor still takes title to the property in whatever state it is in at that point, and any improvement value not yet in place does not count toward the exchange. That makes early identification of realistic scope, rather than an ambitious build-out, the safer path on a tight Denver construction timeline. We flag schedule risk as soon as a permit delay or material lead time threatens the completion date, and investors should keep their tax advisor informed if the scope needs to be trimmed to fit the window.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Why can't the investor hold title during construction?",
+   "a": "The exchange rules require the investor to receive the replacement property within the exchange period. An exchange accommodation titleholder holds title temporarily so the improvements can be completed before that transfer happens."
+  },
+  {
+   "q": "What happens if construction isn't finished by day 180?",
+   "a": "Title transfers to the investor in whatever state the property is in at that point. Improvement value not yet completed does not count toward the exchange, which is why realistic scope matters more than an ambitious build-out."
+  },
+  {
+   "q": "Does this work for a raw industrial shell in Denver?",
+   "a": "Yes, this is one of the more common uses, particularly along the I-70 corridor or in Commerce City, where a finished replacement property at the right specification often does not exist on the open market."
+  },
+  {
+   "q": "How much of the 180 days is actually usable for construction?",
+   "a": "Less than the full window once permitting and mobilization are factored in. We build the construction schedule backward from day 180 to see how much real building time is left after those steps."
+  },
+  {
+   "q": "Who pays the contractors during the exchange?",
+   "a": "Exchange funds held by the qualified intermediary release through a draw schedule tied to construction progress, coordinated through the exchange accommodation titleholder rather than paid directly by the investor. We review each draw request against the completed work before it goes out, the same way a lender would on a construction loan."
+  },
+  {
+   "q": "Does an improvement exchange cost more to set up than a standard exchange?",
+   "a": "Yes, forming and maintaining the exchange accommodation titleholder adds cost and complexity beyond a standard forward exchange, which is part of why this structure only makes sense when a suitable finished replacement property genuinely does not exist on the open market at the right price, specification, or location."
+  },
+  {
+   "q": "Can improvements continue after the investor takes title?",
+   "a": "Any work done after title transfers no longer counts toward the exchange, since the property has to be received, improvements included, within the exchange period. Work completed afterward is simply a normal capital improvement outside the exchange, funded and treated separately from the original transaction, and it has no bearing on the gain already deferred through the exchange itself."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 863
+}

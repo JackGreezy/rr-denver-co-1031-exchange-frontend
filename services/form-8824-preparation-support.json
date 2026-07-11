@@ -1,0 +1,70 @@
+{
+ "slug": "form-8824-preparation-support",
+ "taxonomy": "services",
+ "title": "Form 8824 Preparation Support",
+ "name": "Form 8824 Preparation Support",
+ "metaTitle": "Form 8824 Preparation Support in Denver, CO",
+ "metaDescription": "Assembling the closing dates, values, and property descriptions a Denver investor's CPA needs to prepare Form 8824 after an exchange closes.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>Form 8824 is what reports a 1031 exchange to the IRS, and it asks for numbers that are scattered across a dozen closing documents by the time the exchange is done. We pull those numbers into one packet for the investor's CPA so nobody is digging through old settlement statements in April.</p>"
+  },
+  {
+   "heading": "What the Form Actually Needs",
+   "html": "<p>Form 8824 asks for a description of both properties, the date the relinquished property was originally acquired, the date it was transferred, the date the replacement property was identified, and the date it was received. It also needs fair market values, adjusted basis figures, any boot received, and the resulting realized and recognized gain. Every one of those data points exists somewhere in the closing file already, from the original purchase records through the final settlement statement, but they rarely sit in one place until someone assembles them.</p>"
+  },
+  {
+   "heading": "Where the Numbers Come From on a Denver File",
+   "html": "<p>The acquisition and transfer dates come straight off the settlement statements for both closings. Fair market values come from the purchase and sale contracts, backed up by appraisals where one was ordered, which is common on a Highlands Ranch retail building or a Golden industrial property where lender underwriting required one. Adjusted basis depends on the investor's original purchase price plus capital improvements and depreciation taken over the hold, which is information we request directly from the investor's CPA rather than reconstructing ourselves.</p>"
+  },
+  {
+   "heading": "The Packet We Hand Off",
+   "html": "<p>Every Denver exchange gets the same assembled packet once both closings are complete.</p><ul><li>Relinquished and replacement property legal descriptions</li><li>Acquisition, transfer, identification, and receipt dates</li><li>Fair market value and closing costs for both properties</li><li>Any boot, cash or debt-related, identified during the exchange</li><li>Settlement statements and the signed exchange agreement</li></ul>"
+  },
+  {
+   "heading": "What We Do Not Calculate",
+   "html": "<p>We assemble the closing-side data, not the tax return itself. Adjusted basis carryover, depreciation recapture exposure, and the final realized and recognized gain figures depend on the investor's full tax history well beyond this single transaction, so those calculations belong to the investor's CPA. Handing over a clean, complete packet is what shortens that work, but it does not replace it.</p>"
+  },
+  {
+   "heading": "Handling Multi-Property Exchanges on the Form",
+   "html": "<p>When a Denver exchange involves several replacement properties, whether under the 200 percent cap or a DST placement split across offerings, the form has to reflect each property separately rather than one blended figure. We break the packet out by property so the CPA can allocate basis and gain correctly across the group, since treating a multi-property exchange as a single line item on the form usually creates more rework later than building it out correctly the first time.</p>"
+  },
+  {
+   "heading": "Reconciling the Closing Statement Against the Exchange Agreement",
+   "html": "<p>The final settlement statement on both the relinquished and replacement closings has to match what the exchange agreement describes, down to the prorations and closing costs allocated to each side. A discrepancy here, even a small one, can throw off the boot calculation that feeds into the gain figures on the form. We reconcile both settlement statements line by line against the exchange agreement before the packet goes to the CPA, rather than assuming the numbers already agree because the same qualified intermediary handled both transactions.</p>"
+  },
+  {
+   "heading": "What a Denver Investor Should Bring to Their CPA Separately",
+   "html": "<p>Some information genuinely lives outside the exchange file and has to come from the investor directly. Depreciation schedules from prior tax returns, records of capital improvements made during the hold period, and any passive activity loss carryforwards tied to the relinquished property are not part of the closing documentation, and we do not attempt to reconstruct them. We tell investors early which pieces fall into this category so they can start pulling that history from their own records or a prior accountant well before the packet is due.</p>"
+  },
+  {
+   "heading": "Timing the Handoff Before the Filing Deadline",
+   "html": "<p>We aim to deliver the completed packet within a few weeks of the replacement closing, not in March when the filing deadline is close. A Denver exchange that closed late in the year, especially one where the 180-day period pushed close to the tax filing date, leaves the CPA less time to work through basis questions or request an extension if one is needed. Getting the packet over early gives that decision room to happen properly.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What information does Form 8824 require?",
+   "a": "Descriptions of both properties, key dates for acquisition, transfer, identification, and receipt, fair market values, adjusted basis, any boot received, and the resulting gain figures."
+  },
+  {
+   "q": "Do you prepare and file Form 8824 for me?",
+   "a": "No, we assemble the closing-side data your CPA needs. The form itself is filed by your tax preparer as part of your return, since gain calculations depend on your full tax history."
+  },
+  {
+   "q": "Where does adjusted basis information come from?",
+   "a": "Original purchase records, capital improvements, and depreciation taken during the hold period. We request that history directly from the investor's CPA rather than reconstructing it independently."
+  },
+  {
+   "q": "When should the documentation packet be ready?",
+   "a": "We aim for a few weeks after the replacement property closes, well ahead of filing season, so your CPA has time to work through basis and gain questions without a deadline crunch."
+  },
+  {
+   "q": "Does a late-year closing affect the filing timeline?",
+   "a": "It can. If the 180-day period pushes close to your tax return due date, your CPA may need to discuss an extension, which is easier to plan for with the documentation in hand early rather than assembled at the last minute."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 856
+}

@@ -1,0 +1,74 @@
+{
+ "slug": "industrial-property-identification",
+ "taxonomy": "services",
+ "title": "Industrial Property Identification",
+ "name": "Industrial Property Identification",
+ "metaTitle": "Industrial Property Identification in Denver, CO",
+ "metaDescription": "Sourcing replacement industrial and flex space along Denver's I-70 corridor, Commerce City, and Aurora for investors working the 45-day window.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>Industrial replacement candidates in Denver move fast, and the good ones rarely sit on a listing site long enough for an investor to find them cold on day one of the identification window. We track this stock before an exchange starts, not after.</p>"
+  },
+  {
+   "heading": "Where the Industrial Stock Actually Sits",
+   "html": "<p>The I-70 corridor east of downtown carries most of the metro's bulk distribution and manufacturing space, with Commerce City picking up newer construction as land closer in has filled. Aurora has a mix of older flex buildings and newer logistics product near the airport, since proximity to Denver International Airport is a real draw for last-mile and freight-adjacent tenants. Smaller flex and light-industrial buildings show up scattered through Lakewood and Westminster, usually older stock with lower ceiling heights than what a modern logistics user needs.</p>"
+  },
+  {
+   "heading": "What Separates a Usable Candidate From a Listing",
+   "html": "<p>Clear height, dock door count, trailer parking, and power capacity matter more on an industrial identification than square footage alone, and none of that is always accurate in a listing sheet. We verify these specs directly rather than relying on marketing materials, since a candidate that looks like a fit on paper can be wrong for the investor's intended use once the actual clear height or power service is confirmed on site.</p>"
+  },
+  {
+   "heading": "What Goes Into Every Candidate File",
+   "html": "<p>The same checklist runs on every industrial property before it makes the identification list.</p><ul><li>Clear height and column spacing</li><li>Dock door and drive-in door count</li><li>Power service and any heavy-power tenant history</li><li>Trailer and truck court capacity</li><li>Lease status and remaining tenant term if occupied</li></ul>"
+  },
+  {
+   "heading": "Why the Airport-Adjacent Submarket Runs Differently",
+   "html": "<p>Space near Denver International Airport tends to draw freight, logistics, and last-mile tenants willing to pay a premium for proximity, which keeps vacancy tighter and identification harder in that specific pocket than in the I-70 corridor generally. An investor targeting this submarket needs backup candidates in Commerce City or further out Aurora lined up before the 45-day clock starts, since the airport-adjacent product that fits a specific use can be gone before an investor even tours it.</p>"
+  },
+  {
+   "heading": "Owner-User Versus Leased Industrial Candidates",
+   "html": "<p>An owner-user building, one the investor's own operating business would occupy, moves through identification and financing differently than a leased investment property. Lenders generally view owner-occupied industrial space as lower risk, which can mean faster underwriting, while a leased building brings tenant credit and remaining lease term into the picture. We flag which category a candidate falls into as soon as it is added to the list, since that distinction changes both the financing timeline and the kind of due diligence worth doing before day 45.</p>"
+  },
+  {
+   "heading": "Reading Rent Growth Across the Corridor",
+   "html": "<p>Asking rents along the I-70 corridor and in Commerce City have moved enough in recent years that a candidate priced against an older lease comp can look cheaper than it actually is. We pull current asking rents for comparable space before finalizing a value estimate on any industrial candidate, since a stale rent assumption can throw off both the purchase price analysis and, on a value-capped identification list, the running total against the cap itself.</p>"
+  },
+  {
+   "heading": "Coordinating Identification With Financing Realities",
+   "html": "<p>Industrial lenders look closely at tenant credit and lease term on occupied buildings, and financing timelines can run longer than on a vacant or owner-user property. We flag financing risk on any occupied candidate as soon as it goes on the identification list, so the investor and their lender have runway to work through underwriting instead of discovering a problem close to day 180.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Where is most of Denver's industrial replacement stock located?",
+   "a": "The I-70 corridor and Commerce City carry the bulk of it, with additional logistics and flex space in Aurora near the airport and older, smaller buildings scattered through Lakewood and Westminster."
+  },
+  {
+   "q": "What specs matter most on an industrial candidate?",
+   "a": "Clear height, dock door count, trailer parking, and power capacity typically matter more than square footage, and we verify these on site rather than relying on listing sheets."
+  },
+  {
+   "q": "Why is space near Denver International Airport harder to identify?",
+   "a": "Freight and last-mile tenants pay a premium for that proximity, which keeps vacancy tighter than the broader I-70 corridor and means good candidates there can go under contract quickly."
+  },
+  {
+   "q": "Does an occupied industrial building take longer to finance?",
+   "a": "Often, since lenders review tenant credit and remaining lease term closely. We flag that risk as soon as an occupied candidate is added to the identification list, well before it becomes a problem for the closing calendar."
+  },
+  {
+   "q": "Should identification start before the relinquished sale closes?",
+   "a": "Yes, given how quickly well-specified industrial buildings move in this market. Waiting until the 45-day clock starts leaves less time to verify specs and line up financing on a strong candidate."
+  },
+  {
+   "q": "Does an owner-user building identify differently than a leased one?",
+   "a": "The underlying identification rules are the same, but owner-user buildings tend to underwrite faster since lenders view occupied-by-the-buyer space as lower risk than a leased investment property with tenant credit to evaluate."
+  },
+  {
+   "q": "How much should rent comps factor into an industrial purchase price?",
+   "a": "Heavily, especially where a candidate is priced against an older lease. We pull current asking rents for comparable space before finalizing a value estimate, since a stale rent assumption can misstate the true value and skew a value-capped identification list built under the 200 percent rule for a Denver portfolio consolidation."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 851
+}

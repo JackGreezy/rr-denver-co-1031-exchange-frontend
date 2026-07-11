@@ -1,0 +1,66 @@
+{
+ "slug": "t12-financial-review",
+ "taxonomy": "services",
+ "title": "T12 Financial Review",
+ "name": "T12 Financial Review",
+ "metaTitle": "T12 Financial Review in Denver, CO",
+ "metaDescription": "Reviewing trailing twelve month financials on candidate replacement properties across metro Denver before they go on your identification list.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>A trailing twelve month financial statement tells a more honest story than a broker's one-page summary, but only if someone actually reads it line by line. We pull the T12 on every serious candidate property, check it against tax records and utility history, and flag anything that doesn't hold up before it goes anywhere near an identification list.</p>"
+  },
+  {
+   "heading": "Revenue lines worth double-checking",
+   "html": "<p>Total revenue on a T12 can include one-time items, a lease termination fee, an insurance claim reimbursement, or a large late-fee collection month, that won't repeat under new ownership. We separate recurring rental and reimbursement income from one-time items so an investor isn't underwriting a purchase price against income that won't show up again next year.</p>"
+  },
+  {
+   "heading": "Expense lines that move after closing",
+   "html": "<p>Property tax is the biggest one in Colorado. A sale at a higher price than the current assessed value can trigger a reassessment that raises the tax bill well above what the seller's T12 shows, since Colorado reassesses on a cycle rather than automatically at sale, but county assessors do watch sale prices. We run a projected post-sale tax number for every candidate rather than assuming the seller's trailing expense line carries forward unchanged.</p>"
+  },
+  {
+   "heading": "CAM and reimbursement reconciliation",
+   "html": "<p>On retail and office properties, common area maintenance charges billed to tenants need to be checked against actual CAM expense, since an under-billed CAM pool means the landlord is quietly absorbing costs the T12 doesn't clearly show. We ask for the reconciliation history going back two years, beyond the current year's billed amount, before trusting a net operating income figure built on CAM recovery.</p>"
+  },
+  {
+   "heading": "What we ask sellers for",
+   "html": "<p>Beyond the summary T12, we typically request:</p><ul><li>Monthly general ledger detail behind the trailing twelve months</li><li>Utility bills for the same period, matched against the T12 utility line</li><li>Prior year property tax bill and current assessed value</li><li>CAM reconciliation statements for the past two years, where applicable</li><li>Capital expenditure history for the past three years</li></ul>"
+  },
+  {
+   "heading": "How this changes the final identification decision",
+   "html": "<p>Once the real, adjusted net operating income is clear, we hand the investor a side-by-side comparison against the seller's marketed numbers. That comparison has knocked more than one property off a shortlist once a Denver county tax reassessment or a soft CAM recovery pool got factored back in.</p>"
+  },
+  {
+   "heading": "Utility expense verification",
+   "html": "<p>We match the T12 utility line against actual monthly utility bills wherever a seller will provide them, since utility expense on a summary T12 sometimes gets averaged or estimated rather than pulled straight from invoices. A multifamily building where the landlord covers water and sewer needs this checked especially closely, since a mild winter or a temporary vacancy stretch can make a trailing utility number look better than what a full, typical year would actually run.</p>"
+  },
+  {
+   "heading": "Building a repeatable review process",
+   "html": "<p>Every candidate property gets the same checklist applied in the same order, revenue first, then recurring expenses, then one-time items pulled out of both sides, so an investor comparing a DTC office building against an Aurora apartment complex is looking at numbers built the same way rather than whatever format each seller happened to hand over. That consistency is what makes the final comparison across candidates actually mean something.</p><p>We hand the investor a short summary next to the full detail, adjusted net operating income, the biggest one-time items removed, and the projected post-sale property tax figure, so the decision at the identification stage rests on numbers that will actually hold up once the deal closes.</p><p>We also keep that summary format consistent from file to file, so an investor working through several candidate properties over the course of one exchange isn't relearning a new layout every time a new T12 comes in from a different seller or broker.</p><p>That consistency also makes it easier to spot a pattern across multiple candidates in the same submarket, like several DTC office buildings all carrying similar deferred maintenance in their capital expenditure history, which tells its own story about that corridor's aging building stock.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What's the difference between a T12 and a pro forma?",
+   "a": "A T12 reflects the property's actual trailing twelve months of income and expense. A pro forma is a projection of future performance. We rely on the T12 first and treat pro forma numbers as a seller's forecast that needs its own scrutiny."
+  },
+  {
+   "q": "Why does property tax matter so much in a Colorado T12 review?",
+   "a": "A sale at a price higher than the current assessed value can lead a county assessor to reassess the property, raising the tax bill above what the seller's trailing financials show. We project a post-sale tax figure instead of assuming the current line stays flat."
+  },
+  {
+   "q": "What is CAM reconciliation and why does it matter?",
+   "a": "CAM reconciliation compares what tenants were billed for common area expenses against what those expenses actually cost. If the pool was under-billed, the landlord absorbed the difference, which a summary T12 can hide behind an otherwise normal-looking expense line."
+  },
+  {
+   "q": "Should I trust a seller's T12 without additional documentation?",
+   "a": "Not on its own. We request general ledger detail, utility bills, and reconciliation statements to confirm the summary numbers actually match what happened month to month rather than a cleaned-up year-end figure."
+  },
+  {
+   "q": "Can a T12 review change the price I'm willing to pay for a property?",
+   "a": "Regularly. Once one-time revenue is stripped out and post-sale expenses like a tax reassessment are factored in, the real net operating income can come in meaningfully lower than what the seller's summary suggests."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 878
+}

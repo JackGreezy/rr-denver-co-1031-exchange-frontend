@@ -1,0 +1,74 @@
+{
+ "slug": "forward-exchange-coordination",
+ "taxonomy": "services",
+ "title": "Forward Exchange Coordination",
+ "name": "Forward Exchange Coordination",
+ "metaTitle": "Forward Exchange Coordination in Denver, CO",
+ "metaDescription": "End-to-end coordination for a standard sell-first, buy-second 1031 exchange in Denver, from the relinquished sale through the replacement closing.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>A forward exchange is the standard order of operations: sell the relinquished property first, then buy the replacement. It is the most common structure we run in Denver, and most of the ways it goes wrong come from treating the two closings as separate deals instead of one sequence with a shared clock.</p>"
+  },
+  {
+   "heading": "How the Sequence Actually Runs",
+   "html": "<p>The relinquished property closes and the qualified intermediary holds the proceeds rather than the investor. From that closing date, the investor has 45 days to identify replacement candidates in writing and 180 days total to close on the replacement. We treat those two windows as one continuous file from the moment the relinquished sale is listed, not as a closing followed by a separate search that starts from zero.</p>"
+  },
+  {
+   "heading": "Where Denver Sellers Usually Start",
+   "html": "<p>A common version of this we coordinate is a Cherry Creek retail owner selling a single storefront building and rolling the proceeds into a Denver Tech Center office property, often trading active street-level management for a more passive leased asset. The relinquished side tends to move quickly once listed, given steady demand in that corridor, which means the replacement search needs to be well underway before the sale even closes, not started the day funds land with the QI.</p>"
+  },
+  {
+   "heading": "The Full Sequence We Coordinate",
+   "html": "<p>Every forward exchange runs through the same stages regardless of asset class.</p><ul><li>Exchange agreement signed before the relinquished closing</li><li>Relinquished sale closes and proceeds go to the qualified intermediary</li><li>Replacement property identified in writing within 45 days</li><li>Replacement purchase contract executed and financing lined up</li><li>Replacement closing completed within 180 days total</li><li>Closing documentation assembled for the investor's CPA</li></ul>"
+  },
+  {
+   "heading": "Why the Two Closings Need One Timeline",
+   "html": "<p>Running the relinquished sale and the replacement purchase on separate tracks is how investors end up scrambling in the final weeks of the window. We build the closing calendar for both transactions as soon as the relinquished property is under contract, working backward from day 180, so lender underwriting on the Denver Tech Center side, or wherever the replacement lands, starts well before the identification deadline rather than after it.</p>"
+  },
+  {
+   "heading": "Where a Forward Exchange Fits Compared to a Reverse One",
+   "html": "<p>A forward exchange only works when the investor is comfortable selling before the replacement property is lined up. If the right replacement is already under contract before the relinquished property is ready to sell, a reverse structure fits better, since it flips the order and lets the replacement close first. We ask about the sequencing an investor actually needs early on, rather than defaulting to a forward structure just because it is the more common path in Denver.</p>"
+  },
+  {
+   "heading": "Coordinating the Investor's Own Timeline Pressures",
+   "html": "<p>A forward exchange often runs alongside other deadlines in an investor's life, a lease expiration on the relinquished property, a tenant's option to renew, or a personal move tied to the sale. We map those outside pressures against the 45-day and 180-day windows early, since a lease that expires mid-window can either simplify the sale or complicate the closing timeline depending on how it is handled, and it is better to know which one applies before the relinquished property is even listed.</p>"
+  },
+  {
+   "heading": "What Changes If the Replacement Search Stalls",
+   "html": "<p>If nothing on the identification list is panning out as day 45 approaches, the priority shifts to widening the search immediately rather than waiting to see if something turns up. We keep backup candidates in view throughout the relinquished sale process specifically so a stalled search does not turn into a missed identification deadline, and we loop in the investor's tax advisor if the timeline gets tight enough to warrant it.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What makes an exchange a forward exchange instead of a reverse one?",
+   "a": "Order of operations. In a forward exchange the relinquished property sells first and the replacement is purchased after, within the 45-day and 180-day windows that follow the sale."
+  },
+  {
+   "q": "When should the replacement property search start?",
+   "a": "Before the relinquished property closes, ideally while it is still under contract. Waiting until the identification clock starts to begin touring properties leaves less room to react in a competitive Denver market."
+  },
+  {
+   "q": "Do the 45-day and 180-day windows run separately?",
+   "a": "No, both run from the same closing date on the relinquished property. Day 180 is not extended by how the 45-day identification period was used."
+  },
+  {
+   "q": "What happens if identification candidates fall through near day 45?",
+   "a": "We widen the search immediately and lean on backup candidates that were already vetted, since there is no mechanism to extend the 45-day deadline regardless of market conditions."
+  },
+  {
+   "q": "Do you handle both closings or just the replacement side?",
+   "a": "We coordinate the full sequence, from the relinquished sale through the replacement closing and the documentation handoff afterward, as one continuous file rather than two separate transactions."
+  },
+  {
+   "q": "Does a forward exchange work for a portfolio sale rather than one property?",
+   "a": "Yes, though the identification rule and closing sequencing get more involved, since several relinquished properties and several replacement candidates all still answer to the same 45-day and 180-day windows."
+  },
+  {
+   "q": "How does a lease expiration on the relinquished property affect the timeline?",
+   "a": "It can simplify a sale if the buyer wants vacant possession, or complicate a closing if a tenant's option to renew is still open. We map that lease timeline against the exchange windows before the relinquished property is even listed, so nobody discovers a conflict once the sale is already under contract."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 854
+}

@@ -1,0 +1,66 @@
+{
+ "slug": "95-percent-rule-strategy",
+ "taxonomy": "services",
+ "title": "95 Percent Rule Strategy",
+ "name": "95 Percent Rule Strategy",
+ "metaTitle": "95 Percent Rule Strategy in Denver, CO",
+ "metaDescription": "Rare-use identification path for Denver investors who need to name candidates beyond the 200 percent cap, provided nearly all of them actually close.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>Most Denver exchanges never need the 95 percent rule, and that is by design. It exists for the investor who wants to identify a large, uncapped list of replacement candidates and is confident enough in closing almost all of them to accept the risk that comes with it.</p>"
+  },
+  {
+   "heading": "What This Rule Actually Requires",
+   "html": "<p>Unlike the three-property rule or the 200 percent cap, the 95 percent rule places no limit on how many properties can be identified or their combined value. The tradeoff is that the investor must actually acquire at least 95 percent of the aggregate fair market value of everything named on the list before the exchange period ends. Falling short of that threshold, even by a small margin, can disqualify the entire exchange, affecting every property in the transaction and not only the ones that did not close.</p>"
+  },
+  {
+   "heading": "Who This Fits in a Denver Market",
+   "html": "<p>We see this come up with investors moving a large amount of capital out of one relinquished asset, often someone who also holds property in a mountain resort market and is using the sale to consolidate into a larger, more diversified position. Naming a wide list of candidates across Aurora and Thornton apartment stock, plus one or two backup options, only makes sense if the investor genuinely intends to close on nearly all of it. This is not a fit for someone who wants optionality to walk away from most of the list, and we say so directly before an investor commits to this path over a more forgiving identification rule.</p>"
+  },
+  {
+   "heading": "What We Track Once This Rule Is In Play",
+   "html": "<p>The risk here is concentrated at the closing stage, so the tracking has to be tighter than on a smaller exchange.</p><ul><li>Running percentage of identified value under contract</li><li>Which candidates are firm versus still soft</li><li>Financing status on every property counted toward the 95 percent threshold</li><li>Contingency plans if one large property falls out late</li><li>Coordination across multiple closings landing near day 180</li></ul>"
+  },
+  {
+   "heading": "Why the Margin for Error Is Thin",
+   "html": "<p>A 95 percent threshold sounds generous until one large property on the list falls through financing or inspection late in the window. If that single property represented ten percent of the identified value, the investor is now under the threshold and the exchange can fail even though every other closing went fine. We flag concentration risk early, meaning if any one candidate carries an outsized share of the total value, we push for financing confirmation on that property well before the other closings are scheduled.</p>"
+  },
+  {
+   "heading": "Comparing This Path Against the Other Two Rules",
+   "html": "<p>The three-property rule offers the least flexibility but the least risk, since only three named properties matter regardless of value. The 200 percent cap widens the count but caps the total value at a fixed multiple of the relinquished sale price. The 95 percent rule removes both limits but replaces them with a closing-rate requirement that is unforgiving if a large property falls through late. We walk a Denver investor through all three side by side before recommending which one fits a specific portfolio consolidation, since the right choice depends on how many candidates are realistic and how confident the investor is in closing on most of them.</p>"
+  },
+  {
+   "heading": "Coordinating Multiple Closings Against One Deadline",
+   "html": "<p>An exchange using this rule usually involves several closings landing in the same window rather than one clean transaction, and all of them still answer to the same 180-day deadline. We sequence closings so the properties with the most financing or title risk close earliest, leaving the more predictable ones for the final weeks. Investors should confirm the acquisition threshold calculation with their tax advisor before relying on this rule, since a shortfall discovered after day 180 has no remedy.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "How is the 95 percent threshold measured?",
+   "a": "Against the combined fair market value of every property named on the identification list, not against the number of properties. Falling short in value terms can disqualify the exchange even if most properties on the list closed."
+  },
+  {
+   "q": "Why would a Denver investor choose this over the 200 percent cap?",
+   "a": "Mainly when the identification list is large enough, or values uncertain enough, that a fixed 200 percent ceiling would be too tight, and the investor is confident in closing nearly everything named."
+  },
+  {
+   "q": "What happens if one property on the list falls through?",
+   "a": "If that property represents enough of the total identified value to push actual acquisitions below 95 percent, the exchange can fail. That is why we flag any single large candidate as a concentration risk early."
+  },
+  {
+   "q": "Can this rule be combined with the three-property rule?",
+   "a": "No, an exchange uses one identification rule. If the list needs to exceed both the count and value limits of the other rules, the 95 percent rule is the remaining option."
+  },
+  {
+   "q": "Is this rule common in Denver exchanges?",
+   "a": "It is the least used of the three identification rules here, mainly because the acquisition threshold is unforgiving. It tends to show up on larger, multi-property consolidations rather than typical single-replacement deals."
+  },
+  {
+   "q": "Does financing add risk under the 95 percent rule?",
+   "a": "Yes, more than under the other identification rules, since a financing delay on even one large property can drop the completed acquisitions below the required threshold. We push financing preflight earlier on files using this rule for that reason, and we track loan status weekly rather than only at the milestones we would use on a smaller exchange."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 861
+}

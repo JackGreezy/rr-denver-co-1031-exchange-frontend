@@ -1,0 +1,58 @@
+{
+ "slug": "200-percent-rule-strategy",
+ "taxonomy": "services",
+ "title": "200 Percent Rule Strategy",
+ "name": "200 Percent Rule Strategy",
+ "metaTitle": "200 Percent Rule Strategy in Denver, CO",
+ "metaDescription": "Field-tested 200 percent rule strategy for Denver portfolio consolidations, capping identification value instead of property count across multiple closings.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>A field superintendent does not worry about how many trades are on a punch list; the worry is whether the total scope still fits inside the approved budget. A Denver 1031 exchange consolidating a scattered rental portfolio into fewer, larger holdings runs into the same math. The three-property rule caps the count, not the value, and a consolidation identification list almost always needs more than three lines. The 200 percent rule flips the constraint: any number of properties, capped by value instead of count.</p>"
+  },
+  {
+   "heading": "Why a Consolidation Punch List Blows Past Three Line Items",
+   "html": "<p>We see this most often with owners who bought duplexes and fourplexes across Aurora, Lakewood, and Thornton one at a time over a decade and are ready to get out of hands-on management at that scale. Sell the whole portfolio in one relinquished transaction, then start identifying replacement candidates, and the list can hit six, eight, or more addresses before the 45-day window closes. Naming a fourth or fifth property under the three-property rule voids identification for everything past the third, so the strategy switches to a value cap instead of a count cap the moment a consolidation list looks like it will run past three.</p>"
+  },
+  {
+   "heading": "The Budget Line the List Can't Cross",
+   "html": "<p>Under this rule the count on the list is unlimited, but the combined fair market value of everything on it cannot exceed 200 percent of what the relinquished property sold for. Sell a Front Range portfolio for four million dollars and the identification list can run up to eight million in combined value across five buildings or fifteen, but one dollar over that line and the entire list can fail, well beyond the excess alone. We track five things against that ceiling on every candidate before it gets added.</p><ul><li>Current listed or negotiated price for the candidate</li><li>Running total against the 200 percent ceiling after adding it</li><li>Broker price opinion or appraisal backup where the price is in dispute</li><li>Which closing phase the candidate is assigned to</li><li>Whether the candidate can be dropped without breaking the cap math</li></ul>"
+  },
+  {
+   "heading": "Sequencing the Closings Like a Multi-Phase Build",
+   "html": "<p>Front Range in-migration drove a lot of small multifamily buying across the 2010s, and plenty of those owners are now at the point where managing scattered units in Aurora or Lakewood costs more effort than it is worth. Rolling that into fewer, larger holdings, sometimes a single building near Denver Tech Center or a small complex further out along the I-25 or I-70 corridor, is a common exit, and the identification list on that kind of consolidation almost never fits inside three properties.</p><p>A consolidation exchange rarely closes as one transaction; more often it is three or four separate closings on properties spread across different submarkets, each landing on its own date inside the 180-day window. We phase those closings like a multi-building job: highest-confidence purchases go first, and anything with financing or title uncertainty gets scheduled later, while there is still room to substitute a backup candidate if one falls through.</p>"
+  },
+  {
+   "heading": "Confirming Value Before You Pour the Foundation",
+   "html": "<p>The cap is measured against fair market value, not asking price or contract price, and those numbers can diverge enough on off-market or lightly marketed properties to matter. We push for a broker price opinion or a quick appraisal on any candidate whose value is not clearly established by an arm's-length listing, because a list that looks safely under 200 percent on paper can be over it if a candidate's value gets challenged later. Investors should confirm final valuation positions with their tax advisor before the identification deadline, the same way a superintendent confirms a site survey before footings get poured.</p>"
+  },
+  {
+   "heading": "When the Running Total Creeps Over Budget",
+   "html": "<p>The running value total gets rechecked after every single closing, not only once at the start, since a price change on one candidate can shift how much room remains for the rest of the list. If the total creeps past 200 percent before day 45, the fix is dropping a candidate, not hoping the number holds on its own. We keep a ranked list so the lowest-priority property can come off without disrupting the closings the investor actually wants. Waiting until day 44 to find this out leaves no room to react, which is why the math gets checked every time a candidate is added or its price moves.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Does the 200 percent rule limit how many properties I can identify?",
+   "a": "No. There is no cap on the count. The limit is on the combined fair market value of everything on the list, measured against 200 percent of what the relinquished property sold for."
+  },
+  {
+   "q": "Can I combine the three-property rule and the 200 percent rule on the same list?",
+   "a": "No, you pick one for the identification. If a Front Range consolidation list runs past three properties, it has to fit under the 200 percent value cap instead."
+  },
+  {
+   "q": "What happens if the running total goes over 200 percent by a small margin?",
+   "a": "The identification can fail for the entire list, well beyond the amount over the line, which is why we recheck the total after every closing and drop lower-priority candidates before it happens rather than after."
+  },
+  {
+   "q": "Is this rule mainly useful for portfolio consolidations, or does it apply to single purchases too?",
+   "a": "It applies to any identification list, but it earns its keep on consolidations, since selling several scattered Aurora, Lakewood, or Thornton properties and identifying several replacements almost always produces a list longer than three addresses."
+  },
+  {
+   "q": "Who determines fair market value for the cap calculation?",
+   "a": "We push for a broker price opinion or appraisal on any candidate without a clear arm's-length price, and investors should confirm the final valuation position with their tax advisor before the identification deadline."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 920
+}

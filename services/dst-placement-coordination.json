@@ -1,0 +1,70 @@
+{
+ "slug": "dst-placement-coordination",
+ "taxonomy": "services",
+ "title": "DST Placement Coordination",
+ "name": "DST Placement Coordination",
+ "metaTitle": "DST Placement Coordination in Denver, CO",
+ "metaDescription": "Coordinating Delaware Statutory Trust replacement interests for Denver investors moving out of active management into a passive ownership structure.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>Not every Denver investor selling a rental property wants to buy another one to manage. A Delaware Statutory Trust interest lets an investor complete a 1031 exchange into a passive, fractional ownership position instead, without picking up tenants, a roof, or a leasing calendar again.</p>"
+  },
+  {
+   "heading": "Who Actually Uses This Route",
+   "html": "<p>The most common case we coordinate is an owner who has run duplexes or small buildings around Englewood or Golden for fifteen or twenty years and is done with the phone calls that come with active management. Some of these investors also hold a mountain-resort property they use for part of the year, and the DST route lets them exchange out of the Denver rental without adding a second active asset to manage from a distance. A fractional DST interest can also fill a small remaining gap in an identification list when the round-number replacement property does not exist at the right price.</p>"
+  },
+  {
+   "heading": "How the Trust Structure Fits the Exchange Rules",
+   "html": "<p>Under existing IRS guidance, a beneficial interest in a properly structured Delaware Statutory Trust is treated as a direct interest in real property, which is what allows it to qualify as like-kind replacement property. The investor holds a fractional share of a trust that owns the underlying asset, typically a diversified portfolio of properties in other markets, rather than a direct deed. That structure means no landlord duties transfer to the investor, but it also means no control over refinancing, leasing decisions, or a future sale timeline.</p>"
+  },
+  {
+   "heading": "What Gets Checked Before an Investor Places Capital",
+   "html": "<p>We run the same review on every DST placement regardless of the sponsor.</p><ul><li>Minimum investment amount against the exchange proceeds available</li><li>Debt structure on the underlying trust properties</li><li>Sponsor track record and offering documentation</li><li>Hold period and exit assumptions in the offering</li><li>Whether the placement closes fast enough to meet day 180</li></ul>"
+  },
+  {
+   "heading": "Why Timing Makes This Route Useful Near the Deadline",
+   "html": "<p>DST offerings are typically pre-packaged and can close in days rather than weeks, which makes them a practical option when day 180 is close and a direct property purchase is not going to clear underwriting in time. We keep a short list of DST offerings with available capacity specifically for this situation, since scrambling to find placement capacity in the final week of the exchange period is the wrong time to start that search.</p>"
+  },
+  {
+   "heading": "How a DST Interest Handles the Boot Question",
+   "html": "<p>DST offerings are typically structured with their own debt already in place at the trust level, sized to match a range of exchange amounts. That built-in leverage matters for an investor coming out of a highly leveraged Denver rental property, since matching or exceeding relinquished debt is part of avoiding mortgage boot. We check the debt ratio on any DST offering against the investor's relinquished debt before recommending it, rather than assuming every offering fits the same debt profile.</p>"
+  },
+  {
+   "heading": "Diversifying Across More Than One Offering",
+   "html": "<p>Investors moving a larger amount of exchange proceeds sometimes split the placement across two or three DST offerings instead of one, spreading exposure across different property types or geographic markets rather than concentrating in a single trust. We coordinate that split the same way we would a multi-property identification, checking minimum investment thresholds on each offering and confirming the combined placement still closes within the exchange deadline.</p>"
+  },
+  {
+   "heading": "The Tradeoffs We Walk Through With an Investor",
+   "html": "<p>Giving up control is the real cost of this structure, and it is not the right fit for every seller. An investor who wants a say in a future refinance or sale, or who wants to keep managing property actively, is usually better served by a direct replacement purchase. We lay out both paths side by side, but the decision on whether a DST interest fits an investor's goals belongs with the investor and their own financial and tax advisor.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Does a DST interest count as like-kind property for a 1031 exchange?",
+   "a": "Yes, under existing IRS guidance a properly structured Delaware Statutory Trust interest is treated as a direct interest in real property, which allows it to qualify as replacement property."
+  },
+  {
+   "q": "Why would a Denver landlord choose a DST instead of another rental property?",
+   "a": "Mainly to exit active management. Investors done with tenants, maintenance, and leasing after years of running small buildings often prefer a passive fractional interest over another hands-on property."
+  },
+  {
+   "q": "Can a DST interest fill part of an identification list?",
+   "a": "Yes, it can be sized to fill a specific dollar gap when a direct replacement property does not exist at the right price, which is useful for hitting exact value targets under the identification rules."
+  },
+  {
+   "q": "Is a DST placement faster to close than a direct property purchase?",
+   "a": "Usually, since offerings are pre-packaged with financing and title work already in place, which makes them a practical option when day 180 is close and a direct purchase will not clear underwriting in time."
+  },
+  {
+   "q": "What control does an investor give up with this structure?",
+   "a": "Decisions on refinancing, leasing, and eventual sale timing rest with the trust sponsor, not the investor. That tradeoff should be weighed with a financial or tax advisor before committing exchange proceeds."
+  },
+  {
+   "q": "Can a Denver investor split exchange proceeds across multiple DST offerings?",
+   "a": "Yes, and we coordinate that split the same way we would a multi-property identification, confirming minimum investment thresholds on each offering and that the combined placement can close within the exchange deadline, and checking that no single offering leaves the investor over-concentrated in one property type or region."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 860
+}

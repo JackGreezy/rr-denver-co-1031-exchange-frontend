@@ -1,0 +1,66 @@
+{
+ "slug": "tax-advisor-and-cpa-coordination",
+ "taxonomy": "services",
+ "title": "Tax Advisor and CPA Coordination",
+ "name": "Tax Advisor and CPA Coordination",
+ "metaTitle": "Tax Advisor and CPA Coordination in Denver, CO",
+ "metaDescription": "Coordinating property documents and timeline with your CPA or tax advisor so your Denver 1031 exchange reports cleanly on Form 8824.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>We don't give tax advice and we're not your CPA. What we do is make sure your tax advisor has the closing statements, purchase agreements, and identification notices they need, when they need them, so the exchange reports correctly instead of turning into a scramble the week before a filing deadline.</p>"
+  },
+  {
+   "heading": "Why this coordination matters more than it sounds like",
+   "html": "<p>Form 8824 requires details on both the relinquished and replacement property, including dates, values, and any boot received, and a CPA can't fill that out accurately without clean documentation from the closing. We collect those documents as each transaction closes rather than trying to reconstruct them from memory months later when the return is due, which is a common way exchanges end up reported incorrectly.</p>"
+  },
+  {
+   "heading": "What we hand off and when",
+   "html": "<p>As soon as a relinquished property closes, we forward the closing statement and exchange agreement to the investor's tax advisor. Once a replacement property closes, the same happens with that closing statement plus any financing documents relevant to basis calculations. Waiting until year-end to compile all of this at once increases the odds something gets missed, so we treat it as an ongoing handoff rather than a single year-end packet.</p>"
+  },
+  {
+   "heading": "Colorado-specific considerations we flag",
+   "html": "<p>Colorado generally follows federal treatment of a properly structured exchange, but state filing details still depend on the investor's specific tax situation, entity structure, and whether other Colorado properties are involved. We don't weigh in on those specifics ourselves; we make sure the investor's CPA has the full transaction picture and flag when a Denver-based question seems worth raising with them directly.</p>"
+  },
+  {
+   "heading": "Documents we track for handoff",
+   "html": "<p>A typical file includes:</p><ul><li>Relinquished property closing statement and exchange agreement</li><li>Replacement property closing statement and financing summary</li><li>Identification notice with dates and property addresses</li><li>Any boot received, including cash or debt relief documentation</li><li>Qualified intermediary's final accounting statement</li></ul>"
+  },
+  {
+   "heading": "Keeping the timeline honest with your advisor",
+   "html": "<p>We keep the investor's tax advisor updated on where the exchange stands relative to the 45-day and 180-day deadlines, since a CPA who finds out about a missed deadline after the fact has far fewer options than one looped in while there's still time to adjust course.</p>"
+  },
+  {
+   "heading": "Boot and basis questions we route back to the advisor",
+   "html": "<p>Any time an investor takes on less debt on the replacement property than they had on the relinquished property, or pulls cash out at closing, that can create boot, and boot calculations depend on the investor's specific basis history. We don't calculate that ourselves. We make sure the closing statements and debt payoff documents showing both loan balances reach the tax advisor promptly, since they need those exact figures to determine whether any boot exists and how it affects the return.</p>"
+  },
+  {
+   "heading": "Working with local Denver-area CPAs on tight timelines",
+   "html": "<p>A number of the CPAs and tax advisors we coordinate with locally handle multiple exchanges a year and already know the documentation they need. Even so, we don't assume that knowledge carries over automatically. We confirm with each advisor what format and timing works best for their process, since some want documents as each transaction closes and others prefer a single organized packet once the exchange is fully complete.</p><p>If an investor doesn't already have a CPA experienced with exchanges, we say so plainly rather than letting that gap go unmentioned until filing season. A tax preparer who's never handled a 1031 return before can still do the work, but they'll want more lead time and more documentation than one who handles them regularly.</p><p>We're happy to answer general process questions in the meantime, how the timeline works, what documents typically get requested, but any question tied to the investor's specific tax position gets routed straight to their advisor rather than answered by us, even informally.</p><p>We'd rather an investor hear ask your CPA from us one extra time than get an informal answer from someone who isn't qualified to give it, since a wrong assumption about basis or boot can be costly to unwind after a return has already been filed. That habit has saved more than one Denver-area investor an amended return and an awkward call to their CPA months down the road.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Do you prepare Form 8824 for us?",
+   "a": "No, that's your CPA or tax advisor's role. We make sure they have clean, complete documentation from both closings so the form can be prepared accurately."
+  },
+  {
+   "q": "When should our CPA get involved in the exchange?",
+   "a": "Ideally before the relinquished property closes, so they can confirm the exchange agreement and identification approach fit your broader tax situation rather than reviewing everything after the fact."
+  },
+  {
+   "q": "What documents does our tax advisor need for Form 8824?",
+   "a": "Closing statements from both properties, the exchange agreement, the identification notice, and documentation of any boot received, including cash or debt relief. We forward each as it becomes available rather than waiting until year-end."
+  },
+  {
+   "q": "Does Colorado tax a 1031 exchange differently than federal rules?",
+   "a": "Colorado generally follows federal treatment for a properly structured exchange, though your specific situation and entity structure can affect state filing details. That's a conversation for your CPA, not something we advise on directly."
+  },
+  {
+   "q": "What happens if our CPA isn't looped in until after the exchange closes?",
+   "a": "It's still possible to file correctly, but options narrow considerably once transactions are already closed. Looping your advisor in early gives them a chance to flag issues while there's still time to adjust the structure."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 856
+}
