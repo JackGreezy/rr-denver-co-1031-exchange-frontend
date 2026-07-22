@@ -5,7 +5,6 @@ import { toolsData } from "@/data/tools";
 import {
   BRAND_NAME,
   CONTACT_ROUTE,
-  OFFICE_ADDRESS,
   PRIMARY_CITY,
   PRIMARY_EMAIL,
   PRIMARY_PHONE_DISPLAY,
@@ -56,13 +55,12 @@ export default function Footer() {
               <p className="text-sm font-medium text-white">
                 Visit by appointment
               </p>
-              <p className="text-sm text-white/70">{OFFICE_ADDRESS}</p>
               <p className="text-xs text-white/50">
                 Hours: {SUPPORT_HOURS} support line
               </p>
               <div className="mt-3 overflow-hidden border border-white/10">
                 <iframe
-                  title={`Map of ${OFFICE_ADDRESS}`}
+                  title="Office location map"
                   src={mapSrc}
                   loading="lazy"
                   className="h-40 w-full grayscale"
@@ -226,4 +224,3 @@ export default function Footer() {
     </footer>
   );
 }
-
