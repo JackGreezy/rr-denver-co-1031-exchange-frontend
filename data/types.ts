@@ -8,6 +8,16 @@ export interface ServiceItem {
   category?: string;
 }
 
+export interface LocationRichSection {
+  heading: string;
+  body: string;
+}
+
+export interface LocationFAQItem {
+  question: string;
+  answer: string;
+}
+
 export interface LocationItem {
   slug: Slug;
   name: string;
@@ -15,6 +25,10 @@ export interface LocationItem {
   route: Slug;
   type: "city" | "neighborhood" | "suburb" | "district" | "remote";
   heroImage?: string;
+  /** Additive per-location enrichment. Optional — pages without it fall back to the existing generic copy. */
+  richIntro?: string;
+  richSections?: LocationRichSection[];
+  faqs?: LocationFAQItem[];
 }
 
 export interface PropertyTypeItem {

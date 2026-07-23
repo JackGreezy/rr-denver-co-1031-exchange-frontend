@@ -85,8 +85,8 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
     .filter((service) => service.category === "Property Paths")
     .slice(0, 6);
 
-  // Use batch FAQs if available, otherwise use defaults
-  const faqs = batchContent?.faqs || [
+  // Use per-location rich FAQs if available, then batch FAQs, otherwise fall back to defaults
+  const faqs = location.faqs || batchContent?.faqs || [
     {
       question: `What 1031 exchange services are available in ${location.name}, ${PRIMARY_STATE_ABBR}?`,
       answer: `${location.name}, ${PRIMARY_STATE_ABBR} investors have access to replacement property identification, qualified intermediary coordination, 45-day identification strategy, 180-day closing management, and due diligence support through our Denver-based team.`,
@@ -233,7 +233,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                   className="mt-6 prose prose-lg max-w-none text-gray-700 leading-relaxed"
                   dangerouslySetInnerHTML={{ __html: batchContent.mainDescription }}
                 />
-              ) : (
+              ) : !location.richSections?.length ? (
                 <div className="mt-6 space-y-4 text-gray-700 leading-relaxed">
                   <p>
                     {location.name}, {PRIMARY_STATE_ABBR} offers distinct opportunities for 1031 exchange
@@ -252,10 +252,31 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                     real property held for investment or business use — geographic restrictions do not apply.
                   </p>
                 </div>
-              )}
+              ) : null}
             </div>
           </div>
         </section>
+
+        {/* Rich Location Detail — per-location market texture, replaces the generic fallback above when present */}
+        {location.richSections && location.richSections.length > 0 && (
+          <section className="pb-16 md:pb-24">
+            <div className="mx-auto max-w-7xl px-6 md:px-8">
+              <div className="mx-auto max-w-4xl space-y-10">
+                {location.richSections.map((section) => (
+                  <div key={section.heading}>
+                    <h3 className={`text-2xl text-gray-900 ${playfair.className}`}>
+                      {section.heading}
+                    </h3>
+                    <div
+                      className="mt-3 prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: section.body }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Key Exchange Facts for Location */}
         <section className="bg-black py-16 md:py-24">
