@@ -1,3 +1,4 @@
+import ExchangeIntentSection from "../components/ExchangeIntentSection";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -228,17 +229,17 @@ const FAQ_ENTRIES = [
       "Boot refers to cash or non-like-kind property received in an exchange. Boot is recognized as taxable income to the extent of gain realized, including mortgage relief not replaced.",
   },
   {
-    question: "Do I owe transfer taxes in Colorado?",
+    question: "Do you owe transfer taxes in Colorado?",
     answer:
       "Colorado does not impose a state-level transfer tax, but counties and municipalities may assess documentary or recording fees that remain payable even within a 1031 exchange.",
   },
   {
-    question: "Can I complete a reverse exchange?",
+    question: "Can you complete a reverse exchange?",
     answer:
       "Yes. A reverse exchange requires parking arrangements and a qualified exchange accommodation agreement that complies with IRS Revenue Procedure 2000-37 timelines.",
   },
   {
-    question: "How do I report using IRS Form 8824?",
+    question: "How do you report using IRS Form 8824?",
     answer:
       "Form 8824 reports relinquished and replacement property details, timelines, basis calculations, and any recognized gain. Most investors file it with their federal return for the tax year in which the exchange closes.",
   },
@@ -1026,6 +1027,6 @@ export default function Page() {
           </RevealSection>
         </div>
       </section>
-    </>
+    <ExchangeIntentSection /></>
   );
 }
