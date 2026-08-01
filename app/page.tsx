@@ -554,14 +554,11 @@ export default function Page() {
             <h2
               className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
             >
-              Our Exchange Services
+              Denver 1031 Exchange Solutions
             </h2>
             <p
               className={`${inter.className} mx-auto mt-6 max-w-xl text-[15px] font-light leading-relaxed text-gray-500`}
-            >
-              Services designed for Colorado exchanges, from planning through
-              final reporting.
-            </p>
+            >Denver property owners may sell because operations are consuming too much time, insurance or capital costs are climbing, equity is concentrated, or retirement is changing the plan. The exchange solution should begin with that reason and establish replacement criteria, financing, diligence, and backup options before day 45. Professionally managed DST interests can remove daily leasing, maintenance, and vendor responsibility while providing fractional access to institutional-quality property. Denver investors may find offerings with minimums around $100,000; availability, projected distributions, fees, leverage, sponsor and asset exposure, liquidity limits, eligibility, and suitability vary.</p>
           </RevealSection>
 
           <RevealSection className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -597,11 +594,9 @@ export default function Page() {
 
           <RevealSection className="mt-16 text-center">
             <Link
-              href="/services"
+              href="/contact?request=guide"
               className={`${inter.className} inline-block border border-black px-12 py-5 text-[13px] font-normal uppercase tracking-[0.2em] text-black transition-all duration-300 hover:bg-black hover:text-white`}
-            >
-              See All Services
-            </Link>
+            >Get Free Denver 1031 Information</Link>
           </RevealSection>
         </div>
       </section>
@@ -615,7 +610,7 @@ export default function Page() {
             <h2
               className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
             >
-              Explore Property Types
+              Stay in Real Estate Without Staying a Landlord
             </h2>
           </RevealSection>
 
@@ -847,11 +842,9 @@ export default function Page() {
 
           <RevealSection className="mt-16 text-center">
             <Link
-              href="/tools"
+              href="/contact?request=properties"
               className={`${inter.className} inline-block border border-black px-12 py-5 text-[13px] font-normal uppercase tracking-[0.2em] text-black transition-all duration-300 hover:bg-black hover:text-white`}
-            >
-              View All Tools
-            </Link>
+            >Request the Denver Property List</Link>
           </RevealSection>
         </div>
       </section>
