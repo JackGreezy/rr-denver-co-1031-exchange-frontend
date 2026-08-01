@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "1031 Exchange Denver",
-  description: "1031 Exchange services in Denver, Colorado",
+  title: "1031 Exchange Denver | Start Before You Sell",
+  description: "Prepare a Denver 1031 exchange before proceeds are at risk. Organize the QI handoff, replacement search, financing, and backup property choices.",
   metadataBase: new URL("https://1031exchangedenver.com"),
   icons: {
     icon: [
@@ -34,6 +34,12 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/favicon/site.webmanifest",
+
+  alternates: { canonical: "/" },
+
+  twitter: { card: "summary_large_image", title: "1031 Exchange Denver | Start Before You Sell", description: "Prepare a Denver 1031 exchange before proceeds are at risk. Organize the QI handoff, replacement search, financing, and backup property choices." },
+
+  openGraph: { title: "1031 Exchange Denver | Start Before You Sell", description: "Prepare a Denver 1031 exchange before proceeds are at risk. Organize the QI handoff, replacement search, financing, and backup property choices." },
 };
 
 export default function RootLayout({

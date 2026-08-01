@@ -287,14 +287,14 @@ const EXCHANGE_FACTS = [
 
 export const metadata: Metadata = {
   title:
-    "Denver 1031 Exchange Experts | Colorado Qualified Intermediary Network",
+    "1031 Exchange Denver | Start Before You Sell",
   description:
-    "Trusted 1031 exchange guidance for Colorado investors. Denver-based intermediary coordination, attorney review, and timeline management for compliant tax deferral.",
+    "Prepare a Denver 1031 exchange before proceeds are at risk. Organize the QI handoff, replacement search, financing, and backup property choices.",
   alternates: { canonical: "https://www.1031exchangedenver.com/" },
   openGraph: {
-    title: "Denver 1031 Exchange Experts",
+    title: "1031 Exchange Denver | Start Before You Sell",
     description:
-      "Colorado 1031 exchange specialists offering full compliance support, intermediary coordination, and local attorney partnerships.",
+      "Prepare a Denver 1031 exchange before proceeds are at risk. Organize the QI handoff, replacement search, financing, and backup property choices.",
     url: "https://www.1031exchangedenver.com/",
     siteName: "1031 Exchange Denver",
     images: ["/og-image.png"],
@@ -302,9 +302,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Denver 1031 Exchange Experts",
+    title: "1031 Exchange Denver | Start Before You Sell",
     description:
-      "Defer capital gains taxes with a compliant 1031 exchange in Colorado. Local guidance, legal review, and precise deadline tracking.",
+      "Prepare a Denver 1031 exchange before proceeds are at risk. Organize the QI handoff, replacement search, financing, and backup property choices.",
     images: ["/og-image.png"],
   },
 };
