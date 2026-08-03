@@ -100,13 +100,13 @@ export default function ExchangeCostEstimator() {
     {
       key: "propertyValue",
       label: "Property Value ($)",
-      helper: "Estimated purchase price of the Houston replacement property.",
+      helper: "Estimated purchase price of the Denver replacement property.",
       placeholder: "1,000,000",
     },
     {
       key: "qiFeePercentage",
       label: "QI Fee Percentage (%)",
-      helper: "Typical Houston rates range from 0.5% to 1.5%.",
+      helper: "Use the percentage quoted by the independent qualified intermediary.",
       placeholder: "1",
     },
     {
@@ -118,13 +118,13 @@ export default function ExchangeCostEstimator() {
     {
       key: "titleInsuranceRate",
       label: "Title Insurance Rate (%)",
-      helper: "Texas promulgated rates often range near 0.5%.",
+      helper: "Enter the preliminary rate provided by the Colorado title company.",
       placeholder: "0.5",
     },
     {
       key: "recordingFees",
-      label: "Harris County Recording Fees ($)",
-      helper: "Most filings fall between $275 - $525.",
+      label: "Recording and Documentary Fees ($)",
+      helper: "Use the current estimate from the title or closing team.",
       placeholder: "500",
     },
   ];
@@ -134,7 +134,7 @@ export default function ExchangeCostEstimator() {
       <div>
         <h2 className="text-2xl font-medium text-black">Cost Inputs</h2>
         <p className="mt-2 text-sm text-gray-600">
-          Estimate core expenses for a Houston 1031 exchange. Adjust values to match your
+          Estimate core expenses for a Denver 1031 exchange. Adjust values to match your
           closing disclosure.
         </p>
       </div>
@@ -168,8 +168,8 @@ export default function ExchangeCostEstimator() {
           {results ? currencyFormatter.format(results.totalCosts) : "—"}
         </p>
         <p className="mt-2 text-sm text-white/80">
-          Includes qualified intermediary, escrow, title insurance, and Harris County
-          recording fees.
+          Includes qualified intermediary, escrow, title insurance, and estimated
+          recording or documentary fees.
         </p>
       </div>
 
@@ -193,7 +193,7 @@ export default function ExchangeCostEstimator() {
             {results ? currencyFormatter.format(results.escrowFee) : "—"}
           </p>
           <p className="mt-1 text-xs text-gray-500">
-            Houston escrow providers typically quote a flat transaction fee.
+            Colorado escrow or title providers may quote a flat transaction fee.
           </p>
         </div>
         <div className="bg-white p-6">
@@ -204,7 +204,7 @@ export default function ExchangeCostEstimator() {
             {results ? currencyFormatter.format(results.titleInsurance) : "—"}
           </p>
           <p className="mt-1 text-xs text-gray-500">
-            Texas title premiums are regulated; enter your expected rate above.
+            Enter the preliminary premium estimate provided for the replacement property.
           </p>
         </div>
         <div className="bg-white p-6">
@@ -215,17 +215,17 @@ export default function ExchangeCostEstimator() {
             {results ? currencyFormatter.format(results.recordingFees) : "—"}
           </p>
           <p className="mt-1 text-xs text-gray-500">
-            Harris County recording averages $275–$525 depending on page counts.
+            Confirm the applicable county and municipal charges before closing.
           </p>
         </div>
       </div>
 
       <div className="border-l-2 border-black bg-white p-6 text-sm text-gray-700">
-        <p className="mb-2 font-medium text-black">Note on Texas Transfer Taxes</p>
+        <p className="mb-2 font-medium text-black">Note on Colorado Closing Costs</p>
         <p>
-          Texas does not impose a state real estate transfer tax, but local recording,
-          documentary, and courier fees still apply. Always reconcile these estimates
-          with your preliminary closing statement.
+          Recording, documentary, title, escrow, and other closing costs can vary by
+          property and jurisdiction. Reconcile these estimates with the preliminary
+          closing statement and the appropriate independent professionals.
         </p>
       </div>
     </div>

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import {
   CONTACT_ROUTE,
@@ -9,8 +8,6 @@ import {
 } from "@/lib/constants";
 
 export default function StickyCta() {
-  const [mobileCollapsed, setMobileCollapsed] = useState(false);
-
   return (
     <>
       <div className="fixed bottom-6 right-6 z-40 hidden lg:flex">
@@ -21,37 +18,26 @@ export default function StickyCta() {
           Plan My Exchange
         </Link>
       </div>
-      <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-gray-200 bg-white/95 backdrop-blur px-4 py-3 text-gray-900 shadow-lg lg:hidden">
-        <div className="flex items-center justify-between">
-          <button
-            type="button"
-            onClick={() => setMobileCollapsed((prev) => !prev)}
-            className="text-xs font-medium uppercase tracking-[0.2em] text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
-            aria-expanded={!mobileCollapsed}
-          >
-            {mobileCollapsed ? "Open" : "Close"}
-          </button>
-          <p className="text-[10px] uppercase tracking-[0.3em] text-gray-400">
-            45 / 180 tracker
-          </p>
-        </div>
-        {!mobileCollapsed && (
-          <div className="mt-3 grid grid-cols-2 gap-3">
-            <a
-              href={`tel:${PRIMARY_PHONE_TEL}`}
-              className="inline-flex items-center justify-center border border-black px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
-            >
-              Call {PRIMARY_PHONE_DISPLAY}
-            </a>
-            <Link
-              href={CONTACT_ROUTE}
-              className="inline-flex items-center justify-center bg-black px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
-            >
-              Contact
-            </Link>
-          </div>
-        )}
-      </div>
+      <a
+        href={`tel:${PRIMARY_PHONE_TEL}`}
+        aria-label={`Call a Denver 1031 expert at ${PRIMARY_PHONE_DISPLAY}`}
+        className="fixed bottom-5 right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-[0_10px_35px_rgba(0,0,0,0.35)] ring-1 ring-white/25 transition hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black lg:hidden"
+      >
+        <svg
+          aria-hidden="true"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={1.8}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293a1.125 1.125 0 0 1-1.21.38 12.035 12.035 0 0 1-7.143-7.143 1.125 1.125 0 0 1 .38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102A1.125 1.125 0 0 0 5.872 2.25H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
+          />
+        </svg>
+      </a>
     </>
   );
 }

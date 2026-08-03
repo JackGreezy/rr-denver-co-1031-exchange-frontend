@@ -45,120 +45,92 @@ type CoverageItem = {
 const PHONE_DISPLAY = "(303) 835-0981";
 const PHONE_TEL = "+13038350981";
 const BRAND_NAME = "1031 Exchange Denver";
-const CO_TRANSFER_TAX_LINK =
-  "https://cdola.colorado.gov/real-estate-transfer-tax";
-const IRS_FORM_8824_LINK = "https://www.irs.gov/forms-pubs/about-form-8824";
-const IRS_LIKE_KIND_LINK =
-  "https://www.irs.gov/businesses/small-businesses-self-employed/like-kind-exchanges-real-estate-tax-tips";
-const IRS_REV_PROC_2008_16_LINK =
-  "https://www.irs.gov/pub/irs-drop/rp-08-16.pdf";
 
 /* ─────────── Content arrays ─────────── */
 
 const WHY_CHOOSE_FEATURES: Feature[] = [
   {
-    title: "Colorado-Specific 1031 Knowledge",
+    title: "Start Before the Property Sells",
     description:
-      "Advisors trained on Colorado statutes, local transfer protocols, and state filings that complement federal guidance.",
+      "Organize the sale, independent qualified intermediary introduction, replacement criteria, and backup options before the exchange clock begins.",
   },
   {
-    title: "Denver Tax & Real-Estate Experience",
+    title: "Get a Free Property List",
     description:
-      "Market intelligence drawn from Denver metro transactions, cap rates, and appreciation trends for precise reinvestment planning.",
+      "Review direct real estate, net-lease opportunities, and professionally managed DST options that fit the sale objective.",
   },
   {
-    title: "Qualified Intermediary Network",
+    title: "Compare Active and Passive Ownership",
     description:
-      "Curated relationships with bonded, insured qualified intermediaries positioned across Colorado for compliant escrow handling.",
+      "Compare control, management responsibility, income objectives, financing, liquidity, concentration, fees, and property-level risk.",
   },
   {
-    title: "Attorney & CPA Coordination",
+    title: "Move Toward Replacement Closing",
     description:
-      "Integrated review cycles with real-estate counsel and tax advisors to align purchase agreements and reporting packages.",
+      "Keep the owner, QI, CPA, attorney, brokers, lenders, and closing professionals working from the same transaction plan.",
   },
 ];
 
 const TOP_SERVICES: ServiceCard[] = [
   {
-    title: "Exchange Strategy Planning",
+    title: "Turnkey Exchange Solutions",
     description:
-      "Design a compliant 1031 exchange blueprint with basis analysis, gain estimates, and intermediary selection.",
-    slug: "exchange-strategy-planning",
+      "Build one practical plan around the property sale, exchange timeline, replacement criteria, professional team, and closing path.",
+    slug: "exchange-strategy-consultation",
   },
   {
-    title: "Replacement Property Sourcing",
+    title: "Replacement Property Search",
     description:
-      "Source and vet Colorado replacement assets aligned with debt requirements, lease stability, and identification rules.",
-    slug: "replacement-property-sourcing",
+      "Search Denver, Colorado, and nationwide opportunities against equity, debt, income, control, workload, and closing requirements.",
+    slug: "replacement-property-identification",
   },
   {
-    title: "Qualified Intermediary Oversight",
+    title: "DST and Passive Property Options",
     description:
-      "Coordinate escrow instructions, assignment documentation, and fund disbursement checkpoints with your QI.",
-    slug: "qualified-intermediary-oversight",
+      "Explore professionally managed replacement options when another property with tenants, repairs, and leasing no longer fits.",
+    slug: "dst-placement-coordination",
   },
   {
-    title: "Timeline Compliance Tracking",
+    title: "Qualified Intermediary Introduction",
     description:
-      "Monitor 45-day and 180-day targets with milestone reminders, contingency planning, and executive status updates.",
-    slug: "timeline-compliance-tracking",
+      "Connect with an independent qualified intermediary before closing and keep the exchange handoff visible to the transaction team.",
+    slug: "qualified-intermediary-coordination",
   },
   {
-    title: "Due Diligence Coordination",
+    title: "Inherited Investment Property",
     description:
-      "Organize inspections, environmental reviews, and lender deliverables to keep Colorado closings efficient.",
-    slug: "due-diligence-coordination",
+      "Organize ownership, basis, property-use, co-owner, sale-timing, and replacement questions before accepting an offer.",
+    slug: "inherited-property-capital-gains",
   },
   {
-    title: "Reporting & Filing Support",
+    title: "Landlord Exit and Management Relief",
     description:
-      "Assemble transaction summaries, expense logs, and Form 8824 data for streamlined CPA handoff.",
-    slug: "reporting-and-filing-support",
+      "Use the sale to compare lower-management real estate paths without losing sight of risk, liquidity, control, or tax questions.",
+    slug: "passive-real-estate-income",
   },
 ];
 
-const PROPERTY_TYPES = [
+const OWNERSHIP_PATHS = [
   {
-    title: "Multifamily",
+    title: "Direct Replacement Property",
     description:
-      "Stabilize income with Denver and Front Range apartments while deferring capital gains across unit portfolios.",
-    slug: "multifamily",
+      "Keep control through another directly owned property selected around market, condition, financing, tenants, management capacity, and closing certainty.",
+    href: "/services/replacement-property-identification",
     image: "/inventory/multifamily/multifamily.jpg",
   },
   {
-    title: "Industrial",
+    title: "Net-Lease Property",
     description:
-      "Reposition proceeds into logistics and flex space serving Colorado's manufacturing and aerospace sectors.",
-    slug: "industrial",
-    image: "/inventory/industrial/industrial.jpeg",
-  },
-  {
-    title: "Medical Office",
-    description:
-      "Capture long-term tenancy with healthcare providers anchored in high-growth Colorado corridors.",
-    slug: "medical-office",
-    image: "/inventory/medical-office/medical-office.jpg",
-  },
-  {
-    title: "Retail",
-    description:
-      "Leverage consumer traffic in urban and mountain gateway retail with tailored NOI expectations.",
-    slug: "retail",
+      "Compare tenant credit, lease obligations, remaining term, property condition, residual value, financing, and the future reletting market.",
+    href: "/services/nnn-stnl-property-sourcing",
     image: "/inventory/retail/retail.jpg",
   },
   {
-    title: "Hospitality",
+    title: "Professionally Managed DST",
     description:
-      "Evaluate boutique hotels and resort properties that align with safe harbor use standards.",
-    slug: "hospitality",
-    image: "/inventory/hospitality/hospitality.png",
-  },
-  {
-    title: "Land",
-    description:
-      "Exchange into irrigated cropland and ranch assets with conservation-minded yield strategies.",
-    slug: "land",
-    image: "/inventory/land/land.webp",
+      "Explore passive fractional ownership in institutional-grade real estate without personally managing tenants, maintenance, leasing, or renovations.",
+    href: "/services/dst-placement-coordination",
+    image: "/inventory/industrial/industrial.jpeg",
   },
 ];
 
@@ -213,73 +185,49 @@ const FEATURED_LOCATIONS = CO_CITIES.map((city) => {
 
 const FAQ_ENTRIES = [
   {
-    question: "What are the 45 and 180 day deadlines?",
+    question: "Can you help with my entire Denver 1031 exchange?",
     answer:
-      "The IRS allows 45 calendar days from the sale closing to identify potential replacement properties and 180 calendar days from the sale closing to complete the acquisition of selected replacements. Missing either deadline disqualifies the exchange.",
+      "Yes. We help Denver property owners organize the sale plan, connect with an independent qualified intermediary, build replacement criteria, compare direct and passive property options, and keep open transaction questions visible through replacement closing.",
   },
   {
-    question: "Which properties qualify as like-kind?",
+    question: "How early should I call before selling?",
     answer:
-      "Like-kind real property covers investment or business real estate held within the United States, including land, improved assets, and long-term leaseholds. Personal property and inventory do not qualify.",
+      "Call before the sale closes and ideally before accepting an offer. Starting early creates time to engage an independent qualified intermediary, clarify ownership and tax questions with your advisors, estimate exchange equity and debt, and begin reviewing realistic replacement paths.",
   },
   {
-    question: "What is boot and how is it taxed?",
+    question: "Can I exchange a Denver property into real estate outside Colorado?",
     answer:
-      "Boot refers to cash or non-like-kind property received in an exchange. Boot is recognized as taxable income to the extent of gain realized, including mortgage relief not replaced.",
+      "Potential replacement property can be located elsewhere in the United States when it otherwise fits the exchange and the owner’s plan. We can help compare Denver-area and nationwide opportunities against the same income, management, financing, and closing criteria.",
   },
   {
-    question: "Do you owe transfer taxes in Colorado?",
+    question: "What is a DST replacement property?",
     answer:
-      "Colorado does not impose a state-level transfer tax, but counties and municipalities may assess documentary or recording fees that remain payable even within a 1031 exchange.",
+      "A Delaware statutory trust can hold institutional real estate and offer eligible investors fractional beneficial interests. The sponsor manages the property, but the investor gives up day-to-day control and must review offering documents, fees, leverage, sponsor risk, property risk, liquidity limits, eligibility, and suitability.",
   },
   {
-    question: "Can you complete a reverse exchange?",
+    question: "Can a DST eliminate day-to-day property management?",
     answer:
-      "Yes. A reverse exchange requires parking arrangements and a qualified exchange accommodation agreement that complies with IRS Revenue Procedure 2000-37 timelines.",
+      "A DST is professionally managed, so an investor does not personally handle tenants, toilets, leasing, maintenance, or renovations. That convenience also means the sponsor controls property operations and major decisions.",
   },
   {
-    question: "How do you report using IRS Form 8824?",
+    question: "What is the typical minimum investment for a DST?",
     answer:
-      "Form 8824 reports relinquished and replacement property details, timelines, basis calculations, and any recognized gain. Most investors file it with their federal return for the tax year in which the exchange closes.",
-  },
-];
-
-const EXCHANGE_FACTS = [
-  {
-    stat: "$100B+",
-    label: "Annual 1031 Exchange Volume",
-    description:
-      "Section 1031 exchanges facilitate over one hundred billion dollars in real estate transactions annually across the United States, making it one of the most widely used tax deferral strategies for property investors.",
+      "Some DST offerings may accept investments beginning around $100,000, but minimums and availability vary. Investment amount, investor eligibility, projected distributions, fees, leverage, risks, and suitability must be evaluated for each current offering.",
   },
   {
-    stat: "45",
-    label: "Day Identification Window",
-    description:
-      "Investors have exactly 45 calendar days from the closing of their relinquished property to formally identify up to three potential replacement properties under the standard identification rules.",
+    question: "Should I choose direct property, a net-lease property, or a DST?",
+    answer:
+      "The right path depends on the control you want, the work you are willing to perform, income objectives, financing, concentration, liquidity needs, risk tolerance, and closing probability. We help place the alternatives beside the same sale objective so the differences are easier to evaluate with your advisors.",
   },
   {
-    stat: "180",
-    label: "Day Closing Deadline",
-    description:
-      "The IRS requires all replacement property acquisitions to close within 180 calendar days of the original sale. Missing this deadline disqualifies the entire exchange from tax deferral.",
+    question: "Can you help after I inherit investment property?",
+    answer:
+      "Yes. Before the property is listed or placed under contract, organize title, ownership, basis questions, qualifying use, co-owner goals, existing debt, management burden, and sale timing with the appropriate CPA and attorney. That information determines which paths deserve consideration.",
   },
   {
-    stat: "0%",
-    label: "Tax on Deferred Gains",
-    description:
-      "A properly structured 1031 exchange defers 100 percent of federal capital gains tax, depreciation recapture, and applicable state income tax on qualifying investment real estate transactions.",
-  },
-  {
-    stat: "3",
-    label: "Property Identification Rule",
-    description:
-      "The three property rule allows investors to identify up to three replacement properties of any value. Alternative rules include the 200 percent rule and the 95 percent exception for larger portfolios.",
-  },
-  {
-    stat: "1921",
-    label: "Year Section 1031 Was Enacted",
-    description:
-      "Like-kind exchange provisions have existed in the U.S. tax code for over a century. The Tax Cuts and Jobs Act of 2017 narrowed eligibility to real property only, eliminating personal property exchanges.",
+    question: "Can I request a current list of replacement properties?",
+    answer:
+      "Yes. Submit the short contact form to request a current list of direct, net-lease, and passive replacement opportunities that may fit the facts and objectives of your planned Denver property sale.",
   },
 ];
 
@@ -287,14 +235,14 @@ const EXCHANGE_FACTS = [
 
 export const metadata: Metadata = {
   title:
-    "1031 Exchange Denver | Start Before You Sell",
+    "1031 Exchange Denver | Turnkey Exchange Solutions",
   description:
-    "Prepare a Denver 1031 exchange before proceeds are at risk. Organize the QI handoff, replacement search, financing, and backup property choices.",
+    "Get turnkey 1031 exchange help in Denver. Compare direct property, net-lease and DST options, request a free property list, or call (303) 835-0981.",
   alternates: { canonical: "https://www.1031exchangedenver.com/" },
   openGraph: {
-    title: "1031 Exchange Denver | Start Before You Sell",
+    title: "1031 Exchange Denver | Turnkey Exchange Solutions",
     description:
-      "Prepare a Denver 1031 exchange before proceeds are at risk. Organize the QI handoff, replacement search, financing, and backup property choices.",
+      "Get turnkey 1031 exchange help in Denver. Compare direct property, net-lease and DST options, request a free property list, or call (303) 835-0981.",
     url: "https://www.1031exchangedenver.com/",
     siteName: "1031 Exchange Denver",
     images: ["/og-image.png"],
@@ -302,9 +250,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "1031 Exchange Denver | Start Before You Sell",
+    title: "1031 Exchange Denver | Turnkey Exchange Solutions",
     description:
-      "Prepare a Denver 1031 exchange before proceeds are at risk. Organize the QI handoff, replacement search, financing, and backup property choices.",
+      "Get turnkey 1031 exchange help in Denver. Compare direct property, net-lease and DST options, request a free property list, or call (303) 835-0981.",
     images: ["/og-image.png"],
   },
 };
@@ -380,24 +328,56 @@ export default function Page() {
       <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
         <VideoHeroBackground />
         <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
-          <h1
-            className={`${playfair.className} uppercase text-[clamp(2.5rem,7vw,6.5rem)] font-normal leading-[1.05] tracking-[-0.01em] text-white`}
+          <p
+            className={`${inter.className} mb-7 text-[12px] font-medium uppercase tracking-[0.28em] text-white/75 sm:text-[13px]`}
           >
-            Denver&rsquo;s Premier
-            <br />
-            1031 Exchange Advisors
+            One Call. One Complete Exchange Plan.
+          </p>
+          <h1
+            className={`${playfair.className} uppercase text-[clamp(2.35rem,6.4vw,6rem)] font-normal leading-[1.03] tracking-[-0.01em] text-white`}
+          >
+            Turnkey 1031 Exchange
+            <br />{" "}
+            Solutions in Denver, CO
           </h1>
           <p
-            className={`${inter.className} mx-auto mt-8 max-w-lg text-[15px] font-light tracking-[0.04em] text-white/70`}
+            className={`${inter.className} mx-auto mt-8 max-w-3xl text-[15px] font-light leading-[1.8] text-white/75 sm:text-[16px]`}
           >
-            Elevating Colorado Real Estate Investment
+            Selling investment property in Denver? Get help planning the sale,
+            engaging an independent qualified intermediary, comparing direct
+            and passive replacement properties, and moving toward replacement
+            closing.
           </p>
-          <div className="mt-14">
+          <div className="mx-auto mt-8 grid max-w-3xl gap-x-10 gap-y-3 text-left sm:grid-cols-2">
+            {[
+              "Get a free list of replacement properties",
+              "Compare direct, net-lease, and DST options",
+              "Leave tenants, maintenance, and leasing behind",
+              "Explore institutional-grade property opportunities",
+            ].map((benefit) => (
+              <div
+                key={benefit}
+                className={`${inter.className} flex items-start gap-3 text-[13px] leading-relaxed text-white/80 sm:text-[14px]`}
+              >
+                <span className="mt-[0.65em] h-px w-5 shrink-0 bg-white/60" />
+                <span>{benefit}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="#lead-form"
-              className={`${inter.className} inline-block border border-white/50 px-14 py-5 text-[13px] font-normal uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-white hover:text-black`}
+              className={`${inter.className} inline-flex min-w-[250px] items-center justify-center bg-white px-10 py-5 text-[12px] font-medium uppercase tracking-[0.2em] text-black transition-all duration-300 hover:bg-white/85`}
             >
-              Start Your Exchange
+              Start My Exchange
+            </Link>
+            <Link
+              href={`tel:${PHONE_TEL}`}
+              className={`${inter.className} inline-flex min-w-[250px] flex-col items-center justify-center gap-1 border border-white/60 px-10 py-4 text-[11px] font-medium uppercase tracking-[0.16em] text-white transition-all duration-300 hover:bg-white hover:text-black sm:flex-row sm:gap-2 sm:py-5 sm:text-[12px]`}
+            >
+              <span>Talk to an Expert</span>
+              {" "}
+              <span>{PHONE_DISPLAY}</span>
             </Link>
           </div>
         </div>
@@ -424,11 +404,25 @@ export default function Page() {
 
             {/* Right — heading + 2×2 feature grid */}
             <div className="flex flex-col justify-center">
+              <p
+                className={`${inter.className} mb-5 text-[12px] font-medium uppercase tracking-[0.24em] text-gray-500`}
+              >
+                Complete Exchange Solutions
+              </p>
               <h2
                 className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
               >
-                Why Choose Us
+                One Call Can Put the Entire Exchange in Motion
               </h2>
+              <p
+                className={`${inter.className} mt-7 max-w-xl text-[15px] leading-[1.8] text-gray-500`}
+              >
+                You should not have to independently figure out the sale,
+                qualified intermediary, replacement search, DST alternatives,
+                financing, diligence, advisor questions, and closing schedule.
+                We help turn those moving pieces into one practical Denver
+                exchange plan.
+              </p>
               <div className="mt-14 grid grid-cols-2 gap-5">
                 {WHY_CHOOSE_FEATURES.map((f) => (
                   <div
@@ -453,7 +447,7 @@ export default function Page() {
                   href="#lead-form"
                   className={`${inter.className} inline-block bg-black px-12 py-5 text-[13px] font-normal uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-gray-800`}
                 >
-                  Work With Us
+                  Get Free Exchange Guidance
                 </Link>
               </div>
             </div>
@@ -462,93 +456,182 @@ export default function Page() {
       </section>
 
       {/* ═══════════════════════════════════
-          HOW IT WORKS — 3-step process
+          OWNERSHIP PATHS — direct, net lease, and DST
           ═══════════════════════════════════ */}
       <section className="bg-[#fafafa]">
         <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-40">
-          <RevealSection className="text-center">
+          <RevealSection className="mx-auto max-w-4xl text-center">
+            <p
+              className={`${inter.className} mb-5 text-[12px] font-medium uppercase tracking-[0.24em] text-gray-500`}
+            >
+              Change the Property. Change the Workload.
+            </p>
             <h2
               className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
             >
-              How a 1031 Exchange Works
+              Done With Tenants, Repairs, and Property Management?
             </h2>
+            <p
+              className={`${inter.className} mx-auto mt-7 max-w-3xl text-[15px] leading-[1.8] text-gray-500`}
+            >
+              A Denver property sale can be more than a tax decision. It can be
+              the moment an owner leaves leasing, vendor calls, renovations,
+              vacancies, and day-to-day landlord work behind. Compare the
+              ownership paths against the life and income objectives the sale
+              is meant to serve.
+            </p>
           </RevealSection>
 
-          <RevealSection className="mt-20 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                step: "01",
-                title: "Sell the Relinquished Property",
-                description:
-                  "Execute sale agreements, assign them to your qualified intermediary, and ensure proceeds flow directly into escrow.",
-                link: IRS_FORM_8824_LINK,
-              },
-              {
-                step: "02",
-                title: "Identify Replacements Within 45 Days",
-                description:
-                  "Document up to three properties or more under the 200 percent rule with traceable delivery to all parties.",
-                link: IRS_LIKE_KIND_LINK,
-              },
-              {
-                step: "03",
-                title: "Close Within 180 Days",
-                description:
-                  "Complete financing, due diligence, and closing statements before the IRS deadline to secure tax deferral.",
-                link: IRS_FORM_8824_LINK,
-              },
-            ].map((s) => (
-              <div
-                key={s.step}
-                className="group bg-white px-10 py-14 transition-all duration-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)]"
+          <RevealSection className="mt-20 grid gap-x-8 gap-y-16 md:grid-cols-3">
+            {OWNERSHIP_PATHS.map((path) => (
+              <Link
+                key={path.title}
+                href={path.href}
+                className="group block"
               >
-                <span
-                  className={`${playfair.className} block text-[4rem] font-light leading-none text-gray-100 transition-colors group-hover:text-gray-200`}
-                >
-                  {s.step}
-                </span>
+                <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <Image
+                    src={path.image}
+                    alt={path.title}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    sizes="(max-width:768px) 100vw, 33vw"
+                  />
+                </div>
                 <h3
-                  className={`${playfair.className} mt-8 text-[22px] leading-snug text-black`}
+                  className={`${playfair.className} mt-7 text-[24px] leading-tight text-black`}
                 >
-                  {s.title}
+                  {path.title}
                 </h3>
                 <p
-                  className={`${inter.className} mt-5 text-[14px] leading-[1.8] text-gray-500`}
+                  className={`${inter.className} mt-4 text-[14px] leading-[1.8] text-gray-500`}
                 >
-                  {s.description}
+                  {path.description}
                 </p>
-                <Link
-                  href={s.link}
+                <span
                   className={`${inter.className} mt-8 inline-block text-[13px] text-black underline underline-offset-4 decoration-gray-300 transition hover:decoration-black`}
                 >
-                  IRS Guidance &rarr;
-                </Link>
-              </div>
+                  Explore This Path
+                </span>
+              </Link>
             ))}
           </RevealSection>
 
-          <RevealSection className="mx-auto mt-20 max-w-3xl border-l-2 border-black bg-white px-10 py-8">
+          <RevealSection className="mx-auto mt-16 max-w-4xl border-l-2 border-black bg-white px-8 py-8 md:px-10">
             <p
               className={`${inter.className} text-[14px] leading-[1.8] text-gray-600`}
             >
-              Vacation and mixed-use properties may qualify under Rev. Proc.
-              2008-16 safe harbor.{" "}
-              <Link
-                href={IRS_REV_PROC_2008_16_LINK}
-                className="font-medium text-black underline underline-offset-4 decoration-gray-300 hover:decoration-black"
-              >
-                Review IRS Rev. Proc. 2008-16
-              </Link>
-              .
+              Some DST offerings may begin around $100,000. Current inventory,
+              projected distributions, sponsor and asset risk, fees, leverage,
+              illiquidity, investor eligibility, and suitability vary by
+              offering.
             </p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/contact?request=properties"
+                className={`${inter.className} inline-flex items-center justify-center bg-black px-8 py-4 text-[12px] font-medium uppercase tracking-[0.18em] text-white transition hover:bg-gray-800`}
+              >
+                Get a Free Property List
+              </Link>
+              <Link
+                href={`tel:${PHONE_TEL}`}
+                className={`${inter.className} inline-flex items-center justify-center border border-black px-8 py-4 text-[12px] font-medium uppercase tracking-[0.16em] text-black transition hover:bg-black hover:text-white`}
+              >
+                Free Consultation {PHONE_DISPLAY}
+              </Link>
+            </div>
           </RevealSection>
         </div>
       </section>
 
       {/* ═══════════════════════════════════
-          SERVICES — numbered card grid
+          HOW IT WORKS — unnumbered exchange stages
           ═══════════════════════════════════ */}
       <section className="bg-white">
+        <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-40">
+          <RevealSection className="mx-auto max-w-3xl text-center">
+            <h2
+              className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
+            >
+              How a 1031 Exchange Moves Forward
+            </h2>
+            <p
+              className={`${inter.className} mx-auto mt-7 max-w-2xl text-[15px] leading-[1.8] text-gray-500`}
+            >
+              The rules matter, but owners usually need a clear plan for the
+              sale, professional handoffs, replacement decisions, and closing.
+            </p>
+          </RevealSection>
+
+          <RevealSection className="mt-20 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              {
+                title: "Before You Sell",
+                description:
+                  "Clarify ownership, property use, expected equity, debt, tax and legal questions, management goals, and replacement criteria before the proceeds are at risk.",
+              },
+              {
+                title: "Once Under Contract",
+                description:
+                  "Engage an independent qualified intermediary, confirm closing instructions, align the transaction calendar, and prepare the replacement search.",
+              },
+              {
+                title: "During the Property Search",
+                description:
+                  "Compare primary and backup candidates for income objectives, financing, diligence, control, workload, risk, and realistic closing probability.",
+              },
+              {
+                title: "Through Replacement Closing",
+                description:
+                  "Keep title, lender, insurance, inspection, entity, funding, advisor, and closing questions visible until the replacement acquisition is complete.",
+              },
+            ].map((stage) => (
+              <div
+                key={stage.title}
+                className="border border-gray-200 bg-[#fafafa] px-9 py-12 transition-all duration-300 hover:border-gray-400 hover:bg-white hover:shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
+              >
+                <h3
+                  className={`${playfair.className} text-[21px] leading-snug text-black`}
+                >
+                  {stage.title}
+                </h3>
+                <p
+                  className={`${inter.className} mt-5 text-[13px] leading-[1.8] text-gray-500`}
+                >
+                  {stage.description}
+                </p>
+              </div>
+            ))}
+          </RevealSection>
+
+          <RevealSection className="mt-16 text-center">
+            <p
+              className={`${playfair.className} text-[24px] leading-snug text-black`}
+            >
+              Is this your first exchange? We can walk you through it.
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link
+                href={`tel:${PHONE_TEL}`}
+                className={`${inter.className} inline-flex min-w-[250px] items-center justify-center bg-black px-8 py-4 text-[12px] font-medium uppercase tracking-[0.16em] text-white transition hover:bg-gray-800`}
+              >
+                Talk to an Expert {PHONE_DISPLAY}
+              </Link>
+              <Link
+                href="#lead-form"
+                className={`${inter.className} inline-flex min-w-[250px] items-center justify-center border border-black px-8 py-4 text-[12px] font-medium uppercase tracking-[0.18em] text-black transition hover:bg-black hover:text-white`}
+              >
+                Start My Exchange
+              </Link>
+            </div>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          SERVICES — customer-facing exchange solutions
+          ═══════════════════════════════════ */}
+      <section className="bg-[#fafafa]">
         <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-40">
           <RevealSection className="text-center">
             <h2
@@ -557,24 +640,25 @@ export default function Page() {
               Denver 1031 Exchange Solutions
             </h2>
             <p
-              className={`${inter.className} mx-auto mt-6 max-w-xl text-[15px] font-light leading-relaxed text-gray-500`}
-            >Denver property owners may sell because operations are consuming too much time, insurance or capital costs are climbing, equity is concentrated, or retirement is changing the plan. The exchange solution should begin with that reason and establish replacement criteria, financing, diligence, and backup options before day 45. Professionally managed DST interests can remove daily leasing, maintenance, and vendor responsibility while providing fractional access to institutional-quality property. Denver investors may find offerings with minimums around $100,000; availability, projected distributions, fees, leverage, sponsor and asset exposure, liquidity limits, eligibility, and suitability vary.</p>
+              className={`${inter.className} mx-auto mt-7 max-w-3xl text-[15px] font-light leading-[1.8] text-gray-500`}
+            >
+              Denver owners sell for different reasons: too much management,
+              rising capital needs, concentrated equity, retirement, an
+              inherited property, or a change in income goals. Start with that
+              reason, then build the exchange around the property sale and the
+              replacement path that actually fits.
+            </p>
           </RevealSection>
 
           <RevealSection className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {TOP_SERVICES.map((svc, i) => (
+            {TOP_SERVICES.map((svc) => (
               <Link
                 key={svc.slug}
                 href={`/services/${svc.slug}`}
-                className="group flex flex-col border border-gray-200 px-10 py-12 transition-all duration-300 hover:border-gray-400 hover:shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
+                className="group flex flex-col border border-gray-200 bg-white px-10 py-12 transition-all duration-300 hover:border-gray-400 hover:shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
               >
-                <span
-                  className={`${playfair.className} text-[3rem] font-light leading-none text-gray-100 group-hover:text-gray-200 transition-colors`}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
                 <h3
-                  className={`${playfair.className} mt-6 text-[20px] leading-snug text-black`}
+                  className={`${playfair.className} text-[21px] leading-snug text-black`}
                 >
                   {svc.title}
                 </h3>
@@ -597,56 +681,6 @@ export default function Page() {
               href="/contact?request=guide"
               className={`${inter.className} inline-block border border-black px-12 py-5 text-[13px] font-normal uppercase tracking-[0.2em] text-black transition-all duration-300 hover:bg-black hover:text-white`}
             >Get Free Denver 1031 Information</Link>
-          </RevealSection>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════
-          PROPERTY TYPES — photo card grid
-          ═══════════════════════════════════ */}
-      <section className="bg-[#fafafa]">
-        <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-40">
-          <RevealSection className="text-center">
-            <h2
-              className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-black`}
-            >
-              Stay in Real Estate Without Staying a Landlord
-            </h2>
-          </RevealSection>
-
-          <RevealSection className="mt-20 grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
-            {PROPERTY_TYPES.map((pt) => (
-              <Link
-                key={pt.slug}
-                href={`/property-types/${pt.slug}`}
-                className="group block"
-              >
-                <div className="relative aspect-[4/3] w-full overflow-hidden">
-                  <Image
-                    src={pt.image}
-                    alt={pt.title}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
-                  />
-                </div>
-                <h3
-                  className={`${playfair.className} mt-7 text-[24px] leading-tight text-black`}
-                >
-                  {pt.title}
-                </h3>
-                <p
-                  className={`${inter.className} mt-3 text-[14px] leading-[1.7] text-gray-500`}
-                >
-                  {pt.description}
-                </p>
-                <span
-                  className={`${inter.className} mt-5 inline-block text-[13px] text-black underline underline-offset-4 decoration-gray-300 group-hover:decoration-black transition`}
-                >
-                  Read More
-                </span>
-              </Link>
-            ))}
           </RevealSection>
         </div>
       </section>
@@ -702,59 +736,19 @@ export default function Page() {
             ))}
           </RevealSection>
 
-          <RevealSection className="mt-16 text-center">
+          <RevealSection className="mt-16 flex flex-col items-center justify-center gap-3 text-center sm:flex-row">
             <Link
               href="/locations"
               className={`${inter.className} inline-block border border-black px-12 py-5 text-[13px] font-normal uppercase tracking-[0.2em] text-black transition-all duration-300 hover:bg-black hover:text-white`}
             >
               See All Locations
             </Link>
-          </RevealSection>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════
-          1031 EXCHANGE FACTS — all black background
-          ═══════════════════════════════════ */}
-      <section className="bg-black">
-        <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-40">
-          <RevealSection className="text-center">
-            <h2
-              className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-white`}
+            <Link
+              href="/contact?request=properties"
+              className={`${inter.className} inline-block bg-black px-12 py-5 text-[13px] font-normal uppercase tracking-[0.18em] text-white transition-all duration-300 hover:bg-gray-800`}
             >
-              1031 Exchange Facts
-            </h2>
-            <p
-              className={`${inter.className} mx-auto mt-6 max-w-xl text-[15px] font-light leading-relaxed text-white/50`}
-            >
-              Key numbers every Colorado investor should know before starting an
-              exchange.
-            </p>
-          </RevealSection>
-
-          <RevealSection className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {EXCHANGE_FACTS.map((fact) => (
-              <div
-                key={fact.label}
-                className="group border border-white/10 px-10 py-12 transition-all duration-300 hover:border-white/30"
-              >
-                <span
-                  className={`${playfair.className} block text-[3.5rem] font-light leading-none text-white`}
-                >
-                  {fact.stat}
-                </span>
-                <h3
-                  className={`${playfair.className} mt-6 text-[18px] leading-snug text-white/90`}
-                >
-                  {fact.label}
-                </h3>
-                <p
-                  className={`${inter.className} mt-4 text-[13px] leading-[1.8] text-white/50`}
-                >
-                  {fact.description}
-                </p>
-              </div>
-            ))}
+              Get a Free Property List
+            </Link>
           </RevealSection>
         </div>
       </section>
@@ -792,28 +786,10 @@ export default function Page() {
                 href: "/tools/exchange-cost-estimator",
               },
               {
-                title: "Identification Rules Checker",
-                description:
-                  "Validate your replacement property identification against the 3-property, 200%, or 95% rules.",
-                href: "/tools/identification-rules-checker",
-              },
-              {
-                title: "Depreciation Recapture Estimator",
-                description:
-                  "Estimate depreciation recapture tax on your relinquished property and understand 1031 deferral benefits.",
-                href: "/tools/depreciation-recapture-estimator",
-              },
-              {
                 title: "Replacement Value Calculator",
                 description:
                   "Calculate the minimum replacement property value needed to defer all gain in your exchange.",
                 href: "/tools/replacement-property-value-calculator",
-              },
-              {
-                title: "Debt Relief Calculator",
-                description:
-                  "Calculate mortgage boot when new debt is less than old debt and understand tax implications.",
-                href: "/tools/debt-relief-calculator",
               },
             ].map((tool) => (
               <Link
@@ -840,57 +816,56 @@ export default function Page() {
             ))}
           </RevealSection>
 
-          <RevealSection className="mt-16 text-center">
+          <RevealSection className="mt-16 flex flex-col items-center justify-center gap-3 text-center sm:flex-row">
             <Link
               href="/contact?request=properties"
-              className={`${inter.className} inline-block border border-black px-12 py-5 text-[13px] font-normal uppercase tracking-[0.2em] text-black transition-all duration-300 hover:bg-black hover:text-white`}
+              className={`${inter.className} inline-block bg-black px-12 py-5 text-[13px] font-normal uppercase tracking-[0.18em] text-white transition-all duration-300 hover:bg-gray-800`}
             >Request the Denver Property List</Link>
+            <Link
+              href="/tools"
+              className={`${inter.className} inline-block border border-black px-12 py-5 text-[13px] font-normal uppercase tracking-[0.2em] text-black transition-all duration-300 hover:bg-black hover:text-white`}
+            >View All Exchange Tools</Link>
           </RevealSection>
         </div>
       </section>
 
       {/* ═══════════════════════════════════
-          RESOURCES
+          PROPERTY LIST CTA
           ═══════════════════════════════════ */}
-      <section className="bg-[#fafafa]">
-        <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-12 lg:py-36">
-          <RevealSection className="grid gap-8 md:grid-cols-2">
-            {[
-              {
-                title: "Capital Gains Estimator",
-                description:
-                  "Model potential capital gains exposure and evaluate the deferral impact before you list.",
-                href: "/resources/calculator",
-              },
-              {
-                title: "Timeline Reminders",
-                description:
-                  "Subscribe to 45-day identification and 180-day closing alerts tailored to your transaction milestones.",
-                href: "/resources/timeline",
-              },
-            ].map((r) => (
-              <div
-                key={r.href}
-                className="group flex h-full flex-col bg-white px-12 py-14 transition-all duration-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
+      <section className="bg-black">
+        <div className="mx-auto max-w-[1200px] px-6 py-24 text-center md:px-12 lg:py-28">
+          <RevealSection>
+            <p
+              className={`${inter.className} text-[12px] font-medium uppercase tracking-[0.26em] text-white/55`}
+            >
+              Direct Property. Net Lease. DST.
+            </p>
+            <h2
+              className={`${playfair.className} mx-auto mt-5 max-w-4xl uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-white`}
+            >
+              See Replacement Properties Before the Exchange Clock Controls the Search
+            </h2>
+            <p
+              className={`${inter.className} mx-auto mt-7 max-w-2xl text-[15px] leading-[1.8] text-white/60`}
+            >
+              Request a current property list and tell us what the Denver sale
+              needs to accomplish. We will help narrow the conversation around
+              ownership, income, management, financing, risk, and timing.
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link
+                href="/contact?request=properties"
+                className={`${inter.className} inline-flex min-w-[250px] items-center justify-center bg-white px-8 py-4 text-[12px] font-medium uppercase tracking-[0.18em] text-black transition hover:bg-white/85`}
               >
-                <h3
-                  className={`${playfair.className} text-[26px] leading-tight text-black`}
-                >
-                  {r.title}
-                </h3>
-                <p
-                  className={`${inter.className} mt-5 flex-grow text-[14px] leading-[1.8] text-gray-500`}
-                >
-                  {r.description}
-                </p>
-                <Link
-                  href={r.href}
-                  className={`${inter.className} mt-8 text-[13px] text-black underline underline-offset-4 decoration-gray-300 hover:decoration-black transition`}
-                >
-                  Open Resource
-                </Link>
-              </div>
-            ))}
+                Get a Free Property List
+              </Link>
+              <Link
+                href={`tel:${PHONE_TEL}`}
+                className={`${inter.className} inline-flex min-w-[250px] items-center justify-center border border-white/50 px-8 py-4 text-[12px] font-medium uppercase tracking-[0.16em] text-white transition hover:bg-white hover:text-black`}
+              >
+                Call {PHONE_DISPLAY}
+              </Link>
+            </div>
           </RevealSection>
         </div>
       </section>
@@ -947,30 +922,6 @@ export default function Page() {
       </section>
 
       {/* ═══════════════════════════════════
-          DISCLAIMER
-          ═══════════════════════════════════ */}
-      <section className="bg-[#fafafa]">
-        <div className="mx-auto max-w-3xl px-6 py-16 md:px-12">
-          <div className="border-l-2 border-black bg-white px-10 py-8">
-            <p
-              className={`${inter.className} text-[13px] leading-[1.8] text-gray-500`}
-            >
-              A 1031 exchange defers federal and Colorado state income tax on
-              qualifying real property. It does not remove county transfer or
-              recording fees.{" "}
-              <Link
-                href={CO_TRANSFER_TAX_LINK}
-                className="font-medium text-black underline underline-offset-4 decoration-gray-300 hover:decoration-black"
-              >
-                Review Colorado transfer fee guidance
-              </Link>
-              .
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════
           LEAD FORM — dark section with white form card
           ═══════════════════════════════════ */}
       <section className="relative overflow-hidden bg-black" id="lead-form-section">
@@ -979,23 +930,23 @@ export default function Page() {
             <h2
               className={`${playfair.className} uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-white`}
             >
-              Start Your
+              Get Free Denver
               <br />
-              1031 Exchange
+              Exchange Guidance
             </h2>
             <p
               className={`${inter.className} mt-8 max-w-md text-[15px] font-light leading-[1.8] text-white/50`}
             >
-              Share your transaction goals and we will coordinate the qualified
-              intermediary, attorney, and timeline. A Denver 1031 exchange
-              advisor will respond within one business day.
+              Tell us what you are selling and what you want the exchange to
+              accomplish. A Denver 1031 specialist will contact you to discuss
+              the sale, replacement-property options, and practical next steps.
             </p>
             <div className="mt-12 flex flex-col gap-4 sm:flex-row">
               <Link
                 href={`tel:${PHONE_TEL}`}
                 className={`${inter.className} inline-flex items-center justify-center border border-white/40 px-10 py-5 text-[13px] font-normal uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-white hover:text-black`}
               >
-                Call {PHONE_DISPLAY}
+              Call {PHONE_DISPLAY}
               </Link>
             </div>
           </RevealSection>
@@ -1005,13 +956,13 @@ export default function Page() {
               id="lead-form"
               className={`${playfair.className} text-[28px] leading-tight text-black`}
             >
-              Request a Consultation
+              Start My Exchange
             </h3>
             <p
               className={`${inter.className} mt-3 text-[14px] leading-relaxed text-gray-500`}
             >
-              Complete the form below and we will confirm timelines, qualified
-              intermediary fit, and documentation requirements.
+              Complete the short form for free exchange guidance and a clearer
+              starting point for the sale and replacement search.
             </p>
             <div className="mt-10 border-t border-gray-100 pt-8">
               <LeadForm />
